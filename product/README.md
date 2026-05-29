@@ -35,6 +35,11 @@ source_of_truth: narrative-docs
 - [workflows](workflows/README.md): 用户与团队工作流
 - [modules](modules/README.md): 核心模块职责与关系
 
+## 平台化补充
+
+- 六域平台模块设计: [modules/platform-domains.md](modules/platform-domains.md)
+- 对应平台架构蓝图: [../architecture/platform/README.md](../architecture/platform/README.md)
+
 ## 推荐阅读顺序
 
 - vision -> modules -> workflows -> roadmap

@@ -30,6 +30,7 @@ source_of_truth: narrative-docs
 ## 模块
 
 - [system](system/README.md): 总体系统边界与子系统关系
+- [platform](platform/README.md): 平台级蓝图、六域架构与能力进化闭环
 - [analysis-engine](analysis-engine/README.md): 六引擎分析架构与 CT 扫描式诊断流程
 - [visual-os](visual-os/README.md): 语言驾驶舱与可视化操作系统架构
 - [runtime](runtime/README.md): Rust Host / TS UI / Python Worker 运行时分工与隔离

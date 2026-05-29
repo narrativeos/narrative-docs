@@ -1,0 +1,127 @@
+<!-- doc-nav:start -->
+> 返回路径： [文档首页](../../README.md) | [上一级](../README.md)
+<!-- doc-nav:end -->
+
+# Platform Architecture Blueprint
+
+## EN Summary
+
+This document defines the platform-level architecture blueprint of NarrativeOS as a language observatory and narrative intelligence infrastructure.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: architecture-platform-README
+path: architecture/platform/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [architect, product, developer, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
+## 0层定义（产品哲学）
+
+NarrativeOS 定义为：用于观察、测量、比较和进化文本的语言操作系统。
+
+该系统不以文本生成为首要目标，而以“看见语言”作为第一能力。
+
+定位声明：
+
+- Language Observatory（语言观测站）
+- Narrative Intelligence Infrastructure（叙事智能基础设施）
+
+## 平台级目标（三层）
+
+```text
+文本诊断
+  ↓
+文本认知
+  ↓
+语言科学
+```
+
+平台在规模化语料场景下具备持续进化能力，目标是形成可累积、可验证、可复用的语言基础设施。
+
+## 平台演进闭环
+
+NarrativeOS 的核心闭环为：
+
+```text
+文本输入
+  ↓
+分析计算
+  ↓
+数据沉淀
+  ↓
+知识统计
+  ↓
+模型进化
+  ↓
+新分析能力
+```
+
+该闭环是平台级能力增长的主机制，决定系统会持续提升对文本结构与叙事模式的理解能力。
+
+## 六域架构（Platform Six-Domain Architecture）
+
+### Domain 1: Text Lab（文本实验室）
+
+职责：作为单文本分析入口，完成文档接入、预处理与诊断启动。
+
+处理对象：图书、论文、长文、文档与语料集。
+
+### Domain 2: Narrative Atlas（叙事地图）
+
+职责：作为探索式可视化界面，支持多尺度文本漫游与结构观察。
+
+核心视图：词星系、主题河流、节奏波形、修辞热区。
+
+### Domain 3: Corpus Observatory（语料观测站）
+
+职责：面向大规模语料进行宏观统计、趋势分析与比较研究。
+
+能力目标：将单文诊断升级为跨文本、跨时期、跨体裁的观测能力。
+
+### Domain 4: Style Genome（风格基因库）
+
+职责：构建作者与文本的风格 DNA 档案，支持跨作者和跨时期对比。
+
+核心维度：空间感、抽象度、感官率、修辞模式、句法复杂度。
+
+### Domain 5: Insight Engine（洞察引擎）
+
+职责：对诊断结果进行解释与建议生成，形成可行动洞察。
+
+定位：语言顾问系统，不承担代写职责。
+
+### Domain 6: Knowledge Graph（知识网络）
+
+职责：构建文本实体与概念关系网络，连接作者、作品、主题、时代与修辞。
+
+能力目标：实现文本知识的结构化组织与推理增强。
+
+## 六域主链路
+
+```text
+Text Lab
+  ↓
+Narrative Atlas
+  ↓
+Corpus Observatory
+  ↓
+Style Genome
+  ↓
+Insight Engine
+  ↓
+Knowledge Graph
+```
+
+该链路定义平台从“单次分析工具”向“长期认知基础设施”的演化路径。
+
+## 架构约束
+
+- 分域解耦：六域职责边界清晰，禁止能力重叠导致的架构漂移
+- 语义一致：跨域共享统一指标定义、诊断术语与数据语义
+- 证据优先：洞察输出必须绑定可回溯指标与结构证据
+- 可持续进化：新能力必须纳入闭环，不允许一次性、不可复用分析路径

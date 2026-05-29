@@ -36,6 +36,30 @@ NarrativeOS 是多仓库、多语言系统，核心由以下能力组成：
 - 存储层以 DuckDB 为标准基线
 - 插件通过稳定 API/SDK 边界扩展，不绕过核心约束
 
+## 平台化架构定位
+
+NarrativeOS 采用平台级产品架构，不以单次文本分析作为终点，而以持续能力进化作为系统目标。
+
+平台主闭环定义为：
+
+```text
+文本输入
+	↓
+分析计算
+	↓
+数据沉淀
+	↓
+知识统计
+	↓
+模型进化
+	↓
+新分析能力
+```
+
+该闭环确保系统从“分析工具”演化为“语言观测基础设施”。
+
+详细定义见： [../platform/README.md](../platform/README.md)
+
 ## 分析系统分层
 
 在 NarrativeOS 中，文本分析能力采用四层分工：
@@ -103,3 +127,21 @@ NLP 解析
 ```
 
 该流程采用 CT 扫描式分层分析，保证每个阶段结果可追溯、可解释、可复核。
+
+## 六域平台主链路
+
+```text
+Text Lab
+	↓
+Narrative Atlas
+	↓
+Corpus Observatory
+	↓
+Style Genome
+	↓
+Insight Engine
+	↓
+Knowledge Graph
+```
+
+该主链路定义了平台级能力协同关系与演进方向。
