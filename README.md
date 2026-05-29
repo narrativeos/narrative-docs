@@ -29,6 +29,22 @@ narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用
 
 目标是建立单一事实源（SSOT），降低多仓库协作中的上下文漂移。
 
+## NarrativeOS 整体定位与目标
+
+基于前述协作对话形成的共识，NarrativeOS 的整体定位是：
+
+- 一个 AI-Native 的叙事系统工程平台，而非单一应用仓库
+- 一个由多仓库协同构成的产品矩阵，而非彼此孤立的组件集合
+- 一个以规则驱动交付质量的工程体系，而非仅依赖人工经验的流程
+
+NarrativeOS 的核心目标包括：
+
+- 统一知识与规范：以 narrative-docs 作为 SSOT，集中维护架构、产品、用户与 AI 上下文
+- 统一交付模型：推动 Layer A（AI 生成）-> Layer B（AI Review）-> Layer C（CI Gate）-> Human Approval 的闭环
+- 统一协作边界：跨仓共享规则、模板和检查机制，减少实现漂移和语义冲突
+- 统一人机双读：文档同时服务开发者/用户阅读与 Copilot 等智能体机读执行
+- 统一生态策略：在 Apache-2.0 下保持开放协作与可扩展集成能力
+
 ## 文档导航
 
 统一入口按六个层级组织，所有阅读从本页进入。
