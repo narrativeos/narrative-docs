@@ -33,6 +33,7 @@ source_of_truth: narrative-docs
 - [platform](platform/README.md): 平台级蓝图、六域架构与能力进化闭环
 - [corpus-learning](corpus-learning/README.md): 语料学习系统与语言向量资产架构
 - [style-genome](style-genome/README.md): 风格基因架构与语言基因卡设计
+- [insight-engine](insight-engine/README.md): 证据驱动 AI 分析师架构
 - [analysis-engine](analysis-engine/README.md): 六引擎分析架构与 CT 扫描式诊断流程
 - [visual-os](visual-os/README.md): 语言驾驶舱与可视化操作系统架构
 - [runtime](runtime/README.md): Rust Host / TS UI / Python Worker 运行时分工与隔离
