@@ -2,6 +2,7 @@
 layout: default
 title: ADR
 nav_order: 60
+parent: Documentation
 ---
 
 # ADR

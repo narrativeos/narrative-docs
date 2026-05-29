@@ -2,6 +2,7 @@
 layout: default
 title: AI
 nav_order: 50
+parent: Documentation
 ---
 
 # AI

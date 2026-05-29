@@ -2,6 +2,7 @@
 layout: default
 title: Developer
 nav_order: 30
+parent: Documentation
 ---
 
 # Developer

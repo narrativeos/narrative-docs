@@ -2,6 +2,7 @@
 layout: default
 title: Whitepaper
 nav_order: 70
+parent: Documentation
 ---
 
 # Whitepaper

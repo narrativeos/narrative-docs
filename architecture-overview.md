@@ -2,6 +2,7 @@
 layout: default
 title: Architecture
 nav_order: 10
+parent: Documentation
 ---
 
 # Architecture

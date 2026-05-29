@@ -2,6 +2,7 @@
 layout: default
 title: Product
 nav_order: 20
+parent: Documentation
 ---
 
 # Product

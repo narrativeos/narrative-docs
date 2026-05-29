@@ -2,6 +2,7 @@
 layout: default
 title: User
 nav_order: 40
+parent: Documentation
 ---
 
 # User
