@@ -1,0 +1,12 @@
+@media (min-width: 50rem) {
+  .side-bar,
+  .site-header,
+  .site-nav {
+    width: 320px;
+  }
+
+  .main {
+    margin-left: 320px;
+    max-width: calc(100% - 320px);
+  }
+}
