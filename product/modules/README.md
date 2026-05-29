@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Product Modules in the Narrative Knowledge Hub.
+This document maps core product modules and their responsibilities across the NarrativeOS platform.
 
 ## Machine-readable Metadata
 

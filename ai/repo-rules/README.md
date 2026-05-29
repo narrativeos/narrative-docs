@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Repo Rules for AI in the Narrative Knowledge Hub.
+This document defines repository-level AI rules to keep implementations consistent with runtime boundaries and contracts.
 
 ## Machine-readable Metadata
 
@@ -29,8 +29,10 @@ EN: Keep one shared rule set for Copilot across repositories.
 - RULE-03: DuckDB is canonical storage
 - RULE-04: IPC over shared dependency
 - RULE-05: Plugin API contract only
-- RULE-06: Prefer typed interfaces
-- RULE-07: Documentation required
+- RULE-06: Cloud optional
+- RULE-07: Prefer Rust workspace crates
+- RULE-08: Prefer typed interfaces
+- RULE-09: Documentation required
 
 这些规则用于稳定 AI 输出质量与一致性。
 
@@ -38,6 +40,7 @@ EN: These rules improve consistency and reduce architecture drift.
 
 ## 执行建议 | Enforcement
 
-- 在各仓库 `.github/copilot-instructions.md` 复用 RULE-01..RULE-07
+- 以 `.github/copilot-instructions.md` 作为 RULE-01..RULE-09 的唯一真源
+- 在其他文档中引用该真源，不复制分叉版本
 - 在 PR 模板中增加“规则影响评估”字段
 - 在 CI 中增加 lint/test/contract 失败即阻断合并

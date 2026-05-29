@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Editor Guide in the Narrative Knowledge Hub.
+This document defines editor workspace layout and interaction patterns for read-observe-diagnose workflows.
 
 ## Machine-readable Metadata
 

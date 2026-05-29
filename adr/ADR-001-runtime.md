@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes ADR-001: Runtime Isolation and Communication Boundaries in the Narrative Knowledge Hub.
+This ADR records the runtime isolation decision and the approved communication boundaries between host, UI, and worker runtimes.
 
 ## Machine-readable Metadata
 

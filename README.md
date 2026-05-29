@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Narrative Knowledge Hub in the Narrative Knowledge Hub.
+This document is the primary entry of Narrative Knowledge Hub and provides reproducible onboarding and contribution paths.
 
 ## Machine-readable Metadata
 
@@ -28,6 +28,29 @@ narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用
 - AI 上下文（AI Context）
 
 目标是建立单一事实源（SSOT），降低多仓库协作中的上下文漂移。
+
+## 5 分钟快速复现路径
+
+面向首次进入仓库的成员，目标是在 5 分钟内完成一次“可读 + 可改 + 可验证”的最小闭环。
+
+1. 打开 [user/getting-started/README.md](user/getting-started/README.md) 确认最小运行路径。
+2. 阅读 [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md) 了解门禁标准。
+3. 打开 [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md) 选择一个 `Open` 条目。
+4. 修改目标文档并确保包含目标、步骤、验收、排障四类信息。
+5. 按 [developer/coding/README.md](developer/coding/README.md) 完成自检后提交 PR。
+
+最小验收：
+
+- 新成员可独立定位一个治理条目并完成一次可审阅修改
+- PR 描述包含规则影响与验收说明
+
+## 贡献入口
+
+- 治理标准: [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md)
+- 治理清单: [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
+- 贡献指南: [CONTRIBUTING.md](CONTRIBUTING.md)
+- 编码与交付规则: [developer/coding/README.md](developer/coding/README.md)
+- AI 规则真源: [.github/copilot-instructions.md](.github/copilot-instructions.md)
 
 ## NarrativeOS 整体定位与目标
 
@@ -189,6 +212,10 @@ NLP 解析
 - 环境搭建: [developer/setup/README.md](developer/setup/README.md)
 - 工作区协作: [developer/workspace/README.md](developer/workspace/README.md)
 - 编码规范: [developer/coding/README.md](developer/coding/README.md)
+- 文档治理标准: [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md)
+- 文档待治理清单: [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
+- 文档治理发布报告（2026-05）: [developer/coding/docs-governance-release-report-2026-05.md](developer/coding/docs-governance-release-report-2026-05.md)
+- 文档治理月度巡检模板: [developer/coding/docs-governance-monthly-check-template.md](developer/coding/docs-governance-monthly-check-template.md)
 - 插件开发: [developer/plugins/README.md](developer/plugins/README.md)
 - SDK 规范: [developer/sdk/README.md](developer/sdk/README.md)
 
@@ -220,6 +247,7 @@ NLP 解析
 ### 8. Open Source Governance
 
 - 治理模型: [GOVERNANCE.md](GOVERNANCE.md)
+- 贡献指南: [CONTRIBUTING.md](CONTRIBUTING.md)
 - 安全策略: [SECURITY.md](SECURITY.md)
 - 行为准则: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - 数据分级与保留: [DATA_CLASSIFICATION_AND_RETENTION.md](DATA_CLASSIFICATION_AND_RETENTION.md)
@@ -231,6 +259,7 @@ NLP 解析
 - 架构设计与变更: Architecture -> ADR -> AI Context
 - 实施与交付: Developer -> AI Context -> Product
 - 对外白皮书阅读: Whitepaper -> Product -> Architecture -> ADR
+- 贡献与治理: Governance Standard -> Governance Backlog -> Coding Rules
 
 ## 双语与机读标准 | Bilingual + Machine-readable Standard
 

@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Storage Architecture in the Narrative Knowledge Hub.
+This document defines storage baseline decisions, schema-first rules, and compatibility expectations.
 
 ## Machine-readable Metadata
 

@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Product Workflows in the Narrative Knowledge Hub.
+This document defines role-based product workflows from single-document diagnosis to institutional-scale evaluation.
 
 ## Machine-readable Metadata
 

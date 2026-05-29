@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Product Knowledge in the Narrative Knowledge Hub.
+This document defines product intent, module boundaries, and evolution direction for NarrativeOS.
 
 ## Machine-readable Metadata
 

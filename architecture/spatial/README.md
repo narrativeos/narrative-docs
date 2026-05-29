@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Spatial Architecture in the Narrative Knowledge Hub.
+This document defines spatial analysis boundaries, GIS constraints, and cross-module integration expectations.
 
 ## Machine-readable Metadata
 

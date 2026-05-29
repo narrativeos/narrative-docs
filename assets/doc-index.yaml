@@ -58,6 +58,10 @@ sections:
       - developer/workspace/README.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
+      - developer/coding/docs-governance-standard.md
+      - developer/coding/docs-governance-backlog.md
+      - developer/coding/docs-governance-release-report-2026-05.md
+      - developer/coding/docs-governance-monthly-check-template.md
       - developer/plugins/README.md
       - developer/sdk/README.md
   - id: user
@@ -111,6 +115,7 @@ sections:
       - security-researcher
     entry: GOVERNANCE.md
     children:
+      - CONTRIBUTING.md
       - SECURITY.md
       - CODE_OF_CONDUCT.md
       - DATA_CLASSIFICATION_AND_RETENTION.md

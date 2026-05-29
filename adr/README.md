@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes ADR Index in the Narrative Knowledge Hub.
+This document indexes architecture decisions and links implementation constraints to decision history.
 
 ## Machine-readable Metadata
 

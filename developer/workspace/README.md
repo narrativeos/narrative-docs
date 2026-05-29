@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Workspace in the Narrative Knowledge Hub.
+This document defines workspace-first collaboration practices for federated multi-repository development.
 
 ## Machine-readable Metadata
 

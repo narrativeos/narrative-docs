@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes ADR-002: DuckDB as Canonical Storage Baseline in the Narrative Knowledge Hub.
+This ADR records the decision to use DuckDB as the canonical storage baseline and defines migration implications.
 
 ## Machine-readable Metadata
 

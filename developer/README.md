@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Developer Guide in the Narrative Knowledge Hub.
+This document is the developer entry for environment setup, workspace operations, coding rules, and extension tracks.
 
 ## Machine-readable Metadata
 

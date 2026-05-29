@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes User Documentation in the Narrative Knowledge Hub.
+This document is the user-facing entry for onboarding, workflows, and operational guidance.
 
 ## Machine-readable Metadata
 

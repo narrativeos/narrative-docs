@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Atlas Architecture in the Narrative Knowledge Hub.
+This document defines Atlas responsibilities, boundaries, and integration patterns for structured narrative semantics.
 
 ## Machine-readable Metadata
 

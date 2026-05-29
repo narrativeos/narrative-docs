@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Atlas Guide in the Narrative Knowledge Hub.
+This document explains Atlas usage patterns for structure navigation, semantic exploration, and evidence-linked analysis.
 
 ## Machine-readable Metadata
 

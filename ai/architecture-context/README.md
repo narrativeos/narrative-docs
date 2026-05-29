@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Architecture Context for AI in the Narrative Knowledge Hub.
+This document provides architecture context optimized for AI agents to reduce cross-repository reasoning drift.
 
 ## Machine-readable Metadata
 

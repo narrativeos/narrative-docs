@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Product Vision in the Narrative Knowledge Hub.
+This document states the long-term product vision and value proposition of NarrativeOS as a language operating system.
 
 ## Machine-readable Metadata
 

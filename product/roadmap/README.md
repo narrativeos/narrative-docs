@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Product Roadmap in the Narrative Knowledge Hub.
+This document defines phased roadmap goals and release outcomes from V1 to V3.
 
 ## Machine-readable Metadata
 

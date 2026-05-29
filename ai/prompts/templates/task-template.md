@@ -2,11 +2,9 @@
 > 返回路径： [文档首页](../../../README.md) | [上一级](../README.md)
 <!-- doc-nav:end -->
 
----
-
 ## EN Summary
 
-This document describes --- in the Narrative Knowledge Hub.
+This document defines a machine-readable task prompt template for AI agents and contributors in the Narrative Knowledge Hub.
 
 ## Machine-readable Metadata
 
@@ -19,6 +17,10 @@ audience: [ai-agent, developer]
 agent_ready: true
 source_of_truth: narrative-docs
 ```
+
+# Task Prompt Template
+
+```yaml
 task_id: TASK-XXXX
 objective: One-line objective in English
 objective_zh: 一句话中文目标
@@ -33,9 +35,7 @@ expected_output:
 verification:
   - lint
   - test
----
-
-# Task Prompt Template
+```
 
 ## 中文说明
 

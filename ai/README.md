@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes AI Context Layer in the Narrative Knowledge Hub.
+This document explains how the AI context layer provides stable rules, prompts, and architecture memory for coding agents.
 
 ## Machine-readable Metadata
 

@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Prompt Conventions in the Narrative Knowledge Hub.
+This document defines prompt conventions for reproducible, testable, and architecture-safe AI task execution.
 
 ## Machine-readable Metadata
 

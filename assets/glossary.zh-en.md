@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Glossary (ZH-EN) in the Narrative Knowledge Hub.
+This document standardizes bilingual terminology for consistent writing, review, and machine parsing across the Knowledge Hub.
 
 ## Machine-readable Metadata
 

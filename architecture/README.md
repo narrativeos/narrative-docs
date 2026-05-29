@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Architecture Memory in the Narrative Knowledge Hub.
+This document is the architecture memory index for cross-repository design boundaries and subsystem relationships.
 
 ## Machine-readable Metadata
 

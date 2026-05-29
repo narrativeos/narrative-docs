@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Setup in the Narrative Knowledge Hub.
+This document defines the canonical development environment and tooling baseline for contributors.
 
 ## Machine-readable Metadata
 

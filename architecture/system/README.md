@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes System Architecture in the Narrative Knowledge Hub.
+This document defines the end-to-end system architecture, platform loop, and core engine interactions of NarrativeOS.
 
 ## Machine-readable Metadata
 

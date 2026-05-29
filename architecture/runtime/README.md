@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Runtime Architecture in the Narrative Knowledge Hub.
+This document defines runtime separation, communication constraints, and AI-safe implementation boundaries.
 
 ## Machine-readable Metadata
 

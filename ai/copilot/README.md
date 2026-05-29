@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Copilot Context in the Narrative Knowledge Hub.
+This document defines the role, boundaries, and expected outputs of Copilot in the NarrativeOS engineering workflow.
 
 ## Machine-readable Metadata
 

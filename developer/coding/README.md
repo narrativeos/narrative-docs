@@ -6,7 +6,7 @@
 
 ## EN Summary
 
-This document describes Coding Rules in the Narrative Knowledge Hub.
+This document defines coding and delivery guardrails for AI-first, multi-repo NarrativeOS development.
 
 ## Machine-readable Metadata
 
@@ -61,3 +61,8 @@ EN: Change requirements.
 - CHECK-05: Related docs/ADR updated
 - CHECK-06: AI review completed (duplication/boundary/complexity/protocol)
 - CHECK-07: CI contract validation passed
+
+## 文档治理 | Documentation Governance
+
+- 标准: [docs-governance-standard.md](docs-governance-standard.md)
+- 待治理清单: [docs-governance-backlog.md](docs-governance-backlog.md)
