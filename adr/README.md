@@ -1,5 +1,21 @@
 # ADR Index
 
+## EN Summary
+
+This document describes ADR Index in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: adr-README
+path: adr/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ADR（Architecture Decision Record）用于记录关键架构决策、动机与影响。
 
 ## 导航

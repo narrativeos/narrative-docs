@@ -1,5 +1,21 @@
 # Runtime Architecture
 
+## EN Summary
+
+This document describes Runtime Architecture in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: architecture-runtime-README
+path: architecture/runtime/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## Runtime 分层
 
 - Host Runtime: Rust/Tauri，负责生命周期、进程与边界控制

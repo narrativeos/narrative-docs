@@ -1,5 +1,21 @@
 # Setup
 
+## EN Summary
+
+This document describes Setup in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: developer-setup-README
+path: developer/setup/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## Canonical Dev Environment
 
 - IDE: VS Code

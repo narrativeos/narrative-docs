@@ -1,5 +1,21 @@
 # Plugins
 
+## EN Summary
+
+This document describes Plugins in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: developer-plugins-README
+path: developer/plugins/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## 插件边界
 
 - 插件通过公开 API/SDK 扩展能力

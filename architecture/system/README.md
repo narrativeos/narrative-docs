@@ -1,5 +1,21 @@
 # System Architecture
 
+## EN Summary
+
+This document describes System Architecture in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: architecture-system-README
+path: architecture/system/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## 系统定位
 
 NarrativeOS 是多仓库、多语言系统，核心由以下能力组成：

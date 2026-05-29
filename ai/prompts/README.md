@@ -1,5 +1,21 @@
 # Prompt Conventions
 
+## EN Summary
+
+This document describes Prompt Conventions in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: ai-prompts-README
+path: ai/prompts/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [ai-agent, developer]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 EN: Prompt conventions for Copilot and coding agents.
 
 ## 推荐结构

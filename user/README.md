@@ -1,5 +1,21 @@
 # User Documentation
 
+## EN Summary
+
+This document describes User Documentation in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: user-README
+path: user/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [user, operator, support]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 本层面向最终用户与高级使用者，强调“可上手、可完成任务、可定位问题”。
 
 ## 导航

@@ -1,5 +1,21 @@
 # AI Context Layer
 
+## EN Summary
+
+This document describes AI Context Layer in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: ai-README
+path: ai/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [ai-agent, developer]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 本层是 NarrativeOS 的 AI 记忆层，目标是让 Copilot/Agent 获得稳定上下文。
 
 ## 导航

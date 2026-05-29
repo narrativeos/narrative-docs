@@ -1,4 +1,20 @@
 ---
+
+## EN Summary
+
+This document describes --- in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: ai-prompts-templates-task-template
+path: ai/prompts/templates/task-template.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [ai-agent, developer]
+agent_ready: true
+source_of_truth: narrative-docs
+```
 task_id: TASK-XXXX
 objective: One-line objective in English
 objective_zh: 一句话中文目标

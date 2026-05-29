@@ -1,5 +1,21 @@
 # Coding Rules
 
+## EN Summary
+
+This document describes Coding Rules in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: developer-coding-README
+path: developer/coding/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 EN: This document defines coding and delivery guardrails for AI-first, multi-repo development.
 
 ## AI-First Engineering 分工

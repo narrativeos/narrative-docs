@@ -1,5 +1,21 @@
 # Product Vision
 
+## EN Summary
+
+This document describes Product Vision in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: product-vision-README
+path: product/vision/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [product, developer, user, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 NarrativeOS 的长期目标是构建“知识操作系统”：
 
 - 连接叙事、结构化知识与空间分析

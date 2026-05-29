@@ -1,5 +1,21 @@
 # Product Knowledge
 
+## EN Summary
+
+This document describes Product Knowledge in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: product-README
+path: product/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [product, developer, user, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 本层记录 NarrativeOS 的产品定义与演进方向，避免“只做技术、不见产品边界”。
 
 ## 导航

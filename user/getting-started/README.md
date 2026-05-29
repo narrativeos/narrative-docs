@@ -1,5 +1,21 @@
 # Getting Started
 
+## EN Summary
+
+This document describes Getting Started in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: user-getting-started-README
+path: user/getting-started/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [user, operator, support]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 EN: Quick onboarding from zero to first successful workflow.
 
 - 产品定位与适用场景

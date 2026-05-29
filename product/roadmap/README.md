@@ -1,5 +1,21 @@
 # Product Roadmap
 
+## EN Summary
+
+This document describes Product Roadmap in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: product-roadmap-README
+path: product/roadmap/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [product, developer, user, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## 近期重点
 
 - 完成 Knowledge Hub（narrative-docs）基础层

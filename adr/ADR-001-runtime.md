@@ -1,5 +1,21 @@
 # ADR-001: Runtime Isolation and Communication Boundaries
 
+## EN Summary
+
+This document describes ADR-001: Runtime Isolation and Communication Boundaries in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: adr-ADR-001-runtime
+path: adr/ADR-001-runtime.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 - 状态: Accepted
 - 日期: 2026-05-29
 - 决策者: NarrativeOS Maintainers

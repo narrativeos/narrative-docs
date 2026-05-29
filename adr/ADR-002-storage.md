@@ -1,5 +1,21 @@
 # ADR-002: DuckDB as Canonical Storage Baseline
 
+## EN Summary
+
+This document describes ADR-002: DuckDB as Canonical Storage Baseline in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: adr-ADR-002-storage
+path: adr/ADR-002-storage.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 - 状态: Accepted
 - 日期: 2026-05-29
 - 决策者: NarrativeOS Maintainers

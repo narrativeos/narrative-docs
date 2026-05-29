@@ -1,5 +1,21 @@
 # Architecture Memory
 
+## EN Summary
+
+This document describes Architecture Memory in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: architecture-README
+path: architecture/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 本层维护 NarrativeOS 的跨仓库架构记忆。
 
 ## 导航

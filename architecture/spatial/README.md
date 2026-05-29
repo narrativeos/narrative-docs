@@ -1,5 +1,21 @@
 # Spatial Architecture
 
+## EN Summary
+
+This document describes Spatial Architecture in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: architecture-spatial-README
+path: architecture/spatial/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## 模块职责
 
 Spatial 负责 GIS/空间分析相关能力，并支持 NarrativeOS 中与地理空间相关的场景。

@@ -1,5 +1,21 @@
 # Architecture Context for AI
 
+## EN Summary
+
+This document describes Architecture Context for AI in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: ai-architecture-context-README
+path: ai/architecture-context/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [ai-agent, developer]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 向 AI 提供跨仓架构摘要，避免上下文漂移。
 
 EN: Cross-repo architecture context for agents and Copilot.

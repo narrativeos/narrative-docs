@@ -1,5 +1,21 @@
 # Developer Guide
 
+## EN Summary
+
+This document describes Developer Guide in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: developer-README
+path: developer/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 本层用于统一开发与协作基线，目标是降低多仓库维护摩擦。
 
 ## 导航

@@ -1,5 +1,21 @@
 # Product Workflows
 
+## EN Summary
+
+This document describes Product Workflows in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: product-workflows-README
+path: product/workflows/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [product, developer, user, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## AI Workspace Workflow
 
 - Specification: 先定义规范与边界

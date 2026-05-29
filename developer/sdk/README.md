@@ -1,5 +1,21 @@
 # SDK
 
+## EN Summary
+
+This document describes SDK in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: developer-sdk-README
+path: developer/sdk/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## SDK 目标
 
 - 提供稳定、可演进、跨语言一致的集成接口

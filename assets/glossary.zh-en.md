@@ -1,5 +1,21 @@
 # Glossary (ZH-EN)
 
+## EN Summary
+
+This document describes Glossary (ZH-EN) in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: assets-glossary.zh-en
+path: assets/glossary.zh-en.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, ai-agent, translator]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 用于统一人读与机读场景下的核心术语。
 
 | 中文 | English | 说明 |

@@ -1,5 +1,21 @@
 # Repo Rules for AI
 
+## EN Summary
+
+This document describes Repo Rules for AI in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: ai-repo-rules-README
+path: ai/repo-rules/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [ai-agent, developer]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 建议维护统一 copilot-instructions 规则，核心包括：
 
 EN: Keep one shared rule set for Copilot across repositories.

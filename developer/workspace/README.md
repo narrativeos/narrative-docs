@@ -1,5 +1,21 @@
 # Workspace
 
+## EN Summary
+
+This document describes Workspace in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: developer-workspace-README
+path: developer/workspace/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 NarrativeOS 是 federated monorepo 风格协作，应采用 Workspace-first。
 
 ## 建议

@@ -1,5 +1,21 @@
 # Narrative Knowledge Hub
 
+## EN Summary
+
+This document describes Narrative Knowledge Hub in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: README
+path: README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, user, contributor, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用于统一承载：
 
 - 架构记忆（Architecture Memory）

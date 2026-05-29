@@ -1,5 +1,21 @@
 # Product Modules
 
+## EN Summary
+
+This document describes Product Modules in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: product-modules-README
+path: product/modules/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [product, developer, user, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## 核心模块（示例）
 
 - narrative-core: 核心能力与基础抽象

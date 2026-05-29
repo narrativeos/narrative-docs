@@ -1,5 +1,21 @@
 # Storage Architecture
 
+## EN Summary
+
+This document describes Storage Architecture in the Narrative Knowledge Hub.
+
+## Machine-readable Metadata
+
+```yaml
+doc_id: architecture-storage-README
+path: architecture/storage/README.md
+lang_primary: zh-CN
+lang_secondary: en
+audience: [developer, architect, ai-agent]
+agent_ready: true
+source_of_truth: narrative-docs
+```
+
 ## 基线决策
 
 - DuckDB 作为规范化本地分析存储基线
