@@ -678,4 +678,111 @@ Back to Studio
 
 该闭环定义了 NarrativeOS 的统一数据生命循环。
 
-下一步：Language Intelligence Engine（认知架构），明确规则、统计与 LLM 的职责边界与协作机制。
+下节进入 Language Intelligence Engine（认知架构），定义规则、统计与 LLM 的职责边界与协作机制。
+
+## Language Intelligence Engine（收敛到 system）
+
+Language Intelligence Engine 是 NarrativeOS 的认知控制层，负责将规则系统、统计系统与 LLM 推理系统组织为统一决策引擎。
+
+目标：随着语料规模增长，系统能力稳定增强而非语义漂移。
+
+### 认知原则
+
+- 可验证优先：所有结论必须可回溯到 Feature 与证据链
+- 低成本优先：能用规则和统计解决的问题不调用 LLM
+- 稳定优先：同输入在同版本下输出应可复现
+- 可学习优先：新语料进入后可更新基线与策略，但不破坏历史可比性
+
+### 三类能力分工
+
+#### 1) Rule Engine（规则引擎）
+
+适用：确定性、可枚举、低延迟任务。
+
+示例：模板句检测、标点异常、句长阈值、结构断桥初筛。
+
+特征：可解释、快、稳定；但泛化能力有限。
+
+#### 2) Statistical Engine（统计引擎）
+
+适用：分布比较、群体差异、趋势检测。
+
+示例：同体裁均值比较、风格偏离度、时期迁移趋势、聚类边界。
+
+特征：对语料规模敏感，是 Corpus 与 Observatory 的核心。
+
+#### 3) LLM Reasoning Engine（推理引擎）
+
+适用：解释生成、复杂归因、跨信号综合表达。
+
+输入约束：必须基于 Feature RAG，不直接把原文当唯一依据。
+
+特征：表达能力强；但必须被规则与统计证据约束。
+
+### 决策路由（Cognitive Router）
+
+Language Intelligence Engine 通过任务路由器进行能力编排：
+
+```text
+Task
+	↓
+Complexity Classifier
+	├─ deterministic -> Rule Engine
+	├─ comparative -> Statistical Engine
+	└─ explanatory -> LLM Reasoning Engine
+	↓
+Evidence Assembler
+	↓
+Final Response
+```
+
+路由策略：
+
+- 默认先规则
+- 再统计校准
+- 最后在必要时调用 LLM 解释
+
+### 统一输出契约
+
+三类引擎输出必须统一写入 Feature/Relation/Provenance，不允许私有结构绕过 Schema 2.0。
+
+最小输出字段：
+
+- decision
+- evidence_ids
+- confidence
+- engine_path
+- schema_version
+
+### 学习与演进机制
+
+系统演进采用双轨更新：
+
+- 在线轨：规则热更新、阈值微调、缓存策略优化
+- 离线轨：语料再训练、统计基线重建、向量空间校准
+
+版本策略：任何基线更新必须带 engine_version 与 benchmark_snapshot，确保跨时期可比。
+
+### 防漂移与防失控
+
+- 禁止无证据结论：无 evidence_ids 的回答不得进入 Insight
+- 禁止黑箱升级：模型切换必须通过回放集与基线对比
+- 禁止静默回归：关键特征（bridge、rhythm、abstractness）设回归阈值告警
+
+### 认知闭环
+
+```text
+Feature Stream
+	↓
+Rule / Statistical / LLM Orchestration
+	↓
+Evidence-linked Insight
+	↓
+User Feedback + Corpus Growth
+	↓
+Baseline Update
+	↓
+Back to Router Policy
+```
+
+该闭环定义了 NarrativeOS 从“能分析文本”到“持续学习语言”的认知架构路径。
