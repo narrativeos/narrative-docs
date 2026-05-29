@@ -33,3 +33,4 @@ source_of_truth: narrative-docs
 ## 关键能力模块（产品定义）
 
 - [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（六引擎）与产品交付物
+- [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力

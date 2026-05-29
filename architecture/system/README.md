@@ -66,6 +66,26 @@ NarrativeOS 是多仓库、多语言系统，核心由以下能力组成：
 
 详细定义见： [../analysis-engine/README.md](../analysis-engine/README.md)
 
+## Visual OS 子系统
+
+Visual OS 是可视化/报告层的核心子系统，采用语言驾驶舱形态组织分析结果。
+
+核心界面包括：
+
+- 总览仪表盘（Overview Dashboard）
+- 语言地图（Language Terrain Map）
+- 语义星系（Semantic Galaxy）
+- 节奏时间轴（Rhythm Timeline）
+- AI 热区（AI Heat Zones）
+
+子系统职责：
+
+- 将多引擎诊断结果映射为统一视觉语义
+- 提供缩放、钻取、联动等交互能力
+- 提供问题优先级与可行动诊断入口
+
+详细定义见： [../visual-os/README.md](../visual-os/README.md)
+
 ## 端到端分析流程
 
 ```text
