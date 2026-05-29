@@ -1,0 +1,55 @@
+name: Issue Template Check
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+jobs:
+  validate-issue-body:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate issue template fields
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = (issue.body || '').trim();
+            const title = issue.title || '';
+            const labels = (issue.labels || []).map(l => (l.name || '').toLowerCase());
+
+            const isBug = labels.includes('bug') || /^\[bug\]/i.test(title);
+            const isFeature = labels.includes('enhancement') || /^\[feature\]/i.test(title);
+
+            // Only validate known templates.
+            if (!isBug && !isFeature) {
+              core.info('Skip validation for non-bug/non-feature issue.');
+              return;
+            }
+
+            const missing = [];
+
+            if (isBug) {
+              if (!/##\s*Steps to reproduce/i.test(body) && !/##\s*复现步骤/i.test(body)) {
+                missing.push('Steps to reproduce / 复现步骤');
+              }
+              if (!/##\s*Architecture impact/i.test(body) && !/##\s*架构影响/i.test(body)) {
+                missing.push('Architecture impact / 架构影响');
+              }
+            }
+
+            if (isFeature) {
+              if (!/##\s*Proposal/i.test(body) && !/##\s*方案建议/i.test(body)) {
+                missing.push('Proposal / 方案建议');
+              }
+              if (!/##\s*Architecture impact/i.test(body) && !/##\s*架构影响/i.test(body)) {
+                missing.push('Architecture impact / 架构影响');
+              }
+            }
+
+            if (!/##\s*Rule impact/i.test(body) && !/##\s*规则影响/i.test(body)) {
+              missing.push('Rule impact / 规则影响');
+            }
+
+            if (missing.length > 0) {
+              core.setFailed(`Issue template check failed: ${missing.join('; ')}`);
+            }
