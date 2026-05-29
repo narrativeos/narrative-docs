@@ -35,3 +35,4 @@ source_of_truth: narrative-docs
 - [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（六引擎）与产品交付物
 - [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力
 - [platform-domains.md](platform-domains.md): 六域平台模块设计与协同主链路
+- [corpus-observatory.md](corpus-observatory.md): 语料观测与语言向量资产模块
