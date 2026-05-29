@@ -150,6 +150,7 @@ NLP 解析
 
 - 总览: [architecture/README.md](architecture/README.md)
 - 系统架构: [architecture/system/README.md](architecture/system/README.md)
+- CTO 蓝图: [architecture/cto-blueprint/README.md](architecture/cto-blueprint/README.md)
 - 平台架构蓝图: [architecture/platform/README.md](architecture/platform/README.md)
 - 语料学习架构: [architecture/corpus-learning/README.md](architecture/corpus-learning/README.md)
 - 风格基因架构: [architecture/style-genome/README.md](architecture/style-genome/README.md)
