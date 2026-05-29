@@ -1,14 +1,14 @@
 # Coding Rules
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines coding and delivery guardrails for AI-first, multi-repo NarrativeOS development.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-coding-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 AI-first 多仓协作中的编码、评审、CI 三层守门规则。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：阅读“三层交付模型”理解责任边界
 - 第二步：按“质量守门”执行语言栈检查
 - 第三步：结合文档治理标准完成交付自检
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [docs-governance-standard.md](docs-governance-standard.md)
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
@@ -61,7 +61,7 @@ EN: Quality gates.
 - TS: eslint / typecheck / vitest
 - Python: ruff / pytest
 
-## 变更要求
+## 变更要求 | Change Requirements
 
 EN: Change requirements.
 

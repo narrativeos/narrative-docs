@@ -1,14 +1,14 @@
 # Analysis Engine Architecture
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the modular analysis engine architecture for NarrativeOS.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-analysis-engine-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 定位
+## 定位 | Positioning
 
 Analysis Engine 是 NarrativeOS 的核心计算中枢，负责将文本输入转化为可观测、可解释、可行动的诊断结果。
 
@@ -40,7 +40,7 @@ Analysis Engine 是 NarrativeOS 的核心计算中枢，负责将文本输入转
 - 不在引擎层直接耦合 UI 展现逻辑
 - 不允许绕过统一输出契约返回私有格式
 
-## 设计原则
+## 设计原则 | Design Principles
 
 - 模块化：按分析职能拆分为独立引擎，支持分步演进与替换
 - 可解释：每个引擎输出可追溯指标与中间结果
@@ -262,7 +262,7 @@ NLP 解析
 - 期望：返回标准错误对象，不返回空壳诊断
 - 验证：错误码与 request_id 可追踪
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 ### 现象 1：Engine 结果缺失
 

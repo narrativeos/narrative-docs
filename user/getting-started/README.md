@@ -1,14 +1,14 @@
 # Getting Started
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines a reproducible zero-to-first-workflow onboarding path for users and contributors.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: user-getting-started-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义用户与贡献者从 0 到 1 的首个成功任务路径与验收标准。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：完成“用户首个成功任务（10 分钟）”
 - 第二步：按角色完成“贡献者首个成功任务（10 分钟）”
 - 第三步：对照 Checklist 与排障章节完成复核
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
@@ -118,7 +118,7 @@ EN: Quick onboarding from zero to first successful user workflow and first contr
 
 更多问题见 [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)。
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [Developer Guide](../../developer/README.md)
 - [Documentation Governance Standard](../../developer/coding/docs-governance-standard.md)

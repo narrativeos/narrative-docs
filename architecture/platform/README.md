@@ -1,14 +1,14 @@
 # Platform Architecture Blueprint
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the platform-level architecture blueprint of NarrativeOS as a language observatory and narrative intelligence infrastructure.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-platform-README
@@ -166,7 +166,7 @@ Knowledge Graph
 
 该链路定义平台从“单次分析工具”向“长期认知基础设施”的演化路径。
 
-## 架构约束
+## 架构约束 | Architecture Constraints
 
 - 分域解耦：六域职责边界清晰，禁止能力重叠导致的架构漂移
 - 语义一致：跨域共享统一指标定义、诊断术语与数据语义

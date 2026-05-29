@@ -1,14 +1,14 @@
 # NarrativeOS 白皮书一页纸摘要
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This one-page brief provides a concise external-facing overview of NarrativeOS, including mission, product positioning, architecture, roadmap, governance, and collaboration model.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: whitepaper-one-page-summary

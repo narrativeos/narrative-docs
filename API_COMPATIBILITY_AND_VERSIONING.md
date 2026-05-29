@@ -1,14 +1,14 @@
 # API Compatibility and Versioning Policy
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines compatibility guarantees, versioning rules, deprecation lifecycle, and breaking-change process for NarrativeOS APIs, SDK interfaces, and plugin contracts.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: API_COMPATIBILITY_AND_VERSIONING
@@ -20,11 +20,11 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 目标
+## 目标 | Goals
 
 统一 API、SDK 与插件契约的版本治理，降低集成方升级风险，避免生态接口漂移。
 
-## 适用范围
+## 适用范围 | Scope
 
 本策略适用于：
 
@@ -96,7 +96,7 @@ source_of_truth: narrative-docs
 - 若无法快速修复，需发布已知问题与临时规避方案
 - 重大回滚应补充 ADR 或发布后复盘说明
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - GOVERNANCE.md
 - whitepaper/core-docs-mapping.md

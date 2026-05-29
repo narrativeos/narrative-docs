@@ -1,14 +1,14 @@
 # Corpus Observatory Module
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines module-level design for corpus learning and large-scale language observation.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: product-modules-corpus-observatory
@@ -20,11 +20,11 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 模块目标
+## 模块目标 | Module Goals
 
 Corpus Observatory 模块的目标是将单文本分析升级为规模化语料观察与比较能力。
 
-## 核心能力
+## 核心能力 | Core Capabilities
 
 - 语料批量纳入与结构化索引
 - 语言向量沉淀与可解释特征绑定
@@ -84,7 +84,7 @@ Corpus 页面为 V2 核心页面，定位为语料观测主界面，不使用单
 - 主题谱
 - 叙事结构
 
-## 关键输出
+## 关键输出 | Key Outputs
 
 - Language Vector DB 记录
 - 语料分层统计看板
@@ -92,7 +92,7 @@ Corpus 页面为 V2 核心页面，定位为语料观测主界面，不使用单
 - 演化趋势曲线
 - AI 写作检测信号
 
-## 典型场景
+## 典型场景 | Typical Scenarios
 
 - 文学演化：如 1990-2025 中文城市写作演化比较
 - AI 写作检测：基于统计风格而非关键词
@@ -116,13 +116,13 @@ Corpus 页面为 V2 核心页面，定位为语料观测主界面，不使用单
 
 该流程强调“浏览 -> 发现 -> 比较 -> 沉淀”而非“上传 -> 评分 -> 结束”。
 
-## 模块边界
+## 模块边界 | Module Boundaries
 
 - 本模块不负责单篇文本即时编辑交互
 - 本模块不依赖单一规则命中做结论
 - 本模块必须输出可回溯统计证据
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - 语料学习架构： [../../architecture/corpus-learning/README.md](../../architecture/corpus-learning/README.md)
 - 平台蓝图： [../../architecture/platform/README.md](../../architecture/platform/README.md)

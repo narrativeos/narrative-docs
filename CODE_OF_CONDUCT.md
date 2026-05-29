@@ -1,14 +1,14 @@
 # Code of Conduct
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines expected behavior, unacceptable behavior, and enforcement process for contributors and maintainers in the NarrativeOS documentation community.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: CODE_OF_CONDUCT
@@ -42,7 +42,7 @@ source_of_truth: narrative-docs
 - 恶意曲解、反复挑衅或报复性行为
 - 明知错误仍拒绝修复并阻碍协作
 
-## 适用范围
+## 适用范围 | Scope
 
 本准则适用于：
 
@@ -67,7 +67,7 @@ source_of_truth: narrative-docs
 
 被处理方可在合理期限内提出复议，维护者将进行复核并给出最终结论。
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - GOVERNANCE.md
 - SECURITY.md

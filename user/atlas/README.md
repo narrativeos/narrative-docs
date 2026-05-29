@@ -1,14 +1,14 @@
 # Atlas Guide
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document explains Atlas usage patterns for structure navigation, semantic exploration, and evidence-linked analysis.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: user-atlas-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 Atlas 的核心视图语义、模式切换策略与证据驱动分析路径。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：先读“Atlas 页面定位”明确目标
 - 第二步：按 City -> Galaxy -> Music/Emotion -> X-Ray 顺序操作
 - 第三步：回到原文完成问题修订并记录证据
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)

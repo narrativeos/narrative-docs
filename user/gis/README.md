@@ -1,14 +1,14 @@
 # GIS Guide
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the minimum GIS workflow, coordinate system checks, and troubleshooting practices for NarrativeOS spatial analysis.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: user-gis-README
@@ -20,23 +20,23 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 GIS 最小可复现任务、坐标系基线与跨模块联动策略。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：完成“GeoJSON 到空间洞察”最小任务
 - 第二步：检查坐标系与精度基线
 - 第三步：打通 GIS -> Atlas -> Insight -> Report 联动链路
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
 - [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
 
-## 适用范围
+## 适用范围 | Scope
 
 - 城市叙事、地理语义、空间可视化任务
 - 面向编辑、研究者、空间分析协作者
@@ -88,7 +88,7 @@ source_of_truth: narrative-docs
 - GIS -> Insight：输出空间证据链
 - GIS -> Report：生成可引用地图快照
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 ### 现象 1：导入后点位偏移严重
 
@@ -108,7 +108,7 @@ source_of_truth: narrative-docs
 - 检查同步任务是否完成
 - 检查权限是否允许跨模块读取
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [User Documentation](../README.md)
 - [Atlas Guide](../atlas/README.md)

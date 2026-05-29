@@ -1,14 +1,14 @@
 # Contributing to Narrative Knowledge Hub
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the standard contribution workflow, review expectations, and quality gates for narrative-docs contributors.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: CONTRIBUTING
@@ -42,7 +42,7 @@ source_of_truth: narrative-docs
 4. 自检链接可达、术语一致、规则引用正确。
 5. 使用 PR 模板提交并填写 Rule Impact、AI Review、CI Gate。
 
-## 变更要求
+## 变更要求 | Change Requirements
 
 - 关键变更必须同步更新相关索引与交叉链接
 - 规则相关变更以 [.github/copilot-instructions.md](.github/copilot-instructions.md) 为真源

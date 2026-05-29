@@ -1,14 +1,14 @@
 # Documentation Governance Standard v1.0
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the quality model, process gates, severity levels, and operating cadence for documentation governance in narrative-docs.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-coding-docs-governance-standard
@@ -106,7 +106,7 @@ source_of_truth: narrative-docs
 - 关键链接可达，示例可复现
 - 状态已同步到治理清单与白皮书就绪度文档
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [docs-governance-backlog.md](docs-governance-backlog.md)
 - [docs-governance-release-report-2026-05.md](docs-governance-release-report-2026-05.md)

@@ -1,14 +1,14 @@
 # Cloud Guide
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines cloud collaboration modes, sync workflow, permission checks, and troubleshooting for NarrativeOS users.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: user-cloud-README
@@ -20,23 +20,23 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 Cloud 协作模式、权限基线、同步验收与冲突处理路径。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：确认 Local/Cloud 双模式差异
 - 第二步：完成“创建并共享项目”最小可复现任务
 - 第三步：按权限模型与冲突策略完成协作验证
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
 - [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
 
-## 适用范围
+## 适用范围 | Scope
 
 - 面向作者、编辑、机构协作成员
 - 用于项目同步、协同编辑、权限控制
@@ -93,7 +93,7 @@ source_of_truth: narrative-docs
 - 恢复在线：按时间戳执行增量同步与冲突提示
 - 冲突策略：默认保留双方版本并提示人工合并
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 ### 现象 1：项目一直显示 Syncing
 
@@ -113,7 +113,7 @@ source_of_truth: narrative-docs
 - 以段落为单位合并并保留审阅注释
 - 合并后再次执行手动同步
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [User Documentation](../README.md)
 - [Getting Started](../getting-started/README.md)

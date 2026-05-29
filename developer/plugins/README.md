@@ -1,14 +1,14 @@
 # Plugins
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines plugin boundaries, contract examples, compatibility policy, and release checks for NarrativeOS contributors.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-plugins-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义插件边界、契约、注册流程与回归要求，保证扩展能力可控可演进。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：确认插件边界与支持能力
 - 第二步：按最小契约示例实现并完成注册流程
 - 第三步：按兼容矩阵与回归测试矩阵完成发布前验证
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
@@ -119,7 +119,7 @@ def analyze(payload):
 - 提交插件能力时补充示例与兼容说明
 - AI 生成插件代码需通过 contract 与 CI 校验
 
-## 交付检查清单
+## 交付检查清单 | Delivery Checklist
 
 - 提供 `input_schema` 与 `output_schema`
 - 提供最小可运行示例
@@ -138,7 +138,7 @@ def analyze(payload):
 | 兼容 | 同 MAJOR 下旧插件行为不退化 |
 | 性能 | 插件执行时延与内存占用在可接受范围 |
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 ### 现象 1：插件可运行但平台不识别
 
@@ -164,7 +164,7 @@ def analyze(payload):
 - 检查依赖版本是否与灰度环境一致
 - 检查是否遗漏了 runtime 权限声明
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [SDK](../sdk/README.md)
 - [API Compatibility and Versioning](../../API_COMPATIBILITY_AND_VERSIONING.md)

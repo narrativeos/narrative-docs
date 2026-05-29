@@ -1,14 +1,14 @@
 # Corpus Learning Architecture
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines corpus learning architecture as the core moat capability of NarrativeOS.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-corpus-learning-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 定位
+## 定位 | Positioning
 
 语料学习系统是 NarrativeOS 的核心护城河能力。
 

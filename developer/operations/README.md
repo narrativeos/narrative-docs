@@ -1,14 +1,14 @@
 # Operations Runbook
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document provides the minimum operational runbook for install validation, rollback handling, and incident triage in NarrativeOS environments.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-operations-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 适用范围
+## 适用范围 | Scope
 
 - 本地开发环境
 - 演示环境
@@ -70,7 +70,7 @@ source_of_truth: narrative-docs
   └─ 否 -> 仅修正文档与索引
 ```
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)
 - [../../CHANGELOG.md](../../CHANGELOG.md)

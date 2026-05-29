@@ -1,14 +1,14 @@
 # Repo Rules for AI
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines repository-level AI rules to keep implementations consistent with runtime boundaries and contracts.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: ai-repo-rules-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义跨仓 AI 执行规则真源，降低实现偏移与架构漂移。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：先理解 RULE-01..RULE-09 的约束边界
 - 第二步：确认规则真源位置与引用方式
 - 第三步：在 PR 与 CI 中落实规则影响评估
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../.github/copilot-instructions.md](../../.github/copilot-instructions.md)
 - [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)

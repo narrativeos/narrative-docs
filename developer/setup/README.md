@@ -1,14 +1,14 @@
 # Setup
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the canonical development environment and tooling baseline for contributors.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-setup-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义贡献者的最小开发环境基线与 10 分钟可执行自检路径。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：完成本页“10 分钟环境自检”
 - 第二步：进入 [../workspace/README.md](../workspace/README.md) 打开多仓工作区
 - 第三步：进入 [../coding/README.md](../coding/README.md) 对齐交付门禁
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
@@ -84,7 +84,7 @@ code --version
 4. Rust stable toolchain
 5. VS Code 与必要扩展
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 - `node` 不存在：检查 PATH 或重新安装 Node LTS
 - `rustc` 不存在：通过 rustup 安装 stable 工具链

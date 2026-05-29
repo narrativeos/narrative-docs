@@ -1,14 +1,14 @@
 # API Specification Guide
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the API specification entry point, OpenAPI governance rules, and versioning expectations for NarrativeOS interfaces.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-api-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 目标
+## 目标 | Goals
 
 - 为 NarrativeOS 对外接口提供统一规格入口
 - 将“版本策略”与“接口定义”分离维护
@@ -57,7 +57,7 @@ developer/api/
 - SDK 文档与 API 示例字段一致
 - 错误模型可被 TS/Python SDK 直接消费
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 ### 现象 1：版本策略写了，但找不到具体接口定义
 
@@ -74,7 +74,7 @@ developer/api/
 - 检查 CHANGELOG 和 API Compatibility 文档
 - 检查 MAJOR 版本是否已提升
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [../../API_COMPATIBILITY_AND_VERSIONING.md](../../API_COMPATIBILITY_AND_VERSIONING.md)
 - [../sdk/README.md](../sdk/README.md)

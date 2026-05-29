@@ -1,14 +1,14 @@
 # Architecture Context for AI
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document provides architecture context optimized for AI agents to reduce cross-repository reasoning drift.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: ai-architecture-context-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 提供面向 AI Agent 的跨仓架构摘要，保证任务理解和执行上下文一致。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：先读“必含信息”确认上下文覆盖范围
 - 第二步：按“更新机制”维护与 ADR 同步
 - 第三步：通过机读入口校验上下文资产可访问性
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
 - [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)

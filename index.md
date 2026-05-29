@@ -15,7 +15,7 @@ NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI A
 - [排障中心](TROUBLESHOOTING.md)
 - [版本与更新](WHATS_NEW.md)
 
-## 文档导航
+## 文档导航 | Documentation Navigation
 
 - [Architecture 架构](architecture-overview.md)
 - [Product 产品](product-overview.md)

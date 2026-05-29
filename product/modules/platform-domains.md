@@ -1,14 +1,14 @@
 # Platform Domains Module Design
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines module-level product design for the six platform domains of NarrativeOS.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: product-modules-platform-domains
@@ -167,13 +167,13 @@ Text Lab -> Narrative Atlas -> Corpus Observatory -> Style Genome -> Insight Eng
 - 认知沉淀：将分析结果结构化为长期资产
 - 进化能力：以历史语料反馈推动分析能力迭代
 
-## 非目标
+## 非目标 | Non-goals
 
 - 不以内容代写为主路径
 - 不输出无证据来源的黑箱建议
 - 不将六域混为单体功能集合
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - 平台架构： [../../architecture/platform/README.md](../../architecture/platform/README.md)
 - 系统架构： [../../architecture/system/README.md](../../architecture/system/README.md)

@@ -1,14 +1,14 @@
 # Data Classification and Retention Policy
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines data classes, retention windows, deletion rules, and minimum handling requirements for NarrativeOS documentation and related operational records.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: DATA_CLASSIFICATION_AND_RETENTION
@@ -20,11 +20,11 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 目标
+## 目标 | Goals
 
 本策略用于统一 NarrativeOS 文档体系中的数据分级、保存时长和删除规则，降低泄露风险与合规不确定性。
 
-## 适用范围
+## 适用范围 | Scope
 
 本策略适用于 narrative-docs 仓库及其协作过程中产生的相关数据记录，包括：
 
@@ -126,7 +126,7 @@ source_of_truth: narrative-docs
 - 发生安全事件后应复盘并更新本策略
 - 与 [SECURITY.md](SECURITY.md) 联动维护
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - SECURITY.md
 - GOVERNANCE.md

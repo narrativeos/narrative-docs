@@ -1,14 +1,14 @@
 # Library Architecture
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the Library architecture as the final knowledge convergence layer of NarrativeOS.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-library-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 定位
+## 定位 | Positioning
 
 Library 是 NarrativeOS 的最终知识汇聚层。
 
@@ -55,11 +55,11 @@ Library 采用六类知识实体组织：
 Library 沉淀
 ```
 
-## 平台价值
+## 平台价值 | Platform Value
 
 当系统累计大规模语料（如 1 万本书）后，Library 可演化为中文语言地图与数字人文研究底座。
 
-## 架构约束
+## 架构约束 | Architecture Constraints
 
 - 入库对象必须具备来源、时间与证据链
 - 实体关系必须可解释且可回溯

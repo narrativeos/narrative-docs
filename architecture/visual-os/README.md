@@ -1,14 +1,14 @@
 # Visual OS Architecture
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the Visual OS architecture of NarrativeOS, including cockpit-style interfaces and visual diagnostics.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-visual-os-README
@@ -20,13 +20,13 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 定位
+## 定位 | Positioning
 
 Visual OS 是 NarrativeOS 的可视化操作系统层，目标不是提供静态图表，而是构建可交互的语言驾驶舱（Language Cockpit）。
 
 Visual OS 采用终端化、分层化的信息呈现方式，面向作者、编辑与研究者提供实时结构观察与诊断入口。
 
-## 设计原则
+## 设计原则 | Design Principles
 
 - 可观测优先：所有可视化均对应可解释指标与诊断信号
 - 交互优先：支持缩放、过滤、钻取与上下文联动

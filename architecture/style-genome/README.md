@@ -1,14 +1,14 @@
 # Style Genome Architecture
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the architecture of Style Genome, including language genome cards and longitudinal writing evolution analysis.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-style-genome-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 定位
+## 定位 | Positioning
 
 Style Genome 是 NarrativeOS 中用于构建作者与文本风格 DNA 的核心架构域。
 
@@ -63,12 +63,12 @@ Style Genome 支持同一作者跨时期写作对比。
 - 稳定风格特征
 - 新增风格倾向
 
-## 交互约束
+## 交互约束 | Interaction Constraints
 
 - 每个维度分值必须可追溯到原始文本证据
 - 对比结论必须展示差异来源与样本区间
 - 演化结论必须绑定时间维度与版本信息
 
-## 平台价值
+## 平台价值 | Platform Value
 
 Style Genome 提供高粘性个人反馈回路与长期风格成长记录，形成持续使用动力。

@@ -1,14 +1,14 @@
 # 基准测试与验收指标入口
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines benchmark categories, acceptance metrics, and release gates for NarrativeOS documentation claims and capability milestones.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: whitepaper-benchmark-and-acceptance-metrics
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 目标
+## 目标 | Goals
 
 本文件作为白皮书中的“可信性入口”，用于统一叙事声明与可验证指标之间的映射关系。
 
@@ -132,7 +132,7 @@ owner: role-or-team
 - 当指标定义变更时，必须记录变更原因
 - 指标异常应在路线图和已知限制中体现
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - whitepaper/readiness-checklist.md
 - product/roadmap/README.md

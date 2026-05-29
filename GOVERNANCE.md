@@ -1,14 +1,14 @@
 # Governance
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the governance model, decision process, and role responsibilities for narrative-docs as the source-of-truth documentation hub of NarrativeOS.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: GOVERNANCE
@@ -102,7 +102,7 @@ narrative-docs 是 NarrativeOS 的文档权威源（SSOT）。治理目标是确
 - 第二步：Maintainers 组织结论性评审
 - 第三步：必要时通过 ADR 固化裁决
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - README.md
 - adr/README.md

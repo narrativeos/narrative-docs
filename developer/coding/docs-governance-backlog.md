@@ -1,14 +1,14 @@
 # Documentation Governance Backlog
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document tracks prioritized documentation governance issues, owners, SLAs, and acceptance criteria.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-coding-docs-governance-backlog
@@ -63,7 +63,7 @@ source_of_truth: narrative-docs
 - 平均修复时长
 - Gate 通过率
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [docs-governance-standard.md](docs-governance-standard.md)
 - [../../CONTRIBUTING.md](../../CONTRIBUTING.md)

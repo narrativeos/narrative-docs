@@ -1,14 +1,14 @@
 # Documentation Governance Monthly Check Template
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This template supports monthly governance review with score tracking, backlog movement, and release readiness checks.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-coding-docs-governance-monthly-check-template
@@ -80,7 +80,7 @@ source_of_truth: narrative-docs
 2. 
 3. 
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [docs-governance-standard.md](docs-governance-standard.md)
 - [docs-governance-backlog.md](docs-governance-backlog.md)

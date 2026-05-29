@@ -1,14 +1,14 @@
 # Prompt Conventions
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines prompt conventions for reproducible, testable, and architecture-safe AI task execution.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: ai-prompts-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 Prompt 的可复现结构、引用规范与任务验收方式。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：先看“推荐结构”理解 prompt 必含字段
 - 第二步：按“原则”确保引用路径与验证要求
 - 第三步：使用标准模板生成任务输入
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [templates/task-template.md](templates/task-template.md)
 - [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)

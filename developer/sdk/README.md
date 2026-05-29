@@ -1,14 +1,14 @@
 # SDK
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines SDK integration goals, TS/Python minimum onboarding paths, error semantics, and migration requirements.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-sdk-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 SDK 接入基线、错误语义、兼容矩阵与迁移要求。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：先看“最小接入路径（TypeScript/Python）”跑通调用
 - 第二步：根据场景选择异步任务模式与幂等策略
 - 第三步：按兼容矩阵和迁移要求执行发布前检查
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
@@ -41,7 +41,7 @@ source_of_truth: narrative-docs
 - 提供稳定、可演进、跨语言一致的集成接口
 - 明确输入输出模型与错误语义
 
-## 适用范围
+## 适用范围 | Scope
 
 - narrative-sdk-ts 与 narrative-sdk-py
 - 面向插件开发者、平台集成者、自动化工作流维护者
@@ -183,7 +183,7 @@ print(done.get("status"), done.get("result_id"))
 - 破坏性变更必须标注迁移路径
 - 与 API/schema 的一致性由 CI 校验
 
-## 交付检查清单
+## 交付检查清单 | Delivery Checklist
 
 - TS 与 Python 示例均可运行
 - 错误码与错误对象语义一致
@@ -192,7 +192,7 @@ print(done.get("status"), done.get("result_id"))
 - 异步任务模式至少有一条可运行示例
 - 重试与幂等策略在文档中有明确说明
 
-## 常见问题排查
+## 常见问题排查 | Troubleshooting
 
 ### 现象 1：TS 能调用，Python 调用失败
 
@@ -212,7 +212,7 @@ print(done.get("status"), done.get("result_id"))
 - 检查错误码是否在最小集合内
 - 检查日志中是否保留调用上下文
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [Plugins](../plugins/README.md)
 - [API Compatibility and Versioning](../../API_COMPATIBILITY_AND_VERSIONING.md)

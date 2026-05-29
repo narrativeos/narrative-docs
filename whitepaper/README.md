@@ -1,14 +1,14 @@
 # NarrativeOS Open Source Whitepaper
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the open-source whitepaper structure for NarrativeOS and maps existing core documents into a publishable standard format.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: whitepaper-README
@@ -45,7 +45,7 @@ source_of_truth: narrative-docs
 - [核心文档映射表](core-docs-mapping.md)
 - [开源白皮书就绪度检查清单](readiness-checklist.md)
 
-## 使用方式
+## 使用方式 | Usage
 
 - 对外发布白皮书时：以本目录为主入口，按映射表引用权威章节
 - 内部迭代文档时：优先更新原始权威文档，再同步本目录映射与状态

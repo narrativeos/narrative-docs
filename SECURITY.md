@@ -1,14 +1,14 @@
 # Security Policy
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the security reporting process, response timeline, and disclosure policy for narrative-docs and related documentation assets.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: SECURITY
@@ -84,7 +84,7 @@ source_of_truth: narrative-docs
 - 变更安全相关流程文档时必须经过审阅
 - 对外发布前执行文档链接与风险提示自检
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - GOVERNANCE.md
 - CODE_OF_CONDUCT.md

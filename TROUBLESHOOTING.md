@@ -1,14 +1,14 @@
 # Troubleshooting Hub
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document provides a centralized troubleshooting index for onboarding, workspace setup, contribution flow, and documentation quality checks.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: TROUBLESHOOTING
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 使用方式
+## 使用方式 | Usage
 
 1. 先匹配你当前所处阶段（启动/协作/提交/发布）。
 2. 找到对应症状并按“检查 -> 修复 -> 验证”顺序处理。
@@ -82,7 +82,7 @@ source_of_truth: narrative-docs
 - 修复：按治理标准补齐缺失段落
 - 验证：页面可支持新成员完成首个任务
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - [README.md](README.md)
 - [user/getting-started/README.md](user/getting-started/README.md)

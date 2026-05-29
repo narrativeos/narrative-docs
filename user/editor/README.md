@@ -1,14 +1,14 @@
 # Editor Guide
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines editor workspace layout and interaction patterns for read-observe-diagnose workflows.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: user-editor-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 定义 Editor 工作台的布局语义与核心交互路径，帮助用户快速进入“阅读-观察-诊断-修订”闭环。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：先理解三栏布局及各区域职责
 - 第二步：按主舞台视图切换完成一次最小诊断路径
 - 第三步：结合 Atlas/Visual OS 文档完成跨模块联动
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)

@@ -1,14 +1,14 @@
 # Product Knowledge
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines product intent, module boundaries, and evolution direction for NarrativeOS.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: product-README
@@ -20,17 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 本页用途
+## 本页用途 | Purpose
 
 本页记录 NarrativeOS 的产品定义与演进方向，避免“只做技术、不见产品边界”。
 
-## 阅读路径（建议）
+## 阅读路径（建议） | Recommended Path
 
 - 第一步：读 [vision](vision/README.md) 统一价值主张
 - 第二步：读 [modules](modules/README.md) 明确能力边界
 - 第三步：读 workflows 与 roadmap 对齐执行节奏
 
-## 子文档索引
+## 子文档索引 | Subdocument Index
 
 - [vision](vision/README.md): 产品定位与价值主张
 - [roadmap](roadmap/README.md): 里程碑与优先级
@@ -42,12 +42,12 @@ source_of_truth: narrative-docs
 - 六域平台模块设计: [modules/platform-domains.md](modules/platform-domains.md)
 - 对应平台架构蓝图: [../architecture/platform/README.md](../architecture/platform/README.md)
 
-## 协作规则
+## 协作规则 | Collaboration Rules
 
 - 产品文档更新需与 [Architecture](../architecture/README.md) 和 [Developer](../developer/README.md) 保持口径一致
 - 涉及对外承诺的条目需同步到白皮书映射
 
-## 标准参考
+## 标准参考 | Standards Reference
 
 - [Core Docs Mapping](../whitepaper/core-docs-mapping.md)
 - [Benchmark and Acceptance Metrics](../whitepaper/benchmark-and-acceptance-metrics.md)

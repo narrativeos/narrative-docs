@@ -1,14 +1,14 @@
 # Insight Engine Architecture
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This document defines the architecture of Insight Engine as an evidence-driven AI analyst system.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: architecture-insight-engine-README
@@ -20,7 +20,7 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 定位
+## 定位 | Positioning
 
 Insight Engine 的定位是 AI 分析师系统，不是聊天助手系统。
 
@@ -73,7 +73,7 @@ Insight 输出必须遵循固定链路：
 
 并展示对应证据与原文定位。
 
-## 交互约束
+## 交互约束 | Interaction Constraints
 
 - 任何自然语言解释都必须可触发 Show Evidence
 - 证据点击后必须跳转到原文句段

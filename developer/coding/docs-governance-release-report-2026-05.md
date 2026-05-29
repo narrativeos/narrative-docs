@@ -1,14 +1,14 @@
 # Documentation Governance Release Report (2026-05)
 
-## 摘要（中文）
+## 摘要（中文） | Summary (ZH)
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN)
+## Executive Summary (EN) | 英文摘要
 
 This report summarizes the completed documentation governance implementation for May 2026, including standards, backlog closure, and verification outcomes.
 
-## Machine-readable Metadata
+## Machine-readable Metadata | 机读元数据
 
 ```yaml
 doc_id: developer-coding-docs-governance-release-report-2026-05
@@ -36,7 +36,7 @@ source_of_truth: narrative-docs
 - 阻塞：0
 - 完成率：100%
 
-## 关键交付物
+## 关键交付物 | Key Deliverables
 
 - 治理标准： [docs-governance-standard.md](docs-governance-standard.md)
 - 治理清单： [docs-governance-backlog.md](docs-governance-backlog.md)
