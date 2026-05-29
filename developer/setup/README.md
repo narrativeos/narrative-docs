@@ -20,6 +20,21 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义贡献者的最小开发环境基线与 10 分钟可执行自检路径。
+
+## 阅读路径（建议）
+
+- 第一步：完成本页“10 分钟环境自检”
+- 第二步：进入 [../workspace/README.md](../workspace/README.md) 打开多仓工作区
+- 第三步：进入 [../coding/README.md](../coding/README.md) 对齐交付门禁
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 ## Canonical Dev Environment
 
 - IDE: VS Code

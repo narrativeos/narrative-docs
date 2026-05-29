@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 SDK 接入基线、错误语义、兼容矩阵与迁移要求。
+
+## 阅读路径（建议）
+
+- 第一步：先看“最小接入路径（TypeScript/Python）”跑通调用
+- 第二步：根据场景选择异步任务模式与幂等策略
+- 第三步：按兼容矩阵和迁移要求执行发布前检查
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 ## SDK 目标
 
 - 提供稳定、可演进、跨语言一致的集成接口

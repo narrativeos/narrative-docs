@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义跨仓 AI 执行规则真源，降低实现偏移与架构漂移。
+
+## 阅读路径（建议）
+
+- 第一步：先理解 RULE-01..RULE-09 的约束边界
+- 第二步：确认规则真源位置与引用方式
+- 第三步：在 PR 与 CI 中落实规则影响评估
+
+## 标准参考
+
+- [../../.github/copilot-instructions.md](../../.github/copilot-instructions.md)
+- [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 建议维护统一 copilot-instructions 规则，核心包括：
 
 EN: Keep one shared rule set for Copilot across repositories.

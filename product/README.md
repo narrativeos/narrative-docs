@@ -20,15 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-本层记录 NarrativeOS 的产品定义与演进方向，避免“只做技术、不见产品边界”。
+## 本页用途
 
-## 导航
+本页记录 NarrativeOS 的产品定义与演进方向，避免“只做技术、不见产品边界”。
 
-- 返回首页: [README.md](../README.md)
-- 上游输入: [Architecture](../architecture/README.md) | [ADR](../adr/README.md)
-- 下游实现: [Developer](../developer/README.md) | [User](../user/README.md)
+## 阅读路径（建议）
 
-## 模块
+- 第一步：读 [vision](vision/README.md) 统一价值主张
+- 第二步：读 [modules](modules/README.md) 明确能力边界
+- 第三步：读 workflows 与 roadmap 对齐执行节奏
+
+## 子文档索引
 
 - [vision](vision/README.md): 产品定位与价值主张
 - [roadmap](roadmap/README.md): 里程碑与优先级
@@ -40,6 +42,13 @@ source_of_truth: narrative-docs
 - 六域平台模块设计: [modules/platform-domains.md](modules/platform-domains.md)
 - 对应平台架构蓝图: [../architecture/platform/README.md](../architecture/platform/README.md)
 
-## 推荐阅读顺序
+## 协作规则
 
-- vision -> modules -> workflows -> roadmap
+- 产品文档更新需与 [Architecture](../architecture/README.md) 和 [Developer](../developer/README.md) 保持口径一致
+- 涉及对外承诺的条目需同步到白皮书映射
+
+## 标准参考
+
+- [Core Docs Mapping](../whitepaper/core-docs-mapping.md)
+- [Benchmark and Acceptance Metrics](../whitepaper/benchmark-and-acceptance-metrics.md)
+- [Readiness Checklist](../whitepaper/readiness-checklist.md)

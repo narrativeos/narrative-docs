@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 Atlas 的核心视图语义、模式切换策略与证据驱动分析路径。
+
+## 阅读路径（建议）
+
+- 第一步：先读“Atlas 页面定位”明确目标
+- 第二步：按 City -> Galaxy -> Music/Emotion -> X-Ray 顺序操作
+- 第三步：回到原文完成问题修订并记录证据
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 - Atlas 的核心概念
 - 常见工作流与示例
 - 与其他模块的数据交互方式

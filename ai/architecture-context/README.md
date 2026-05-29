@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+提供面向 AI Agent 的跨仓架构摘要，保证任务理解和执行上下文一致。
+
+## 阅读路径（建议）
+
+- 第一步：先读“必含信息”确认上下文覆盖范围
+- 第二步：按“更新机制”维护与 ADR 同步
+- 第三步：通过机读入口校验上下文资产可访问性
+
+## 标准参考
+
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
+
 向 AI 提供跨仓架构摘要，避免上下文漂移。
 
 EN: Cross-repo architecture context for agents and Copilot.

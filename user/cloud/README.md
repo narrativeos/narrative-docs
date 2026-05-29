@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 Cloud 协作模式、权限基线、同步验收与冲突处理路径。
+
+## 阅读路径（建议）
+
+- 第一步：确认 Local/Cloud 双模式差异
+- 第二步：完成“创建并共享项目”最小可复现任务
+- 第三步：按权限模型与冲突策略完成协作验证
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 ## 适用范围
 
 - 面向作者、编辑、机构协作成员

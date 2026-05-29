@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义插件边界、契约、注册流程与回归要求，保证扩展能力可控可演进。
+
+## 阅读路径（建议）
+
+- 第一步：确认插件边界与支持能力
+- 第二步：按最小契约示例实现并完成注册流程
+- 第三步：按兼容矩阵与回归测试矩阵完成发布前验证
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 ## 插件边界
 
 - 插件通过公开 API/SDK 扩展能力

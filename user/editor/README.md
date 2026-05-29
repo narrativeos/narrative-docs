@@ -20,6 +20,21 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 Editor 工作台的布局语义与核心交互路径，帮助用户快速进入“阅读-观察-诊断-修订”闭环。
+
+## 阅读路径（建议）
+
+- 第一步：先理解三栏布局及各区域职责
+- 第二步：按主舞台视图切换完成一次最小诊断路径
+- 第三步：结合 Atlas/Visual OS 文档完成跨模块联动
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 - 基础编辑流程
 - 内容组织与结构化能力
 - 与 Atlas/Spatial 的协作入口

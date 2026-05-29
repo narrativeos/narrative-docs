@@ -20,15 +20,17 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
 本层面向最终用户与高级使用者，强调“可上手、可完成任务、可定位问题”。
 
-## 导航
+## 阅读路径（建议）
 
-- 返回首页: [README.md](../README.md)
-- 产品定义: [Product](../product/README.md)
-- 技术背景: [Architecture](../architecture/README.md)
+- 第一步：完成 [getting-started](getting-started/README.md) 的首个成功任务
+- 第二步：按 editor 和 atlas 进入核心使用流
+- 第三步：按场景扩展到 gis 与 cloud
 
-## 模块
+## 子文档索引
 
 - [getting-started](getting-started/README.md): 快速开始与安装
 - [editor](editor/README.md): 编辑器使用与技巧
@@ -36,6 +38,13 @@ source_of_truth: narrative-docs
 - [gis](gis/README.md): 空间数据与分析
 - [cloud](cloud/README.md): 云协作与可选能力
 
-## 推荐阅读顺序
+## 使用规则
 
-- getting-started -> editor -> atlas/gis -> cloud
+- 用户流程变更需同步更新 getting-started 与 troubleshooting 路径
+- 对外描述需与产品定义文档保持一致，避免术语漂移
+
+## 标准参考
+
+- [Benchmark and Acceptance Metrics](../whitepaper/benchmark-and-acceptance-metrics.md)
+- [Core Docs Mapping](../whitepaper/core-docs-mapping.md)
+- [Readiness Checklist](../whitepaper/readiness-checklist.md)

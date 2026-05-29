@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 AI-first 多仓协作中的编码、评审、CI 三层守门规则。
+
+## 阅读路径（建议）
+
+- 第一步：阅读“三层交付模型”理解责任边界
+- 第二步：按“质量守门”执行语言栈检查
+- 第三步：结合文档治理标准完成交付自检
+
+## 标准参考
+
+- [docs-governance-standard.md](docs-governance-standard.md)
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 EN: This document defines coding and delivery guardrails for AI-first, multi-repo development.
 
 ## AI-First Engineering 分工

@@ -20,6 +20,21 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 Workspace-first 协作方式，确保多仓上下文可统一检索与执行。
+
+## 阅读路径（建议）
+
+- 第一步：先完成 [../setup/README.md](../setup/README.md) 环境基线
+- 第二步：按本页流程打开工作区并做跨仓检索验证
+- 第三步：进入 [../coding/README.md](../coding/README.md) 对齐质量门禁
+
+## 标准参考
+
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 NarrativeOS 是 federated monorepo 风格协作，应采用 Workspace-first。
 
 ## 工作区打开流程（可执行）

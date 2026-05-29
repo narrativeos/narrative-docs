@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 Copilot 在 NarrativeOS 工程协作中的角色、边界与验收要求。
+
+## 阅读路径（建议）
+
+- 第一步：先看“定位”明确 Copilot 的职责范围
+- 第二步：再看“边界”确认不可越界事项
+- 第三步：结合仓库规则与治理标准执行评审
+
+## 标准参考
+
+- [../repo-rules/README.md](../repo-rules/README.md)
+- [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 ## 定位
 
 Copilot 不应仅作为补全工具，而应作为 Dev Agent 参与：

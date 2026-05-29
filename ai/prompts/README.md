@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 Prompt 的可复现结构、引用规范与任务验收方式。
+
+## 阅读路径（建议）
+
+- 第一步：先看“推荐结构”理解 prompt 必含字段
+- 第二步：按“原则”确保引用路径与验证要求
+- 第三步：使用标准模板生成任务输入
+
+## 标准参考
+
+- [templates/task-template.md](templates/task-template.md)
+- [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 EN: Prompt conventions for Copilot and coding agents.
 
 ## 推荐结构

@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义用户与贡献者从 0 到 1 的首个成功任务路径与验收标准。
+
+## 阅读路径（建议）
+
+- 第一步：完成“用户首个成功任务（10 分钟）”
+- 第二步：按角色完成“贡献者首个成功任务（10 分钟）”
+- 第三步：对照 Checklist 与排障章节完成复核
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 EN: Quick onboarding from zero to first successful user workflow and first contribution workflow.
 
 指向原则：从 0 到 1 必须清晰、可复现、可验证。

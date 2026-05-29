@@ -68,7 +68,7 @@ defaults:
       path: whitepaper
       type: pages
     values:
-      parent: Whitepaper 白皮书
+      parent: Project Docs 项目文档
 
   - scope:
       path: API_COMPATIBILITY_AND_VERSIONING.md

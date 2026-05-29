@@ -20,6 +20,22 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
+定义 GIS 最小可复现任务、坐标系基线与跨模块联动策略。
+
+## 阅读路径（建议）
+
+- 第一步：完成“GeoJSON 到空间洞察”最小任务
+- 第二步：检查坐标系与精度基线
+- 第三步：打通 GIS -> Atlas -> Insight -> Report 联动链路
+
+## 标准参考
+
+- [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
+- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+
 ## 适用范围
 
 - 城市叙事、地理语义、空间可视化任务

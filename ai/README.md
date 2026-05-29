@@ -20,21 +20,30 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途
+
 本层是 NarrativeOS 的 AI 记忆层，目标是让 Copilot/Agent 获得稳定上下文。
 
-## 导航
+## 阅读路径（建议）
 
-- 返回首页: [README.md](../README.md)
-- 规则来源: [Architecture](../architecture/README.md) | [ADR](../adr/README.md)
-- 执行落地: [Developer](../developer/README.md)
+- 第一步：先读 architecture-context 理解系统边界
+- 第二步：读 repo-rules 对齐执行规则
+- 第三步：按 copilot 与 prompts 落实到任务模板
 
-## 模块
+## 子文档索引
 
 - [copilot](copilot/README.md): Copilot 使用策略与边界
 - [prompts](prompts/README.md): 任务模板与提示词规范
 - [repo-rules](repo-rules/README.md): 跨仓统一工程规则
 - [architecture-context](architecture-context/README.md): 面向 AI 的架构摘要
 
-## 推荐阅读顺序
+## 使用规则
 
-- architecture-context -> repo-rules -> copilot -> prompts
+- AI 规则冲突以仓库根规则与治理标准为准
+- Prompt 模板变更需同步验证可执行性和审计可追溯性
+
+## 标准参考
+
+- [Documentation Governance Standard](../developer/coding/docs-governance-standard.md)
+- [Core Docs Mapping](../whitepaper/core-docs-mapping.md)
+- [Readiness Checklist](../whitepaper/readiness-checklist.md)
