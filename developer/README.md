@@ -32,6 +32,8 @@ source_of_truth: narrative-docs
 
 - [setup](setup/README.md): 开发工具与依赖
 - [workspace](workspace/README.md): 多仓库工作区组织
+- [api](api/README.md): API 规格入口与 OpenAPI 维护约定
+- [operations](operations/README.md): 安装验证、回滚与故障处置 Runbook
 - [workspace/ai-native-bootstrap-checklist.md](workspace/ai-native-bootstrap-checklist.md): AI-Native 仓库初始化检查清单
 - [coding](coding/README.md): 编码规范与质量门禁
 - [plugins](plugins/README.md): 插件开发约束
@@ -39,5 +41,5 @@ source_of_truth: narrative-docs
 
 ## 推荐阅读顺序
 
-- setup -> workspace -> coding
+- setup -> workspace -> api -> coding
 - 按需延伸阅读 plugins 与 sdk

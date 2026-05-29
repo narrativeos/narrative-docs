@@ -56,6 +56,8 @@ sections:
     children:
       - developer/setup/README.md
       - developer/workspace/README.md
+      - developer/api/README.md
+      - developer/operations/README.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
       - developer/coding/docs-governance-standard.md
@@ -115,7 +117,10 @@ sections:
       - security-researcher
     entry: GOVERNANCE.md
     children:
+      - CHANGELOG.md
+      - WHATS_NEW.md
       - CONTRIBUTING.md
+      - TROUBLESHOOTING.md
       - SECURITY.md
       - CODE_OF_CONDUCT.md
       - DATA_CLASSIFICATION_AND_RETENTION.md

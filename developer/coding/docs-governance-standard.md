@@ -94,6 +94,11 @@ source_of_truth: narrative-docs
 - 每月：质量评分回归（A/B/C/D）
 - 每次重大发布：白皮书映射与就绪度同步更新
 
+## 自动化门禁（最小集）
+
+- `.github/workflows/docs-quality-check.yml`：检查模板残留与 Markdown 死链
+- PR 模板校验与 Issue 模板校验继续作为治理入口门禁
+
 ## 完成定义（Definition of Done）
 
 - 对应 PR 已合并且有 reviewer 记录
@@ -107,6 +112,7 @@ source_of_truth: narrative-docs
 - [docs-governance-release-report-2026-05.md](docs-governance-release-report-2026-05.md)
 - [docs-governance-monthly-check-template.md](docs-governance-monthly-check-template.md)
 - [../../CONTRIBUTING.md](../../CONTRIBUTING.md)
+- [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)
 - [../../GOVERNANCE.md](../../GOVERNANCE.md)
 - [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
 - [../../ai/repo-rules/README.md](../../ai/repo-rules/README.md)

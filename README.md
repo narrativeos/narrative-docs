@@ -29,20 +29,33 @@ narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用
 
 目标是建立单一事实源（SSOT），降低多仓库协作中的上下文漂移。
 
-## 5 分钟快速复现路径
+## 10 分钟首个成功任务
 
-面向首次进入仓库的成员，目标是在 5 分钟内完成一次“可读 + 可改 + 可验证”的最小闭环。
+本节提供三类角色入口，目标是在 10 分钟内完成一个“可执行且可验证”的首个成功任务。
 
-1. 打开 [user/getting-started/README.md](user/getting-started/README.md) 确认最小运行路径。
-2. 阅读 [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md) 了解门禁标准。
-3. 打开 [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md) 选择一个 `Open` 条目。
-4. 修改目标文档并确保包含目标、步骤、验收、排障四类信息。
-5. 按 [developer/coding/README.md](developer/coding/README.md) 完成自检后提交 PR。
+### 路径 A：User（产品体验）
 
-最小验收：
+1. 打开 [user/getting-started/README.md](user/getting-started/README.md) 的“用户首个成功任务”。
+2. 按步骤完成一次文本导入 -> 诊断 -> 结果核对。
+3. 使用 [TROUBLESHOOTING.md](TROUBLESHOOTING.md) 处理启动或路径问题。
 
-- 新成员可独立定位一个治理条目并完成一次可审阅修改
-- PR 描述包含规则影响与验收说明
+### 路径 B：Contributor（文档/工程贡献）
+
+1. 完成 [developer/setup/README.md](developer/setup/README.md) 的环境检查。
+2. 按 [developer/workspace/README.md](developer/workspace/README.md) 打开多仓工作区。
+3. 在 [CONTRIBUTING.md](CONTRIBUTING.md) 按单主题流程完成一次最小提交。
+
+### 路径 C：Integrator（技术集成）
+
+1. 阅读 [developer/sdk/README.md](developer/sdk/README.md) 最小接入路径。
+2. 阅读 [developer/plugins/README.md](developer/plugins/README.md) 契约与兼容矩阵。
+3. 对照 [API_COMPATIBILITY_AND_VERSIONING.md](API_COMPATIBILITY_AND_VERSIONING.md) 确认版本影响。
+
+首个成功的统一验收：
+
+- 有一条可复现步骤可从头跑通
+- 有一条可验证输出可被 reviewer 复核
+- 失败时能在排障中心找到对应处理路径
 
 ## 贡献入口
 
@@ -211,6 +224,8 @@ NLP 解析
 - 总览: [developer/README.md](developer/README.md)
 - 环境搭建: [developer/setup/README.md](developer/setup/README.md)
 - 工作区协作: [developer/workspace/README.md](developer/workspace/README.md)
+- API 规格入口: [developer/api/README.md](developer/api/README.md)
+- Ops Runbook: [developer/operations/README.md](developer/operations/README.md)
 - 编码规范: [developer/coding/README.md](developer/coding/README.md)
 - 文档治理标准: [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md)
 - 文档待治理清单: [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
@@ -248,6 +263,9 @@ NLP 解析
 
 - 治理模型: [GOVERNANCE.md](GOVERNANCE.md)
 - 贡献指南: [CONTRIBUTING.md](CONTRIBUTING.md)
+- 排障中心: [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- 变更日志: [CHANGELOG.md](CHANGELOG.md)
+- 最新更新: [WHATS_NEW.md](WHATS_NEW.md)
 - 安全策略: [SECURITY.md](SECURITY.md)
 - 行为准则: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - 数据分级与保留: [DATA_CLASSIFICATION_AND_RETENTION.md](DATA_CLASSIFICATION_AND_RETENTION.md)
@@ -256,6 +274,7 @@ NLP 解析
 ## 推荐阅读路径
 
 - 新成员入门: Product -> Developer -> User
+- 新成员首个成功: Getting Started -> Setup -> Workspace -> Troubleshooting
 - 架构设计与变更: Architecture -> ADR -> AI Context
 - 实施与交付: Developer -> AI Context -> Product
 - 对外白皮书阅读: Whitepaper -> Product -> Architecture -> ADR

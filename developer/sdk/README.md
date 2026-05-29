@@ -30,6 +30,12 @@ source_of_truth: narrative-docs
 - narrative-sdk-ts 与 narrative-sdk-py
 - 面向插件开发者、平台集成者、自动化工作流维护者
 
+## 生产接入场景（推荐）
+
+- 场景 A：交互式单文分析（低时延）
+- 场景 B：批量任务提交与轮询（高吞吐）
+- 场景 C：CI/自动化管线校验（可追踪）
+
 ## 最小接入路径（TypeScript）
 
 ```ts
@@ -55,6 +61,21 @@ console.log(result.summary);
 - 返回对象包含 `summary` 或等价字段
 - 请求失败时能捕获并输出标准错误码
 
+## 异步任务模式（TypeScript）
+
+```ts
+const job = await client.createAnalysisJob({
+	documentId: "doc-001",
+	text: "示例文本",
+	profile: "full_mri"
+});
+
+const done = await client.waitForJob(job.jobId, { timeoutMs: 300000 });
+console.log(done.status, done.resultId);
+```
+
+建议：对批量场景优先使用异步任务接口，避免前台请求阻塞。
+
 ## 最小接入路径（Python）
 
 ```python
@@ -79,6 +100,25 @@ print(result.get("summary"))
 - 返回结构字段与 TS 语义一致
 - 失败场景可获得可追踪错误对象
 
+## 异步任务模式（Python）
+
+```python
+job = client.create_analysis_job({
+	"document_id": "doc-001",
+	"text": "示例文本",
+	"profile": "full_mri",
+})
+
+done = client.wait_for_job(job["job_id"], timeout_ms=300000)
+print(done.get("status"), done.get("result_id"))
+```
+
+## 重试与幂等建议
+
+- 对 `retryable=true` 的错误可指数退避重试
+- 写操作请求建议携带 `idempotency_key`
+- 对批量提交场景记录 `request_id` 以便追踪
+
 ## 错误语义（统一约定）
 
 建议统一错误结构：
@@ -99,11 +139,27 @@ print(result.get("summary"))
 - `NARRATIVE_RATE_LIMIT`
 - `NARRATIVE_INTERNAL_ERROR`
 
+## 兼容矩阵（维护基线）
+
+| SDK MAJOR | API MAJOR | 状态 |
+| --- | --- | --- |
+| 1.x | 1.x | Fully Supported |
+| 1.x | 2.x | Not Supported |
+| 2.x | 1.x | Migration Required |
+
 ## 版本与迁移要求
 
 - 同一 MAJOR 版本内保持向后兼容
 - 破坏性变更必须提供迁移步骤
 - 升级说明必须标注受影响方法与字段
+
+迁移模板（建议在发布说明中使用）：
+
+- 变更类型：MAJOR / MINOR / PATCH
+- 受影响接口：
+- 旧调用示例：
+- 新调用示例：
+- 回滚策略：
 
 ## 维护要求
 
@@ -117,6 +173,8 @@ print(result.get("summary"))
 - 错误码与错误对象语义一致
 - 变更包含版本影响说明（MAJOR/MINOR/PATCH）
 - 变更与 API Compatibility 文档一致
+- 异步任务模式至少有一条可运行示例
+- 重试与幂等策略在文档中有明确说明
 
 ## 常见问题排查
 

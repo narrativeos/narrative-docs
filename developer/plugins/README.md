@@ -32,6 +32,22 @@ source_of_truth: narrative-docs
 - `visualize()`: 生成可视化数据载荷
 - `report()`: 生成报告片段或导出数据
 
+## 插件生命周期
+
+```text
+定义契约
+	↓
+本地开发
+	↓
+契约校验
+	↓
+注册与发现
+	↓
+灰度发布
+	↓
+稳定运行与回归
+```
+
 ## 最小插件契约示例
 
 ```yaml
@@ -47,6 +63,9 @@ input_schema:
 output_schema:
 	type: object
 	required: [score, evidence]
+errors:
+	- code: NARRATIVE_VALIDATION_ERROR
+	- code: NARRATIVE_INTERNAL_ERROR
 ```
 
 ## 最小实现示例（伪代码）
@@ -61,6 +80,14 @@ def analyze(payload):
 		}
 ```
 
+## 注册流程（最小）
+
+1. 准备插件 manifest（含 plugin_id/version/capabilities）。
+2. 执行契约校验（input/output schema）。
+3. 将插件注册到 Plugin Registry。
+4. 在沙箱环境运行最小回归任务。
+5. 灰度放量后再进入稳定发布。
+
 ## 兼容性矩阵（维护基线）
 
 | 维度 | 要求 |
@@ -69,6 +96,7 @@ def analyze(payload):
 | Runtime | 不允许跨 runtime 直接依赖 |
 | Schema | 新字段必须可选，删除字段需走弃用流程 |
 | 文档 | 插件变更必须同步 README 与迁移说明 |
+| 发布 | 必须包含回滚策略与兼容说明 |
 
 ## 协作要求
 
@@ -82,6 +110,17 @@ def analyze(payload):
 - 提供失败场景与错误语义说明
 - 补充版本影响（MAJOR/MINOR/PATCH）
 - 通过 lint/test/contract 校验
+- 提供 manifest 与注册步骤
+- 提供灰度/回滚说明
+
+## 回归测试矩阵（建议）
+
+| 维度 | 最小测试 |
+| --- | --- |
+| 功能 | analyze/visualize/report 至少覆盖 1 条主路径 |
+| 错误 | 输入非法、字段缺失、运行时异常 |
+| 兼容 | 同 MAJOR 下旧插件行为不退化 |
+| 性能 | 插件执行时延与内存占用在可接受范围 |
 
 ## 常见问题排查
 
@@ -102,6 +141,12 @@ def analyze(payload):
 - 检查是否发生破坏性契约变更
 - 按迁移说明升级字段与版本号
 - 验证是否仍在同一 MAJOR 兼容区间
+
+### 现象 4：插件在灰度环境通过，生产失败
+
+- 检查生产配置是否启用了同一 manifest
+- 检查依赖版本是否与灰度环境一致
+- 检查是否遗漏了 runtime 权限声明
 
 ## 关联文档
 
