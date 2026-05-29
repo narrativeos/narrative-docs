@@ -209,11 +209,28 @@ NLP 解析
 - Repo Rules: [ai/repo-rules/README.md](ai/repo-rules/README.md)
 - 架构上下文: [ai/architecture-context/README.md](ai/architecture-context/README.md)
 
+### 7. Open Source Whitepaper
+
+- 总览: [whitepaper/README.md](whitepaper/README.md)
+- 一页纸摘要: [whitepaper/one-page-summary.md](whitepaper/one-page-summary.md)
+- 基准与验收指标: [whitepaper/benchmark-and-acceptance-metrics.md](whitepaper/benchmark-and-acceptance-metrics.md)
+- 核心文档映射: [whitepaper/core-docs-mapping.md](whitepaper/core-docs-mapping.md)
+- 白皮书就绪度清单: [whitepaper/readiness-checklist.md](whitepaper/readiness-checklist.md)
+
+### 8. Open Source Governance
+
+- 治理模型: [GOVERNANCE.md](GOVERNANCE.md)
+- 安全策略: [SECURITY.md](SECURITY.md)
+- 行为准则: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- 数据分级与保留: [DATA_CLASSIFICATION_AND_RETENTION.md](DATA_CLASSIFICATION_AND_RETENTION.md)
+- API 兼容与版本: [API_COMPATIBILITY_AND_VERSIONING.md](API_COMPATIBILITY_AND_VERSIONING.md)
+
 ## 推荐阅读路径
 
 - 新成员入门: Product -> Developer -> User
 - 架构设计与变更: Architecture -> ADR -> AI Context
 - 实施与交付: Developer -> AI Context -> Product
+- 对外白皮书阅读: Whitepaper -> Product -> Architecture -> ADR
 
 ## 双语与机读标准 | Bilingual + Machine-readable Standard
 

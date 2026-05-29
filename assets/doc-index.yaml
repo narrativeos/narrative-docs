@@ -86,6 +86,35 @@ sections:
       - ai/prompts/README.md
       - ai/repo-rules/README.md
       - ai/architecture-context/README.md
+  - id: whitepaper
+    title_zh: 开源白皮书
+    title_en: Open Source Whitepaper
+    audience:
+      - maintainer
+      - contributor
+      - investor
+      - partner
+      - ai-agent
+    entry: whitepaper/README.md
+    children:
+      - whitepaper/one-page-summary.md
+      - whitepaper/benchmark-and-acceptance-metrics.md
+      - whitepaper/core-docs-mapping.md
+      - whitepaper/readiness-checklist.md
+  - id: governance
+    title_zh: 开源治理与安全
+    title_en: Open Source Governance and Security
+    audience:
+      - maintainer
+      - contributor
+      - community
+      - security-researcher
+    entry: GOVERNANCE.md
+    children:
+      - SECURITY.md
+      - CODE_OF_CONDUCT.md
+      - DATA_CLASSIFICATION_AND_RETENTION.md
+      - API_COMPATIBILITY_AND_VERSIONING.md
 rule_refs:
   - RULE-01
   - RULE-02
