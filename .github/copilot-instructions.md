@@ -37,6 +37,8 @@ These rules are mandatory unless an ADR explicitly grants an exception.
 ## Enforcement
 
 - Pull request template must include architecture impact and rule impact.
+- Pull request template must include AI Review (Layer B) findings.
+- Pull request template must include CI Gate (Layer C) results.
 - CI must fail on lint/test/contract violations.
 - Architecture and storage changes must update ADR.
 

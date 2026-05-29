@@ -23,6 +23,14 @@ jobs:
               missing.push('Rule Impact section');
             }
 
+            if (!/##\s*AI Review\s*\(Layer B\)/i.test(body)) {
+              missing.push('AI Review (Layer B) section');
+            }
+
+            if (!/##\s*CI Gate\s*\(Layer C\)/i.test(body)) {
+              missing.push('CI Gate (Layer C) section');
+            }
+
             const hasRuleReferences = /RULE-0[1-9]/i.test(body);
             const hasCheckedRule = /\[[xX]\]\s*RULE-0[1-9]/.test(body);
             const hasNoRuleImpact = /\[[xX]\]\s*No rule impact/i.test(body);
@@ -33,6 +41,32 @@ jobs:
 
             if (!hasCheckedRule && !hasNoRuleImpact) {
               missing.push('mark at least one impacted rule or check "No rule impact"');
+            }
+
+            const aiReviewFields = [
+              /Duplication reviewed|重复代码/i,
+              /Boundary violations reviewed|边界违规/i,
+              /Complexity reviewed|复杂度/i,
+              /Protocol risk reviewed|协议风险/i,
+            ];
+
+            for (const pattern of aiReviewFields) {
+              if (!pattern.test(body)) {
+                missing.push(`missing AI review field: ${pattern}`);
+              }
+            }
+
+            const ciGateFields = [
+              /compile passed/i,
+              /lint passed/i,
+              /test passed/i,
+              /contract passed/i,
+            ];
+
+            for (const pattern of ciGateFields) {
+              if (!pattern.test(body)) {
+                missing.push(`missing CI gate field: ${pattern}`);
+              }
             }
 
             if (missing.length > 0) {

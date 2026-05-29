@@ -12,6 +12,14 @@
 - ADR required? (yes/no)
 - If yes, link ADR:
 
+## AI Review (Layer B)
+
+- [ ] Duplication reviewed (重复代码)
+- [ ] Boundary violations reviewed (边界违规)
+- [ ] Complexity reviewed (复杂度)
+- [ ] Protocol risk reviewed (协议风险)
+- AI review notes:
+
 ### Rule Impact (Copilot Constitution)
 
 - [ ] RULE-01 Runtime isolation mandatory
@@ -32,6 +40,14 @@
 - [ ] Python checks
 - [ ] Manual verification
 - Test notes:
+
+## CI Gate (Layer C)
+
+- [ ] compile passed
+- [ ] lint passed
+- [ ] test passed
+- [ ] contract passed
+- CI run link:
 
 ## Migration
 

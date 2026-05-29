@@ -26,6 +26,13 @@ EN: Responsibility split.
 - AI: 实现、重构、测试、文档维护
 - CI: 编译、lint、测试、契约验证
 
+## 三层交付模型 | Three-layer Delivery Model
+
+- Layer A (Copilot): 负责代码生成与重构。
+- Layer B (AI Review): 负责重复代码、边界违规、复杂度、协议风险检查。
+- Layer C (CI): 负责 compile、lint、test、contract 自动化验证。
+- Human Approval: 最终人工批准合并与发布。
+
 ## 质量守门
 
 EN: Quality gates.
@@ -48,3 +55,5 @@ EN: Change requirements.
 - CHECK-03: Tests added or updated
 - CHECK-04: CI pipeline passes
 - CHECK-05: Related docs/ADR updated
+- CHECK-06: AI review completed (duplication/boundary/complexity/protocol)
+- CHECK-07: CI contract validation passed
