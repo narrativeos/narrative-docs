@@ -38,3 +38,4 @@ source_of_truth: narrative-docs
 - [corpus-observatory.md](corpus-observatory.md): 语料观测与语言向量资产模块
 - [style-genome.md](style-genome.md): 风格基因卡与文风演化模块
 - [insight-engine.md](insight-engine.md): 证据链驱动的 AI 洞察模块
+- [library.md](library.md): 语言百科型知识库模块

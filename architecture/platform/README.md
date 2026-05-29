@@ -135,6 +135,19 @@ NarrativeOS 的长期竞争力来自语料学习系统。
 
 能力目标：实现文本知识的结构化组织与推理增强。
 
+域扩展：Domain 6 在产品层对应 Library（知识库）作为最终知识汇聚界面。
+
+Library 组织结构：
+
+- 作品
+- 作者
+- 概念
+- 主题
+- 风格
+- 修辞
+
+详细定义见： [../library/README.md](../library/README.md)
+
 ## 六域主链路
 
 ```text
