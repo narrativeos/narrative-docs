@@ -682,71 +682,130 @@ Back to Studio
 
 ## Language Intelligence Engine（收敛到 system）
 
-Language Intelligence Engine 是 NarrativeOS 的认知控制层，负责将规则系统、统计系统与 LLM 推理系统组织为统一决策引擎。
+Language Intelligence Engine 定义 NarrativeOS 如何形成语言判断。
 
-目标：随着语料规模增长，系统能力稳定增强而非语义漂移。
+目标不是“让 LLM 直接给意见”，而是构建可复现、可量化、可学习的认知系统。
 
 ### 认知原则
 
-- 可验证优先：所有结论必须可回溯到 Feature 与证据链
-- 低成本优先：能用规则和统计解决的问题不调用 LLM
-- 稳定优先：同输入在同版本下输出应可复现
-- 可学习优先：新语料进入后可更新基线与策略，但不破坏历史可比性
+- 认知分层：从感知到推理逐层约束，不允许单层越权
+- 证据优先：结论必须可回溯到 Feature/Pattern/Evidence
+- 稳定优先：感知与模式层尽量不依赖 LLM
+- 学习优先：随语料增长持续校准基线与模式库
 
-### 三类能力分工
-
-#### 1) Rule Engine（规则引擎）
-
-适用：确定性、可枚举、低延迟任务。
-
-示例：模板句检测、标点异常、句长阈值、结构断桥初筛。
-
-特征：可解释、快、稳定；但泛化能力有限。
-
-#### 2) Statistical Engine（统计引擎）
-
-适用：分布比较、群体差异、趋势检测。
-
-示例：同体裁均值比较、风格偏离度、时期迁移趋势、聚类边界。
-
-特征：对语料规模敏感，是 Corpus 与 Observatory 的核心。
-
-#### 3) LLM Reasoning Engine（推理引擎）
-
-适用：解释生成、复杂归因、跨信号综合表达。
-
-输入约束：必须基于 Feature RAG，不直接把原文当唯一依据。
-
-特征：表达能力强；但必须被规则与统计证据约束。
-
-### 决策路由（Cognitive Router）
-
-Language Intelligence Engine 通过任务路由器进行能力编排：
+### 五层认知系统
 
 ```text
-Task
-	↓
-Complexity Classifier
-	├─ deterministic -> Rule Engine
-	├─ comparative -> Statistical Engine
-	└─ explanatory -> LLM Reasoning Engine
-	↓
-Evidence Assembler
-	↓
-Final Response
+Language Intelligence Engine
+├── Layer 1 Perception
+├── Layer 2 Pattern
+├── Layer 3 Interpretation
+├── Layer 4 Reasoning
+└── Layer 5 Collective Learning
 ```
 
-路由策略：
+#### Layer 1 Perception（语言感知层）
 
-- 默认先规则
-- 再统计校准
-- 最后在必要时调用 LLM 解释
+原则：只观察，不解释。
+
+输入：AST。输出：Feature。
+
+该层不调用 LLM，保证稳定与低延迟。
+
+子模块：
+
+- Structural Sensor：层级、段落长度、过渡、断桥
+- Rhythm Sensor：呼吸点、长短句分布、密度、停顿
+- Semantic Sensor：主题、实体、概念
+- Emotional Sensor：距离感、温度、张力
+
+约束：感知层输出必须量化，不输出审美结论。
+
+#### Layer 2 Pattern Engine（模式识别层）
+
+原则：识别规律，不解释意义。
+
+链路：Feature -> Pattern Detection -> Pattern Objects。
+
+模式类型：
+
+- Structural Pattern：断桥、闭环、跳跃、递进
+- Stylistic Pattern：重复修辞、AI 模板、高抽象
+- Narrative Pattern：铺垫、转场、疲劳、高潮
+- Corpus Pattern：学科文风、时代风格、作者习惯
+
+Pattern 作为独立对象写入系统，供 Atlas 与 Insight 直接复用。
+
+#### Layer 3 Interpretation Engine（解释层）
+
+原则：解释必须有证据。
+
+链路：Pattern -> Evidence Graph -> Interpretation。
+
+解释类型：
+
+- Diagnostic：节奏疲劳、断桥、重复
+- Comparative：高于语料均值、接近特定风格簇
+- Exploratory：潜在主题、隐藏结构
+
+输出语气约束：使用“可能/倾向”而非绝对断言，避免过度确定性。
+
+#### Layer 4 Reasoning Engine（推理层）
+
+该层才引入 LLM，角色为推理器而非直接分析器。
+
+输入约束：仅接收 Feature、Pattern、Evidence、Corpus 上下文，不以原文直读替代证据链。
+
+工作链路：Question -> Evidence Retrieval -> Reasoning -> Explanation。
+
+推理模式：
+
+- Editor Mode：写作场景短反馈
+- Analyst Mode：研究场景长分析
+- Scholar Mode：Corpus 场景学术解释
+
+不同模式可使用不同 prompt stack，但必须共享同一证据协议。
+
+#### Layer 5 Collective Learning（集体学习层）
+
+目标：让系统随语料规模增长持续进化。
+
+链路：Corpus -> Pattern Mining -> Feature Calibration -> Model Update -> Knowledge Cloud。
+
+学习机制：
+
+- Statistical Learning：均值、分布、异常基线更新
+- Pattern Mining：常共现、结构习惯、风格簇挖掘
+- Human Feedback：建议有用/无用/误判反馈，沉淀 Narrative Feedback Dataset
+
+该层形成 NarrativeOS 的长期网络效应与知识壁垒。
+
+### 认知路由（Cognitive Router）
+
+Router 决定问题应走哪一层或哪几层组合。
+
+```text
+Input
+  ↓
+Cognitive Router
+  ├─ factual metric -> Layer 1
+  ├─ pattern check -> Layer 2
+  ├─ diagnosis/comparison -> Layer 3
+  ├─ why-question explanation -> Layer 3 + Layer 4
+  └─ corpus-level question -> Layer 5 (+ Layer 4)
+```
+
+路由规则：
+
+- 默认走最低可满足层级
+- 仅在解释需求出现时升级到 LLM 推理
+- 任何输出都必须回填 evidence_ids 与 engine_path
 
 ### 统一输出契约
 
-三类引擎输出必须统一写入 Feature/Relation/Provenance，不允许私有结构绕过 Schema 2.0。
+所有层输出统一写入 Schema 2.0，不允许私有结构绕过。
 
-最小输出字段：
+最小字段：
 
 - decision
 - evidence_ids
@@ -754,35 +813,28 @@ Final Response
 - engine_path
 - schema_version
 
-### 学习与演进机制
-
-系统演进采用双轨更新：
-
-- 在线轨：规则热更新、阈值微调、缓存策略优化
-- 离线轨：语料再训练、统计基线重建、向量空间校准
-
-版本策略：任何基线更新必须带 engine_version 与 benchmark_snapshot，确保跨时期可比。
-
 ### 防漂移与防失控
 
-- 禁止无证据结论：无 evidence_ids 的回答不得进入 Insight
-- 禁止黑箱升级：模型切换必须通过回放集与基线对比
-- 禁止静默回归：关键特征（bridge、rhythm、abstractness）设回归阈值告警
+- 禁止无证据结论进入 Insight
+- 模型或策略升级必须通过回放集与基线对比
+- 关键信号（bridge、rhythm、abstractness）设回归阈值告警
 
 ### 认知闭环
 
 ```text
-Feature Stream
-	↓
-Rule / Statistical / LLM Orchestration
-	↓
-Evidence-linked Insight
-	↓
-User Feedback + Corpus Growth
-	↓
-Baseline Update
-	↓
+Perception
+  ↓
+Pattern
+  ↓
+Interpretation
+  ↓
+Reasoning
+  ↓
+Collective Learning
+  ↓
 Back to Router Policy
 ```
 
-该闭环定义了 NarrativeOS 从“能分析文本”到“持续学习语言”的认知架构路径。
+该闭环定义了 NarrativeOS 从“可分析”到“可学习”的语言认知架构。
+
+下一步：产品生态与商业体系设计（个人版、研究版、出版社版、API、插件生态、模型市场与数据网络效应）。
