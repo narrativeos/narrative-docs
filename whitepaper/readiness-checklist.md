@@ -1,7 +1,3 @@
-<!-- doc-nav:start -->
-> 返回路径： [白皮书目录](README.md) | [文档首页](../README.md)
-<!-- doc-nav:end -->
-
 # 开源白皮书就绪度检查清单
 
 ## 评分方式

@@ -1,7 +1,3 @@
-<!-- doc-nav:start -->
-> 返回路径： [白皮书目录](README.md) | [文档首页](../README.md)
-<!-- doc-nav:end -->
-
 # NarrativeOS 白皮书一页纸摘要
 
 ## 摘要（中文）

@@ -1,8 +1,4 @@
-<!-- doc-nav:start -->
-> 返回路径： [文档首页](README.md) | [上一级](README.md)
-<!-- doc-nav:end -->
-
-# Narrative Knowledge Hub
+# Narrative OS
 
 ## 项目说明（NarrativeOS 整体先读）
 

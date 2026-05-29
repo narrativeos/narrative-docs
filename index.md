@@ -4,7 +4,7 @@ title: Home
 nav_order: 1
 ---
 
-# Narrative Knowledge Hub
+# Narrative OS
 
 NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI Agent。
 

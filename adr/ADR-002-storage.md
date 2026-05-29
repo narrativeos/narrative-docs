@@ -1,7 +1,3 @@
-<!-- doc-nav:start -->
-> 返回路径： [文档首页](../README.md) | [上一级](../README.md)
-<!-- doc-nav:end -->
-
 # ADR-002: DuckDB as Canonical Storage Baseline
 
 ## 摘要（中文）

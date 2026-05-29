@@ -1,7 +1,3 @@
-<!-- doc-nav:start -->
-> 返回路径： [文档首页](README.md)
-<!-- doc-nav:end -->
-
 # Troubleshooting Hub
 
 ## 摘要（中文）
