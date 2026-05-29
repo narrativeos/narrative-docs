@@ -1,3 +1,7 @@
+<!-- doc-nav:start -->
+> 返回路径： [文档首页](../README.md) | [上一级](../README.md)
+<!-- doc-nav:end -->
+
 # AI Context Layer
 
 ## EN Summary
