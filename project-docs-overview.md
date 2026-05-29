@@ -2,7 +2,6 @@
 layout: default
 title: Project Docs
 nav_order: 80
-parent: Documentation
 has_children: true
 ---
 
