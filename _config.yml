@@ -1,0 +1,6 @@
+title: Narrative Knowledge Hub
+description: NarrativeOS unified documentation hub
+url: https://narrativeos.github.io
+baseurl: /narrative-docs
+theme: jekyll-theme-cayman
+markdown: kramdown
