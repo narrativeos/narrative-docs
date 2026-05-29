@@ -36,3 +36,4 @@ source_of_truth: narrative-docs
 - [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力
 - [platform-domains.md](platform-domains.md): 六域平台模块设计与协同主链路
 - [corpus-observatory.md](corpus-observatory.md): 语料观测与语言向量资产模块
+- [style-genome.md](style-genome.md): 风格基因卡与文风演化模块

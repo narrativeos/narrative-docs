@@ -152,6 +152,7 @@ NLP 解析
 - 系统架构: [architecture/system/README.md](architecture/system/README.md)
 - 平台架构蓝图: [architecture/platform/README.md](architecture/platform/README.md)
 - 语料学习架构: [architecture/corpus-learning/README.md](architecture/corpus-learning/README.md)
+- 风格基因架构: [architecture/style-genome/README.md](architecture/style-genome/README.md)
 - 核心分析引擎: [architecture/analysis-engine/README.md](architecture/analysis-engine/README.md)
 - Visual OS 架构: [architecture/visual-os/README.md](architecture/visual-os/README.md)
 - 运行时架构: [architecture/runtime/README.md](architecture/runtime/README.md)
@@ -176,6 +177,7 @@ NLP 解析
 - Visual OS 模块: [product/modules/visual-os.md](product/modules/visual-os.md)
 - 平台六域模块: [product/modules/platform-domains.md](product/modules/platform-domains.md)
 - 语料观测模块: [product/modules/corpus-observatory.md](product/modules/corpus-observatory.md)
+- 风格基因模块: [product/modules/style-genome.md](product/modules/style-genome.md)
 
 ### 4. Developer Guide
 
