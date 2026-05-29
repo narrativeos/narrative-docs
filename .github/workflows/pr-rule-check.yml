@@ -1,0 +1,40 @@
+name: PR Rule Check
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  validate-pr-body:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate required PR sections and rule declaration
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = (context.payload.pull_request.body || '').trim();
+            const missing = [];
+
+            if (!/##\s*Architecture Impact/i.test(body)) {
+              missing.push('Architecture Impact section');
+            }
+
+            if (!/##\s*Rule Impact/i.test(body)) {
+              missing.push('Rule Impact section');
+            }
+
+            const hasRuleReferences = /RULE-0[1-9]/i.test(body);
+            const hasCheckedRule = /\[[xX]\]\s*RULE-0[1-9]/.test(body);
+            const hasNoRuleImpact = /\[[xX]\]\s*No rule impact/i.test(body);
+
+            if (!hasRuleReferences) {
+              missing.push('RULE-01..RULE-09 checklist');
+            }
+
+            if (!hasCheckedRule && !hasNoRuleImpact) {
+              missing.push('mark at least one impacted rule or check "No rule impact"');
+            }
+
+            if (missing.length > 0) {
+              core.setFailed(`PR template check failed: ${missing.join('; ')}`);
+            }

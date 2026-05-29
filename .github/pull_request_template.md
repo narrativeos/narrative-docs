@@ -23,6 +23,7 @@
 - [ ] RULE-07 Prefer Rust workspace crates
 - [ ] RULE-08 Prefer typed interfaces
 - [ ] RULE-09 Documentation required
+- [ ] No rule impact
 
 ## Tests and Verification
 
