@@ -25,6 +25,14 @@ source_of_truth: narrative-docs
 - 对外：一套可阅读、可引用、可评审的项目主叙事与评审底稿
 - 对内：一套可维护、可追踪、可演进的核心文档骨架
 
+## 面向读者说明
+
+本白皮书定位为“项目评审稿 + 实施前论证稿”。
+
+- 如果你是评审方：请优先阅读“推荐阅读顺序”。
+- 如果你是贡献者：请结合“核心文档映射表”和“证据附录”查看可追溯依据。
+- 如果你是潜在合作方：请从“一页纸摘要”进入，再跳转到市场、架构与冻结结论。
+
 ## 白皮书标准结构（建议）
 
 - 01 执行摘要（Executive Summary）
@@ -38,15 +46,23 @@ source_of_truth: narrative-docs
 - 09 生态、扩展与接口（Ecosystem & SDK）
 - 10 风险、限制与后续计划（Risks & Next Steps）
 
-## 目录内容
+## 出版版目录
+
+### Part I：评审总览
 
 - [白皮书一页纸摘要](one-page-summary.md)
 - [项目论证与预演框架](project-foundation.md)
+
+### Part II：核心判断
+
 - [证据附录](evidence-registry.md)
 - [竞品与替代方案矩阵](competitor-matrix.md)
 - [架构可行性与约束清单](architecture-feasibility.md)
 - [市场接受度判断框架](market-acceptance.md)
 - [实现冻结清单](implementation-freeze.md)
+
+### Part III：发布与治理支撑
+
 - [基准测试与验收指标入口](benchmark-and-acceptance-metrics.md)
 - [核心文档映射表](core-docs-mapping.md)
 - [开源白皮书就绪度检查清单](readiness-checklist.md)

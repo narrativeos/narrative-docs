@@ -8,6 +8,22 @@
 
 This one-page brief provides a concise external-facing overview of NarrativeOS, including mission, product positioning, architecture, roadmap, governance, and collaboration model.
 
+## 读者导语
+
+如果把 NarrativeOS 白皮书视为一本电子书，这一页是给评审者、合作方和贡献者的开场页。
+
+它回答三个问题：
+
+1. 这个项目到底解决什么问题。
+2. 为什么它与现有工具不是同一类产品。
+3. 它是否已经具备进入首期实现的条件。
+
+结论先行：
+
+- NarrativeOS 不是生成导向工具，而是诊断与解释导向的叙事智能系统。
+- 首期实现边界已经明确，可推进但必须遵守冻结范围。
+- 长期价值成立，但市场接受度仍需用真实访谈和试点数据继续验证。
+
 ## Machine-readable Metadata | 机读元数据
 
 ```yaml
@@ -76,3 +92,9 @@ NarrativeOS 关注的是：
 - 架构总览： [architecture/README.md](../architecture/README.md)
 - 产品总览： [product/README.md](../product/README.md)
 - 白皮书映射： [whitepaper/core-docs-mapping.md](core-docs-mapping.md)
+
+## 9. 下一步阅读
+
+- 如需看完整判断链路：从 [项目论证与预演框架](project-foundation.md) 开始。
+- 如需看可追溯依据：直接进入 [证据附录](evidence-registry.md)。
+- 如需看首期是否可开工：查看 [实现冻结清单](implementation-freeze.md)。
