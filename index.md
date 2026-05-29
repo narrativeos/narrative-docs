@@ -23,7 +23,7 @@ NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI A
 - [User 用户](user-overview.md)
 - [AI 智能体](ai-overview.md)
 - [ADR 架构决策记录](adr-overview.md)
-- [Project Docs 项目文档](project-docs-overview.md)
+- [Governance 治理与标准](governance-overview.md)
 
 ## 文档标准参考（Whitepaper）
 

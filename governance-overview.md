@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Project Docs 项目文档
+title: Governance 治理与标准
 nav_order: 80
 has_children: true
 ---
 
-# Project Docs 项目文档
+# Governance 治理与标准
 
 仓库根目录下的治理、合规、协作与发布文档。
 本页也是 narrative-docs 全站文档改造的统一执行入口。
