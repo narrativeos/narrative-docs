@@ -150,6 +150,7 @@ NLP 解析
 
 - 总览: [architecture/README.md](architecture/README.md)
 - 系统架构: [architecture/system/README.md](architecture/system/README.md)
+- 核心分析引擎: [architecture/analysis-engine/README.md](architecture/analysis-engine/README.md)
 - 运行时架构: [architecture/runtime/README.md](architecture/runtime/README.md)
 - 存储架构: [architecture/storage/README.md](architecture/storage/README.md)
 - Atlas 架构: [architecture/atlas/README.md](architecture/atlas/README.md)
@@ -168,6 +169,7 @@ NLP 解析
 - 路线图: [product/roadmap/README.md](product/roadmap/README.md)
 - 工作流: [product/workflows/README.md](product/workflows/README.md)
 - 模块定义: [product/modules/README.md](product/modules/README.md)
+- 分析引擎模块: [product/modules/analysis-engine.md](product/modules/analysis-engine.md)
 
 ### 4. Developer Guide
 

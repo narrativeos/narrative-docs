@@ -29,3 +29,7 @@ source_of_truth: narrative-docs
 - narrative-spatial: 空间/GIS 能力
 - narrative-api: 对外 API 能力层
 - narrative-sdk-ts / narrative-sdk-py: 开发者集成层
+
+## 关键能力模块（产品定义）
+
+- [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（六引擎）与产品交付物
