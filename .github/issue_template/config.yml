@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: NarrativeOS Knowledge Hub
+    url: https://narrativeos.github.io/narrative-docs/
+    about: Review architecture, ADR, and AI context before opening issues.

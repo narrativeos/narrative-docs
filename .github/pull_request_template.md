@@ -1,18 +1,18 @@
-## Summary
+## What changed
 
-- What changed?
+- Describe the concrete changes in this PR.
 
 ## Why
 
-- Why is this change needed?
+- Explain the problem, motivation, and expected outcome.
 
-## Architecture Impact
+## Architecture impact
 
 - Runtime/storage/contract impact?
 - ADR required? (yes/no)
 - If yes, link ADR:
 
-## Rule Impact (Copilot Constitution)
+### Rule Impact (Copilot Constitution)
 
 - [ ] RULE-01 Runtime isolation mandatory
 - [ ] RULE-02 No cross-runtime import
@@ -25,14 +25,15 @@
 - [ ] RULE-09 Documentation required
 - [ ] No rule impact
 
-## Tests and Verification
+## Tests
 
 - [ ] Rust checks
 - [ ] TypeScript checks
 - [ ] Python checks
 - [ ] Manual verification
+- Test notes:
 
-## Migration / Compatibility
+## Migration
 
 - Breaking change? (yes/no)
 - Migration notes:
