@@ -1,10 +1,10 @@
 # NarrativeOS 架构可行性与约束清单
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本页用于在正式进入实现之前，先审慎确认 NarrativeOS 的关键架构设定是否足以支撑长期演进、首期交付与后续扩展。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document captures the feasibility checks and architectural constraints that must hold for NarrativeOS to become a long-lived, stable foundation before implementation begins.
 

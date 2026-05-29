@@ -6,13 +6,16 @@ nav_order: 1
 
 # Narrative OS 叙事操作系统
 
-NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI Agent。
+NarrativeOS 的统一网站入口，面向第一次接触项目的读者、合作方与贡献者。
+
+如果你只想先回答“这是什么、与现有工具有什么不同、现在值得不值得继续了解”，请先读 [白皮书一页纸摘要](whitepaper/one-page-summary.md)。
 
 ## 快速入口
 
+- [一页纸摘要](whitepaper/one-page-summary.md)
+- [架构实操入口（Full MRI Walkthrough）](architecture/analysis-engine/README.md)
 - [快速开始](user/getting-started/README.md)
 - [贡献指南](CONTRIBUTING.md)
-- [排障中心](TROUBLESHOOTING.md)
 - [版本与更新](WHATS_NEW.md)
 
 ## 文档导航 | Documentation Navigation
@@ -25,19 +28,24 @@ NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI A
 - [ADR 架构决策记录](adr-overview.md)
 - [Governance 治理与标准](governance-overview.md)
 
-## 文档标准参考（Whitepaper）
+## 推荐阅读路径
 
-以下文档作为全站文档治理与改造标准，不作为独立产品导航组维护：
+- 如果你是首次了解项目：从 [whitepaper/one-page-summary.md](whitepaper/one-page-summary.md) 开始，再读 [whitepaper/README.md](whitepaper/README.md)。
+- 如果你想理解系统如何实现：从 [architecture/README.md](architecture/README.md) 开始，再进入运行时、存储和分析引擎。
+- 如果你想直接看一次完整诊断链路：进入 [architecture/analysis-engine/README.md](architecture/analysis-engine/README.md) 的单文 Full MRI Walkthrough。
+- 如果你准备实际使用或参与贡献：分别进入 [user/getting-started/README.md](user/getting-started/README.md) 和 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
-- [Benchmark and Acceptance Metrics](whitepaper/benchmark-and-acceptance-metrics.md)
-- [Project Foundation](whitepaper/project-foundation.md)
-- [Evidence Registry](whitepaper/evidence-registry.md)
-- [Core Docs Mapping](whitepaper/core-docs-mapping.md)
-- [Readiness Checklist](whitepaper/readiness-checklist.md)
+## 白皮书主线
 
-## 本轮梳理执行顺序
+如果你把 narrative-docs 当作一本电子书来读，白皮书部分是主叙事主线。建议按以下入口阅读：
 
-- 先看 [Core Docs Mapping](whitepaper/core-docs-mapping.md) 确认“权威文档 -> 白皮书章节”映射
-- 再看 [Benchmark and Acceptance Metrics](whitepaper/benchmark-and-acceptance-metrics.md) 统一验收口径
-- 然后看 [Evidence Registry](whitepaper/evidence-registry.md) 了解证据台账与采集顺序
-- 最后按 [Readiness Checklist](whitepaper/readiness-checklist.md) 做发布前复核
+- [白皮书序言](whitepaper/README.md)
+- [白皮书一页纸摘要](whitepaper/one-page-summary.md)
+- [实现冻结清单](whitepaper/implementation-freeze.md)
+- [证据附录](whitepaper/evidence-registry.md)
+
+完整章节目录与附录结构请见 [whitepaper/README.md](whitepaper/README.md)。
+
+治理、映射和就绪度文档仍然保留，但更适合作为发布与协作支撑，而不是首次阅读入口。
+
+其中 [whitepaper/core-docs-mapping.md](whitepaper/core-docs-mapping.md) 和 [whitepaper/readiness-checklist.md](whitepaper/readiness-checklist.md) 更接近附录与终校材料，不属于白皮书正文主线。

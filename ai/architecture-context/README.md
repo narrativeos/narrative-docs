@@ -1,10 +1,10 @@
 # Architecture Context for AI
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document provides architecture context optimized for AI agents to reduce cross-repository reasoning drift.
 

@@ -1,12 +1,8 @@
 # NarrativeOS Open Source Whitepaper
 
-## 摘要（中文） | Summary (ZH)
+## Executive Summary (EN)
 
-本节为英文摘要导读，便于国际协作与检索。
-
-## Executive Summary (EN) | 英文摘要
-
-This document defines the open-source whitepaper structure for NarrativeOS and maps existing core documents into a publishable standard format.
+This whitepaper is the main evaluation narrative for NarrativeOS. It explains the problem the project addresses, the category it belongs to, the architectural boundary of the first release, and the evidence required to support external claims.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -20,20 +16,46 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-本目录用于把 narrative-docs 现有内容整理为可对外评审、可引用、可复核的白皮书结构，目标是：
+## 术语入口
+
+首次阅读白皮书主线时，建议先对照 [术语表](../assets/glossary.zh-en.md)。
+
+本页及关联章节高频术语包括：单一事实源（SSOT）、运行时隔离、契约（Contract）、证据回链、发布门禁。
+
+这份白皮书不是仓库索引，也不是开发日志。
+
+它承担的是更单一、也更严格的职责：把 NarrativeOS 为什么值得做、为什么现在可以开工、以及为什么还不能夸大宣称，完整而克制地讲清楚。
+
+它面向三类读者：
+
+- 评审者：需要在有限时间内判断项目是否成立
+- 合作方：需要理解 NarrativeOS 的边界、阶段和合作切口
+- 贡献者：需要知道哪些论断已经冻结，哪些仍在补证据
+
+本目录的目标是把 narrative-docs 现有内容整理为一套可对外评审、可引用、可复核的白皮书主线：
 
 - 对外：一套可阅读、可引用、可评审的项目主叙事与评审底稿
 - 对内：一套可维护、可追踪、可演进的核心文档骨架
 
-## 面向读者说明
+## 这份白皮书回答什么
 
-本白皮书定位为“项目评审稿 + 实施前论证稿”。
+它重点回答五个问题：
 
-- 如果你是评审方：请优先阅读“推荐阅读顺序”。
-- 如果你是贡献者：请结合“核心文档映射表”和“证据附录”查看可追溯依据。
-- 如果你是潜在合作方：请从“一页纸摘要”进入，再跳转到市场、架构与冻结结论。
+1. NarrativeOS 试图解决的核心问题是什么。
+2. 它与生成式写作工具、语法纠错工具、通用文本分析工具有何不同。
+3. 首期实现边界为何这样定义。
+4. 当前哪些判断已经比较稳固，哪些仍需要证据补强。
+5. 如果决定继续推进，最合理的实施与协作顺序是什么。
 
-## 白皮书标准结构（建议）
+## 阅读建议
+
+- 如果你只想快速判断项目成色：先读 [白皮书一页纸摘要](one-page-summary.md)。
+- 如果你要看完整判断链：从 [项目论证与预演框架](project-foundation.md) 进入。
+- 如果你最关心“能不能开工”：优先看 [实现冻结清单](implementation-freeze.md)。
+- 如果你最关心“凭什么这么判断”：直接对照 [证据附录](evidence-registry.md)。
+- 如果你在做发布校核或章节追溯：最后再看 [core-docs-mapping.md](core-docs-mapping.md) 与 [readiness-checklist.md](readiness-checklist.md)。
+
+## 白皮书结构
 
 - 01 执行摘要（Executive Summary）
 - 02 问题定义与市场空白（Problem & Gap）
@@ -46,7 +68,9 @@ source_of_truth: narrative-docs
 - 09 生态、扩展与接口（Ecosystem & SDK）
 - 10 风险、限制与后续计划（Risks & Next Steps）
 
-## 出版版目录
+下面的目录不是“写作建议”，而是当前白皮书已经成形的正文组织方式。
+
+## 白皮书目录
 
 ### Part I：评审总览
 
@@ -64,22 +88,39 @@ source_of_truth: narrative-docs
 ### Part III：发布与治理支撑
 
 - [基准测试与验收指标入口](benchmark-and-acceptance-metrics.md)
-- [核心文档映射表](core-docs-mapping.md)
-- [开源白皮书就绪度检查清单](readiness-checklist.md)
+- [白皮书附录 A：核心文档映射表](core-docs-mapping.md)
+- [白皮书附录 B：就绪度检查清单](readiness-checklist.md)
+
+Part I 负责让读者迅速形成整体判断。
+
+Part II 负责支撑“为什么这样判断”。
+
+Part III 负责回答“在什么条件下这些判断可以被对外宣称”。其中映射表与就绪度清单属于附录性质的发布支撑材料，而不是正文主线。
 
 ## 推荐阅读顺序
 
 对外评审时，建议按以下顺序阅读：
 
-1. [项目论证与预演框架](project-foundation.md)
-2. [市场接受度判断框架](market-acceptance.md)
-3. [架构可行性与约束清单](architecture-feasibility.md)
-4. [实现冻结清单](implementation-freeze.md)
-5. [证据附录](evidence-registry.md)
+1. [白皮书一页纸摘要](one-page-summary.md)
+2. [项目论证与预演框架](project-foundation.md)
+3. [市场接受度判断框架](market-acceptance.md)
+4. [架构可行性与约束清单](architecture-feasibility.md)
+5. [实现冻结清单](implementation-freeze.md)
+6. [证据附录](evidence-registry.md)
 
-如果只想快速把握项目判断，可以先看 [项目论证与预演框架](project-foundation.md) 的评审结论摘要。
+如果只想快速把握项目判断，可以读完 [白皮书一页纸摘要](one-page-summary.md) 后直接进入 [实现冻结清单](implementation-freeze.md)。
 
-## 使用方式 | Usage
+## 写作与发布边界
 
-- 对外发布白皮书或评审稿时：以本目录为主入口，按映射表引用权威章节
-- 内部迭代文档时：优先更新原始权威文档，再同步本目录映射与状态
+这份白皮书可以用于对外评审，但不能把“规划目标”表述为“已经完成”。
+
+尤其在以下两类问题上，需要保持克制：
+
+- 市场接受度：仍需真实访谈、试点或合作验证继续补证
+- 验收指标：凡是 measured 尚未成立的指标，只能作为目标，不能当作事实宣称
+
+## 使用方式
+
+- 对外发布白皮书或评审稿时：以本目录为主入口，按正文顺序组织阅读
+- 内部迭代论证时：先更新原始权威文档，再同步本目录中的引用和状态
+- 做外部答辩或合作简报时：优先配合 [白皮书一页纸摘要](one-page-summary.md) 使用

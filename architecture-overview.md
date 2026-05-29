@@ -6,6 +6,21 @@ nav_order: 10
 
 # Architecture 架构
 
+本页面向希望快速建立系统实现认知的读者。
+
+它用于回答“系统是如何被搭起来的”。
+
+如果你第一次进入架构层，建议先读 [architecture/README.md](architecture/README.md)，再进入 system、runtime 和 storage 三个决定系统边界的核心章节。
+
+## 推荐阅读顺序
+
+- 第一步：先看 [architecture/README.md](architecture/README.md) 了解整体边界与阅读路径
+- 第二步：再看 [architecture/system/README.md](architecture/system/README.md) 理解系统全景和子系统关系（先看全景图再看文字）
+- 第三步：进入 [architecture/runtime/README.md](architecture/runtime/README.md) 与 [architecture/storage/README.md](architecture/storage/README.md) 掌握首期实现骨架
+- 第四步：进入 [architecture/analysis-engine/README.md](architecture/analysis-engine/README.md) 跑一遍单文 Full MRI Walkthrough，再按业务域阅读 atlas、visual-os 等专题
+
+## 章节入口
+
 - [Architecture 总览](architecture/README.md)
 - [Analysis Engine](architecture/analysis-engine/README.md)
 - [Atlas](architecture/atlas/README.md)

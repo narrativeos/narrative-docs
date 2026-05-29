@@ -1,10 +1,10 @@
 # API Compatibility and Versioning Policy
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document defines compatibility guarantees, versioning rules, deprecation lifecycle, and breaking-change process for NarrativeOS APIs, SDK interfaces, and plugin contracts.
 

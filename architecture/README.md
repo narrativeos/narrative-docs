@@ -1,10 +1,10 @@
 # Architecture Memory
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document is the architecture memory index for cross-repository design boundaries and subsystem relationships.
 
@@ -24,21 +24,28 @@ source_of_truth: narrative-docs
 
 本页维护 NarrativeOS 的跨仓库架构记忆，用于统一系统边界、模块关系和实现约束。
 
+如果你对关键术语还不熟悉，建议先打开 [术语表](../assets/glossary.zh-en.md)。
+
 ## 阅读路径（建议） | Recommended Path
 
-- 第一步：先读 [system](system/README.md) 了解全局边界
+- 第一步：先读 [system](system/README.md) 了解全局边界（含系统全景图与六域主链路图）
 - 第二步：再读 [runtime](runtime/README.md) 与 [storage](storage/README.md) 掌握实现骨架
-- 第三步：按业务域阅读 analysis-engine / insight-engine / style-genome / visual-os
+- 第三步：按业务域阅读 analysis-engine / insight-engine / style-genome / visual-os（analysis-engine 含单文 Full MRI Walkthrough）
+
+如果你时间有限，建议先完成两步：
+
+- 看 [system](system/README.md) 的全景图，建立系统边界心智模型
+- 看 [analysis-engine](analysis-engine/README.md) 的 Full MRI Walkthrough，理解一次诊断请求如何落成可回链输出
 
 ## 子文档索引 | Subdocument Index
 
-- [system](system/README.md): 总体系统边界与子系统关系
+- [system](system/README.md): 总体系统边界与子系统关系（含系统全景图、六域主链路图）
 - [platform](platform/README.md): 平台级蓝图、六域架构与能力进化闭环
 - [corpus-learning](corpus-learning/README.md): 语料学习系统与语言向量资产架构
 - [style-genome](style-genome/README.md): 风格基因架构与语言基因卡设计
 - [insight-engine](insight-engine/README.md): 证据驱动 AI 分析师架构
 - [library](library/README.md): 知识库架构与语言百科沉淀机制
-- [analysis-engine](analysis-engine/README.md): 六引擎分析架构与 CT 扫描式诊断流程
+- [analysis-engine](analysis-engine/README.md): 六引擎分析架构与 CT 扫描式诊断流程（含单文 Full MRI Walkthrough）
 - [visual-os](visual-os/README.md): 语言驾驶舱与可视化操作系统架构
 - [runtime](runtime/README.md): Rust Host / TS UI / Python Worker 运行时分工与隔离
 - [storage](storage/README.md): DuckDB 与数据流

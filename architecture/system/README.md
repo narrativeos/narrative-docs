@@ -1,10 +1,10 @@
 # System Architecture
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document defines the end-to-end system architecture, platform loop, and core engine interactions of NarrativeOS.
 
@@ -19,6 +19,12 @@ audience: [developer, architect, ai-agent]
 agent_ready: true
 source_of_truth: narrative-docs
 ```
+
+## 术语入口
+
+首次阅读本页时，建议先对照 [术语表](../../assets/glossary.zh-en.md)。
+
+本页高频术语包括：运行时隔离、契约（Contract）、六引擎、主链路、可追溯证据。
 
 ## 系统定位
 
@@ -35,6 +41,26 @@ NarrativeOS 是多仓库、多语言系统，核心由以下能力组成：
 - 跨运行时交互优先走显式协议（IPC / API Contract）
 - 存储层以 DuckDB 为标准基线
 - 插件通过稳定 API/SDK 边界扩展，不绕过核心约束
+
+## 系统全景图
+
+```mermaid
+flowchart LR
+	A[Studio UI\nTypeScript + React] --> B[Rust Host\nTauri Runtime]
+	B --> C[Python Worker\nAnalysis Execution]
+	B --> D[Plugin Host\nAPI/SDK Contract]
+	C --> E[DuckDB\nCanonical Storage]
+	C --> F[Vector / Graph Extension]
+	E --> G[Visual OS\nDashboards & Reports]
+	F --> G
+	G --> H[Insight & Knowledge Graph]
+```
+
+该图用于快速回答三个问题：
+
+- 谁负责交互编排（Studio + Rust Host）
+- 谁负责计算执行（Python Worker）
+- 结果如何沉淀并回到可解释界面（DuckDB/扩展 -> Visual OS）
 
 ## 平台化架构定位
 
@@ -145,6 +171,18 @@ Knowledge Graph
 ```
 
 该主链路定义了平台级能力协同关系与演进方向。
+
+```mermaid
+flowchart TD
+	TL[Text Lab] --> NA[Narrative Atlas]
+	NA --> CO[Corpus Observatory]
+	CO --> SG[Style Genome]
+	SG --> IE[Insight Engine]
+	IE --> KG[Knowledge Graph]
+	KG --> TL
+```
+
+回环关系表示系统不是“一次分析后结束”，而是会把知识沉淀反哺到后续分析能力。
 
 ## CTO 实施蓝图（收敛到 system）
 

@@ -1,12 +1,8 @@
 # 基准测试与验收指标入口
 
-## 摘要（中文） | Summary (ZH)
+## Executive Summary (EN)
 
-本节为英文摘要导读，便于国际协作与检索。
-
-## Executive Summary (EN) | 英文摘要
-
-This document defines benchmark categories, acceptance metrics, and release gates for NarrativeOS documentation claims and capability milestones.
+This document defines which benchmark claims NarrativeOS may make, which ones remain planned only, and what minimum evidence is required before a capability can be described as released.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -24,11 +20,27 @@ source_of_truth: narrative-docs
 
 本文件作为白皮书中的“可信性入口”，用于统一叙事声明与可验证指标之间的映射关系。
 
+它不负责证明能力本身，而是负责约束叙事边界：
+
+- 哪些说法目前只能视为目标
+- 哪些说法已经具备实测依据
+- 哪些能力在没有指标前不得写成“已完成”
+
 核心原则：
 
 - 先定义指标，再对外宣称能力
 - 指标可复算、可复核、可追踪
 - 发布门槛应有最小通过标准
+
+## 当前状态快照
+
+截至当前版本，本页中的大多数指标仍处于 Planned，而不是 Measured。
+
+这意味着：
+
+- NarrativeOS 已经具备较清楚的指标框架
+- 但它还没有足够多的实测结果来支撑大范围对外能力宣称
+- 白皮书、首页和对外简报应优先使用“目标”“边界”“冻结条件”这类表述，而不是“已经达到”
 
 ## 指标状态分层（强制）
 
@@ -50,6 +62,13 @@ calculation_method: 计算口径说明
 evidence_link: docs/path/or/pr
 owner: role-or-team
 ```
+
+## 对外宣称规则
+
+- 只有同时具备版本、样本量、时间窗口和证据链接的指标，才能写作 Measured
+- 任何 Planned 指标都只能表示路线目标，不能写成现状描述
+- 若一个能力依赖多个关键指标，则至少应有 1 个主指标达到 Measured，且不存在明显冲突证据
+- 白皮书之外的首页、摘要、路演材料，也必须遵守本页口径
 
 ## 基准测试分类
 
@@ -106,6 +125,15 @@ owner: role-or-team
 
 > 注：当 `实测值` 为 `TBD` 时，该指标仅可用于路线目标，不可作为“已完成发布”的对外声明依据。
 
+## 当前最小发布口径
+
+在现阶段，NarrativeOS 对外更稳妥的表述应限制在以下范围：
+
+- 已明确首期产品边界与架构约束
+- 已建立指标与证据框架
+- 已形成从导入、分析、证据回链到报告输出的目标链路定义
+- 仍需继续补充真实 measured 指标，才能把关键能力写成“已验证”
+
 ## 发布门禁（Release Gates）
 
 - Gate 1: 架构与流程文档已更新并通过评审
@@ -119,6 +147,16 @@ owner: role-or-team
 
 任一 Gate 未通过，不建议对外宣称对应能力“已完成发布”。
 
+## 指标成熟度升级条件
+
+一个指标从 Planned 升级为 Measured，至少需要满足以下条件：
+
+1. 有明确版本号
+2. 有明确样本量与时间窗口
+3. 有稳定计算口径
+4. 有可回查证据链接
+5. 该指标所在场景没有被已知限制直接否定
+
 ## 数据来源与追踪
 
 - 指标来源应记录在 PR 或发布说明中
@@ -131,6 +169,16 @@ owner: role-or-team
 - 每个版本发布前更新一次指标快照
 - 当指标定义变更时，必须记录变更原因
 - 指标异常应在路线图和已知限制中体现
+
+## 当前优先补证指标
+
+若只补最关键的首批 measured 指标，建议优先补以下三项：
+
+- V1 单文闭环的导入到报告完成时长
+- V1 单文闭环的关键流程成功率
+- V1 洞察质量的结论证据可追溯率
+
+这三项一旦建立 measured 基线，就足以显著提升 NarrativeOS 白皮书的可信度。
 
 ## 关联文档 | Related Docs
 

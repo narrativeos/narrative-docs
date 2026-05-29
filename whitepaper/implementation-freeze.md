@@ -1,10 +1,10 @@
 # NarrativeOS 实现冻结清单
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本页明确 NarrativeOS 首期开工前已经成立的结论、仍需补证据的问题，以及不应纳入首期的内容。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document defines the implementation freeze list for NarrativeOS so that teams can distinguish what is ready to build, what needs evidence, and what must stay out of the first release scope.
 

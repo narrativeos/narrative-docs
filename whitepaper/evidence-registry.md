@@ -1,12 +1,8 @@
 # NarrativeOS 证据附录（Evidence Registry）
 
-## 摘要（中文） | Summary (ZH)
+## Executive Summary (EN)
 
-本页用于集中登记 NarrativeOS 项目论证、市场判断、架构验证与开工冻结相关的证据条目，作为白皮书的支撑附录，避免证据散落在各文档中而难以追踪。
-
-## Executive Summary (EN) | 英文摘要
-
-This document serves as the central evidence registry for NarrativeOS, capturing entries that support competitor analysis, architecture feasibility, market acceptance, and implementation freeze decisions.
+This document is the central evidence index for NarrativeOS. It records what evidence already exists, what evidence is still missing, and which conclusions remain provisional until stronger sources are added.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -25,6 +21,18 @@ last_reviewed: 2026-05-29
 next_review: 2026-06-12
 ```
 
+## 当前判断
+
+本页可以支撑 NarrativeOS 已经具备“论证框架、架构边界与冻结约束”的说法。
+
+本页还不能单独支撑以下更强的说法：
+
+- 市场已经被验证
+- 关键能力已经完成实测证明
+- 首期产品已经具备广泛发布条件
+
+原因很直接：当前正式证据中，仍有相当一部分来自文档、结构判断或公开观察，而不是访谈、试点、可重复实验或稳定实测。
+
 ## 使用方式
 
 本页不是证据结论页，而是评审附录中的证据索引页。
@@ -35,6 +43,8 @@ next_review: 2026-06-12
 - 对应的原始文档、试用记录、访谈纪要或 PR
 - 对应的决策或状态变更
 
+它的职责是告诉读者：证据在哪里、强度如何、还缺什么。
+
 ## 0. 附录使用说明
 
 > 说明：以下内容主要用于内部更新与回填；对外阅读时可优先查看证据目录与交叉链接。
@@ -44,6 +54,14 @@ next_review: 2026-06-12
 3. 按对应作业单模板填写采集信息。
 4. 采集完成后，回填到本页的证据目录与台账条目。
 5. 若产出真实证据，则同步更新关联文档的结论状态。
+
+## 0.1 证据成熟度说明
+
+- documented：已有可回链条目，但证据强度未必足以支持强外部宣称
+- provisional：已有初步证据，但仍需补访谈、试点或实测
+- verified：已有足够强度的证据，可支持对应结论进入更稳健的对外表达
+
+当前大多数条目更接近 documented，而不是 verified。
 
 ## 1. 证据目录
 
@@ -56,6 +74,16 @@ next_review: 2026-06-12
 | MKT-001 | observation | [market-acceptance.md](market-acceptance.md) | 用户接受度判断 | documented | Public market signals from LanguageTool and ProWritingAid homepages show the direct market focuses on grammar/style correction, paraphrasing, integrations, and writing-app fit |
 | FRZ-001 | approval | [implementation-freeze.md](implementation-freeze.md) | 开工冻结状态 | documented | Source: implementation-freeze.md; the first release is limited to diagnostic, evidence-linked, schema-aligned work and excludes complex cloud collaboration |
 | ROAD-002 | governance_basis | [product/roadmap/README.md](../product/roadmap/README.md), [product/workflows/README.md](../product/workflows/README.md) | 路线图与验收联动 | documented | Source: product roadmap and workflows; V1 author/editor closed loop, V2 corpus analysis, and V3 institutional evaluation align the roadmap with staged evidence-driven delivery |
+
+## 1.1 证据覆盖摘要
+
+从当前覆盖情况看：
+
+- 架构边界类证据相对最完整
+- 竞品与市场类证据已有基础，但仍偏轻量
+- 用户访谈、试点记录与 measured benchmark 仍是主要缺口
+
+因此，当前最稳妥的结论是“架构与边界较清楚，市场与成效仍待继续验证”。
 
 ## 2. 初始证据种子（仅文档来源，不计入正式台账）
 
@@ -80,6 +108,14 @@ next_review: 2026-06-12
 
 正式台账只包含 `## 1. 证据目录` 中的正式证据条目。
 
+## 3.1 当前缺口
+
+如果要让白皮书从“论证成立”进一步升级为“可信度显著增强”，最缺的不是更多文档互引，而是以下三类证据：
+
+- 真实用户访谈或试点反馈
+- 可复核的任务回放或工作流记录
+- 具备样本量、版本和口径的 measured benchmark
+
 ## 4. 证据记录模板
 
 ```yaml
@@ -99,6 +135,7 @@ owner: maintainer-or-owner
 - 证据条目不能替代结论，只能支撑结论
 - 若结论变化，台账与对应文档必须同步更新
 - 若没有原始来源，条目必须保持 `TBD`
+- 若来源仅为内部文档，必须明确标记其为基线证据，而不是验证性证据
 
 ## 6. 交叉链接
 
@@ -124,6 +161,8 @@ owner: maintainer-or-owner
 2. 再补用户访谈，验证市场接受度与采用阻力。
 3. 接着补架构验证，确认首期实现边界。
 4. 最后补冻结批准，确保开工门槛可追责。
+
+这个顺序的目的不是让台账更满，而是优先补最能改变项目可信度的证据。
 
 ## 9. 证据采集作业单模板
 

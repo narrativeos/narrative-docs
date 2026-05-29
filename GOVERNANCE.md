@@ -1,10 +1,10 @@
 # Governance
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document defines the governance model, decision process, and role responsibilities for narrative-docs as the source-of-truth documentation hub of NarrativeOS.
 

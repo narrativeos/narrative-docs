@@ -1,10 +1,10 @@
 # Analysis Engine Architecture
 
-## 摘要（中文） | Summary (ZH)
+## 摘要（中文）
 
 本节为英文摘要导读，便于国际协作与检索。
 
-## Executive Summary (EN) | 英文摘要
+## Executive Summary (EN)
 
 This document defines the modular analysis engine architecture for NarrativeOS.
 
@@ -19,6 +19,12 @@ audience: [architect, developer, ai-agent]
 agent_ready: true
 source_of_truth: narrative-docs
 ```
+
+## 术语入口
+
+首次阅读本页时，建议先对照 [术语表](../../assets/glossary.zh-en.md)。
+
+本页高频术语包括：诊断信号、证据回链、契约输出、Run Profiles、Full MRI。
 
 ## 定位 | Positioning
 
@@ -214,6 +220,64 @@ NLP 解析
 ```
 
 该流程采用 CT 扫描式分层分析：逐层成像、逐层解释、逐层生成可行动诊断结论。
+
+```mermaid
+flowchart TD
+    I[Text Input] --> P[NLP Parsing]
+    P --> M[Metrics Calculation]
+    M --> R[Relation Modeling]
+    R --> G[Graph Artifact Build]
+    G --> D[Diagnostics Assembly]
+    D --> O[Visual OS / Report / Insight]
+```
+
+## 端到端 Full MRI Walkthrough（单文）
+
+下面用一个最小但完整的单文案例说明“请求如何穿过六引擎并形成可回链诊断”。
+
+### Step 1: 提交请求
+
+输入一个长文本并指定 `full_mri`，启用严格证据级别：
+
+```yaml
+document_id: novel-ch01-v3
+lang: zh-CN
+options:
+  profile: full_mri
+  evidence_level: strict
+  engines: [lexical, syntax_rhythm, semantic, narrative_flow, rhetoric_style, emotion_sensory]
+```
+
+### Step 2: 解析与引擎执行
+
+- 上游解析器先生成 token、句法树、段落边界与主题候选
+- 六引擎按契约并行或分阶段执行
+- 若某引擎不能给出结论，必须返回 skip reason，而不是静默缺失
+
+### Step 3: 证据装配
+
+- 融合器汇总各引擎 `metrics` 与 `signals`
+- 每条诊断至少绑定 1 处可定位 evidence（sentence / segment / relation）
+- `artifacts` 写入统一路径，供 Visual OS 和报告层复用
+
+### Step 4: 输出与复核
+
+一个可接受的输出至少满足：
+
+- 六引擎均有结果或显式跳过原因
+- 所有 `diagnostics` 含 evidence 定位
+- `confidence` 落在 [0,1]
+- 同一 `document_id` 的 artifacts 与 diagnostics 版本一致
+
+### Step 5: 典型诊断示例
+
+当 Engine 2 与 Engine 4 同时发现问题时，可能得到类似结论：
+
+- 诊断：中段节奏压平，主题迁移缺少缓冲段
+- 证据：`sentence:112-128` 与 `segment:5`
+- 建议动作：拆分长句簇，并在段间插入过渡语义节点
+
+这类输出的关键不在“建议是否华丽”，而在“证据是否可回链、可复核、可对比版本变化”。
 
 ## 运行剖面（Run Profiles）
 
