@@ -30,6 +30,8 @@ NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI A
 以下文档作为全站文档治理与改造标准，不作为独立产品导航组维护：
 
 - [Benchmark and Acceptance Metrics](whitepaper/benchmark-and-acceptance-metrics.md)
+- [Project Foundation](whitepaper/project-foundation.md)
+- [Evidence Registry](whitepaper/evidence-registry.md)
 - [Core Docs Mapping](whitepaper/core-docs-mapping.md)
 - [Readiness Checklist](whitepaper/readiness-checklist.md)
 
@@ -37,4 +39,5 @@ NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI A
 
 - 先看 [Core Docs Mapping](whitepaper/core-docs-mapping.md) 确认“权威文档 -> 白皮书章节”映射
 - 再看 [Benchmark and Acceptance Metrics](whitepaper/benchmark-and-acceptance-metrics.md) 统一验收口径
+- 然后看 [Evidence Registry](whitepaper/evidence-registry.md) 了解证据台账与采集顺序
 - 最后按 [Readiness Checklist](whitepaper/readiness-checklist.md) 做发布前复核

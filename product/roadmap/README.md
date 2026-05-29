@@ -69,3 +69,9 @@ source_of_truth: narrative-docs
 - 编辑评估报告与语料资产归档
 
 成功标准：形成可规模化执行的 B 端评估流程与长期资产积累路径。
+
+## 已验证样本
+
+| 证据 ID | 来源 | 结论摘要 | 关联判断 |
+| --- | --- | --- | --- |
+| ROAD-002 | product/roadmap/README.md, product/workflows/README.md | V1 作者/编辑闭环、V2 语料分析闭环与 V3 机构评估闭环彼此递进 | 路线图已经与证据驱动的分阶段交付模式对齐 |

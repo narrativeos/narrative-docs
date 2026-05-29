@@ -22,6 +22,7 @@ has_children: true
 - 用途说明：以下文档用于定义“写什么、如何验收、何时可发布”的统一标准。
 - [Whitepaper 总览](whitepaper/README.md)
 - [Benchmark and Acceptance Metrics](whitepaper/benchmark-and-acceptance-metrics.md)
+- [Evidence Registry](whitepaper/evidence-registry.md)
 - [Core Docs Mapping](whitepaper/core-docs-mapping.md)
 - [Readiness Checklist](whitepaper/readiness-checklist.md)
 
