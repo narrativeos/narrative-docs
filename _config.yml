@@ -110,3 +110,284 @@ defaults:
       path: assets/glossary.zh-en.md
     values:
       parent: Governance 治理与标准
+
+  # Bilingual nav titles for second-level menu items
+  - scope:
+      path: architecture/README.md
+    values:
+      title: Architecture Memory 架构记忆
+  - scope:
+      path: architecture/analysis-engine/README.md
+    values:
+      title: Analysis Engine 分析引擎
+  - scope:
+      path: architecture/atlas/README.md
+    values:
+      title: Atlas 空间图谱
+  - scope:
+      path: architecture/corpus-learning/README.md
+    values:
+      title: Corpus Learning 语料学习
+  - scope:
+      path: architecture/insight-engine/README.md
+    values:
+      title: Insight Engine 洞察引擎
+  - scope:
+      path: architecture/library/README.md
+    values:
+      title: Library 知识库
+  - scope:
+      path: architecture/platform/README.md
+    values:
+      title: Platform 平台架构
+  - scope:
+      path: architecture/runtime/README.md
+    values:
+      title: Runtime 运行时
+  - scope:
+      path: architecture/spatial/README.md
+    values:
+      title: Spatial 空间计算
+  - scope:
+      path: architecture/storage/README.md
+    values:
+      title: Storage 存储
+  - scope:
+      path: architecture/style-genome/README.md
+    values:
+      title: Style Genome 风格基因
+  - scope:
+      path: architecture/system/README.md
+    values:
+      title: System 系统架构
+  - scope:
+      path: architecture/visual-os/README.md
+    values:
+      title: Visual OS 可视操作系统
+
+  - scope:
+      path: product/README.md
+    values:
+      title: Product Knowledge 产品知识
+  - scope:
+      path: product/modules/README.md
+    values:
+      title: Modules 模块体系
+  - scope:
+      path: product/modules/analysis-engine.md
+    values:
+      title: Analysis Engine Module 分析引擎模块
+  - scope:
+      path: product/modules/corpus-observatory.md
+    values:
+      title: Corpus Observatory 语料观测模块
+  - scope:
+      path: product/modules/insight-engine.md
+    values:
+      title: Insight Engine Module 洞察引擎模块
+  - scope:
+      path: product/modules/library.md
+    values:
+      title: Library Module 知识库模块
+  - scope:
+      path: product/modules/platform-domains.md
+    values:
+      title: Platform Domains 平台域模块
+  - scope:
+      path: product/modules/style-genome.md
+    values:
+      title: Style Genome Module 风格基因模块
+  - scope:
+      path: product/modules/visual-os.md
+    values:
+      title: Visual OS Module 可视操作系统模块
+  - scope:
+      path: product/vision/README.md
+    values:
+      title: Vision 产品愿景
+  - scope:
+      path: product/roadmap/README.md
+    values:
+      title: Roadmap 路线图
+  - scope:
+      path: product/workflows/README.md
+    values:
+      title: Workflows 工作流
+
+  - scope:
+      path: developer/README.md
+    values:
+      title: Developer Guide 开发者指南
+  - scope:
+      path: developer/api/README.md
+    values:
+      title: API Specifications API规范
+  - scope:
+      path: developer/coding/README.md
+    values:
+      title: Coding Rules 编码规范
+  - scope:
+      path: developer/coding/docs-governance-standard.md
+    values:
+      title: Docs Governance Standard 文档治理标准
+  - scope:
+      path: developer/coding/docs-governance-backlog.md
+    values:
+      title: Docs Governance Backlog 文档治理清单
+  - scope:
+      path: developer/coding/docs-governance-monthly-check-template.md
+    values:
+      title: Governance Monthly Check 月度治理检查
+  - scope:
+      path: developer/coding/docs-governance-release-report-2026-05.md
+    values:
+      title: Governance Release Report 治理发布报告
+  - scope:
+      path: developer/operations/README.md
+    values:
+      title: Operations 运行手册
+  - scope:
+      path: developer/plugins/README.md
+    values:
+      title: Plugins 插件
+  - scope:
+      path: developer/sdk/README.md
+    values:
+      title: SDK 集成
+  - scope:
+      path: developer/setup/README.md
+    values:
+      title: Setup 环境准备
+  - scope:
+      path: developer/workspace/README.md
+    values:
+      title: Workspace 工作区
+  - scope:
+      path: developer/workspace/ai-native-bootstrap-checklist.md
+    values:
+      title: AI-Native Bootstrap Checklist AI原生启动清单
+
+  - scope:
+      path: user/README.md
+    values:
+      title: User Documentation 用户文档
+  - scope:
+      path: user/getting-started/README.md
+    values:
+      title: Getting Started 快速开始
+  - scope:
+      path: user/editor/README.md
+    values:
+      title: Editor Guide 编辑器指南
+  - scope:
+      path: user/atlas/README.md
+    values:
+      title: Atlas Guide Atlas指南
+  - scope:
+      path: user/gis/README.md
+    values:
+      title: GIS Guide GIS指南
+  - scope:
+      path: user/cloud/README.md
+    values:
+      title: Cloud Guide 云协作指南
+
+  - scope:
+      path: ai/README.md
+    values:
+      title: AI Context Layer AI上下文层
+  - scope:
+      path: ai/architecture-context/README.md
+    values:
+      title: Architecture Context 架构上下文
+  - scope:
+      path: ai/copilot/README.md
+    values:
+      title: Copilot Context Copilot上下文
+  - scope:
+      path: ai/prompts/README.md
+    values:
+      title: Prompt Conventions 提示词规范
+  - scope:
+      path: ai/prompts/templates/task-template.md
+    values:
+      title: Task Template 任务模板
+  - scope:
+      path: ai/repo-rules/README.md
+    values:
+      title: Repo Rules 仓库规则
+
+  - scope:
+      path: adr/README.md
+    values:
+      title: ADR Index 决策记录索引
+  - scope:
+      path: adr/ADR-001-runtime.md
+    values:
+      title: ADR-001 Runtime Isolation 运行时隔离
+  - scope:
+      path: adr/ADR-002-storage.md
+    values:
+      title: ADR-002 Storage Baseline 存储基线
+
+  - scope:
+      path: whitepaper/README.md
+    values:
+      title: Whitepaper Standard 白皮书标准
+  - scope:
+      path: whitepaper/benchmark-and-acceptance-metrics.md
+    values:
+      title: Benchmark & Acceptance Metrics 基准与验收指标
+  - scope:
+      path: whitepaper/core-docs-mapping.md
+    values:
+      title: Core Docs Mapping 核心文档映射
+  - scope:
+      path: whitepaper/one-page-summary.md
+    values:
+      title: One-page Summary 一页摘要
+  - scope:
+      path: whitepaper/readiness-checklist.md
+    values:
+      title: Readiness Checklist 就绪检查清单
+
+  - scope:
+      path: API_COMPATIBILITY_AND_VERSIONING.md
+    values:
+      title: API Compatibility & Versioning API兼容与版本
+  - scope:
+      path: CHANGELOG.md
+    values:
+      title: Changelog 更新日志
+  - scope:
+      path: CODE_OF_CONDUCT.md
+    values:
+      title: Code of Conduct 行为准则
+  - scope:
+      path: CONTRIBUTING.md
+    values:
+      title: Contributing 贡献指南
+  - scope:
+      path: DATA_CLASSIFICATION_AND_RETENTION.md
+    values:
+      title: Data Classification & Retention 数据分类与留存
+  - scope:
+      path: GOVERNANCE.md
+    values:
+      title: Governance 开源治理
+  - scope:
+      path: SECURITY.md
+    values:
+      title: Security 安全策略
+  - scope:
+      path: TROUBLESHOOTING.md
+    values:
+      title: Troubleshooting 故障排查
+  - scope:
+      path: WHATS_NEW.md
+    values:
+      title: What's New 最新变更
+  - scope:
+      path: assets/glossary.zh-en.md
+    values:
+      title: Glossary 术语表
