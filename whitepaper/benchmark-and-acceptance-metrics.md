@@ -4,7 +4,11 @@
 
 # 基准测试与验收指标入口
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This document defines benchmark categories, acceptance metrics, and release gates for NarrativeOS documentation claims and capability milestones.
 

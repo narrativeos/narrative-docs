@@ -4,7 +4,11 @@
 
 # Documentation Governance Monthly Check Template
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This template supports monthly governance review with score tracking, backlog movement, and release readiness checks.
 

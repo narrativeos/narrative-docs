@@ -4,7 +4,11 @@
 
 # AI-Native Repo Bootstrap Checklist
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This checklist defines the minimum AI-native scaffolding for NarrativeOS repositories.
 

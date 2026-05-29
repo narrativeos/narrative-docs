@@ -4,7 +4,11 @@
 
 # Documentation Governance Standard v1.0
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This document defines the quality model, process gates, severity levels, and operating cadence for documentation governance in narrative-docs.
 

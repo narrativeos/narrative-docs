@@ -4,7 +4,36 @@
 
 # Narrative Knowledge Hub
 
-## EN Summary
+## 项目说明（NarrativeOS 整体先读）
+
+NarrativeOS 是一个面向复杂文本的 Narrative Intelligence System（叙事智能系统）。
+
+它的系统目标是把“不可见的文本结构”转化为“可观察、可解释、可迭代”的诊断与可视化结果，帮助用户提升文本质量，而不是替代作者写作。
+
+整体能力由四个层面协同构成：
+
+- 运行与分析内核：对文本结构、节奏、语义与风格进行多维诊断
+- 可视化与交互体验：把诊断结果转化为可操作的结构视图
+- 开放集成能力：通过 API、SDK、插件机制接入外部工作流
+- 文档与治理系统：统一术语、规则、版本与协作流程，确保跨仓一致性
+
+在这个体系中，`narrative-docs` 的角色是文档中枢与知识真源：
+
+- 负责 NarrativeOS 的统一语义、架构边界、治理规则与跨仓索引
+- 为用户、开发者、贡献者与 AI Agent 提供可执行、可验证、可追溯的路径
+- 不承担运行时代码实现（实现位于各 `narrative-*` 工程仓）
+
+阅读建议：
+
+- 快速理解 NarrativeOS：先看本页“10 分钟首个成功任务”与“NarrativeOS 整体定位与目标”
+- 参与文档与工程协作：先看 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md)
+- 需要排障与恢复：先看 [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This document is the primary entry of Narrative Knowledge Hub and provides reproducible onboarding and contribution paths.
 

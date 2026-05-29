@@ -1,6 +1,10 @@
 # Changelog
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This changelog records externally relevant documentation and interface changes for NarrativeOS in a release-oriented format.
 

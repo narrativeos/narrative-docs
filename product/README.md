@@ -4,7 +4,11 @@
 
 # Product Knowledge
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This document defines product intent, module boundaries, and evolution direction for NarrativeOS.
 

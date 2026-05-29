@@ -4,7 +4,11 @@
 
 # ADR-002: DuckDB as Canonical Storage Baseline
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This ADR records the decision to use DuckDB as the canonical storage baseline and defines migration implications.
 

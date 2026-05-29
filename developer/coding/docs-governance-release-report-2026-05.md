@@ -4,7 +4,11 @@
 
 # Documentation Governance Release Report (2026-05)
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This report summarizes the completed documentation governance implementation for May 2026, including standards, backlog closure, and verification outcomes.
 

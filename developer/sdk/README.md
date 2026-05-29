@@ -4,7 +4,11 @@
 
 # SDK
 
-## EN Summary
+## 摘要（中文）
+
+本节为英文摘要导读，便于国际协作与检索。
+
+## Executive Summary (EN)
 
 This document defines SDK integration goals, TS/Python minimum onboarding paths, error semantics, and migration requirements.
 
