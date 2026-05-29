@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Architecture
+title: Architecture 架构
 nav_order: 10
 ---
 
-# Architecture
+# Architecture 架构
 
 - [Architecture 总览](architecture/README.md)
 - [Analysis Engine](architecture/analysis-engine/README.md)

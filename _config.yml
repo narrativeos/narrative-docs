@@ -17,9 +17,9 @@ aux_links:
     - https://github.com/narrativeos/narrative-docs
 
 nav_external_links:
-  - title: CHANGELOG
+  - title: CHANGELOG 更新日志
     url: /narrative-docs/CHANGELOG
-  - title: TROUBLESHOOTING
+  - title: TROUBLESHOOTING 故障排查
     url: /narrative-docs/TROUBLESHOOTING
 
 defaults:
@@ -32,81 +32,81 @@ defaults:
       path: architecture
       type: pages
     values:
-      parent: Architecture
+      parent: Architecture 架构
 
   - scope:
       path: product
       type: pages
     values:
-      parent: Product
+      parent: Product 产品
 
   - scope:
       path: developer
       type: pages
     values:
-      parent: Developer
+      parent: Developer 开发者
 
   - scope:
       path: user
       type: pages
     values:
-      parent: User
+      parent: User 用户
 
   - scope:
       path: ai
       type: pages
     values:
-      parent: AI
+      parent: AI 智能体
 
   - scope:
       path: adr
       type: pages
     values:
-      parent: ADR
+      parent: ADR 架构决策记录
 
   - scope:
       path: whitepaper
       type: pages
     values:
-      parent: Whitepaper
+      parent: Whitepaper 白皮书
 
   - scope:
       path: API_COMPATIBILITY_AND_VERSIONING.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: CHANGELOG.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: CODE_OF_CONDUCT.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: CONTRIBUTING.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: DATA_CLASSIFICATION_AND_RETENTION.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: GOVERNANCE.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: SECURITY.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: TROUBLESHOOTING.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: WHATS_NEW.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档
   - scope:
       path: assets/glossary.zh-en.md
     values:
-      parent: Project Docs
+      parent: Project Docs 项目文档

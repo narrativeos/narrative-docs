@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Whitepaper
+title: Whitepaper 白皮书
 nav_order: 70
 ---
 
-# Whitepaper
+# Whitepaper 白皮书
 
 - [Whitepaper 总览](whitepaper/README.md)
 - [One-page Summary](whitepaper/one-page-summary.md)

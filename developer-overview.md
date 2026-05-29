@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Developer
+title: Developer 开发者
 nav_order: 30
 ---
 
-# Developer
+# Developer 开发者
 
 - [Developer 总览](developer/README.md)
 - [Setup](developer/setup/README.md)

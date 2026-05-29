@@ -1,10 +1,10 @@
 ---
 layout: default
-title: User
+title: User 用户
 nav_order: 40
 ---
 
-# User
+# User 用户
 
 - [User 总览](user/README.md)
 - [Getting Started](user/getting-started/README.md)

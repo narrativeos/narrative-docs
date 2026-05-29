@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Home
+title: Home 首页
 nav_order: 1
 ---
 
-# Narrative OS
+# Narrative OS 叙事操作系统
 
 NarrativeOS 的统一文档入口，面向用户、开发者、贡献者与 AI Agent。
 

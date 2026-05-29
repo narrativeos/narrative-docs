@@ -1,10 +1,10 @@
 ---
 layout: default
-title: AI
+title: AI 智能体
 nav_order: 50
 ---
 
-# AI
+# AI 智能体
 
 - [AI 总览](ai/README.md)
 - [Copilot](ai/copilot/README.md)
