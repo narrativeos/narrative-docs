@@ -2,5 +2,22 @@ title: Narrative Knowledge Hub
 description: NarrativeOS unified documentation hub
 url: https://narrativeos.github.io
 baseurl: /narrative-docs
-theme: jekyll-theme-cayman
+remote_theme: just-the-docs/just-the-docs
 markdown: kramdown
+plugins:
+  - jekyll-remote-theme
+
+search_enabled: true
+heading_anchors: true
+
+aux_links:
+  NarrativeOS:
+    - https://github.com/narrativeos
+  narrative-docs:
+    - https://github.com/narrativeos/narrative-docs
+
+nav_external_links:
+  - title: CHANGELOG
+    url: /narrative-docs/CHANGELOG
+  - title: TROUBLESHOOTING
+    url: /narrative-docs/TROUBLESHOOTING
