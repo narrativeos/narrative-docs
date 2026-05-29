@@ -1,6 +1,4 @@
-# Structured Prompt Header (YAML Example)
-
-```yaml
+---
 task_id: TASK-XXXX
 objective: One-line objective in English
 objective_zh: 一句话中文目标
@@ -15,7 +13,7 @@ expected_output:
 verification:
   - lint
   - test
-```
+---
 
 # Task Prompt Template
 
