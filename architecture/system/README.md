@@ -445,3 +445,237 @@ Knowledge Graph
 ```
 
 实施约束：所有引擎、插件、批任务与 AI 解释输出必须兼容此总览，不得绕开统一 Schema 写入私有格式。
+
+## Language Processing Pipeline（收敛到 system）
+
+Language Processing Pipeline 定义 NarrativeOS 在运行时如何把 Studio、Cloud 与 Schema 串成闭环。
+
+目标：同时支持实时写作与百万语料分析，并避免重复计算、模块耦合与数据分叉。
+
+### 设计原则
+
+- 单一数据真源（Single Source of Truth）
+- 增量计算（Incremental）
+- 事件驱动（Event-driven）
+- 多级缓存
+- 统一 Feature 流
+- 本地优先、云端增强
+
+### 双流水线总图
+
+系统包含两条共享同一 Schema 的流水线：
+
+- Live Pipeline（毫秒级）：面向 Studio 实时反馈
+- Cloud MRI Pipeline（秒到分钟级）：面向深度分析与语料沉淀
+
+```text
+Studio Edit
+	└─> Text Change Event
+				├─> Local Live Pipeline -> Sidebar / Atlas 即时反馈
+				└─> Cloud MRI Pipeline -> Deep Report / Corpus 更新
+```
+
+约束：两条流水线必须共享 Language Feature Schema 2.0，禁止本地云端各自定义私有字段。
+
+### Live Pipeline（实时流水线）
+
+原则：用户每次输入均不触发全文重算。
+
+标准链路：
+
+```text
+编辑事件
+	↓
+Dirty Region Detection
+	↓
+Incremental Parse
+	↓
+Feature Update
+	↓
+Sidebar Refresh
+	↓
+Atlas Refresh
+```
+
+#### 1) Dirty Region Detection
+
+基于 Document AST 的增量 diff 识别 changed_nodes，仅重算受影响节点。
+
+#### 2) Incremental Parse
+
+生成 Narrative Tree，而非仅句法树。
+
+解析层建议：
+
+- Layer 1 Lexical
+- Layer 2 Syntax
+- Layer 3 Discourse（transition / argument / description）
+
+#### 3) Real-time Feature Engine
+
+输入：AST。输出：持续更新的 Feature Stream。
+
+```text
+Feature Engine
+├── Structural
+├── Rhythm
+├── Style
+├── Emotion
+└── Narrative
+```
+
+#### 4) Feature Bus
+
+Parser 与消费端通过 Feature Bus 解耦。
+
+消费者：Sidebar、Atlas、AI Insight、Cloud Sync。
+
+约束：消费端只读 Feature Stream，不重复直接解析原文。
+
+### Atlas Pipeline（地图流水线）
+
+Atlas 是渲染器，不是分析器。
+
+标准链路：
+
+```text
+Feature Stream
+	↓
+Graph Builder
+	↓
+Layout Engine
+	↓
+Renderer
+```
+
+布局建议：
+
+- Semantic Layout（星系）
+- Narrative Layout（河流）
+- Structure Layout（城市）
+
+渲染建议：WebGL（如 PixiJS / Three.js）用于大图谱高帧率交互。
+
+### Cloud MRI Pipeline（深度流水线）
+
+云端流水线为异步分阶段执行：
+
+```text
+Upload
+	↓
+Task Queue
+	↓
+Deep Parse
+	↓
+Feature Expansion
+	↓
+Vectorization
+	↓
+Graph Build
+	↓
+MRI Report
+	↓
+Corpus Update
+```
+
+阶段建议：Parse -> Feature -> Vector -> Insight -> Corpus。
+
+约束：每阶段可独立失败重试，禁止全黑箱单任务。
+
+### Vectorization Pipeline（多向量流水线）
+
+NarrativeOS 采用多向量系统，不使用单 embedding 代表文本全貌。
+
+```text
+Document
+├── Semantic Vector
+├── Style Vector
+├── Narrative Vector
+└── Emotion Vector
+```
+
+编码流程：Semantic Embedding -> Style Encoding -> Narrative Encoding -> Emotion Encoding。
+
+输出：Vector Bundle，供 Corpus 比较与 Insight 检索复用。
+
+### Insight Pipeline（Feature RAG）
+
+原则：AI 不得直接脱离 MRI 数据下结论。
+
+标准链路：
+
+```text
+用户提问
+	↓
+Feature Query
+	↓
+Evidence Retrieval
+	↓
+Model Reasoning
+	↓
+Explanation
+```
+
+定位：AI 是数据解释器，不是无约束评论器。
+
+### Corpus Pipeline（百万文本流水线）
+
+标准链路：
+
+```text
+Corpus Import
+	↓
+Distributed MRI
+	↓
+Feature Aggregation
+	↓
+Cluster Analysis
+	↓
+Trend Detection
+	↓
+Knowledge Graph Update
+```
+
+分布式建议：Ray / Dask / Spark。
+
+目标：从单文档诊断升级为宏观语言观测能力。
+
+### 统一缓存体系（三层）
+
+- L1 Memory Cache：本地毫秒级热数据（如当前段落）
+- L2 Disk Cache：本机秒级结果（如全文 AST）
+- L3 Cloud Cache：跨任务共享缓存（如 Redis）
+
+缓存键必须版本化：doc_id + content_hash + engine_version。
+
+### Pipeline 生命周期闭环
+
+```text
+Studio Edit
+	↓
+Dirty Detect
+	↓
+Incremental Parse
+	↓
+Feature Bus
+	↓
+Atlas / UI
+	↓
+Cloud Sync
+	↓
+Deep MRI
+	↓
+Vector Bundle
+	↓
+Corpus
+	↓
+Knowledge Graph
+	↓
+Insight
+	↓
+Back to Studio
+```
+
+该闭环定义了 NarrativeOS 的统一数据生命循环。
+
+下一步：Language Intelligence Engine（认知架构），明确规则、统计与 LLM 的职责边界与协作机制。
