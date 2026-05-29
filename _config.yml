@@ -21,3 +21,92 @@ nav_external_links:
     url: /narrative-docs/CHANGELOG
   - title: TROUBLESHOOTING
     url: /narrative-docs/TROUBLESHOOTING
+
+defaults:
+  - scope:
+      path: README.md
+    values:
+      nav_exclude: true
+
+  - scope:
+      path: architecture
+      type: pages
+    values:
+      parent: Architecture
+
+  - scope:
+      path: product
+      type: pages
+    values:
+      parent: Product
+
+  - scope:
+      path: developer
+      type: pages
+    values:
+      parent: Developer
+
+  - scope:
+      path: user
+      type: pages
+    values:
+      parent: User
+
+  - scope:
+      path: ai
+      type: pages
+    values:
+      parent: AI
+
+  - scope:
+      path: adr
+      type: pages
+    values:
+      parent: ADR
+
+  - scope:
+      path: whitepaper
+      type: pages
+    values:
+      parent: Whitepaper
+
+  - scope:
+      path: API_COMPATIBILITY_AND_VERSIONING.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: CHANGELOG.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: CODE_OF_CONDUCT.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: CONTRIBUTING.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: DATA_CLASSIFICATION_AND_RETENTION.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: GOVERNANCE.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: SECURITY.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: TROUBLESHOOTING.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: WHATS_NEW.md
+    values:
+      parent: Project Docs
+  - scope:
+      path: assets/glossary.zh-en.md
+    values:
+      parent: Project Docs

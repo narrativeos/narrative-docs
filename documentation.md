@@ -16,3 +16,4 @@ has_children: true
 - [AI](ai-overview.md)
 - [ADR](adr-overview.md)
 - [Whitepaper](whitepaper-overview.md)
+- [Project Docs](project-docs-overview.md)
