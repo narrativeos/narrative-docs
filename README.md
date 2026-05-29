@@ -31,14 +31,14 @@ narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用
 
 ## NarrativeOS 整体定位与目标
 
-该议题已由“文章分析”扩展为产品设计与计算语言学系统工程问题。
+该议题属于产品设计与计算语言学系统工程范畴。
 
-在该语境下，NarrativeOS 的产品属性不应界定为“AI 写作助手”，而应界定为：
+NarrativeOS 的产品属性界定为：
 
 - Narrative Intelligence System（叙事智能系统）
 - Language MRI / Literary OS（语言 MRI / 文学操作系统）
 
-NarrativeOS 的能力边界位于以下交叉领域：
+NarrativeOS 的能力边界覆盖以下交叉领域：
 
 - 语言纠错（如 Grammarly）
 - 文本挖掘（NLP）
@@ -46,7 +46,7 @@ NarrativeOS 的能力边界位于以下交叉领域：
 - 文学分析工具
 - 作者工作台
 
-其差异化核心在于提升文本结构与表达结果的可观测性与可解释性，而非替代用户完成写作生成。
+NarrativeOS 的差异化核心是提升文本结构与表达结果的可观测性与可解释性；系统目标为支持用户识别与优化文本，而非代替用户完成写作生成。
 
 ### 产品定义：文本 MRI 平台
 
