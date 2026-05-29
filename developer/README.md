@@ -28,6 +28,7 @@ source_of_truth: narrative-docs
 
 - [setup](setup/README.md): 开发工具与依赖
 - [workspace](workspace/README.md): 多仓库工作区组织
+- [workspace/ai-native-bootstrap-checklist.md](workspace/ai-native-bootstrap-checklist.md): AI-Native 仓库初始化检查清单
 - [coding](coding/README.md): 编码规范与质量门禁
 - [plugins](plugins/README.md): 插件开发约束
 - [sdk](sdk/README.md): SDK 设计与发布注意事项
