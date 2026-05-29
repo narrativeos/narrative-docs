@@ -94,6 +94,28 @@ Home 页定义为任务指挥台（Mission Control），用于承载分析入口
 - 抽象度
 - 感官密度
 
+## Workspace 架构约束（V1）
+
+Workspace 为 V1 阶段主入口页面，采用左文中图右诊断的三栏协同架构。
+
+### 左栏 Text Pane 约束
+
+- 支持章节导航、注释、引用、搜索、版本对照
+- 句级交互必须支持与中栏结构节点双向联动
+
+### 中栏 Atlas 约束
+
+- 必须具备四层模型：Structure Terrain、Semantic Galaxy、Rhythm Timeline、Heat Layer
+- 四层视图共享统一文本坐标系，支持跨层定位与联动
+
+### 右栏 Insight Panel 约束
+
+- 指标面板需实时显示结构完整度、AI 模板率、抽象度、感官密度、节奏指数
+- 洞察输出必须绑定证据链，遵循结论到证据到原文的可追溯路径
+- 每条洞察必须可触发 Show Evidence 跳转
+
+该架构用于确保分析结果可解释、可核验、可回到原文上下文。
+
 ## 核心界面架构
 
 ### 1. 总览仪表盘（Overview Dashboard）
