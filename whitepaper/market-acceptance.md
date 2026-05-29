@@ -131,7 +131,7 @@ next_review: 2026-06-12
 
 - [项目论证与预演框架](project-foundation.md)
 - [实现冻结清单](implementation-freeze.md)
-- [证据台账](evidence-registry.md)
+- [证据附录](evidence-registry.md)
 
 ## 7.1 首轮目标角色
 
