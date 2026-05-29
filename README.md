@@ -9,14 +9,64 @@ narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用
 
 目标是建立单一事实源（SSOT），降低多仓库协作中的上下文漂移。
 
-## 文档层级
+## 文档导航
 
-- architecture: 系统与运行时架构、存储、Atlas、Spatial
-- adr: 架构决策记录与历史
-- product: 愿景、路线图、工作流、模块定义
-- developer: 开发环境、工作区、工程规范、插件与 SDK
-- user: 用户上手、编辑器、Atlas、GIS、云能力
-- ai: Copilot 规则、提示词、仓库规则与架构上下文
+统一入口按六个层级组织，所有阅读从本页进入。
+
+### 1. Architecture Memory
+
+- 总览: [architecture/README.md](architecture/README.md)
+- 系统架构: [architecture/system/README.md](architecture/system/README.md)
+- 运行时架构: [architecture/runtime/README.md](architecture/runtime/README.md)
+- 存储架构: [architecture/storage/README.md](architecture/storage/README.md)
+- Atlas 架构: [architecture/atlas/README.md](architecture/atlas/README.md)
+- Spatial 架构: [architecture/spatial/README.md](architecture/spatial/README.md)
+
+### 2. ADR
+
+- ADR 索引: [adr/README.md](adr/README.md)
+- ADR-001 运行时边界: [adr/ADR-001-runtime.md](adr/ADR-001-runtime.md)
+- ADR-002 存储基线: [adr/ADR-002-storage.md](adr/ADR-002-storage.md)
+
+### 3. Product Knowledge
+
+- 总览: [product/README.md](product/README.md)
+- 愿景: [product/vision/README.md](product/vision/README.md)
+- 路线图: [product/roadmap/README.md](product/roadmap/README.md)
+- 工作流: [product/workflows/README.md](product/workflows/README.md)
+- 模块定义: [product/modules/README.md](product/modules/README.md)
+
+### 4. Developer Guide
+
+- 总览: [developer/README.md](developer/README.md)
+- 环境搭建: [developer/setup/README.md](developer/setup/README.md)
+- 工作区协作: [developer/workspace/README.md](developer/workspace/README.md)
+- 编码规范: [developer/coding/README.md](developer/coding/README.md)
+- 插件开发: [developer/plugins/README.md](developer/plugins/README.md)
+- SDK 规范: [developer/sdk/README.md](developer/sdk/README.md)
+
+### 5. User Documentation
+
+- 总览: [user/README.md](user/README.md)
+- 快速开始: [user/getting-started/README.md](user/getting-started/README.md)
+- 编辑器: [user/editor/README.md](user/editor/README.md)
+- Atlas 使用: [user/atlas/README.md](user/atlas/README.md)
+- GIS 使用: [user/gis/README.md](user/gis/README.md)
+- 云能力: [user/cloud/README.md](user/cloud/README.md)
+
+### 6. AI Context Layer
+
+- 总览: [ai/README.md](ai/README.md)
+- Copilot 上下文: [ai/copilot/README.md](ai/copilot/README.md)
+- Prompt 规范: [ai/prompts/README.md](ai/prompts/README.md)
+- Repo Rules: [ai/repo-rules/README.md](ai/repo-rules/README.md)
+- 架构上下文: [ai/architecture-context/README.md](ai/architecture-context/README.md)
+
+## 推荐阅读路径
+
+- 新成员入门: Product -> Developer -> User
+- 架构设计与变更: Architecture -> ADR -> AI Context
+- 实施与交付: Developer -> AI Context -> Product
 
 ## 文档边界
 

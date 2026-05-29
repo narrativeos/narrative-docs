@@ -2,12 +2,23 @@
 
 ADR（Architecture Decision Record）用于记录关键架构决策、动机与影响。
 
+## 导航
+
+- 返回首页: [README.md](../README.md)
+- 上游上下文: [Architecture](../architecture/README.md)
+- 实施落地: [Developer](../developer/README.md)
+
 ## 当前 ADR
 
-- ADR-001-runtime.md: 运行时隔离与通信边界
-- ADR-002-storage.md: 存储基线与数据治理
+- [ADR-001-runtime.md](ADR-001-runtime.md): 运行时隔离与通信边界
+- [ADR-002-storage.md](ADR-002-storage.md): 存储基线与数据治理
 
 ## 规则
 
 - 重大架构变更必须新增或更新 ADR
 - ADR 变更应与实现、测试、文档同步
+
+## 推荐阅读顺序
+
+- 先读 [Architecture 总览](../architecture/README.md)
+- 再按时间/主题阅读 ADR 条目

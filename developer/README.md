@@ -2,10 +2,21 @@
 
 本层用于统一开发与协作基线，目标是降低多仓库维护摩擦。
 
+## 导航
+
+- 返回首页: [README.md](../README.md)
+- 规范来源: [Architecture](../architecture/README.md) | [ADR](../adr/README.md) | [Product](../product/README.md)
+- AI 协作: [AI Context](../ai/README.md)
+
 ## 模块
 
-- setup: 开发工具与依赖
-- workspace: 多仓库工作区组织
-- coding: 编码规范与质量门禁
-- plugins: 插件开发约束
-- sdk: SDK 设计与发布注意事项
+- [setup](setup/README.md): 开发工具与依赖
+- [workspace](workspace/README.md): 多仓库工作区组织
+- [coding](coding/README.md): 编码规范与质量门禁
+- [plugins](plugins/README.md): 插件开发约束
+- [sdk](sdk/README.md): SDK 设计与发布注意事项
+
+## 推荐阅读顺序
+
+- setup -> workspace -> coding
+- 按需延伸阅读 plugins 与 sdk

@@ -2,9 +2,19 @@
 
 本层是 NarrativeOS 的 AI 记忆层，目标是让 Copilot/Agent 获得稳定上下文。
 
+## 导航
+
+- 返回首页: [README.md](../README.md)
+- 规则来源: [Architecture](../architecture/README.md) | [ADR](../adr/README.md)
+- 执行落地: [Developer](../developer/README.md)
+
 ## 模块
 
-- copilot: Copilot 使用策略与边界
-- prompts: 任务模板与提示词规范
-- repo-rules: 跨仓统一工程规则
-- architecture-context: 面向 AI 的架构摘要
+- [copilot](copilot/README.md): Copilot 使用策略与边界
+- [prompts](prompts/README.md): 任务模板与提示词规范
+- [repo-rules](repo-rules/README.md): 跨仓统一工程规则
+- [architecture-context](architecture-context/README.md): 面向 AI 的架构摘要
+
+## 推荐阅读顺序
+
+- architecture-context -> repo-rules -> copilot -> prompts
