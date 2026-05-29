@@ -1,0 +1,46 @@
+version: 1
+project: NarrativeOS
+mode: ai-first-engineering
+canonical_dev_environment:
+  ide: VS Code
+  ai_ide_optional: Cursor
+  ai_coding: GitHub Copilot
+  workspace: NarrativeOS.code-workspace
+  devcontainer: optional
+tech_stack:
+  host: Rust + Tauri
+  ui: TypeScript + React
+  worker: Python
+  storage: DuckDB
+  domain: GIS
+runtime_boundaries:
+  rule: Runtime Isolation
+  allow:
+    - IPC
+    - API Contract
+  deny:
+    - cross-runtime direct import
+ai_workflow:
+  - specification
+  - copilot_generation
+  - ai_self_check
+  - ci_validation
+  - human_approval
+ci_gates:
+  rust:
+    - cargo fmt
+    - cargo clippy
+    - cargo test
+  typescript:
+    - eslint
+    - typecheck
+    - vitest
+  python:
+    - ruff
+    - pytest
+source_of_truth:
+  - architecture
+  - adr
+  - product
+  - user
+  - ai

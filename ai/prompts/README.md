@@ -1,6 +1,10 @@
 # Prompt Conventions
 
+EN: Prompt conventions for Copilot and coding agents.
+
 ## 推荐结构
+
+EN: Recommended structure.
 
 - 目标: 要解决什么问题
 - 约束: 架构/风格/兼容性边界
@@ -9,5 +13,20 @@
 
 ## 原则
 
+EN: Principles.
+
 - 提示词应引用具体文档路径
 - 关键任务应附带测试与回归要求
+
+## 标准模板 | Standard Template
+
+建议使用: [ai/prompts/templates/task-template.md](templates/task-template.md)
+
+模板字段（机读友好）：
+
+- task_id
+- objective
+- constraints
+- input_context
+- expected_output
+- verification

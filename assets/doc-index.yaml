@@ -1,0 +1,95 @@
+version: 1
+generated_by: manual
+description: Narrative Knowledge Hub machine-readable document index
+language_policy:
+  primary: zh-CN
+  secondary: en
+  mode: bilingual_summary
+sections:
+  - id: architecture
+    title_zh: 架构记忆
+    title_en: Architecture Memory
+    audience:
+      - developer
+      - architect
+      - ai-agent
+    entry: architecture/README.md
+    children:
+      - architecture/system/README.md
+      - architecture/runtime/README.md
+      - architecture/storage/README.md
+      - architecture/atlas/README.md
+      - architecture/spatial/README.md
+  - id: adr
+    title_zh: 架构决策记录
+    title_en: Architecture Decision Records
+    audience:
+      - developer
+      - architect
+      - ai-agent
+    entry: adr/README.md
+    children:
+      - adr/ADR-001-runtime.md
+      - adr/ADR-002-storage.md
+  - id: product
+    title_zh: 产品知识
+    title_en: Product Knowledge
+    audience:
+      - product
+      - developer
+      - user
+      - ai-agent
+    entry: product/README.md
+    children:
+      - product/vision/README.md
+      - product/roadmap/README.md
+      - product/workflows/README.md
+      - product/modules/README.md
+  - id: developer
+    title_zh: 开发者指南
+    title_en: Developer Guide
+    audience:
+      - developer
+      - contributor
+      - ai-agent
+    entry: developer/README.md
+    children:
+      - developer/setup/README.md
+      - developer/workspace/README.md
+      - developer/coding/README.md
+      - developer/plugins/README.md
+      - developer/sdk/README.md
+  - id: user
+    title_zh: 用户文档
+    title_en: User Documentation
+    audience:
+      - user
+      - operator
+      - support
+    entry: user/README.md
+    children:
+      - user/getting-started/README.md
+      - user/editor/README.md
+      - user/atlas/README.md
+      - user/gis/README.md
+      - user/cloud/README.md
+  - id: ai
+    title_zh: AI 上下文层
+    title_en: AI Context Layer
+    audience:
+      - ai-agent
+      - developer
+    entry: ai/README.md
+    children:
+      - ai/copilot/README.md
+      - ai/prompts/README.md
+      - ai/repo-rules/README.md
+      - ai/architecture-context/README.md
+rule_refs:
+  - RULE-01
+  - RULE-02
+  - RULE-03
+  - RULE-04
+  - RULE-05
+  - RULE-06
+  - RULE-07

@@ -68,6 +68,14 @@ narrative-docs 是 NarrativeOS 的知识与规范中枢（Knowledge Hub），用
 - 架构设计与变更: Architecture -> ADR -> AI Context
 - 实施与交付: Developer -> AI Context -> Product
 
+## 双语与机读标准 | Bilingual + Machine-readable Standard
+
+- 人读优先: 每个关键入口文档包含中文主叙述与英文摘要
+- 机读友好: 关键规范提供稳定标题、清单结构、路径链接
+- 结构清单: 使用 [assets/doc-index.yaml](assets/doc-index.yaml) 作为机读索引
+- 术语统一: 使用 [assets/glossary.zh-en.md](assets/glossary.zh-en.md) 统一中英文术语
+- Prompt 模板: 使用 [ai/prompts/README.md](ai/prompts/README.md) 与模板规范任务输入输出
+
 ## 文档边界
 
 - 各代码仓库 docs 目录仅保留局部说明
