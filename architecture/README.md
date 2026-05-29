@@ -30,7 +30,6 @@ source_of_truth: narrative-docs
 ## 模块
 
 - [system](system/README.md): 总体系统边界与子系统关系
-- [cto-blueprint](cto-blueprint/README.md): CTO 长周期系统架构蓝图（5-10 年）
 - [platform](platform/README.md): 平台级蓝图、六域架构与能力进化闭环
 - [corpus-learning](corpus-learning/README.md): 语料学习系统与语言向量资产架构
 - [style-genome](style-genome/README.md): 风格基因架构与语言基因卡设计

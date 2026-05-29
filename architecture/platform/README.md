@@ -172,3 +172,48 @@ Knowledge Graph
 - 语义一致：跨域共享统一指标定义、诊断术语与数据语义
 - 证据优先：洞察输出必须绑定可回溯指标与结构证据
 - 可持续进化：新能力必须纳入闭环，不允许一次性、不可复用分析路径
+
+## CTO Blueprint（收敛版）
+
+为避免架构文档分散，CTO 蓝图收敛在 platform + system 两份主文档。
+
+本节定义长期不推倒重来的核心原则：
+
+- Studio 优先：创作体验优先于分析炫技
+- Local-first：低延迟与隐私优先，本地实时闭环
+- Cloud-enhanced：云端负责重分析、协同与进化
+- Model-agnostic：模型可替换，不绑定单一供应商
+- Schema-first：数据结构先行，插件与引擎必须对齐
+- Plugin-native：分析能力持续扩展而非内置写死
+
+平台四层（宏观）：
+
+```text
+Studio Layer
+  ↓
+Local Engine Layer
+  ↓
+Cloud Intelligence
+  ↓
+Language Data Layer
+```
+
+双循环（实时环 + 长期环）：
+
+```text
+用户写作
+  ↓
+本地分析
+  ↓
+即时反馈
+  ↓
+异步云任务
+  ↓
+深度 MRI
+  ↓
+向量沉淀
+  ↓
+知识云
+  ↓
+反哺 Studio
+```

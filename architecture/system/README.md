@@ -145,3 +145,106 @@ Knowledge Graph
 ```
 
 该主链路定义了平台级能力协同关系与演进方向。
+
+## CTO 实施蓝图（收敛到 system）
+
+为减少文档分裂，CTO 蓝图的工程实现部分统一维护在本节。
+
+### 1) Studio Layer
+
+定位：语言 IDE，而非离线分析页面。
+
+双轨实施：
+
+- V1：LibreOffice Extension（UNO API + Python/JS bridge）
+- V2+：Narrative Studio（Tauri + Rust + React）
+
+Studio 组件：Editor Core、Narrative Sidebar、Atlas Renderer、Plugin Host、Local Engine。
+
+### 2) Local Engine Layer
+
+原则：任何影响写作流的能力必须本地完成。
+
+本地运行时建议拆分：
+
+- Parser Service：生成 DocumentTree / ParagraphTree / SentenceTree
+- Metrics Service：dirty region recompute 增量计算句长、节奏、词频等
+- Style Detector：规则 + 轻模型识别模板句、修辞、重复结构
+- Cache：热区缓存与短周期状态
+- Event Bus：事件驱动解耦（ParseUpdated -> MetricsUpdated -> SidebarRefresh）
+
+### 3) Plugin System
+
+插件分层：Core / Community / Enterprise。
+
+统一插件契约：
+
+- analyze()
+- visualize()
+- report()
+
+每个插件必须声明输入 Schema、输出 Schema 与资源需求，确保 Atlas 与报表自动兼容。
+
+### 4) Cloud Intelligence
+
+云端职责：异步重分析与协同，不承载实时反馈。
+
+建议结构：
+
+- API Gateway（FastAPI + gRPC）
+- Auth（OAuth2 + JWT，多租户）
+- Task Queue
+- Model Router
+- Data Services（Object / Vector / Graph / Analytics）
+
+### 5) Task System
+
+任务分级：
+
+- Fast Queue（秒级）：摘要、风格、小图谱
+- Deep Queue（分钟级）：全文 MRI、Narrative Flow
+- Corpus Queue（小时级）：万级语料聚类与研究任务
+
+演进建议：Redis + Celery 起步，规模阶段升级 Kafka。
+
+### 6) Model Router
+
+目标：模型可替换，任务自动选路。
+
+路由层组成：Local Models / Open Models / Commercial LLMs / Tool Layer。
+
+策略示例：词频 -> 规则；节奏 -> 本地模型；深度解释 -> LLM；Corpus -> Embedding Pipeline。
+
+### 7) Language Data Layer
+
+四库分工：
+
+- Object Store：原文与衍生对象
+- Vector DB：embedding、style vector、theme vector
+- Graph DB：作者、作品、主题、概念、修辞关系
+- Analytics DB：频率、趋势、指标统计
+
+### 8) Language Feature Schema
+
+原则：所有分析输出必须落入统一 Schema，禁止私有输出格式漂移。
+
+核心对象：Document -> Structure / Metrics / Style / Semantic / Narrative / Metadata。
+
+该约束是插件生态可持续扩展的先决条件。
+
+### 9) 安全与隐私
+
+双模式：
+
+- Local Mode：默认离线，不上传
+- Cloud Mode：用户显式开启云增强
+
+敏感场景必须支持 private workspace 与 self-host。
+
+### 10) 演进路线（5-10 年）
+
+- Phase 1：Studio 内实时闭环（Local-first）
+- Phase 2：云端异步 MRI 与协同
+- Phase 3：统一 Schema 全域落地 + 插件生态扩展
+- Phase 4：万本级语料沉淀为语言知识云
+- Phase 5：百万文本尺度中文语言地图与数字人文底座
