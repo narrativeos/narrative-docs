@@ -53,6 +53,12 @@ defaults:
       parent: User 用户
 
   - scope:
+      path: academic
+      type: pages
+    values:
+      parent: Academic 学术研究
+
+  - scope:
       path: ai
       type: pages
     values:
@@ -247,6 +253,18 @@ defaults:
     values:
       title: Operations 运行手册
   - scope:
+      path: developer/operations/academic-adoption-weekly-execution-checklist.md
+    values:
+      title: Academic Adoption Weekly Checklist 学术采用周执行清单
+  - scope:
+      path: developer/operations/academic-adoption-weekly-status-report-template.md
+    values:
+      title: Academic Weekly Report Template 学术周报模板
+  - scope:
+      path: developer/operations/academic-adoption-role-assignment-raci.md
+    values:
+      title: Academic Adoption RACI 学术采用分工矩阵
+  - scope:
       path: developer/plugins/README.md
     values:
       title: Plugins 插件
@@ -291,6 +309,63 @@ defaults:
       path: user/cloud/README.md
     values:
       title: Cloud Guide 云协作指南
+
+  - scope:
+      path: academic/README.md
+    values:
+      title: Academic Research 学术研究
+  - scope:
+      path: academic/why-narrativeos-for-research.md
+    values:
+      title: Why NarrativeOS for Research 研究定位
+  - scope:
+      path: academic/trust-methodology.md
+    values:
+      title: Trust and Methodology 方法与信任
+  - scope:
+      path: academic/reproducibility-kit.md
+    values:
+      title: Reproducibility Kit 可复现包
+  - scope:
+      path: academic/10-minute-first-success.md
+    values:
+      title: 10-Minute First Success 十分钟首个成功
+  - scope:
+      path: academic/research-workflows.md
+    values:
+      title: Research Workflows 研究工作流
+  - scope:
+      path: academic/benchmark-with-established-tools.md
+    values:
+      title: Benchmark with Established Tools 对标与互补
+  - scope:
+      path: academic/community-and-open-science.md
+    values:
+      title: Community and Open Science 社区与开放科学
+  - scope:
+      path: academic/publication-support.md
+    values:
+      title: Publication Support 论文支持
+  - scope:
+      path: academic/examples-evidence-traceability-first-snapshot.md
+    values:
+      title: Example Evidence Traceability 首轮证据回链样例
+  - scope:
+      path: academic/examples-systematic-review-minimal.md
+    values:
+      title: Example Systematic Review 系统综述样例
+  - scope:
+      path: academic/examples-topic-evolution-three-slice.md
+    values:
+      title: Example Topic Evolution 主题演化样例
+  - scope:
+      path: academic/researcher-quickstart-landing.md
+    values:
+      title: Researcher Quickstart Landing 研究者快速入口
+  - scope:
+      path: academic/examples-acad-bench-001-first-fill-sample.md
+    values:
+      title: Example ACAD-BENCH-001 首轮填报样例
 
   - scope:
       path: ai/README.md

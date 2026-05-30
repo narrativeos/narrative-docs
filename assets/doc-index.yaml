@@ -66,6 +66,9 @@ sections:
       - developer/coding/docs-governance-monthly-check-template.md
       - developer/plugins/README.md
       - developer/sdk/README.md
+      - developer/operations/academic-adoption-weekly-execution-checklist.md
+      - developer/operations/academic-adoption-weekly-status-report-template.md
+      - developer/operations/academic-adoption-role-assignment-raci.md
   - id: user
     title_zh: 用户文档
     title_en: User Documentation
@@ -80,6 +83,29 @@ sections:
       - user/atlas/README.md
       - user/gis/README.md
       - user/cloud/README.md
+  - id: academic
+    title_zh: 学术研究
+    title_en: Academic Research
+    audience:
+      - researcher
+      - reviewer
+      - contributor
+      - ai-agent
+    entry: academic/README.md
+    children:
+      - academic/why-narrativeos-for-research.md
+      - academic/trust-methodology.md
+      - academic/reproducibility-kit.md
+      - academic/10-minute-first-success.md
+      - academic/research-workflows.md
+      - academic/benchmark-with-established-tools.md
+      - academic/community-and-open-science.md
+      - academic/publication-support.md
+      - academic/examples-evidence-traceability-first-snapshot.md
+      - academic/examples-systematic-review-minimal.md
+      - academic/examples-topic-evolution-three-slice.md
+      - academic/researcher-quickstart-landing.md
+      - academic/examples-acad-bench-001-first-fill-sample.md
   - id: ai
     title_zh: AI 上下文层
     title_en: AI Context Layer

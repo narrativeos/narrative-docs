@@ -29,12 +29,16 @@ source_of_truth: narrative-docs
 - API specification entry page scaffold.
 - Operations runbook minimum set.
 - Troubleshooting hub and first-success onboarding paths.
+- Academic Research Track section with trust, reproducibility, workflow, benchmark, community, and publication pages.
+- Academic execution artifacts: weekly checklist, weekly status report template, RACI role matrix, and researcher quickstart landing.
+- Academic runnable examples: evidence traceability first snapshot, systematic review minimal loop, topic evolution three-slice, and ACAD-BENCH-001 first-fill sample.
 
 ### Changed
 
 - Governance standards expanded from DG-001..DG-020.
 - Whitepaper evidence model upgraded to planned/measured and publish-blocking rules.
 - SDK, plugins, and analysis-engine docs deepened for execution use.
+- Benchmark and evidence registry now include Academic task placeholders and sample-only fill blocks to separate demo records from formal measured claims.
 
 ## [2026-05]
 

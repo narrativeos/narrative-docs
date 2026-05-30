@@ -27,9 +27,13 @@ source_of_truth: narrative-docs
 - 强化 Analysis Engine、SDK、Plugins 文档的执行深度
 - 将白皮书就绪度与映射表升级为证据驱动模型
 - 新增 API 规格入口与 Ops Runbook 最小集
+- 新增 Academic Track，覆盖研究信任建立、复现包、研究工作流、投稿支持与开放协作入口
+- 新增三类研究执行样例，并将其接入 benchmark 与 evidence registry 的 sample-only 回填链路
+- 增加研究者快速入口、周执行清单、周报模板与 RACI，便于持续补证与社区反馈
 
 ## 阅读建议
 
 - 新成员：先读 [README.md](README.md) 与 [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 - 集成商：先读 [developer/api/README.md](developer/api/README.md) 与 [developer/sdk/README.md](developer/sdk/README.md)
 - 维护者：先读 [CHANGELOG.md](CHANGELOG.md) 与 [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
+- 研究者：先读 [academic/researcher-quickstart-landing.md](academic/researcher-quickstart-landing.md) 与 [academic/trust-methodology.md](academic/trust-methodology.md)

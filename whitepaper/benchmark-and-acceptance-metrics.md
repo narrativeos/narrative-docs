@@ -122,8 +122,24 @@ owner: role-or-team
 | V2 语料分析 | 千级语料任务完成率 | >= 90% | TBD | TBD | 见 [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md) |
 | V2 语料分析 | 小时级任务稳定性 | 24h 内失败率 <= 5% | TBD | TBD | 待补证据 |
 | V3 机构评估 | 批量评估报告产出率 | >= 95% | TBD | TBD | 待补证据 |
+| Academic 首轮补证 | evidence_traceability_rate | >= 90% | TBD | ACAD-BENCH-001 | 见 [../academic/examples-evidence-traceability-first-snapshot.md](../academic/examples-evidence-traceability-first-snapshot.md) |
+| Academic 首轮补证 | systematic_review_minimal_loop_completion | >= 90% | TBD | ACAD-RSCH-002 | 见 [../academic/examples-systematic-review-minimal.md](../academic/examples-systematic-review-minimal.md) |
+| Academic 首轮补证 | topic_evolution_three_slice_stability | 方向反转率 <= 10% | TBD | ACAD-RSCH-003 | 见 [../academic/examples-topic-evolution-three-slice.md](../academic/examples-topic-evolution-three-slice.md) |
 
 > 注：当 `实测值` 为 `TBD` 时，该指标仅可用于路线目标，不可作为“已完成发布”的对外声明依据。
+
+## ACAD-BENCH-001 首轮填报记录样例（Sample Only）
+
+本节仅用于演示回填格式，不构成正式 measured 声明。
+
+| 场景 | 指标 | 状态前 | 状态后 | 样例值 | 版本 | 样本量 | 时间窗口 | 证据 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Academic 首轮补证 | evidence_traceability_rate | planned | planned | 0.83 | v0.1.0 | 12 | 2026-05-26..2026-05-30 | [../academic/examples-acad-bench-001-first-fill-sample.md](../academic/examples-acad-bench-001-first-fill-sample.md) |
+
+说明：
+
+- 样例值用于展示“字段齐备后的回填方式”。
+- 即使字段齐备，若样本规模不足或稳定性未验证，状态仍可保持 planned/study-ready。
 
 ## 指标准备状态（方法学层）
 
@@ -136,6 +152,9 @@ owner: role-or-team
 | 结论证据可追溯率 | study-ready | [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md) | 已有指标定义、复现步骤与失败样本要求，但尚未形成 measured 快照 |
 | 千级语料任务完成率 | study-ready | [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md) | 已有 V2 研究模板与样本策略，但尚缺真实任务回放 |
 | 叙事分段相关评测 | study-ready | [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md) | 已建立人工标注协议，可支撑 segmentation 任务评估集建设 |
+| Academic 首轮证据回链快照 | study-ready | [../academic/examples-evidence-traceability-first-snapshot.md](../academic/examples-evidence-traceability-first-snapshot.md) | 已形成可执行作业单，等待 measured 采集 |
+| Academic 系统综述最小闭环 | study-ready | [../academic/examples-systematic-review-minimal.md](../academic/examples-systematic-review-minimal.md) | 已定义输入/输出和验收，等待样本回放 |
+| Academic 三时间片主题演化 | study-ready | [../academic/examples-topic-evolution-three-slice.md](../academic/examples-topic-evolution-three-slice.md) | 已定义稳定性检查口径，等待首轮采集 |
 
 约束：
 
@@ -207,6 +226,9 @@ owner: role-or-team
 - [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md)
 - [anno-task-001-segmentation-consistency.md](anno-task-001-segmentation-consistency.md)
 - [bench-task-001-evidence-traceability-audit.md](bench-task-001-evidence-traceability-audit.md)
+- [../academic/examples-evidence-traceability-first-snapshot.md](../academic/examples-evidence-traceability-first-snapshot.md)
+- [../academic/examples-systematic-review-minimal.md](../academic/examples-systematic-review-minimal.md)
+- [../academic/examples-topic-evolution-three-slice.md](../academic/examples-topic-evolution-three-slice.md)
 
 这三项一旦建立 measured 基线，就足以显著提升 NarrativeOS 白皮书的可信度。
 

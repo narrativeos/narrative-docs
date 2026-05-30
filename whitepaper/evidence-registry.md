@@ -74,6 +74,9 @@ next_review: 2026-06-12
 | MKT-001 | observation | [market-acceptance.md](market-acceptance.md) | 用户接受度判断 | documented | Public market signals from LanguageTool and ProWritingAid homepages show the direct market focuses on grammar/style correction, paraphrasing, integrations, and writing-app fit |
 | RSCH-001 | workflow_observation | [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md) | V2 研究回放链路最小闭环已验证 | documented | Source: RSCH-RUN-002-HANS003 using HANS-003 as primary sample and HANS-004 as control intake; outputs include trend summary, segment notes, excerpt review, compare draft, evidence links, and failure modes |
 | RSCH-002 | workflow_observation | [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md) | 三样本稳定性扩展已完成首版复核 | documented | Source: RSCH-RUN-003-THIRD-SAMPLE selected HANS-001 as third sample; outputs include three-sample compare table, stability check note, and evidence delta note |
+| ACAD-001 | workflow_observation | [../academic/examples-evidence-traceability-first-snapshot.md](../academic/examples-evidence-traceability-first-snapshot.md) | Academic 首轮证据回链快照作业已定义 | documented | Source: ACAD-BENCH-001 defines measurable fields and measured-upgrade gates, pending first snapshot collection |
+| ACAD-002 | workflow_observation | [../academic/examples-systematic-review-minimal.md](../academic/examples-systematic-review-minimal.md) | Academic 系统综述最小闭环作业已定义 | documented | Source: ACAD-RSCH-002 defines corpus intake, observation table, evidence linkage, and failure case outputs |
+| ACAD-003 | workflow_observation | [../academic/examples-topic-evolution-three-slice.md](../academic/examples-topic-evolution-three-slice.md) | Academic 三时间片主题演化作业已定义 | documented | Source: ACAD-RSCH-003 defines three-slice stability checks and anomaly reporting |
 | FRZ-001 | approval | [implementation-freeze.md](implementation-freeze.md) | 开工冻结状态 | documented | Source: implementation-freeze.md; the first release is limited to diagnostic, evidence-linked, schema-aligned work and excludes complex cloud collaboration |
 | ROAD-002 | governance_basis | [product/roadmap/README.md](../product/roadmap/README.md), [product/workflows/README.md](../product/workflows/README.md) | 路线图与验收联动 | documented | Source: product roadmap and workflows; V1 author/editor closed loop, V2 corpus analysis, and V3 institutional evaluation align the roadmap with staged evidence-driven delivery |
 
@@ -148,6 +151,27 @@ owner: maintainer-or-owner
 - 若没有原始来源，条目必须保持 `TBD`
 - 若来源仅为内部文档，必须明确标记其为基线证据，而不是验证性证据
 
+## 5.1 ACAD-001 回填样例（Sample Only）
+
+以下示例用于演示 evidence registry 回填格式，不表示状态已升级。
+
+```yaml
+evidence_id: ACAD-001
+evidence_type: workflow_observation
+source: academic/examples-acad-bench-001-first-fill-sample.md
+date: 2026-05-30
+summary: ACAD-BENCH-001 first fill completed with study-ready snapshot values.
+linked_document: whitepaper/benchmark-and-acceptance-metrics.md
+linked_decision: Keep claim level as study-ready until expanded sampling and stability checks are complete.
+owner: research
+sample_flag: true
+```
+
+说明：
+
+- `sample_flag: true` 仅表示这是教学/演示样例。
+- 正式回填时应删除 sample 标记并补充真实证据链接。
+
 ## 6. 交叉链接
 
 - [项目论证与预演框架](project-foundation.md)
@@ -167,6 +191,9 @@ owner: maintainer-or-owner
 | P1 | ARCH-003 | design_review | 补 1 条可视化工作台或证据链验证 | 架构评审、原型审查 |
 | P1 | RSCH-001 | workflow_observation | 补 1 条 V2 语料比较研究任务回放 | [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md), 样本清单, 结果摘要 |
 | P1 | ANNO-001 | workflow_observation | 补 1 条叙事分段双标注与一致性记录 | [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md), 标注日志 |
+| P1 | ACAD-001 | workflow_observation | 采集 1 组 Academic evidence traceability 首轮快照 | [../academic/examples-evidence-traceability-first-snapshot.md](../academic/examples-evidence-traceability-first-snapshot.md), metrics summary, failure case table |
+| P1 | ACAD-002 | workflow_observation | 跑通 1 组系统综述最小闭环并登记 evidence link | [../academic/examples-systematic-review-minimal.md](../academic/examples-systematic-review-minimal.md), review observation table |
+| P1 | ACAD-003 | workflow_observation | 跑通 1 组三时间片主题演化并完成 stability note | [../academic/examples-topic-evolution-three-slice.md](../academic/examples-topic-evolution-three-slice.md), transition compare outputs |
 | P1 | FRZ-002 | approval | 补 1 条开工门槛批准或状态更新 | PR、审批记录、发布说明 |
 | P2 | ROAD-002 | governance_basis | 补 1 条路线图与验收联动证据 | 路线图评审、里程碑记录 |
 

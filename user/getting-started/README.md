@@ -121,5 +121,6 @@ EN: Quick onboarding from zero to first successful user workflow and first contr
 ## 关联文档 | Related Docs
 
 - [Developer Guide](../../developer/README.md)
+- [Academic 10-Minute First Success](../../academic/10-minute-first-success.md)
 - [Documentation Governance Standard](../../developer/coding/docs-governance-standard.md)
 - [Documentation Governance Backlog](../../developer/coding/docs-governance-backlog.md)

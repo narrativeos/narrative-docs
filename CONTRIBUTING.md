@@ -29,6 +29,7 @@ source_of_truth: narrative-docs
 ## 开始前必读
 
 - [README.md](README.md)
+- [academic/README.md](academic/README.md)
 - [developer/coding/docs-governance-standard.md](developer/coding/docs-governance-standard.md)
 - [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
 - [ai/repo-rules/README.md](ai/repo-rules/README.md)
@@ -41,6 +42,13 @@ source_of_truth: narrative-docs
 3. 按文档门禁补齐目标、步骤、验收、排障。
 4. 自检链接可达、术语一致、规则引用正确。
 5. 使用 PR 模板提交并填写 Rule Impact、AI Review、CI Gate。
+
+## 学术贡献入口
+
+- 方法与边界补充：见 [academic/trust-methodology.md](academic/trust-methodology.md)
+- 复现包规范：见 [academic/reproducibility-kit.md](academic/reproducibility-kit.md)
+- 工作流案例贡献：见 [academic/research-workflows.md](academic/research-workflows.md)
+- 研究者反馈路径：见 [academic/community-and-open-science.md](academic/community-and-open-science.md)
 
 ## 变更要求 | Change Requirements
 

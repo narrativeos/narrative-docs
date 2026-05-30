@@ -75,3 +75,6 @@ source_of_truth: narrative-docs
 - [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)
 - [../../CHANGELOG.md](../../CHANGELOG.md)
 - [../coding/docs-governance-backlog.md](../coding/docs-governance-backlog.md)
+- [academic-adoption-weekly-execution-checklist.md](academic-adoption-weekly-execution-checklist.md)
+- [academic-adoption-weekly-status-report-template.md](academic-adoption-weekly-status-report-template.md)
+- [academic-adoption-role-assignment-raci.md](academic-adoption-role-assignment-raci.md)
