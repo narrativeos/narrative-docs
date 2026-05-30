@@ -46,9 +46,9 @@ developer/api/
 ## 规格维护流程
 
 1. 先更新 OpenAPI schema。
-2. 再更新 [../../API_COMPATIBILITY_AND_VERSIONING.md](../../API_COMPATIBILITY_AND_VERSIONING.md)。
+2. 再更新 [../../api-compatibility-and-versioning.md](../../api-compatibility-and-versioning.md)。
 3. 再同步更新 [../sdk/README.md](../sdk/README.md) 与 [../plugins/README.md](../plugins/README.md) 的示例。
-4. 最后在 [../../CHANGELOG.md](../../CHANGELOG.md) 记录对外影响。
+4. 最后在 [../../changelog.md](../../changelog.md) 记录对外影响。
 
 ## 最小验收标准
 
@@ -76,7 +76,7 @@ developer/api/
 
 ## 关联文档 | Related Docs
 
-- [../../API_COMPATIBILITY_AND_VERSIONING.md](../../API_COMPATIBILITY_AND_VERSIONING.md)
+- [../../api-compatibility-and-versioning.md](../../api-compatibility-and-versioning.md)
 - [../sdk/README.md](../sdk/README.md)
 - [../plugins/README.md](../plugins/README.md)
-- [../../CHANGELOG.md](../../CHANGELOG.md)
+- [../../changelog.md](../../changelog.md)

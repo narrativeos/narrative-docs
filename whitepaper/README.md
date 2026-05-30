@@ -53,7 +53,7 @@ source_of_truth: narrative-docs
 - 如果你要看完整判断链：从 [项目论证与预演框架](project-foundation.md) 进入。
 - 如果你最关心“能不能开工”：优先看 [实现冻结清单](implementation-freeze.md)。
 - 如果你最关心“凭什么这么判断”：直接对照 [证据附录](evidence-registry.md)。
-- 如果你在做发布校核或章节追溯：最后再看 [core-docs-mapping.md](core-docs-mapping.md) 与 [readiness-checklist.md](readiness-checklist.md)。
+- 如果你在做发布校核或章节追溯：最后再看 [core-docs-mapping.md](../developer/coding/core-docs-mapping.md) 与 [readiness-checklist.md](../developer/coding/readiness-checklist.md)。
 
 ## 白皮书结构
 
@@ -95,8 +95,8 @@ source_of_truth: narrative-docs
 - [BENCH-TASK-001 证据回链率测量作业单](bench-task-001-evidence-traceability-audit.md)
 - [RSCH-TASK-001 V2 语料研究任务回放作业单](rsch-task-001-v2-corpus-runbook.md)
 - [ANNO-TASK-001 叙事分段一致性作业单](anno-task-001-segmentation-consistency.md)
-- [白皮书附录 A：核心文档映射表](core-docs-mapping.md)
-- [白皮书附录 B：就绪度检查清单](readiness-checklist.md)
+- [白皮书附录 A：核心文档映射表](../developer/coding/core-docs-mapping.md)
+- [白皮书附录 B：就绪度检查清单](../developer/coding/readiness-checklist.md)
 
 Part I 负责让读者迅速形成整体判断。
 

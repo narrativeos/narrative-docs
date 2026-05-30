@@ -12,7 +12,7 @@ This changelog records externally relevant documentation and interface changes f
 
 ```yaml
 doc_id: CHANGELOG
-path: CHANGELOG.md
+path: changelog.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [maintainer, contributor, integrator, partner]
@@ -39,6 +39,7 @@ source_of_truth: narrative-docs
 - Whitepaper evidence model upgraded to planned/measured and publish-blocking rules.
 - SDK, plugins, and analysis-engine docs deepened for execution use.
 - Benchmark and evidence registry now include Academic task placeholders and sample-only fill blocks to separate demo records from formal measured claims.
+- Breaking rename: governance documents at repository root are now unified to kebab-case filenames, and whitepaper appendices `core-docs-mapping.md` and `readiness-checklist.md` moved to `developer/coding/`.
 
 ## [2026-05]
 

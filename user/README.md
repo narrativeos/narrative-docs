@@ -46,5 +46,5 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [Benchmark and Acceptance Metrics](../whitepaper/benchmark-and-acceptance-metrics.md)
-- [Core Docs Mapping](../whitepaper/core-docs-mapping.md)
-- [Readiness Checklist](../whitepaper/readiness-checklist.md)
+- [Core Docs Mapping](../developer/coding/core-docs-mapping.md)
+- [Readiness Checklist](../developer/coding/readiness-checklist.md)

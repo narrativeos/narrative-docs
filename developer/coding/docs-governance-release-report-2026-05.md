@@ -40,7 +40,7 @@ source_of_truth: narrative-docs
 
 - 治理标准： [docs-governance-standard.md](docs-governance-standard.md)
 - 治理清单： [docs-governance-backlog.md](docs-governance-backlog.md)
-- 贡献入口： [../../CONTRIBUTING.md](../../CONTRIBUTING.md)
+- 贡献入口： [../../contributing.md](../../contributing.md)
 
 ## 分阶段结果
 
@@ -80,5 +80,5 @@ source_of_truth: narrative-docs
 ## 附：交叉文档
 
 - [../../README.md](../../README.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
-- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
+- [../../developer/coding/core-docs-mapping.md](../../developer/coding/core-docs-mapping.md)

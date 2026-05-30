@@ -12,7 +12,7 @@ This document defines compatibility guarantees, versioning rules, deprecation li
 
 ```yaml
 doc_id: API_COMPATIBILITY_AND_VERSIONING
-path: API_COMPATIBILITY_AND_VERSIONING.md
+path: api-compatibility-and-versioning.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [maintainer, contributor, integrator, sdk-developer]
@@ -98,9 +98,9 @@ source_of_truth: narrative-docs
 
 ## 关联文档 | Related Docs
 
-- GOVERNANCE.md
-- whitepaper/core-docs-mapping.md
-- whitepaper/readiness-checklist.md
+- governance.md
+- developer/coding/core-docs-mapping.md
+- developer/coding/readiness-checklist.md
 - developer/sdk/README.md
 - developer/plugins/README.md
 - adr/README.md

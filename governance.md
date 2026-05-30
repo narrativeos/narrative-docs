@@ -12,7 +12,7 @@ This document defines the governance model, decision process, and role responsib
 
 ```yaml
 doc_id: GOVERNANCE
-path: GOVERNANCE.md
+path: governance.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [maintainer, contributor, reviewer, ai-agent]
@@ -108,5 +108,5 @@ narrative-docs 是 NarrativeOS 的文档权威源（SSOT）。治理目标是确
 - adr/README.md
 - developer/README.md
 - whitepaper/README.md
-- CODE_OF_CONDUCT.md
-- SECURITY.md
+- code-of-conduct.md
+- security.md

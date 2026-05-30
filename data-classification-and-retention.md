@@ -12,7 +12,7 @@ This document defines data classes, retention windows, deletion rules, and minim
 
 ```yaml
 doc_id: DATA_CLASSIFICATION_AND_RETENTION
-path: DATA_CLASSIFICATION_AND_RETENTION.md
+path: data-classification-and-retention.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [maintainer, contributor, security-researcher, compliance]
@@ -124,11 +124,11 @@ source_of_truth: narrative-docs
 
 - 每半年审查一次保留策略是否仍适配
 - 发生安全事件后应复盘并更新本策略
-- 与 [SECURITY.md](SECURITY.md) 联动维护
+- 与 [security.md](security.md) 联动维护
 
 ## 关联文档 | Related Docs
 
-- SECURITY.md
-- GOVERNANCE.md
-- CODE_OF_CONDUCT.md
-- whitepaper/readiness-checklist.md
+- security.md
+- governance.md
+- code-of-conduct.md
+- developer/coding/readiness-checklist.md

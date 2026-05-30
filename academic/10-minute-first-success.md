@@ -23,6 +23,6 @@
 
 ## 失败分流
 
-- 环境或流程问题：见 [TROUBLESHOOTING](../TROUBLESHOOTING.md)
+- 环境或流程问题：见 [TROUBLESHOOTING](../troubleshooting.md)
 - 方法边界问题：回看 [trust-methodology.md](trust-methodology.md)
 - 贡献反馈问题：见 [community-and-open-science.md](community-and-open-science.md)

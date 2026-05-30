@@ -32,8 +32,8 @@ source_of_truth: narrative-docs
 
 ## 标准参考 | Standards Reference
 
-- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/core-docs-mapping.md](../../developer/coding/core-docs-mapping.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 NarrativeOS 是 federated monorepo 风格协作，应采用 Workspace-first。
 
@@ -71,4 +71,4 @@ NarrativeOS 是 federated monorepo 风格协作，应采用 Workspace-first。
 - 搜索不到跨仓内容：检查工作区是否包含目标仓目录
 - 路径跳转失败：确认链接路径与当前工作区根目录一致
 
-更多问题见 [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)。
+更多问题见 [../../troubleshooting.md](../../troubleshooting.md)。

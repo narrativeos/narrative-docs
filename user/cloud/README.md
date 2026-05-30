@@ -33,8 +33,8 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
-- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/core-docs-mapping.md](../../developer/coding/core-docs-mapping.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 ## 适用范围 | Scope
 
@@ -118,4 +118,4 @@ source_of_truth: narrative-docs
 - [User Documentation](../README.md)
 - [Getting Started](../getting-started/README.md)
 - [Workspace](../../developer/workspace/README.md)
-- [Data Classification and Retention](../../DATA_CLASSIFICATION_AND_RETENTION.md)
+- [Data Classification and Retention](../../data-classification-and-retention.md)

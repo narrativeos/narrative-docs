@@ -24,6 +24,6 @@
 
 ## 协作入口
 
-- [Contributing](../CONTRIBUTING.md)
-- [Governance](../GOVERNANCE.md)
+- [Contributing](../contributing.md)
+- [Governance](../governance.md)
 - [Developer Coding Rules](../developer/coding/README.md)

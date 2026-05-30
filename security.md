@@ -12,7 +12,7 @@ This document defines the security reporting process, response timeline, and dis
 
 ```yaml
 doc_id: SECURITY
-path: SECURITY.md
+path: security.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [maintainer, contributor, security-researcher]
@@ -86,7 +86,7 @@ source_of_truth: narrative-docs
 
 ## 关联文档 | Related Docs
 
-- GOVERNANCE.md
-- CODE_OF_CONDUCT.md
+- governance.md
+- code-of-conduct.md
 - developer/coding/README.md
 - ai/repo-rules/README.md

@@ -97,7 +97,7 @@ next_review: 2026-06-12
 | DOC-COMP-001 | doc_basis | [README.md](../README.md), [product/vision/README.md](../product/vision/README.md) | NarrativeOS 以诊断与可视化为核心，而非生成优先 | documented | 当前仅为文档基线 |
 | DOC-ARCH-001 | doc_basis | [architecture/system/README.md](../architecture/system/README.md), [adr/ADR-001-runtime.md](../adr/ADR-001-runtime.md), [adr/ADR-002-storage.md](../adr/ADR-002-storage.md) | 运行时隔离与 DuckDB 基线作为首期架构约束 | documented | 当前仅为文档基线 |
 | DOC-MKT-001 | doc_basis | [README.md](../README.md), [product/workflows/README.md](../product/workflows/README.md) | 目标用户已拆分为作者/编辑、研究者、机构用户 | documented | 当前仅为文档基线 |
-| DOC-FRZ-001 | doc_basis | [implementation-freeze.md](implementation-freeze.md), [readiness-checklist.md](readiness-checklist.md) | 开工门槛与补证据范围已冻结 | documented | 当前仅为文档基线 |
+| DOC-FRZ-001 | doc_basis | [implementation-freeze.md](implementation-freeze.md), [readiness-checklist.md](../developer/coding/readiness-checklist.md) | 开工门槛与补证据范围已冻结 | documented | 当前仅为文档基线 |
 | DOC-GOV-001 | doc_basis | [governance-overview.md](../governance-overview.md), [developer/coding/docs-governance-standard.md](../developer/coding/docs-governance-standard.md) | 文档治理与发布门禁机制已建立 | documented | 当前仅为文档基线 |
 | DOC-ROAD-001 | doc_basis | [product/roadmap/README.md](../product/roadmap/README.md), [product/workflows/README.md](../product/workflows/README.md) | V1-V3 路线图已定义，且与工作流节奏对齐 | documented | 当前仅为文档基线 |
 | DOC-WHT-001 | doc_basis | [README.md](../README.md), [whitepaper/README.md](README.md) | 白皮书入口与论证框架已形成统一主入口 | documented | 当前仅为文档基线 |

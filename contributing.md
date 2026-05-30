@@ -12,7 +12,7 @@ This document defines the standard contribution workflow, review expectations, a
 
 ```yaml
 doc_id: CONTRIBUTING
-path: CONTRIBUTING.md
+path: contributing.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [contributor, reviewer, maintainer, ai-agent]
@@ -72,5 +72,5 @@ source_of_truth: narrative-docs
 
 ## 行为与安全
 
-- 社区行为规范见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- 安全披露流程见 [SECURITY.md](SECURITY.md)
+- 社区行为规范见 [code-of-conduct.md](code-of-conduct.md)
+- 安全披露流程见 [security.md](security.md)

@@ -33,8 +33,8 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
-- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/core-docs-mapping.md](../../developer/coding/core-docs-mapping.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 EN: Quick onboarding from zero to first successful user workflow and first contribution workflow.
 
@@ -69,7 +69,7 @@ EN: Quick onboarding from zero to first successful user workflow and first contr
 
 ### 步骤
 
-1. 打开 [../../CONTRIBUTING.md](../../CONTRIBUTING.md) 了解贡献流程。
+1. 打开 [../../contributing.md](../../contributing.md) 了解贡献流程。
 2. 选择一个目标页面，补齐缺失的“步骤/验收/排障”段落。
 3. 对照 [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md) 完成 Gate-1 到 Gate-5 自检。
 4. 在提交说明中记录变更目标、验收方式与风险。
@@ -116,7 +116,7 @@ EN: Quick onboarding from zero to first successful user workflow and first contr
 - 工作区未按多仓结构打开 / Workspace not opened in multi-repo mode
 - CI 本地预检未通过 / Local quality checks failed
 
-更多问题见 [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)。
+更多问题见 [../../troubleshooting.md](../../troubleshooting.md)。
 
 ## 关联文档 | Related Docs
 

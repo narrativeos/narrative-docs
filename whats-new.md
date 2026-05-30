@@ -12,7 +12,7 @@ This page highlights the latest documentation, governance, and interface-facing 
 
 ```yaml
 doc_id: WHATS_NEW
-path: WHATS_NEW.md
+path: whats-new.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [user, contributor, integrator, partner]
@@ -33,7 +33,7 @@ source_of_truth: narrative-docs
 
 ## 阅读建议
 
-- 新成员：先读 [README.md](README.md) 与 [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- 新成员：先读 [README.md](README.md) 与 [troubleshooting.md](troubleshooting.md)
 - 集成商：先读 [developer/api/README.md](developer/api/README.md) 与 [developer/sdk/README.md](developer/sdk/README.md)
-- 维护者：先读 [CHANGELOG.md](CHANGELOG.md) 与 [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
+- 维护者：先读 [changelog.md](changelog.md) 与 [developer/coding/docs-governance-backlog.md](developer/coding/docs-governance-backlog.md)
 - 研究者：先读 [academic/researcher-quickstart-landing.md](academic/researcher-quickstart-landing.md) 与 [academic/trust-methodology.md](academic/trust-methodology.md)

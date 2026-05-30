@@ -34,7 +34,7 @@ source_of_truth: narrative-docs
 
 - [../repo-rules/README.md](../repo-rules/README.md)
 - [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 ## 定位 | Positioning
 

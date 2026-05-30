@@ -12,7 +12,7 @@ This document provides a centralized troubleshooting index for onboarding, works
 
 ```yaml
 doc_id: TROUBLESHOOTING
-path: TROUBLESHOOTING.md
+path: troubleshooting.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [developer, contributor, user, operator]
@@ -58,7 +58,7 @@ source_of_truth: narrative-docs
 
 ### 症状 1：不知道从哪里开始贡献
 
-- 检查：是否阅读 [CONTRIBUTING.md](CONTRIBUTING.md)
+- 检查：是否阅读 [contributing.md](contributing.md)
 - 修复：按“单主题变更”选择一个目标页面
 - 验证：变更可在 PR 模板中完整填写目标与验收
 

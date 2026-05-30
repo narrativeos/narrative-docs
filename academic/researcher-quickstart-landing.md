@@ -38,5 +38,5 @@
 ## 参与共建
 
 - 方法讨论与反馈： [community-and-open-science.md](community-and-open-science.md)
-- 贡献流程： [../CONTRIBUTING.md](../CONTRIBUTING.md)
+- 贡献流程： [../contributing.md](../contributing.md)
 - 台账入口： [../whitepaper/evidence-registry.md](../whitepaper/evidence-registry.md)

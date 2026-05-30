@@ -53,7 +53,7 @@ source_of_truth: narrative-docs
 
 1. 标记当前发布为 blocked。
 2. 回退到上一个已验证文档版本。
-3. 在 [../../CHANGELOG.md](../../CHANGELOG.md) 记录回滚原因。
+3. 在 [../../changelog.md](../../changelog.md) 记录回滚原因。
 4. 在治理清单中补充后续修复条目。
 
 ## Runbook 3：故障决策树
@@ -72,8 +72,8 @@ source_of_truth: narrative-docs
 
 ## 关联文档 | Related Docs
 
-- [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)
-- [../../CHANGELOG.md](../../CHANGELOG.md)
+- [../../troubleshooting.md](../../troubleshooting.md)
+- [../../changelog.md](../../changelog.md)
 - [../coding/docs-governance-backlog.md](../coding/docs-governance-backlog.md)
 - [academic-adoption-weekly-execution-checklist.md](academic-adoption-weekly-execution-checklist.md)
 - [academic-adoption-weekly-status-report-template.md](academic-adoption-weekly-status-report-template.md)

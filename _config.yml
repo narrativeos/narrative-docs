@@ -18,9 +18,9 @@ aux_links:
 
 nav_external_links:
   - title: CHANGELOG 更新日志
-    url: /narrative-docs/CHANGELOG
+    url: /narrative-docs/changelog
   - title: TROUBLESHOOTING 故障排查
-    url: /narrative-docs/TROUBLESHOOTING
+    url: /narrative-docs/troubleshooting
 
 defaults:
   - scope:
@@ -83,55 +83,55 @@ defaults:
       nav_order: 82
 
   - scope:
-      path: API_COMPATIBILITY_AND_VERSIONING.md
+      path: api-compatibility-and-versioning.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 1
   - scope:
-      path: CHANGELOG.md
+      path: changelog.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 2
   - scope:
-      path: CODE_OF_CONDUCT.md
+      path: code-of-conduct.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 3
   - scope:
-      path: CONTRIBUTING.md
+      path: contributing.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 4
   - scope:
-      path: DATA_CLASSIFICATION_AND_RETENTION.md
+      path: data-classification-and-retention.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 5
   - scope:
-      path: GOVERNANCE.md
+      path: governance.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 6
   - scope:
-      path: SECURITY.md
+      path: security.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 7
   - scope:
-      path: TROUBLESHOOTING.md
+      path: troubleshooting.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
       nav_order: 8
   - scope:
-      path: WHATS_NEW.md
+      path: whats-new.md
     values:
       parent: Governance 治理与标准
       grand_parent: Developer 开发者
@@ -513,7 +513,7 @@ defaults:
     values:
       title: ANNO-TASK-001 Segmentation Consistency 叙事分段一致性作业单
   - scope:
-      path: whitepaper/core-docs-mapping.md
+      path: developer/coding/core-docs-mapping.md
     values:
       title: Core Docs Mapping 核心文档映射
   - scope:
@@ -521,44 +521,44 @@ defaults:
     values:
       title: One-page Summary 一页摘要
   - scope:
-      path: whitepaper/readiness-checklist.md
+      path: developer/coding/readiness-checklist.md
     values:
       title: Readiness Checklist 就绪检查清单
 
   - scope:
-      path: API_COMPATIBILITY_AND_VERSIONING.md
+      path: api-compatibility-and-versioning.md
     values:
       title: API Compatibility & Versioning API兼容与版本
   - scope:
-      path: CHANGELOG.md
+      path: changelog.md
     values:
       title: Changelog 更新日志
   - scope:
-      path: CODE_OF_CONDUCT.md
+      path: code-of-conduct.md
     values:
       title: Code of Conduct 行为准则
   - scope:
-      path: CONTRIBUTING.md
+      path: contributing.md
     values:
       title: Contributing 贡献指南
   - scope:
-      path: DATA_CLASSIFICATION_AND_RETENTION.md
+      path: data-classification-and-retention.md
     values:
       title: Data Classification & Retention 数据分类与留存
   - scope:
-      path: GOVERNANCE.md
+      path: governance.md
     values:
       title: Governance 开源治理
   - scope:
-      path: SECURITY.md
+      path: security.md
     values:
       title: Security 安全策略
   - scope:
-      path: TROUBLESHOOTING.md
+      path: troubleshooting.md
     values:
       title: Troubleshooting 故障排查
   - scope:
-      path: WHATS_NEW.md
+      path: whats-new.md
     values:
       title: What's New 最新变更
   - scope:

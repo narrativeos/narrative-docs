@@ -92,7 +92,7 @@ next_review: 2026-06-12
 ## 7. 相关治理
 
 - [Documentation Governance Standard](../developer/coding/docs-governance-standard.md)
-- [Readiness Checklist](readiness-checklist.md)
+- [Readiness Checklist](../developer/coding/readiness-checklist.md)
 
 ## 8. 评审要求
 

@@ -278,7 +278,7 @@ repro_package:
 
 ## 研究数据治理补充要求 | Research Data Governance Addendum
 
-除 [../DATA_CLASSIFICATION_AND_RETENTION.md](../DATA_CLASSIFICATION_AND_RETENTION.md) 的通用规则外，研究型任务额外要求：
+除 [../data-classification-and-retention.md](../data-classification-and-retention.md) 的通用规则外，研究型任务额外要求：
 
 - 记录语料来源合法性与使用权限
 - 标明是否可公开共享全文、片段或仅共享统计结果
@@ -294,7 +294,7 @@ repro_package:
 - 对外指标约束：见 [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md)
 - 证据台账与状态：见 [evidence-registry.md](evidence-registry.md)
 - 工作流与角色场景：见 [../product/workflows/README.md](../product/workflows/README.md)
-- 数据分级与保留：见 [../DATA_CLASSIFICATION_AND_RETENTION.md](../DATA_CLASSIFICATION_AND_RETENTION.md)
+- 数据分级与保留：见 [../data-classification-and-retention.md](../data-classification-and-retention.md)
 
 ## 发布门禁补充 | Additional Release Gates
 
@@ -327,7 +327,7 @@ repro_package:
 
 - [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md)
 - [evidence-registry.md](evidence-registry.md)
-- [readiness-checklist.md](readiness-checklist.md)
+- [readiness-checklist.md](../developer/coding/readiness-checklist.md)
 - [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md)
 - [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md)
 - [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md)

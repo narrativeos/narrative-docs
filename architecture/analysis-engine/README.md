@@ -360,4 +360,4 @@ options:
 - 检查多引擎并行执行是否使用同一 tokenizer 配置
 - 检查融合器权重是否使用默认基线
 
-更多问题见 [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)。
+更多问题见 [../../troubleshooting.md](../../troubleshooting.md)。

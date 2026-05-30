@@ -276,7 +276,7 @@ deliverables:
 
 ## 关联文档 | Related Docs
 
-- whitepaper/readiness-checklist.md
+- developer/coding/readiness-checklist.md
 - whitepaper/research-methodology-and-reproducibility.md
 - whitepaper/study-template-v2-corpus-comparative-analysis.md
 - whitepaper/annotation-protocol-narrative-segmentation.md

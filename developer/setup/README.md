@@ -33,7 +33,7 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 ## Canonical Dev Environment
 
@@ -90,7 +90,7 @@ code --version
 - `rustc` 不存在：通过 rustup 安装 stable 工具链
 - `python3` 指向旧版本：检查 pyenv/conda shell 初始化顺序
 
-更多问题见 [../../TROUBLESHOOTING.md](../../TROUBLESHOOTING.md)。
+更多问题见 [../../troubleshooting.md](../../troubleshooting.md)。
 
 ## 下一步
 

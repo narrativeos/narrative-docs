@@ -12,7 +12,7 @@ This document defines expected behavior, unacceptable behavior, and enforcement 
 
 ```yaml
 doc_id: CODE_OF_CONDUCT
-path: CODE_OF_CONDUCT.md
+path: code-of-conduct.md
 lang_primary: zh-CN
 lang_secondary: en
 audience: [maintainer, contributor, community]
@@ -69,6 +69,6 @@ source_of_truth: narrative-docs
 
 ## 关联文档 | Related Docs
 
-- GOVERNANCE.md
-- SECURITY.md
+- governance.md
+- security.md
 - README.md

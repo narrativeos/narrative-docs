@@ -45,8 +45,8 @@ source_of_truth: narrative-docs
 ## 关联入口
 
 - [User Getting Started](../user/getting-started/README.md)
-- [Troubleshooting](../TROUBLESHOOTING.md)
-- [Contributing](../CONTRIBUTING.md)
+- [Troubleshooting](../troubleshooting.md)
+- [Contributing](../contributing.md)
 - [Whitepaper](../whitepaper/README.md)
 - [Example: Evidence Traceability First Snapshot](examples-evidence-traceability-first-snapshot.md)
 - [Example: Systematic Review Minimal Loop](examples-systematic-review-minimal.md)

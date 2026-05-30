@@ -15,19 +15,19 @@ has_children: true
 
 ## 推荐阅读顺序
 
-- 第一步：先看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解参与方式
-- 第二步：再看 [GOVERNANCE.md](GOVERNANCE.md) 与 [SECURITY.md](SECURITY.md) 理解治理和安全边界
-- 第三步：需要排障时进入 [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- 第四步：需要核对版本演进时查看 [WHATS_NEW.md](WHATS_NEW.md) 与 [CHANGELOG.md](CHANGELOG.md)
+- 第一步：先看 [contributing.md](contributing.md) 了解参与方式
+- 第二步：再看 [governance.md](governance.md) 与 [security.md](security.md) 理解治理和安全边界
+- 第三步：需要排障时进入 [troubleshooting.md](troubleshooting.md)
+- 第四步：需要核对版本演进时查看 [whats-new.md](whats-new.md) 与 [changelog.md](changelog.md)
 
 ## 基础治理入口
 
-- [Contributing](CONTRIBUTING.md)
-- [Governance](GOVERNANCE.md)
-- [Security](SECURITY.md)
-- [Troubleshooting](TROUBLESHOOTING.md)
-- [What's New](WHATS_NEW.md)
-- [Changelog](CHANGELOG.md)
+- [Contributing](contributing.md)
+- [Governance](governance.md)
+- [Security](security.md)
+- [Troubleshooting](troubleshooting.md)
+- [What's New](whats-new.md)
+- [Changelog](changelog.md)
 
 ## 白皮书与发布依据
 
@@ -35,8 +35,8 @@ has_children: true
 - [Whitepaper 总览](whitepaper/README.md)
 - [Benchmark and Acceptance Metrics](whitepaper/benchmark-and-acceptance-metrics.md)
 - [Evidence Registry](whitepaper/evidence-registry.md)
-- [附录 A：Core Docs Mapping](whitepaper/core-docs-mapping.md)
-- [附录 B：Readiness Checklist](whitepaper/readiness-checklist.md)
+- [附录 A：Core Docs Mapping](developer/coding/core-docs-mapping.md)
+- [附录 B：Readiness Checklist](developer/coding/readiness-checklist.md)
 
 映射表和就绪度清单更适合发布校核与内部治理，不应替代白皮书正文阅读。
 

@@ -138,8 +138,8 @@ sections:
       - whitepaper/bench-task-001-evidence-traceability-audit.md
       - whitepaper/rsch-task-001-v2-corpus-runbook.md
       - whitepaper/anno-task-001-segmentation-consistency.md
-      - whitepaper/core-docs-mapping.md
-      - whitepaper/readiness-checklist.md
+      - developer/coding/core-docs-mapping.md
+      - developer/coding/readiness-checklist.md
   - id: governance
     title_zh: 开源治理与安全
     title_en: Open Source Governance and Security
@@ -148,16 +148,16 @@ sections:
       - contributor
       - community
       - security-researcher
-    entry: GOVERNANCE.md
+    entry: governance.md
     children:
-      - CHANGELOG.md
-      - WHATS_NEW.md
-      - CONTRIBUTING.md
-      - TROUBLESHOOTING.md
-      - SECURITY.md
-      - CODE_OF_CONDUCT.md
-      - DATA_CLASSIFICATION_AND_RETENTION.md
-      - API_COMPATIBILITY_AND_VERSIONING.md
+      - changelog.md
+      - whats-new.md
+      - contributing.md
+      - troubleshooting.md
+      - security.md
+      - code-of-conduct.md
+      - data-classification-and-retention.md
+      - api-compatibility-and-versioning.md
 rule_refs:
   - RULE-01
   - RULE-02

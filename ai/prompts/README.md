@@ -34,7 +34,7 @@ source_of_truth: narrative-docs
 
 - [templates/task-template.md](templates/task-template.md)
 - [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 EN: Prompt conventions for Copilot and coding agents.
 

@@ -33,8 +33,8 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
-- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/core-docs-mapping.md](../../developer/coding/core-docs-mapping.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 ## SDK 目标
 
@@ -215,5 +215,5 @@ print(done.get("status"), done.get("result_id"))
 ## 关联文档 | Related Docs
 
 - [Plugins](../plugins/README.md)
-- [API Compatibility and Versioning](../../API_COMPATIBILITY_AND_VERSIONING.md)
+- [API Compatibility and Versioning](../../api-compatibility-and-versioning.md)
 - [Coding Rules](../coding/README.md)

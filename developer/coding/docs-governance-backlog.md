@@ -66,6 +66,6 @@ source_of_truth: narrative-docs
 ## 关联文档 | Related Docs
 
 - [docs-governance-standard.md](docs-governance-standard.md)
-- [../../CONTRIBUTING.md](../../CONTRIBUTING.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
-- [../../whitepaper/core-docs-mapping.md](../../whitepaper/core-docs-mapping.md)
+- [../../contributing.md](../../contributing.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
+- [../../developer/coding/core-docs-mapping.md](../../developer/coding/core-docs-mapping.md)

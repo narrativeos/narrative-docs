@@ -34,7 +34,7 @@ source_of_truth: narrative-docs
 
 - [../../.github/copilot-instructions.md](../../.github/copilot-instructions.md)
 - [../../developer/coding/docs-governance-standard.md](../../developer/coding/docs-governance-standard.md)
-- [../../whitepaper/readiness-checklist.md](../../whitepaper/readiness-checklist.md)
+- [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 
 建议维护统一 copilot-instructions 规则，核心包括：
 

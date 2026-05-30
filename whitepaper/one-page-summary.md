@@ -123,9 +123,9 @@ NarrativeOS 关注的是：
 ## 8. 开源协作模型
 
 - 文档与规范中心：narrative-docs（SSOT）
-- 治理机制：见 [GOVERNANCE.md](../GOVERNANCE.md)
-- 社区行为准则：见 [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md)
-- 安全披露策略：见 [SECURITY.md](../SECURITY.md)
+- 治理机制：见 [governance.md](../governance.md)
+- 社区行为准则：见 [code-of-conduct.md](../code-of-conduct.md)
+- 安全披露策略：见 [security.md](../security.md)
 
 ## 9. 适合什么样的合作
 
@@ -145,7 +145,7 @@ NarrativeOS 关注的是：
 - 架构总览： [architecture/README.md](../architecture/README.md)
 - 架构实操： [architecture/analysis-engine/README.md](../architecture/analysis-engine/README.md)（单文 Full MRI Walkthrough）
 - 产品总览： [product/README.md](../product/README.md)
-- 白皮书附录 A： [whitepaper/core-docs-mapping.md](core-docs-mapping.md)
+- 白皮书附录 A： [developer/coding/core-docs-mapping.md](../developer/coding/core-docs-mapping.md)
 
 ## 11. 下一步阅读
 
