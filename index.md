@@ -4,7 +4,7 @@ title: Home 首页
 nav_order: 1
 ---
 
-# Narrative OS 叙事操作系统
+# NarrativeOS 叙事操作系统
 
 NarrativeOS 的统一网站入口，面向第一次接触项目的读者、合作方与贡献者。
 

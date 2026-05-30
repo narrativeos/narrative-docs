@@ -1,4 +1,4 @@
-# Narrative OS
+# NarrativeOS
 
 ## 仓库定位
 
