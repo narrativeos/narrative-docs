@@ -16,6 +16,7 @@ nav_order: 30
 - 第二步：再看 [developer/setup/README.md](developer/setup/README.md) 与 [developer/workspace/README.md](developer/workspace/README.md) 完成环境准备
 - 第三步：进入 [developer/coding/README.md](developer/coding/README.md) 了解协作与交付规则
 - 第四步：按需要进入 API、SDK、Plugins 或 Operations
+- 第五步：进入 AI/ADR/Governance 专题，完成协作上下文、决策记录与治理对齐
 
 ## 章节入口
 
@@ -27,3 +28,6 @@ nav_order: 30
 - [Plugins](developer/plugins/README.md)
 - [API](developer/api/README.md)
 - [Operations](developer/operations/README.md)
+- [AI 协作与智能体](ai/README.md)
+- [ADR 架构决策](adr/README.md)
+- [Governance 治理与标准](governance-overview.md)

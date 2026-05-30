@@ -27,19 +27,37 @@ source_of_truth: narrative-docs
 ## 阅读路径（建议） | Recommended Path
 
 - 第一步：按 [setup](setup/README.md) 与 [workspace](workspace/README.md) 建立环境
-- 第二步：按 [api](api/README.md) 和 [coding](coding/README.md) 对齐交付规范
-- 第三步：按需进入 plugins 与 sdk 专题
+- 第二步：按 [api](api/README.md)、[coding](coding/README.md) 对齐接口与代码规范
+- 第三步：在 [adr](../adr/README.md) 记录关键架构决策，形成可追溯上下文
+- 第四步：在 [ai](../ai/README.md) 维护 AI 协作上下文，提升人机协作一致性
+- 第五步：在 [governance](../GOVERNANCE.md) 与 [whitepaper](../whitepaper/README.md) 落实治理、验收与发布基线
 
 ## 子文档索引 | Subdocument Index
 
 - [setup](setup/README.md): 开发工具与依赖
 - [workspace](workspace/README.md): 多仓库工作区组织
 - [api](api/README.md): API 规格入口与 OpenAPI 维护约定
+- [sdk](sdk/README.md): SDK 设计与发布注意事项
+- [plugins](plugins/README.md): 插件开发约束
+- [coding](coding/README.md): 编码规范与质量门禁
 - [operations](operations/README.md): 安装验证、回滚与故障处置 Runbook
 - [workspace/ai-native-bootstrap-checklist.md](workspace/ai-native-bootstrap-checklist.md): AI-Native 仓库初始化检查清单
-- [coding](coding/README.md): 编码规范与质量门禁
-- [plugins](plugins/README.md): 插件开发约束
-- [sdk](sdk/README.md): SDK 设计与发布注意事项
+
+## 开发流程专题 | Workflow Tracks
+
+- [adr](../adr/README.md): 架构决策记录与历史追溯
+- [ai](../ai/README.md): AI 协作上下文与提示词规范
+- [governance](../GOVERNANCE.md): 开源治理与制度要求
+- [whitepaper](../whitepaper/README.md): 治理标准、验收指标与研究模板
+- [troubleshooting](../TROUBLESHOOTING.md): 研发与运维故障排查基线
+
+## 角色快速入口 | Role-based Quick Entry
+
+- 后端开发者：先看 [api](api/README.md) 与 [coding](coding/README.md)，再补充 [adr](../adr/README.md) 的决策记录
+- 前端与客户端开发者：先看 [sdk](sdk/README.md) 与 [plugins](plugins/README.md)，联动 [api](api/README.md) 对齐接口约束
+- 文档与治理维护者：先看 [governance](../GOVERNANCE.md) 与 [whitepaper](../whitepaper/README.md)，再进入治理条目与检查模板
+- AI 协作者与提示词维护者：先看 [ai](../ai/README.md)，再对照 [coding](coding/README.md) 与 [workspace](workspace/README.md) 统一协作边界
+- 运维与发布负责人：先看 [operations](operations/README.md) 与 [troubleshooting](../TROUBLESHOOTING.md)，并核对治理与安全要求
 
 ## 协作规则 | Collaboration Rules
 
