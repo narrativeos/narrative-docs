@@ -72,6 +72,8 @@ next_review: 2026-06-12
 | ARCH-002 | design_review | [architecture-feasibility.md](architecture-feasibility.md) | 平台闭环与分层可行性 | documented | Source: architecture/platform/README.md + architecture/analysis-engine/README.md; platform closed loop and modular six-engine analysis support a staged rollout rather than a single monolithic analyzer |
 | ARCH-003 | design_review | [architecture-feasibility.md](architecture-feasibility.md) | 可视化工作台可行性 | documented | Source: architecture/visual-os/README.md; Visual OS is diagnostic-first and evidence-linked, so the first release should prioritize explainable cockpit views rather than static charts |
 | MKT-001 | observation | [market-acceptance.md](market-acceptance.md) | 用户接受度判断 | documented | Public market signals from LanguageTool and ProWritingAid homepages show the direct market focuses on grammar/style correction, paraphrasing, integrations, and writing-app fit |
+| RSCH-001 | workflow_observation | [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md) | V2 研究回放链路最小闭环已验证 | documented | Source: RSCH-RUN-002-HANS003 using HANS-003 as primary sample and HANS-004 as control intake; outputs include trend summary, segment notes, excerpt review, compare draft, evidence links, and failure modes |
+| RSCH-002 | workflow_observation | [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md) | 三样本稳定性扩展已完成首版复核 | documented | Source: RSCH-RUN-003-THIRD-SAMPLE selected HANS-001 as third sample; outputs include three-sample compare table, stability check note, and evidence delta note |
 | FRZ-001 | approval | [implementation-freeze.md](implementation-freeze.md) | 开工冻结状态 | documented | Source: implementation-freeze.md; the first release is limited to diagnostic, evidence-linked, schema-aligned work and excludes complex cloud collaboration |
 | ROAD-002 | governance_basis | [product/roadmap/README.md](../product/roadmap/README.md), [product/workflows/README.md](../product/workflows/README.md) | 路线图与验收联动 | documented | Source: product roadmap and workflows; V1 author/editor closed loop, V2 corpus analysis, and V3 institutional evaluation align the roadmap with staged evidence-driven delivery |
 
@@ -96,6 +98,7 @@ next_review: 2026-06-12
 | DOC-GOV-001 | doc_basis | [governance-overview.md](../governance-overview.md), [developer/coding/docs-governance-standard.md](../developer/coding/docs-governance-standard.md) | 文档治理与发布门禁机制已建立 | documented | 当前仅为文档基线 |
 | DOC-ROAD-001 | doc_basis | [product/roadmap/README.md](../product/roadmap/README.md), [product/workflows/README.md](../product/workflows/README.md) | V1-V3 路线图已定义，且与工作流节奏对齐 | documented | 当前仅为文档基线 |
 | DOC-WHT-001 | doc_basis | [README.md](../README.md), [whitepaper/README.md](README.md) | 白皮书入口与论证框架已形成统一主入口 | documented | 当前仅为文档基线 |
+| DOC-RSCH-001 | doc_basis | [research-methodology-and-reproducibility.md](research-methodology-and-reproducibility.md), [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md), [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md), [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md) | 研究任务、标注协议与复现包样板已建立 | documented | 当前仅为 study-ready 文档基线，不能替代真实实验或 measured benchmark |
 
 ## 3. 证据层级说明
 
@@ -115,6 +118,14 @@ next_review: 2026-06-12
 - 真实用户访谈或试点反馈
 - 可复核的任务回放或工作流记录
 - 具备样本量、版本和口径的 measured benchmark
+
+当前已补但仍不足以关闭缺口的支撑包括：
+
+- 研究任务模板： [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md)
+- 叙事分段标注协议： [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md)
+- 证据回链复现包： [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md)
+
+这些文档只能把项目推进到 study-ready，而不能替代真实证据。
 
 ## 4. 证据记录模板
 
@@ -144,6 +155,7 @@ owner: maintainer-or-owner
 - [架构可行性与约束清单](architecture-feasibility.md)
 - [市场接受度判断框架](market-acceptance.md)
 - [实现冻结清单](implementation-freeze.md)
+- [研究方法与复现基线](research-methodology-and-reproducibility.md)
 
 ## 7. 待采集证据计划
 
@@ -151,7 +163,10 @@ owner: maintainer-or-owner
 | --- | --- | --- | --- | --- |
 | P0 | COMP-002 | product_review | 补 1 条直接竞品对照证据 | 产品试用、评测记录、对照表 |
 | P0 | MKT-002 | interview | 补 1 轮严肃文字工作者访谈 | 访谈纪要、样稿反馈 |
+| P0 | BENCH-001 | benchmark | 补 1 组结论证据可追溯率 measured 快照 | [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md), 任务回放记录 |
 | P1 | ARCH-003 | design_review | 补 1 条可视化工作台或证据链验证 | 架构评审、原型审查 |
+| P1 | RSCH-001 | workflow_observation | 补 1 条 V2 语料比较研究任务回放 | [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md), 样本清单, 结果摘要 |
+| P1 | ANNO-001 | workflow_observation | 补 1 条叙事分段双标注与一致性记录 | [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md), 标注日志 |
 | P1 | FRZ-002 | approval | 补 1 条开工门槛批准或状态更新 | PR、审批记录、发布说明 |
 | P2 | ROAD-002 | governance_basis | 补 1 条路线图与验收联动证据 | 路线图评审、里程碑记录 |
 
@@ -238,6 +253,122 @@ owner: product
 reviewer: maintainer
 ```
 
+### 9.5 Benchmark 复现作业单
+
+```yaml
+task_id: BENCH-TASK-001
+task_type: benchmark
+goal: 产出 1 组可回链的结论证据可追溯率 measured 快照
+inputs:
+	- diagnostics JSON
+	- evidence parser 版本
+	- 人工复核记录
+source_policy:
+	- 非 CNKI 来源允许，只要来源可回查且角色边界清楚
+	- 若当前目标是 demo 验证 case，则仅使用明确公开存取且可直接稳定获取全文的来源
+	- 若正文抓取受登录墙或 challenge 限制，必须单独记录可达性风险
+	- 一旦探测到不能直接获取全文，应立即放弃该条目，不再保留为 demo 候选
+outputs:
+	- 1 份 metrics summary
+	- 1 份 failure case table
+	- 1 条 benchmark evidence
+owner: research
+reviewer: maintainer
+```
+
+### 9.6 V2 研究任务回放作业单
+
+```yaml
+task_id: RSCH-TASK-001
+task_type: workflow_observation
+goal: 产出 1 次 V2 语料比较研究任务回放，验证 study template 可执行性
+inputs:
+	- [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md)
+	- 语料样本清单
+	- 结果摘要
+source_policy:
+	- 不依赖 CNKI 单一入口；期刊官网、DOI 落地页、开放数据库均可作为正式来源线索
+	- 若当前目标是 demo 验证 case，则仅纳入明确声明公开存取且已通过直接全文检查的期刊条目
+	- 来源可回查不等于正文可稳定抓取，需单独记录访问限制与许可边界
+	- 一旦探测到不能直接获取全文，应立即放弃该条目，不再继续后续核验
+outputs:
+	- 1 条 workflow evidence
+	- 1 个样本边界结论
+	- 1 个失败模式记录
+owner: research
+reviewer: maintainer
+```
+
+### 9.7 标注一致性作业单
+
+```yaml
+task_id: ANNO-TASK-001
+task_type: workflow_observation
+goal: 产出 1 次叙事分段双标注与一致性记录
+inputs:
+	- [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md)
+	- 双标注结果
+	- 仲裁记录
+source_policy:
+	- 协议校准文本可来自非 CNKI 来源，只要文本可回查且仲裁时可复现
+	- 若当前目标是 demo 验证 case，则仅使用许可清晰、公开获取且可直接稳定获取全文的校准文本
+	- 一旦探测到不能直接获取全文，应立即放弃该条目，不再作为 demo 校准文本
+	- 若样本文本只适合作为方法学参照，不应误写为正式评测样本
+outputs:
+	- 1 条 workflow evidence
+	- 1 个一致性指标
+	- 1 组冲突案例说明
+owner: research
+reviewer: maintainer
+```
+
+### 9.8 架构优化验证作业单
+
+```yaml
+task_id: ARCH-OPT-TASK-001
+task_type: architecture_validation
+goal: 验证并优化 NarrativeOS 首期架构在性能、可扩展性与可观测性上的关键约束
+inputs:
+	- architecture/system/README.md
+	- architecture/platform/README.md
+	- architecture/analysis-engine/README.md
+	- adr/ADR-001-runtime.md
+	- adr/ADR-002-storage.md
+outputs:
+	- 1 份 architecture optimization report
+	- 1 份 bottleneck and mitigation table
+	- 1 条 architecture optimization evidence
+acceptance:
+	- 给出可复核的性能瓶颈定位依据
+	- 至少 1 项可执行的架构优化动作及预期收益
+	- 优化建议与现有 ADR 不冲突或已记录变更
+owner: architecture
+reviewer: maintainer
+```
+
+### 9.9 算法能力验证作业单
+
+```yaml
+task_id: ALGO-TASK-001
+task_type: algorithm_validation
+goal: 验证并优化 NarrativeOS 在分段、对比与证据回链算法上的效果与稳定性
+inputs:
+	- annotation-protocol-narrative-segmentation.md
+	- rsch-task-001-v2-corpus-runbook.md
+	- anno-task-001-segmentation-consistency.md
+	- benchmark-and-acceptance-metrics.md
+outputs:
+	- 1 份 algorithm evaluation report
+	- 1 份 error taxonomy and fix plan
+	- 1 条 algorithm validation evidence
+acceptance:
+	- 至少 2 个核心算法指标具备基线对照
+	- 至少 1 个失败模式完成定位与修复方案
+	- 给出可复跑的评估口径与版本记录
+owner: research
+reviewer: maintainer
+```
+
 ## 10. 记录要求
 
 - 每个作业单必须绑定一个唯一 task_id
@@ -249,11 +380,17 @@ reviewer: maintainer
 
 | task_id | 优先级 | 状态 | 负责人 | 目标完成时间 | 结果链接 |
 | --- | --- | --- | --- | --- | --- |
+| ARCH-OPT-TASK-001 | P0 | in_progress | architecture | 2026-06-20 | [architecture-feasibility.md](architecture-feasibility.md) |
+| ALGO-TASK-001 | P0 | in_progress | research | 2026-06-20 | [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md) |
 | COMP-TASK-001 | P0 | done | product | 2026-06-05 | [COMP-001](#1-证据目录) |
 | MKT-TASK-001 | P0 | in_progress | product | 2026-06-05 | [MKT-001](#1-证据目录) |
+| BENCH-TASK-001 | P0 | in_progress | research | 2026-06-12 | [bench-task-001-evidence-traceability-audit.md](bench-task-001-evidence-traceability-audit.md) |
 | ARCH-TASK-001 | P1 | done | architecture | 2026-06-12 | [ARCH-001](#1-证据目录) |
 | ARCH-TASK-002 | P1 | done | architecture | 2026-06-12 | [ARCH-002](#1-证据目录) |
 | ARCH-TASK-003 | P1 | done | architecture | 2026-06-12 | [ARCH-003](#1-证据目录) |
+| RSCH-TASK-001 | P1 | done | research | 2026-06-12 | [RSCH-001](#1-证据目录) |
+| RSCH-TASK-002 | P1 | done | research | 2026-06-20 | [RSCH-002](#1-证据目录) |
+| ANNO-TASK-001 | P1 | in_progress | research | 2026-06-12 | [anno-task-001-segmentation-consistency.md](anno-task-001-segmentation-consistency.md) |
 | FRZ-TASK-001 | P1 | done | maintainer | 2026-06-12 | [FRZ-001](#1-证据目录) |
 | ROAD-TASK-001 | P2 | done | product | 2026-06-12 | [ROAD-002](#1-证据目录) |
 
@@ -532,6 +669,104 @@ notes: 备注
 - 该样本是正式证据，不是示例。
 - 该样本已经同步回 [Product Roadmap](../product/roadmap/README.md)。
 - 该样本可作为验收节奏与里程碑联动依据。
+
+### 22.8 RSCH-TASK-001
+
+- 以 HANS-003 作为单样本 demo 入口，验证 V2 研究回放链路可执行。
+- 输出最小产物集合：trend summary、segment notes、evidence links、failure modes。
+- 回填到 [V2 语料比较研究回放作业单](rsch-task-001-v2-corpus-runbook.md) 与本台账。
+
+当前执行记录：
+
+- 状态：`done`
+- 结果链接： [RSCH-001](#1-证据目录)
+- 备注：`RSCH-RUN-002-HANS003` 已完成最小回放闭环，包含单样本产物、逐段短摘录复核、对照样本接入与 compare 草稿
+- 完成标记：`workflow_evidence_recorded`
+
+当前入账摘要：
+
+- 运行 ID：`RSCH-RUN-002-HANS003`
+- 样本：`HANS-003` (`10.12677/arl.2026.151004`)
+- 对照样本：`HANS-004` (`10.12677/Design.2023.83203`)
+- 全文可达性：浏览器路径可触发 PDF 交付，满足 demo 阶段直接获取门槛
+- 结论状态：已形成可追溯 workflow evidence（documented 级），可支撑“流程可执行 + 最小对照可运行”结论；跨样本强结论仍需后续增强
+
+后续增强：
+
+- 新增至少 1 个同类对照样本，复跑 compare 并检查结论稳定性。
+- 在多样本复核完成后，再评估升级为更强证据等级。
+
+### 22.9 RSCH-TASK-002
+
+- 执行第三样本稳定性扩展，验证 `RSCH-001` 中最小对照结论是否可保持。
+- 运行入口：`RSCH-RUN-003-THIRD-SAMPLE`。
+- 回填到 [V2 语料比较研究回放作业单](rsch-task-001-v2-corpus-runbook.md) 与本台账。
+
+当前执行记录：
+
+- 状态：`done`
+- 结果链接： [RSCH-002](#1-证据目录)
+- 备注：已选定 `HANS-001` 作为第三样本并完成 intake gate，三样本 compare 与 stability 首版结论已回填
+- 完成标记：`third_sample_stability_recorded`
+
+当前入账摘要：
+
+- 基线证据：`RSCH-001`
+- 扩展目标：将两样本最小 compare 升级为三样本稳定性 compare
+- 第三样本：`HANS-001` (`10.12677/Design.2023.84464`)
+- 必交产物：`compare_table_three_sample.md`、`stability_check_note.md`、`evidence_delta_note.md`（已回填）
+- 结论状态：关键差异方向未反转，保持既有方向并标注 scope-sensitive stability
+
+后续增强：
+
+- 若引入第四样本，优先补文学批评体裁样本以降低设计类样本偏移。
+- 在多样本扩展后再评估 `RSCH-002` 是否可升级证据等级。
+
+### 22.10 ARCH-OPT-TASK-001
+
+- 进入架构优化验证阶段，重点验证运行时边界、模块耦合与可观测性瓶颈。
+- 输出 1 份可复核的优化建议清单，并绑定到架构文档。
+- 回填到 [架构可行性与约束清单](architecture-feasibility.md) 与本台账。
+
+当前执行记录：
+
+- 状态：`in_progress`
+- 结果链接： [architecture-feasibility.md](architecture-feasibility.md)
+- 备注：本任务作为当前 NarrativeOS 论证主线之一，优先级高于新增流程型 demo 任务
+- 完成标记：`architecture_optimization_started`
+
+当前入账摘要：
+
+- 目标：从“架构可行”升级到“架构可优化且可量化验证”
+- 最小产物：bottleneck 定位、优化动作、预期收益与风险边界
+
+下一步：
+
+- 输出首版 bottleneck and mitigation table。
+- 形成 1 条架构优化证据并回填证据目录。
+
+### 22.11 ALGO-TASK-001
+
+- 进入算法验证优化阶段，重点覆盖分段一致性、对比稳定性与证据回链准确性。
+- 输出 1 份算法评估报告与误差分类修复计划。
+- 回填到 [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md) 与本台账。
+
+当前执行记录：
+
+- 状态：`in_progress`
+- 结果链接： [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md)
+- 备注：本任务作为当前 NarrativeOS 论证主线之一，目标是把 workflow 证据升级为可量化算法证据
+- 完成标记：`algorithm_validation_started`
+
+当前入账摘要：
+
+- 目标：从“流程可执行”升级到“算法指标可比较、可复跑、可优化”
+- 最小产物：核心指标对照、失败模式定位、修复方案与复跑口径
+
+下一步：
+
+- 定义 2 组核心指标基线并开始首轮测量。
+- 形成 1 条算法验证证据并回填证据目录。
 
 ### 22.2 MKT-TASK-001
 
