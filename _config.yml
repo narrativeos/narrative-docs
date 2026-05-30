@@ -148,54 +148,67 @@ defaults:
       path: architecture/README.md
     values:
       title: Architecture Memory 架构记忆
+      nav_order: 1
   - scope:
       path: architecture/analysis-engine/README.md
     values:
       title: Analysis Engine 分析引擎
+      nav_order: 10
   - scope:
       path: architecture/atlas/README.md
     values:
       title: Atlas 空间图谱
+      nav_order: 12
   - scope:
       path: architecture/corpus-learning/README.md
     values:
       title: Corpus Learning 语料学习
+      nav_order: 8
   - scope:
       path: architecture/insight-engine/README.md
     values:
       title: Insight Engine 洞察引擎
+      nav_order: 11
   - scope:
       path: architecture/library/README.md
     values:
       title: Library 知识库
+      nav_order: 7
   - scope:
       path: architecture/platform/README.md
     values:
       title: Platform 平台架构
+      nav_order: 3
   - scope:
       path: architecture/runtime/README.md
     values:
       title: Runtime 运行时
+      nav_order: 5
   - scope:
       path: architecture/spatial/README.md
     values:
       title: Spatial 空间计算
+      nav_order: 6
   - scope:
       path: architecture/storage/README.md
     values:
       title: Storage 存储
+      nav_order: 4
   - scope:
       path: architecture/style-genome/README.md
     values:
       title: Style Genome 风格基因
+      nav_order: 9
   - scope:
       path: architecture/system/README.md
     values:
       title: System 系统架构
+      nav_order: 2
   - scope:
       path: architecture/visual-os/README.md
     values:
       title: Visual OS 可视操作系统
+      nav_order: 13
 
   - scope:
       path: product/README.md

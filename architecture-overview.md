@@ -16,14 +16,21 @@ nav_order: 10
 
 - 第一步：先看 [architecture/README.md](architecture/README.md) 了解整体边界与阅读路径
 - 第二步：再看 [architecture/system/README.md](architecture/system/README.md) 理解系统全景和子系统关系（先看全景图再看文字）
-- 第三步：进入 [architecture/runtime/README.md](architecture/runtime/README.md) 与 [architecture/storage/README.md](architecture/storage/README.md) 掌握首期实现骨架
+- 第三步：进入 [architecture/storage/README.md](architecture/storage/README.md) 与 [architecture/runtime/README.md](architecture/runtime/README.md) 掌握首期实现骨架
 - 第四步：进入 [architecture/analysis-engine/README.md](architecture/analysis-engine/README.md) 跑一遍单文 Full MRI Walkthrough，再按业务域阅读 atlas、visual-os 等专题
 
 ## 章节入口
 
 - [Architecture 总览](architecture/README.md)
-- [Analysis Engine](architecture/analysis-engine/README.md)
-- [Atlas](architecture/atlas/README.md)
-- [Runtime](architecture/runtime/README.md)
-- [Storage](architecture/storage/README.md)
 - [System](architecture/system/README.md)
+- [Platform](architecture/platform/README.md)
+- [Storage](architecture/storage/README.md)
+- [Runtime](architecture/runtime/README.md)
+- [Spatial](architecture/spatial/README.md)
+- [Library](architecture/library/README.md)
+- [Corpus Learning](architecture/corpus-learning/README.md)
+- [Style Genome](architecture/style-genome/README.md)
+- [Analysis Engine](architecture/analysis-engine/README.md)
+- [Insight Engine](architecture/insight-engine/README.md)
+- [Atlas](architecture/atlas/README.md)
+- [Visual OS](architecture/visual-os/README.md)

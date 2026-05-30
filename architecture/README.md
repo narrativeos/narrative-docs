@@ -29,7 +29,7 @@ source_of_truth: narrative-docs
 ## 阅读路径（建议） | Recommended Path
 
 - 第一步：先读 [system](system/README.md) 了解全局边界（含系统全景图与六域主链路图）
-- 第二步：再读 [runtime](runtime/README.md) 与 [storage](storage/README.md) 掌握实现骨架
+- 第二步：再读 [storage](storage/README.md) 与 [runtime](runtime/README.md) 掌握实现骨架
 - 第三步：按业务域阅读 analysis-engine / insight-engine / style-genome / visual-os（analysis-engine 含单文 Full MRI Walkthrough）
 
 如果你时间有限，建议先完成两步：
@@ -41,16 +41,16 @@ source_of_truth: narrative-docs
 
 - [system](system/README.md): 总体系统边界与子系统关系（含系统全景图、六域主链路图）
 - [platform](platform/README.md): 平台级蓝图、六域架构与能力进化闭环
+- [storage](storage/README.md): DuckDB 与数据流
+- [runtime](runtime/README.md): Rust Host / TS UI / Python Worker 运行时分工与隔离
+- [spatial](spatial/README.md): 空间计算与 GIS 集成
+- [library](library/README.md): 知识库架构与语言百科沉淀机制
 - [corpus-learning](corpus-learning/README.md): 语料学习系统与语言向量资产架构
 - [style-genome](style-genome/README.md): 风格基因架构与语言基因卡设计
-- [insight-engine](insight-engine/README.md): 证据驱动 AI 分析师架构
-- [library](library/README.md): 知识库架构与语言百科沉淀机制
 - [analysis-engine](analysis-engine/README.md): 六引擎分析架构与 CT 扫描式诊断流程（含单文 Full MRI Walkthrough）
-- [visual-os](visual-os/README.md): 语言驾驶舱与可视化操作系统架构
-- [runtime](runtime/README.md): Rust Host / TS UI / Python Worker 运行时分工与隔离
-- [storage](storage/README.md): DuckDB 与数据流
+- [insight-engine](insight-engine/README.md): 证据驱动 AI 分析师架构
 - [atlas](atlas/README.md): Atlas 相关能力与边界
-- [spatial](spatial/README.md): 空间计算与 GIS 集成
+- [visual-os](visual-os/README.md): 语言驾驶舱与可视化操作系统架构
 
 ## 使用规则 | Usage Rules
 
