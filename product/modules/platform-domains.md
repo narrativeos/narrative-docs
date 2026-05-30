@@ -6,7 +6,7 @@
 
 ## Executive Summary (EN)
 
-This document defines module-level product design for the six platform domains of NarrativeOS.
+This document defines module-level product design for the current six-domain baseline of NarrativeOS.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -24,7 +24,9 @@ source_of_truth: narrative-docs
 
 将 NarrativeOS 从单点分析产品升级为平台级产品，形成“诊断 -> 认知 -> 科学”递进能力。
 
-## 六域模块定义
+## 平台域模块定义（当前基线：六域）
+
+说明：六域是当前产品模块基线，并非永久固定数量；可随版本演进扩展或收敛。
 
 ### 1. Text Lab
 
@@ -171,7 +173,7 @@ Text Lab -> Narrative Atlas -> Corpus Observatory -> Style Genome -> Insight Eng
 
 - 不以内容代写为主路径
 - 不输出无证据来源的黑箱建议
-- 不将六域混为单体功能集合
+- 不将当前基线六域混为单体功能集合
 
 ## 关联文档 | Related Docs
 

@@ -126,4 +126,4 @@ Corpus 页面为 V2 核心页面，定位为语料观测主界面，不使用单
 
 - 语料学习架构： [../../architecture/corpus-learning/README.md](../../architecture/corpus-learning/README.md)
 - 平台蓝图： [../../architecture/platform/README.md](../../architecture/platform/README.md)
-- 六域模块设计： [platform-domains.md](platform-domains.md)
+- 平台域模块设计（当前基线六域）： [platform-domains.md](platform-domains.md)

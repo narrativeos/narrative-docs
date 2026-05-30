@@ -592,7 +592,7 @@ notes: 备注
 ### 22.4 ARCH-TASK-002
 
 - 确认平台闭环与分析引擎是否支持分阶段实现。
-- 检查六域架构是否应先收敛为单文闭环，再扩展为平台化能力。
+- 检查当前基线六域架构是否应先收敛为单文闭环，再扩展为平台化能力。
 - 输出 1 条可追溯架构结论。
 - 回填到 [架构可行性与约束清单](architecture-feasibility.md) 与本台账。
 
@@ -608,7 +608,7 @@ notes: 备注
 - 证据 ID：`ARCH-002`
 - 证据类型：`design_review`
 - 来源：`architecture/platform/README.md`、`architecture/analysis-engine/README.md`
-- 结论：平台闭环、六域架构与模块化分析引擎共同说明，NarrativeOS 更适合先以单文诊断闭环落地，再逐步扩展到语料观测与知识网络
+- 结论：平台闭环、当前基线六域架构与模块化分析引擎共同说明，NarrativeOS 更适合先以单文诊断闭环落地，再逐步扩展到语料观测与知识网络
 
 正式样本说明：
 

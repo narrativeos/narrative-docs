@@ -32,10 +32,10 @@ source_of_truth: narrative-docs
 
 ## 关键能力模块（产品定义）
 
-- [platform-domains.md](platform-domains.md): 六域平台模块设计与协同主链路
+- [platform-domains.md](platform-domains.md): 平台域模块设计（当前基线六域）与协同主链路
 - [corpus-observatory.md](corpus-observatory.md): 语料观测与语言向量资产模块
 - [library.md](library.md): 语言百科型知识库模块
 - [style-genome.md](style-genome.md): 风格基因卡与文风演化模块
-- [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（六引擎）与产品交付物
+- [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（当前基线六引擎）与产品交付物
 - [insight-engine.md](insight-engine.md): 证据链驱动的 AI 洞察模块
 - [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力

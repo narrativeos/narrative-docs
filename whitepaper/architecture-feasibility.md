@@ -74,7 +74,7 @@ Narrative Atlas 与 Visual OS 需要承担解释性表达。
 
 ### 2.4 平台分域
 
-六域架构有利于叙事清晰，但也可能带来过度拆分风险。
+当前基线六域架构有利于叙事清晰，但也可能带来过度拆分风险。
 
 需要验证的问题：
 
@@ -89,7 +89,7 @@ Narrative Atlas 与 Visual OS 需要承担解释性表达。
 | 多运行时组合 | 可行，但需边界清晰 | 调试与部署复杂 | 可进入后续版本 | 首期只保留最小协作面 |
 | DuckDB 存储基线 | 可行，适合作为起点 | 后续扩展过早复杂化 | 可进入首期 | 先验证单文闭环 |
 | 可视化工作台 | 有价值，但需控复杂度 | 视觉掩盖解释性 | 可进入首期 | 证据链必须前置 |
-| 六域平台分拆 | 叙事清晰，工程易膨胀 | 产品面过多 | 可进入后续版本 | 首期先收敛域边界 |
+| 当前基线六域平台分拆 | 叙事清晰，工程易膨胀 | 产品面过多 | 可进入后续版本 | 首期先收敛域边界 |
 | 云增强能力 | 方向正确 | 容易被误当成前置依赖 | 不应作为首期承诺 | 作为异步补充保留 |
 
 ## 4. 首期约束
@@ -136,7 +136,7 @@ owner: architecture
 | 证据 ID | 来源 | 结论摘要 | 关联判断 |
 | --- | --- | --- | --- |
 | ARCH-001 | architecture/system/README.md, ADR-001, ADR-002 | 运行时隔离、显式 IPC/API Contract 和 DuckDB 基线构成首期架构硬约束 | 首期只在这些约束内展开实现 |
-| ARCH-002 | architecture/platform/README.md, architecture/analysis-engine/README.md | 平台闭环与模块化六引擎表明应先收敛单文闭环，再逐步扩展平台分域 | 首期优先验证单文诊断闭环 |
+| ARCH-002 | architecture/platform/README.md, architecture/analysis-engine/README.md | 平台闭环与模块化当前基线六引擎表明应先收敛单文闭环，再逐步扩展平台分域 | 首期优先验证单文诊断闭环 |
 | ARCH-003 | architecture/visual-os/README.md | Visual OS 以诊断优先、证据链可跳转和原文可追溯为核心要求 | 首期可视化工作台必须优先实现解释性与定位能力 |
 
 ## 10. ARCH-OPT-TASK-001 执行计划

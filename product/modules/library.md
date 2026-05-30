@@ -70,4 +70,4 @@ Library 模块的目标是将分析结果沉淀为可持续累积、可关联检
 
 - 架构定义： [../../architecture/library/README.md](../../architecture/library/README.md)
 - 平台蓝图： [../../architecture/platform/README.md](../../architecture/platform/README.md)
-- 六域模块设计： [platform-domains.md](platform-domains.md)
+- 平台域模块设计（当前基线六域）： [platform-domains.md](platform-domains.md)

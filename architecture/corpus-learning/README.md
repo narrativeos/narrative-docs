@@ -91,7 +91,7 @@ source_of_truth: narrative-docs
 - 比较报告
 - 反馈信号集（用于模型进化）
 
-## 与六域架构关系
+## 与平台域模型（当前基线六域）关系
 
 - Domain 3 Corpus Observatory：语料采样、统计与比较中枢
 - Domain 4 Style Genome：风格向量与作者声纹构建

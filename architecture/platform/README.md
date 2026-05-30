@@ -89,7 +89,9 @@ NarrativeOS 的长期竞争力来自语料学习系统。
 
 详细定义见： [../corpus-learning/README.md](../corpus-learning/README.md)
 
-## 六域架构（Platform Six-Domain Architecture）
+## 平台域模型（当前基线：六域）
+
+说明：六域是当前平台架构基线，后续可按产品阶段进行合并、拆分或扩展。
 
 ### Domain 1: Text Lab（文本实验室）
 
@@ -148,7 +150,7 @@ Library 组织结构：
 
 详细定义见： [../library/README.md](../library/README.md)
 
-## 六域主链路
+## 平台域主链路（当前基线）
 
 ```text
 Text Lab
@@ -168,7 +170,7 @@ Knowledge Graph
 
 ## 架构约束 | Architecture Constraints
 
-- 分域解耦：六域职责边界清晰，禁止能力重叠导致的架构漂移
+- 分域解耦：当前基线六域职责边界清晰，禁止能力重叠导致的架构漂移
 - 语义一致：跨域共享统一指标定义、诊断术语与数据语义
 - 证据优先：洞察输出必须绑定可回溯指标与结构证据
 - 可持续进化：新能力必须纳入闭环，不允许一次性、不可复用分析路径

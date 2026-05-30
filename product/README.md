@@ -39,7 +39,7 @@ source_of_truth: narrative-docs
 
 ## 平台化补充
 
-- 六域平台模块设计: [modules/platform-domains.md](modules/platform-domains.md)
+- 平台域模块设计（当前基线六域）: [modules/platform-domains.md](modules/platform-domains.md)
 - 对应平台架构蓝图: [../architecture/platform/README.md](../architecture/platform/README.md)
 
 ## 协作规则 | Collaboration Rules

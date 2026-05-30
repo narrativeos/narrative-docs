@@ -97,7 +97,7 @@ NarrativeOS 关注的是：
 
 - 多语言运行时：Rust Host + TypeScript UI + Python Worker
 - 存储基线：DuckDB（并支持向量与图数据扩展）
-- 六引擎分析：词汇、句法节奏、语义网络、叙事流、风格、情绪感官
+- 当前基线六引擎分析：词汇、句法节奏、语义网络、叙事流、风格、情绪感官
 - 平台主链路：Text Lab -> Narrative Atlas -> Corpus Observatory -> Style Genome -> Insight Engine -> Knowledge Graph
 
 这意味着它的技术架构从一开始就不是“单模型一次性输出”，而是“多层分析 + 证据组织 + 结果解释”的链式系统。
