@@ -210,6 +210,48 @@ owner: role-or-team
 
 这三项一旦建立 measured 基线，就足以显著提升 NarrativeOS 白皮书的可信度。
 
+## ALGO-TASK-001 执行计划
+
+本节用于把“流程可执行”升级到“算法指标可比较、可复跑、可优化”。
+
+```yaml
+task_id: ALGO-TASK-001
+task_type: algorithm_validation
+status: in_progress
+owner: research
+reviewer: maintainer
+scope:
+	- segmentation_quality
+	- compare_stability
+	- evidence_traceability_accuracy
+deliverables:
+	- algorithm_evaluation_report.md
+	- error_taxonomy_and_fix_plan.md
+	- ALGO-001 evidence entry
+```
+
+### A1. 核心评测轴
+
+| axis | target_metric | baseline_source | acceptance_target | note |
+| --- | --- | --- | --- | --- |
+| segmentation_quality | segment_boundary_consistency | anno-task-001-segmentation-consistency.md | 一致性指标相对基线提升或波动可解释 | 需保留冲突样本复核记录 |
+| compare_stability | difference_direction_stability | rsch-task-001-v2-corpus-runbook.md | 多样本扩展后关键差异方向不反转或可解释 | 至少覆盖 3 样本 |
+| traceability_accuracy | evidence_traceability_rate | bench-task-001-evidence-traceability-audit.md | 结论回链准确率达到发布门槛 | 需给出错误分类与修复动作 |
+
+### A2. 里程碑
+
+| milestone | objective | output | done_criteria |
+| --- | --- | --- | --- |
+| M1-Baseline | 固化版本、样本与口径 | evaluation protocol note | 指标口径、样本窗与版本号齐备 |
+| M2-Measure | 跑首轮测量并收集误差 | algorithm evaluation report | 至少 2 组核心指标有 measured 值 |
+| M3-Diagnose | 归纳失败模式与成因 | error taxonomy and fix plan | 至少 1 个高频失败模式有修复方案 |
+| M4-Re-run | 应用修复后复跑 | delta comparison note | 指标变化可复现且有证据链接 |
+
+### A3. 发布约束补充
+
+- 若 `ALGO-001` 未入账，不将算法能力写成“已优化完成”。
+- 若指标提升只在单样本成立，不升级为跨场景能力结论。
+
 ## 关联文档 | Related Docs
 
 - whitepaper/readiness-checklist.md

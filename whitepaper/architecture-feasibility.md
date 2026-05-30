@@ -138,3 +138,45 @@ owner: architecture
 | ARCH-001 | architecture/system/README.md, ADR-001, ADR-002 | 运行时隔离、显式 IPC/API Contract 和 DuckDB 基线构成首期架构硬约束 | 首期只在这些约束内展开实现 |
 | ARCH-002 | architecture/platform/README.md, architecture/analysis-engine/README.md | 平台闭环与模块化六引擎表明应先收敛单文闭环，再逐步扩展平台分域 | 首期优先验证单文诊断闭环 |
 | ARCH-003 | architecture/visual-os/README.md | Visual OS 以诊断优先、证据链可跳转和原文可追溯为核心要求 | 首期可视化工作台必须优先实现解释性与定位能力 |
+
+## 10. ARCH-OPT-TASK-001 执行计划
+
+本节用于把“架构可行”推进到“架构可优化且可量化验证”。
+
+```yaml
+task_id: ARCH-OPT-TASK-001
+task_type: architecture_validation
+status: in_progress
+owner: architecture
+reviewer: maintainer
+runbook_scope:
+	- runtime_boundary_check
+	- module_coupling_assessment
+	- observability_bottleneck_review
+deliverables:
+	- architecture_optimization_report.md
+	- bottleneck_and_mitigation_table.md
+	- ARCH-OPT-001 evidence entry
+```
+
+### 10.1 里程碑
+
+| milestone | objective | output | done_criteria |
+| --- | --- | --- | --- |
+| M1-Boundary | 验证 Host/UI/Worker 边界与契约完整性 | runtime boundary matrix | 每条核心链路都有 contract 与错误处理说明 |
+| M2-Coupling | 定位跨域耦合热点 | coupling heatmap + risk list | 至少识别 3 个高耦合点并给出处置策略 |
+| M3-Observability | 验证可观测性覆盖与盲区 | bottleneck and mitigation table | 每个关键瓶颈有观测信号、阈值和缓解动作 |
+| M4-Decision | 形成可执行优化决策 | architecture optimization report | 至少 1 项优化动作进入后续实施计划 |
+
+### 10.2 验收指标（架构）
+
+| metric_id | metric_name | baseline_state | acceptance_target | evidence_link |
+| --- | --- | --- | --- | --- |
+| ARCH-M01 | Runtime Contract Coverage | TBD | 核心跨运行时链路覆盖率 >= 95% | architecture_optimization_report.md |
+| ARCH-M02 | High-Coupling Hotspots | TBD | 高耦合热点数量可解释且有缓解方案 | bottleneck_and_mitigation_table.md |
+| ARCH-M03 | Observability Readiness | TBD | 关键链路均具备日志/指标/错误归因入口 | bottleneck_and_mitigation_table.md |
+
+### 10.3 当前执行口径
+
+- 本任务优先级高于新增流程型 demo 任务。
+- 未完成 `ARCH-OPT-001` 证据前，不将“架构优化已验证”写成对外结论。
