@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: NarrativeOS API
+  version: 1.0.0
+  description: |
+    Minimal public contract for NarrativeOS V1.
+    This spec is intended as the single source of truth for SDK alignment and integration tests.
+servers:
+  - url: https://api.narrativeos.example.com
+    description: Placeholder production endpoint
+  - url: http://localhost:8080
+    description: Local development endpoint
+paths:
+  /v1/health:
+    get:
+      tags: [system]
+      summary: Health check
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              examples:
+                ok:
+                  value:
+                    status: ok
+                    service: narrative-api
+                    timestamp: '2026-05-30T00:00:00Z'
+        '500':
+          description: Service unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/analysis/jobs:
+    post:
+      tags: [analysis]
+      summary: Create an analysis job
+      operationId: createAnalysisJob
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAnalysisJobRequest'
+      responses:
+        '202':
+          description: Job accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAnalysisJobResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/analysis/jobs/{jobId}:
+    get:
+      tags: [analysis]
+      summary: Get analysis job status
+      operationId: getAnalysisJob
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisJob'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status, service, timestamp]
+      properties:
+        status:
+          type: string
+          enum: [ok]
+        service:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    CreateAnalysisJobRequest:
+      type: object
+      required: [input]
+      properties:
+        input:
+          type: object
+          required: [text]
+          properties:
+            text:
+              type: string
+              minLength: 1
+            language:
+              type: string
+              default: zh-CN
+        options:
+          type: object
+          properties:
+            fastScan:
+              type: boolean
+              default: true
+            mri:
+              type: boolean
+              default: true
+    CreateAnalysisJobResponse:
+      type: object
+      required: [jobId, status]
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum: [queued]
+    AnalysisJob:
+      type: object
+      required: [jobId, status, createdAt]
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        result:
+          type: object
+          additionalProperties: true
+        error:
+          $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true

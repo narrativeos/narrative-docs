@@ -78,69 +78,58 @@ defaults:
       path: whitepaper
       type: pages
     values:
-      parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      parent: Whitepaper 白皮书
       nav_order: 82
 
   - scope:
       path: api-compatibility-and-versioning.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 1
   - scope:
       path: changelog.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 2
   - scope:
       path: code-of-conduct.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 3
   - scope:
       path: contributing.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 4
   - scope:
       path: data-classification-and-retention.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 5
   - scope:
       path: governance.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 6
   - scope:
       path: security.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 7
   - scope:
       path: troubleshooting.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 8
   - scope:
       path: whats-new.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 9
   - scope:
       path: assets/glossary.zh-en.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
       nav_order: 10
 
   # Bilingual nav titles for second-level menu items

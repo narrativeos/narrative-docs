@@ -183,6 +183,46 @@ print(done.get("status"), done.get("result_id"))
 - 破坏性变更必须标注迁移路径
 - 与 API/schema 的一致性由 CI 校验
 
+## OpenAPI v1 字段映射（最小对齐）
+
+契约来源：
+
+- [../api/openapi/narrative-api-v1.yaml](../api/openapi/narrative-api-v1.yaml)
+
+### create analysis job 映射
+
+| OpenAPI 路径 | OpenAPI 字段 | TypeScript SDK 建议字段 | Python SDK 建议字段 | 说明 |
+| --- | --- | --- | --- | --- |
+| `/v1/analysis/jobs` | `input.text` | `text` | `text` | 必填，最小长度 1 |
+| `/v1/analysis/jobs` | `input.language` | `language` | `language` | 默认 `zh-CN` |
+| `/v1/analysis/jobs` | `options.fastScan` | `fastScan` | `fast_scan` | 可选，默认 `true` |
+| `/v1/analysis/jobs` | `options.mri` | `mri` | `mri` | 可选，默认 `true` |
+
+### create analysis job 响应映射
+
+| OpenAPI 响应字段 | TypeScript SDK 字段 | Python SDK 字段 | 说明 |
+| --- | --- | --- | --- |
+| `jobId` | `jobId` | `job_id` | 任务 ID |
+| `status` | `status` | `status` | `queued` |
+
+### get analysis job 响应映射
+
+| OpenAPI 响应字段 | TypeScript SDK 字段 | Python SDK 字段 | 说明 |
+| --- | --- | --- | --- |
+| `jobId` | `jobId` | `job_id` | 任务 ID |
+| `status` | `status` | `status` | `queued/running/succeeded/failed` |
+| `createdAt` | `createdAt` | `created_at` | 创建时间 |
+| `completedAt` | `completedAt` | `completed_at` | 完成时间，可选 |
+| `result` | `result` | `result` | 分析结果，可选 |
+| `error.code` | `error.code` | `error.code` | 错误码 |
+| `error.message` | `error.message` | `error.message` | 错误说明 |
+
+### 对齐验收标准
+
+- TS/Python 两端均可完成 `create -> get status` 最小链路
+- 字段命名差异必须在 SDK 层明确映射（如 `jobId` 对应 `job_id`）
+- 错误对象至少包含 `code` 和 `message`
+
 ## 交付检查清单 | Delivery Checklist
 
 - TS 与 Python 示例均可运行

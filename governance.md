@@ -107,6 +107,7 @@ narrative-docs 是 NarrativeOS 的文档权威源（SSOT）。治理目标是确
 - README.md
 - adr/README.md
 - developer/README.md
+- developer/coding/docs-release-readiness-checklist.md
 - whitepaper/README.md
 - code-of-conduct.md
 - security.md

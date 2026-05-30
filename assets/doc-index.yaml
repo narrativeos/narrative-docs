@@ -57,11 +57,13 @@ sections:
       - developer/setup/README.md
       - developer/workspace/README.md
       - developer/api/README.md
+      - developer/api/openapi/narrative-api-v1.yaml
       - developer/operations/README.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
       - developer/coding/docs-governance-standard.md
       - developer/coding/docs-governance-backlog.md
+      - developer/coding/docs-release-readiness-checklist.md
       - developer/coding/docs-governance-release-report-2026-05.md
       - developer/coding/docs-governance-monthly-check-template.md
       - developer/plugins/README.md
@@ -79,6 +81,7 @@ sections:
     entry: user/README.md
     children:
       - user/getting-started/README.md
+      - user/getting-started/first-success-e2e-sample.md
       - user/editor/README.md
       - user/atlas/README.md
       - user/gis/README.md

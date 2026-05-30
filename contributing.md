@@ -43,6 +43,34 @@ source_of_truth: narrative-docs
 4. 自检链接可达、术语一致、规则引用正确。
 5. 使用 PR 模板提交并填写 Rule Impact、AI Review、CI Gate。
 
+PR 模板新增必填：
+
+- `Entry impact`（影响入口页与导航同步状态）
+- `API contract impact`（是否影响 OpenAPI 与 SDK 对齐）
+- `Regression commands`（建议包含 `make docs-check-all`）
+
+建议在提交前执行：
+
+```bash
+make docs-check-all
+
+# 或
+make docs-check
+
+# 或
+./scripts/docs-consistency-check.sh
+```
+
+按角色可选子目标：
+
+- 基线入口一致性：`make docs-check-base`
+- 文档策略残留：`make docs-check-policy`
+- PR 模板完整性：`make docs-check-template`
+
+发布前请同时对照：
+
+- [developer/coding/docs-release-readiness-checklist.md](developer/coding/docs-release-readiness-checklist.md)
+
 ## 学术贡献入口
 
 - 方法与边界补充：见 [academic/trust-methodology.md](academic/trust-methodology.md)

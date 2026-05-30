@@ -27,6 +27,7 @@ source_of_truth: narrative-docs
 ## 阅读路径（建议） | Recommended Path
 
 - 第一步：完成“用户首个成功任务（10 分钟）”
+- 第一步补充：完成 [first-success-e2e-sample.md](first-success-e2e-sample.md) 的可复现样例闭环（15 分钟）
 - 第二步：按角色完成“贡献者首个成功任务（10 分钟）”
 - 第三步：对照 Checklist 与排障章节完成复核
 

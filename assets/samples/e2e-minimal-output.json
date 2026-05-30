@@ -1,0 +1,19 @@
+{
+  "jobId": "job-demo-001",
+  "status": "succeeded",
+  "createdAt": "2026-05-30T00:00:00Z",
+  "completedAt": "2026-05-30T00:00:03Z",
+  "result": {
+    "summary": "文本主张清晰，但证据锚点覆盖不足。",
+    "findings": [
+      {
+        "type": "structure",
+        "message": "结论先行，证据后置，建议增加中段支撑。",
+        "evidence": {
+          "start": 1,
+          "end": 24
+        }
+      }
+    ]
+  }
+}

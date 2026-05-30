@@ -1,0 +1,10 @@
+{
+  "input": {
+    "text": "叙事结构决定读者的理解路径。这个段落用于最小可复现实验。",
+    "language": "zh-CN"
+  },
+  "options": {
+    "fastScan": true,
+    "mri": true
+  }
+}

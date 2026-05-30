@@ -36,6 +36,10 @@ developer/api/
     narrative-api-v2.yaml
 ```
 
+当前最小可用契约文件：
+
+- [openapi/narrative-api-v1.yaml](openapi/narrative-api-v1.yaml)
+
 ## OpenAPI 最小要求
 
 - 使用 OpenAPI 3.0+
@@ -56,6 +60,31 @@ developer/api/
 - 每个 schema 变化有版本影响说明
 - SDK 文档与 API 示例字段一致
 - 错误模型可被 TS/Python SDK 直接消费
+
+## 15 分钟可执行验证（MVP）
+
+目标：不依赖后端启动，仅验证 API 契约文件存在、可读、包含最小关键路径。
+
+### 执行命令
+
+```bash
+cd narrative-docs
+test -f developer/api/openapi/narrative-api-v1.yaml && echo "[OK] openapi file exists"
+rg "^openapi:\s*3\.0\.3" developer/api/openapi/narrative-api-v1.yaml
+rg "^\s*/v1/health:" developer/api/openapi/narrative-api-v1.yaml
+rg "^\s*/v1/analysis/jobs:" developer/api/openapi/narrative-api-v1.yaml
+```
+
+### 验收标准
+
+- 输出 `[OK] openapi file exists`
+- `openapi: 3.0.3` 可被检索到
+- `/v1/health` 与 `/v1/analysis/jobs` 均存在于契约文件
+
+### 进阶验证（可选）
+
+- 将该文件导入任意 OpenAPI 工具（Swagger Editor 或 Stoplight）完成结构校验
+- 用该文件作为 SDK 示例字段对齐基线
 
 ## 常见问题排查 | Troubleshooting
 

@@ -12,6 +12,45 @@
 - ADR required? (yes/no)
 - If yes, link ADR:
 
+## Entry impact
+
+- Impacted entry pages:
+	- [ ] index.md
+	- [ ] README.md
+	- [ ] user/getting-started/README.md
+	- [ ] developer/README.md
+	- [ ] No entry impact
+- Navigation/index synced:
+	- [ ] _config.yml updated
+	- [ ] assets/doc-index.yaml updated
+	- [ ] Not required
+
+## API contract impact
+
+- OpenAPI affected? (yes/no)
+- If yes, updated files:
+	- [ ] developer/api/openapi/narrative-api-v1.yaml
+	- [ ] developer/api/README.md
+	- [ ] developer/sdk/README.md
+- Contract compatibility:
+	- [ ] no breaking change
+	- [ ] breaking change with migration note
+
+## Regression commands
+
+```bash
+make docs-check-all
+
+# or
+make docs-check
+
+# or
+./scripts/docs-consistency-check.sh
+```
+
+- Additional verification commands run:
+- Key output summary:
+
 ## AI Review (Layer B)
 
 - [ ] Duplication reviewed (重复代码)

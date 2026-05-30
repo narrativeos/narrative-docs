@@ -76,6 +76,30 @@ code --version
 - 版本信息成功输出且无错误
 - 可选工具缺失时有替代方案（例如不依赖 gh 也可提交流程）
 
+## 15 分钟工作区与仓库完整性自检
+
+目标：验证当前工作区具备 NarrativeOS 多仓协作的最小条件。
+
+### 执行命令
+
+```bash
+pwd
+ls -1
+for repo in narrative-api narrative-core narrative-atlas narrative-docs narrative-studio narrative-sdk-ts narrative-sdk-py narrative-editor narrative-spatial; do
+	if [ -d "$repo" ]; then
+		echo "[OK] $repo"
+	else
+		echo "[MISSING] $repo"
+	fi
+done
+```
+
+### 验收标准
+
+- 关键仓库全部显示 `[OK]`
+- 当前目录应为多仓 workspace 根目录，而不是单一仓库子目录
+- 如存在 `[MISSING]`，先补齐仓库再继续后续流程
+
 ## 推荐安装顺序
 
 1. Git

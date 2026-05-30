@@ -23,6 +23,18 @@ jobs:
               missing.push('Rule Impact section');
             }
 
+            if (!/##\s*Entry impact/i.test(body)) {
+              missing.push('Entry impact section');
+            }
+
+            if (!/##\s*API contract impact/i.test(body)) {
+              missing.push('API contract impact section');
+            }
+
+            if (!/##\s*Regression commands/i.test(body)) {
+              missing.push('Regression commands section');
+            }
+
             if (!/##\s*AI Review\s*\(Layer B\)/i.test(body)) {
               missing.push('AI Review (Layer B) section');
             }
@@ -41,6 +53,15 @@ jobs:
 
             if (!hasCheckedRule && !hasNoRuleImpact) {
               missing.push('mark at least one impacted rule or check "No rule impact"');
+            }
+
+            const hasRegressionCommand =
+              /make\s+docs-check-all/.test(body) ||
+              /make\s+docs-check/.test(body) ||
+              /\.\/scripts\/docs-consistency-check\.sh/.test(body);
+
+            if (!hasRegressionCommand) {
+              missing.push('regression command: make docs-check-all / make docs-check / ./scripts/docs-consistency-check.sh');
             }
 
             const aiReviewFields = [

@@ -40,6 +40,7 @@ source_of_truth: narrative-docs
 - [sdk](sdk/README.md): SDK 设计与发布注意事项
 - [plugins](plugins/README.md): 插件开发约束
 - [coding](coding/README.md): 编码规范与质量门禁
+- [coding/docs-release-readiness-checklist.md](coding/docs-release-readiness-checklist.md): 文档发布前就绪检查清单
 - [operations](operations/README.md): 安装验证、回滚与故障处置 Runbook
 - [workspace/ai-native-bootstrap-checklist.md](workspace/ai-native-bootstrap-checklist.md): AI-Native 仓库初始化检查清单
 

@@ -4,12 +4,20 @@ on:
   pull_request:
     paths:
       - '**/*.md'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '**/*.json'
+      - 'scripts/*.sh'
       - '.github/workflows/docs-quality-check.yml'
   push:
     branches:
       - main
     paths:
       - '**/*.md'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '**/*.json'
+      - 'scripts/*.sh'
       - '.github/workflows/docs-quality-check.yml'
 
 jobs:
@@ -19,15 +27,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check placeholder residue
+      - name: Run unified docs check-all
         run: |
           set -euo pipefail
-          ! rg -n "This document describes ---|TODO|TBD|FIXME|待补充|占位" --glob '**/*.md'
-
-      - name: Check templated EN summary residue
-        run: |
-          set -euo pipefail
-          ! rg -n "This document describes" --glob '**/*.md'
+          chmod +x scripts/docs-consistency-check.sh
+          chmod +x scripts/docs-check-all.sh
+          make docs-check-all
 
   docs-links:
     runs-on: ubuntu-latest

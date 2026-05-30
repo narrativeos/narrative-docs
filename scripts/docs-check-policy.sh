@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT_DIR"
+
+pass() {
+  echo "[PASS] $1"
+}
+
+fail() {
+  echo "[FAIL] $1" >&2
+  exit 1
+}
+
+echo "[INFO] Checking placeholder residue"
+! rg -n "This document describes ---|TODO|FIXME" --glob '**/*.md' || fail "placeholder residue found"
+pass "no placeholder residue"
+
+echo "[INFO] Checking templated EN summary residue"
+! rg -n "^This document describes" --glob '**/*.md' || fail "templated EN summary residue found"
+pass "no templated EN summary residue"
+
+echo "Policy docs checks passed."
