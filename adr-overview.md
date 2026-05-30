@@ -1,10 +1,12 @@
 ---
 layout: default
-title: ADR 架构决策记录
+title: ADR 架构决策
+parent: Developer 开发者
 nav_order: 60
+has_children: true
 ---
 
-# ADR 架构决策记录
+# ADR 架构决策
 
 本页面向需要追溯关键架构决策的读者。
 

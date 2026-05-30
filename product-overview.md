@@ -2,6 +2,7 @@
 layout: default
 title: Product 产品
 nav_order: 20
+has_children: true
 ---
 
 # Product 产品

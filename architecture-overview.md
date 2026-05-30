@@ -2,6 +2,7 @@
 layout: default
 title: Architecture 架构
 nav_order: 10
+has_children: true
 ---
 
 # Architecture 架构

@@ -2,6 +2,7 @@
 layout: default
 title: Developer 开发者
 nav_order: 30
+has_children: true
 ---
 
 # Developer 开发者

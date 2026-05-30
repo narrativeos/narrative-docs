@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Governance 治理与标准
+parent: Developer 开发者
 nav_order: 80
 has_children: true
 ---

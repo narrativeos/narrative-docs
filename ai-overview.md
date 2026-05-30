@@ -1,10 +1,12 @@
 ---
 layout: default
-title: AI 智能体
+title: AI 协作与智能体
+parent: Developer 开发者
 nav_order: 50
+has_children: true
 ---
 
-# AI 智能体
+# AI 协作与智能体
 
 本页面向需要构建或维护 AI 协作上下文的读者。
 
