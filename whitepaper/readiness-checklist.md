@@ -41,6 +41,7 @@
 - 已完成：系统分层与运行时边界定义
 - 已完成：ADR 机制建立（见 [adr/README.md](../adr/README.md)）
 - 已完成：基准测试与验收指标入口（见 [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md)）
+- 基本完成：研究方法、标注协议与复现样板已建立（见 [research-methodology-and-reproducibility.md](research-methodology-and-reproducibility.md), [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md), [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md), [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md)）
 
 ## C. 交付可行性
 

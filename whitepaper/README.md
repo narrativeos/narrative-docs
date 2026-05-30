@@ -88,6 +88,13 @@ source_of_truth: narrative-docs
 ### Part III：发布与治理支撑
 
 - [基准测试与验收指标入口](benchmark-and-acceptance-metrics.md)
+- [研究方法与复现基线](research-methodology-and-reproducibility.md)
+- [V2 语料比较研究模板](study-template-v2-corpus-comparative-analysis.md)
+- [叙事分段标注协议](annotation-protocol-narrative-segmentation.md)
+- [Evidence Traceability 复现包示例](reproducibility-package-evidence-traceability.md)
+- [BENCH-TASK-001 证据回链率测量作业单](bench-task-001-evidence-traceability-audit.md)
+- [RSCH-TASK-001 V2 语料研究任务回放作业单](rsch-task-001-v2-corpus-runbook.md)
+- [ANNO-TASK-001 叙事分段一致性作业单](anno-task-001-segmentation-consistency.md)
 - [白皮书附录 A：核心文档映射表](core-docs-mapping.md)
 - [白皮书附录 B：就绪度检查清单](readiness-checklist.md)
 
@@ -95,7 +102,7 @@ Part I 负责让读者迅速形成整体判断。
 
 Part II 负责支撑“为什么这样判断”。
 
-Part III 负责回答“在什么条件下这些判断可以被对外宣称”。其中映射表与就绪度清单属于附录性质的发布支撑材料，而不是正文主线。
+Part III 负责回答“在什么条件下这些判断可以被对外宣称”。其中研究方法基线用于约束研究型论断的任务定义、语料口径、标注协议与复现要求；study template、annotation protocol 和 reproducibility package example 用于把这些约束下沉到可执行样板；task worksheet 用于承接真实运行与证据回填；映射表与就绪度清单属于附录性质的发布支撑材料，而不是正文主线。
 
 ## 推荐阅读顺序
 

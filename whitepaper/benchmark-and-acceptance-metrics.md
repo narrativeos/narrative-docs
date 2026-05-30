@@ -118,12 +118,30 @@ owner: role-or-team
 | --- | --- | --- | --- | --- | --- |
 | V1 单文闭环 | 导入到报告完成时长 | P50 <= 15 分钟 | TBD | TBD | 待补证据 |
 | V1 单文闭环 | 关键流程成功率 | >= 95% | TBD | TBD | 待补证据 |
-| V1 洞察质量 | 结论证据可追溯率 | >= 90% | TBD | TBD | 待补证据 |
-| V2 语料分析 | 千级语料任务完成率 | >= 90% | TBD | TBD | 待补证据 |
+| V1 洞察质量 | 结论证据可追溯率 | >= 90% | TBD | TBD | 见 [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md) |
+| V2 语料分析 | 千级语料任务完成率 | >= 90% | TBD | TBD | 见 [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md) |
 | V2 语料分析 | 小时级任务稳定性 | 24h 内失败率 <= 5% | TBD | TBD | 待补证据 |
 | V3 机构评估 | 批量评估报告产出率 | >= 95% | TBD | TBD | 待补证据 |
 
 > 注：当 `实测值` 为 `TBD` 时，该指标仅可用于路线目标，不可作为“已完成发布”的对外声明依据。
+
+## 指标准备状态（方法学层）
+
+本节不声明 measured 结果，只说明每个关键指标目前是否已有 study-ready 的方法学支撑。
+
+| 指标 | 当前状态 | 方法学支撑 | 说明 |
+| --- | --- | --- | --- |
+| 导入到报告完成时长 | design-ready | [product/workflows/README.md](../product/workflows/README.md) | 工作流路径已定义，但尚无稳定计时样本与统计口径 |
+| 关键流程成功率 | design-ready | [product/workflows/README.md](../product/workflows/README.md), [architecture/analysis-engine/README.md](../architecture/analysis-engine/README.md) | 主链路已定义，失败分类与批量样本统计仍待补 |
+| 结论证据可追溯率 | study-ready | [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md) | 已有指标定义、复现步骤与失败样本要求，但尚未形成 measured 快照 |
+| 千级语料任务完成率 | study-ready | [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md) | 已有 V2 研究模板与样本策略，但尚缺真实任务回放 |
+| 叙事分段相关评测 | study-ready | [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md) | 已建立人工标注协议，可支撑 segmentation 任务评估集建设 |
+
+约束：
+
+- `design-ready` 仅表示能力与口径已初步定义
+- `study-ready` 仅表示已有任务模板、协议或复现包，仍不等于 measured
+- 只有当结果进入样本、版本、时间窗口和 evidence_link 俱全的状态，才可升级为 measured
 
 ## 当前最小发布口径
 
@@ -178,11 +196,27 @@ owner: role-or-team
 - V1 单文闭环的关键流程成功率
 - V1 洞察质量的结论证据可追溯率
 
+建议对应实施入口：
+
+- 语料研究任务模板： [study-template-v2-corpus-comparative-analysis.md](study-template-v2-corpus-comparative-analysis.md)
+- 叙事分段标注协议： [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md)
+- 证据回链复现包： [reproducibility-package-evidence-traceability.md](reproducibility-package-evidence-traceability.md)
+
+建议对应执行作业单：
+
+- [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md)
+- [anno-task-001-segmentation-consistency.md](anno-task-001-segmentation-consistency.md)
+- [bench-task-001-evidence-traceability-audit.md](bench-task-001-evidence-traceability-audit.md)
+
 这三项一旦建立 measured 基线，就足以显著提升 NarrativeOS 白皮书的可信度。
 
 ## 关联文档 | Related Docs
 
 - whitepaper/readiness-checklist.md
+- whitepaper/research-methodology-and-reproducibility.md
+- whitepaper/study-template-v2-corpus-comparative-analysis.md
+- whitepaper/annotation-protocol-narrative-segmentation.md
+- whitepaper/reproducibility-package-evidence-traceability.md
 - product/roadmap/README.md
 - product/workflows/README.md
 - adr/README.md

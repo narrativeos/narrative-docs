@@ -105,6 +105,13 @@ sections:
     children:
       - whitepaper/one-page-summary.md
       - whitepaper/benchmark-and-acceptance-metrics.md
+      - whitepaper/research-methodology-and-reproducibility.md
+      - whitepaper/study-template-v2-corpus-comparative-analysis.md
+      - whitepaper/annotation-protocol-narrative-segmentation.md
+      - whitepaper/reproducibility-package-evidence-traceability.md
+      - whitepaper/bench-task-001-evidence-traceability-audit.md
+      - whitepaper/rsch-task-001-v2-corpus-runbook.md
+      - whitepaper/anno-task-001-segmentation-consistency.md
       - whitepaper/core-docs-mapping.md
       - whitepaper/readiness-checklist.md
   - id: governance

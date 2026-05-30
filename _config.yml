@@ -339,6 +339,34 @@ defaults:
     values:
       title: Benchmark & Acceptance Metrics 基准与验收指标
   - scope:
+      path: whitepaper/research-methodology-and-reproducibility.md
+    values:
+      title: Research Methodology & Reproducibility 研究方法与复现
+  - scope:
+      path: whitepaper/study-template-v2-corpus-comparative-analysis.md
+    values:
+      title: V2 Corpus Study Template V2语料研究模板
+  - scope:
+      path: whitepaper/annotation-protocol-narrative-segmentation.md
+    values:
+      title: Narrative Segmentation Annotation Protocol 叙事分段标注协议
+  - scope:
+      path: whitepaper/reproducibility-package-evidence-traceability.md
+    values:
+      title: Evidence Traceability Repro Package 证据回链复现包
+  - scope:
+      path: whitepaper/bench-task-001-evidence-traceability-audit.md
+    values:
+      title: BENCH-TASK-001 Evidence Traceability Audit 证据回链率测量作业单
+  - scope:
+      path: whitepaper/rsch-task-001-v2-corpus-runbook.md
+    values:
+      title: RSCH-TASK-001 V2 Corpus Runbook V2语料研究任务回放作业单
+  - scope:
+      path: whitepaper/anno-task-001-segmentation-consistency.md
+    values:
+      title: ANNO-TASK-001 Segmentation Consistency 叙事分段一致性作业单
+  - scope:
       path: whitepaper/core-docs-mapping.md
     values:
       title: Core Docs Mapping 核心文档映射

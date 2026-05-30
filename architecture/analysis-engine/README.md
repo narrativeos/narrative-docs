@@ -269,6 +269,20 @@ options:
 - `confidence` 落在 [0,1]
 - 同一 `document_id` 的 artifacts 与 diagnostics 版本一致
 
+若该输出将进入正式研究任务而不只是产品界面展示，还应补充：
+
+- 对应 study template
+- 对应标注协议或规则来源
+- 对应最小复现包
+
+研究型基线见： [../../whitepaper/research-methodology-and-reproducibility.md](../../whitepaper/research-methodology-and-reproducibility.md)
+
+相关样板：
+
+- [../../whitepaper/study-template-v2-corpus-comparative-analysis.md](../../whitepaper/study-template-v2-corpus-comparative-analysis.md)
+- [../../whitepaper/annotation-protocol-narrative-segmentation.md](../../whitepaper/annotation-protocol-narrative-segmentation.md)
+- [../../whitepaper/reproducibility-package-evidence-traceability.md](../../whitepaper/reproducibility-package-evidence-traceability.md)
+
 ### Step 5: 典型诊断示例
 
 当 Engine 2 与 Engine 4 同时发现问题时，可能得到类似结论：

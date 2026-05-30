@@ -60,5 +60,6 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [Benchmark and Acceptance Metrics](../whitepaper/benchmark-and-acceptance-metrics.md)
+- [Research Methodology and Reproducibility](../whitepaper/research-methodology-and-reproducibility.md)
 - [Core Docs Mapping](../whitepaper/core-docs-mapping.md)
 - [Readiness Checklist](../whitepaper/readiness-checklist.md)
