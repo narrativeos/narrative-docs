@@ -214,50 +214,62 @@ defaults:
       path: product/README.md
     values:
       title: Product Knowledge 产品知识
+      nav_order: 1
   - scope:
       path: product/modules/README.md
     values:
       title: Modules 模块体系
+      nav_order: 3
   - scope:
       path: product/modules/analysis-engine.md
     values:
       title: Analysis Engine Module 分析引擎模块
+      nav_order: 15
   - scope:
       path: product/modules/corpus-observatory.md
     values:
       title: Corpus Observatory 语料观测模块
+      nav_order: 12
   - scope:
       path: product/modules/insight-engine.md
     values:
       title: Insight Engine Module 洞察引擎模块
+      nav_order: 16
   - scope:
       path: product/modules/library.md
     values:
       title: Library Module 知识库模块
+      nav_order: 13
   - scope:
       path: product/modules/platform-domains.md
     values:
       title: Platform Domains 平台域模块
+      nav_order: 11
   - scope:
       path: product/modules/style-genome.md
     values:
       title: Style Genome Module 风格基因模块
+      nav_order: 14
   - scope:
       path: product/modules/visual-os.md
     values:
       title: Visual OS Module 可视操作系统模块
+      nav_order: 17
   - scope:
       path: product/vision/README.md
     values:
       title: Vision 产品愿景
+      nav_order: 2
   - scope:
       path: product/roadmap/README.md
     values:
       title: Roadmap 路线图
+      nav_order: 5
   - scope:
       path: product/workflows/README.md
     values:
       title: Workflows 工作流
+      nav_order: 4
 
   - scope:
       path: developer/README.md

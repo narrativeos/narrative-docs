@@ -33,9 +33,9 @@ source_of_truth: narrative-docs
 ## 子文档索引 | Subdocument Index
 
 - [vision](vision/README.md): 产品定位与价值主张
-- [roadmap](roadmap/README.md): 里程碑与优先级
-- [workflows](workflows/README.md): 用户与团队工作流
 - [modules](modules/README.md): 核心模块职责与关系
+- [workflows](workflows/README.md): 用户与团队工作流
+- [roadmap](roadmap/README.md): 里程碑与优先级
 
 ## 平台化补充
 
