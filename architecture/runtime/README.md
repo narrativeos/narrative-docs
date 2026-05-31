@@ -33,6 +33,7 @@ source_of_truth: narrative-docs
 - Runtime Isolation 属于架构红线，任何例外需 ADR 记录
 - 跨运行时通信必须支持背压反馈，Host 根据 Worker 负载信号节流任务提交
 - 跨运行时仅传递 artifact handle 与契约引用，不传递大对象所有权给 UI runtime
+- 本运行时架构不覆盖用户系统（账号、登录、注册、租户）实现
 
 ## AI 协作要求
 

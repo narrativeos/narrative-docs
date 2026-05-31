@@ -109,7 +109,7 @@ EN: Quick onboarding from zero to first successful user workflow and first contr
 
 - UI 模块是否正常加载
 - 工作区数据索引是否初始化完成
-- 当前账户是否具备项目访问权限
+- 当前环境是否具备项目访问权限（由部署环境或外围系统提供）
 
 ## Troubleshooting (Top 3)
 
