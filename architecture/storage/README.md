@@ -168,6 +168,22 @@ snapshot_manifest:
 - 当 io_saturation_level 超阈值时，Host 降低 Deep Queue 准入速率。
 - 当 cache_hit_ratio_hot_warm 下降时，Worker 优先执行 warm 预热任务。
 
+## 生命周期与容量策略 | Lifecycle and Capacity Policy
+
+为避免冷层归档长期失控，统一 retention 与回收策略。
+
+| Tier | Retention | Capacity Cap | Cleanup Cadence | Eviction Priority |
+| --- | --- | --- | --- | --- |
+| Hot | 24h-72h | 节点可用内存的 20% | 每 15 分钟 | 临时缓存 > 可再生中间态 > 最近活跃数据 |
+| Warm | 30-90 天 | 单工作区默认 200GB | 每日 | 旧版本 snapshot > 低命中特征 > 冗余索引 |
+| Cold | 180-365 天（可配置） | 项目级预算上限（默认 2TB） | 每周 | 过期深度报告 > 低价值历史工件 > 可再算归档 |
+
+执行规则：
+
+- 超过 Capacity Cap 80% 时触发预警；超过 90% 自动进入受限写入模式。
+- cleanup 任务必须先校验 manifest 引用关系，禁止回收仍被活动 manifest 引用的 payload。
+- 每次回收生成 reclaim ledger（回收对象、大小、原因、可回放标识）。
+
 ## 事务与一致性协议 | Transaction and Consistency
 
 存储更新采用“先写状态、后发布句柄”的原子发布原则。

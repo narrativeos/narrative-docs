@@ -56,6 +56,8 @@ source_of_truth: narrative-docs
 
 - 发生关键架构变更时，先更新本层，再同步 [ADR 索引](../adr/README.md)
 - 设计评审和跨仓协作以本层文档作为基准，不以临时讨论结论替代
+- 架构评审必须同时提交 SLO/SLI 影响评估、容量评估与回滚方案
+- 未完成故障演练与 runbook 验证的变更，不得进入 GA 发布
 
 ## 标准参考 | Standards Reference
 

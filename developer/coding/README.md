@@ -69,6 +69,8 @@ EN: Change requirements.
 - 变更必须更新相关文档
 - 架构与存储关键变更需更新 ADR
 - 若文档出现 user/auth/tenant 术语，需明确是否为外部环境能力；本项目不内建用户系统
+- 关键架构变更必须绑定 SLO/SLI 影响说明、error budget 评估与回滚方案
+- 发布前必须有 runbook、容量评估与故障演练记录，否则视为阻断项
 
 ## 机读检查清单 | Machine-readable Checklist
 
@@ -79,6 +81,8 @@ EN: Change requirements.
 - CHECK-05: Related docs/ADR updated
 - CHECK-06: AI review completed (duplication/boundary/complexity/protocol)
 - CHECK-07: CI contract validation passed
+- CHECK-08: SLO/SLI and error-budget impact assessed
+- CHECK-09: Runbook and failure drill evidence attached
 
 ## 文档治理 | Documentation Governance
 

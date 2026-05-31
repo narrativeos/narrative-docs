@@ -220,3 +220,20 @@ Language Data Layer
   ↓
 反哺 Studio
 ```
+
+## 阶段容量规划与退出条件
+
+平台阶段推进必须绑定容量上限、成本上限与失败退出条件，防止目标扩张快于资源治理。
+
+| Phase | Capacity Baseline | Cost Guardrail | Exit Criteria (Go/No-go) |
+| --- | --- | --- | --- |
+| Phase 1 Local-first | 单机 10k 字稳定实时反馈 | 本地资源占用不影响编辑体验 | Fast Queue SLO 连续 2 周达标，否则冻结升级 |
+| Phase 2 Cloud Async | 日均 1k 深度任务 | 单任务成本不超过基线预算 | Deep Queue 完成率 >= 99%，否则回退到限量试点 |
+| Phase 3 Schema + Plugin | 100+ 插件并行可控 | 插件运行成本可观测可限流 | 合约失败率 < 0.1%，否则暂停生态扩展 |
+| Phase 4 Corpus Scale | 万本级语料可批处理 | 冷层归档成本在预算阈内 | 存储回收与复现成功率同时达标 |
+| Phase 5 Language Map | 百万文本分层运行 | 资源成本随规模线性可预测 | 任一关键 SLO 连续超预算则停止扩容 |
+
+阶段治理规则：
+
+- 每个阶段必须定义 No-go 触发器与回退路径。
+- 进入下一阶段前，必须提供容量评估、压测报告、回滚演练记录。

@@ -55,3 +55,17 @@ source_of_truth: narrative-docs
 - 背压信号从 Worker -> Host 反馈，由 Host 统一执行节流。
 - 大对象跨运行时传递必须转为 artifact handle。
 - UI 仅可读取句柄引用，不可直接接管 Worker 产物生命周期。
+
+## 运行时故障处置 Runbook（最小基线）
+
+| Trigger (5min window) | Alert Level | Action Owner | Immediate Action | Recovery Criteria |
+| --- | --- | --- | --- | --- |
+| worker_queue_depth > 高水位 2 倍 | P1 | Host Oncall | 暂停 Deep Queue 准入，仅保留 Fast Queue | 连续 15 分钟回落到高水位以下 |
+| ipc_contract_error_rate > 0.5% | P1 | Runtime Owner | 回滚到上一个 contract 版本，开启兼容模式 | 错误率 < 0.1% 且回归通过 |
+| artifact_fetch_latency_p95 > 3s | P2 | Storage Oncall | 启动 warm 预热并限制 cold 读取并发 | p95 < 1.5s 持续 30 分钟 |
+| manifest_publish_failures 连续 3 次 | P1 | Worker Owner | 停止新发布，执行一致性修复脚本 | 两次连续发布成功 |
+
+人机联动要求：
+
+- 每次 P1/P2 事件必须生成 incident 记录，绑定快照 ID、队列状态、处置时间线。
+- Runbook 处置与恢复判据必须在发布前演练，缺失演练记录不得进入 GA 发布。
