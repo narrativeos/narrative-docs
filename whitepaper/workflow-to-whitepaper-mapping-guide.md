@@ -85,6 +85,7 @@ proofreading_false_positive_ratio:
 - proofreading-competitive-results-template.md
 - proofreading-competitive-results-sample-2026-05.md
 - ../product/workflows/proofreading-competitive-benchmark-runbook.md
+- ../product/workflows/proofreading-competitive-benchmark-run-record-template.md
 - ../product/workflows/fact-conflict-detection-minimal-runbook.md
 - ../product/workflows/fact-conflict-detection-sample-2026-05.md
 - ../academic/fact-verification-protocol.md

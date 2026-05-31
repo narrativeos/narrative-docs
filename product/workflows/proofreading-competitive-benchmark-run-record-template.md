@@ -111,6 +111,64 @@ benchmark_run_record:
     evidence_registry_ref: whitepaper/evidence-registry.md
 ```
 
+## Whitepaper 导出附录（可复用）
+
+以下片段用于把本页 run record 导出为 whitepaper 结果模板中的 `metric_record` 结构。
+
+```yaml
+whitepaper_export_projection:
+  source_run_id: <benchmark_run_record.run_id>
+  export_records:
+    - metric_record:
+        run_id: <benchmark_run_record.run_id>
+        baseline_id: <benchmark_run_record.baseline_id>
+        tier: <dataset_results[].tier>
+        dataset_id: <dataset_results[].dataset_id>
+        metrics:
+          proofreading_recall:
+            narrativeos: <dataset_results[].metrics.proofreading_recall>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+          proofreading_false_positive_ratio:
+            narrativeos: <dataset_results[].metrics.proofreading_false_positive_ratio>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+          term_consistency_alignment_rate:
+            narrativeos: <dataset_results[].metrics.term_consistency_alignment_rate>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+          registry_new_term_precision:
+            narrativeos: <dataset_results[].metrics.registry_new_term_precision>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+          knowledge_density_kd:
+            narrativeos: <dataset_results[].metrics.knowledge_density_kd>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+          explanation_usable_rate:
+            narrativeos: <dataset_results[].metrics.explanation_usable_rate>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+          review_cycle_time_sec:
+            narrativeos: <dataset_results[].metrics.review_cycle_time_sec>
+            baseline: <baseline_value>
+            delta: <narrativeos-baseline>
+        traceability:
+          issue_trace_pass_ratio: <dataset_results[].traceability.issue_trace_pass_ratio>
+          critical_trace_fail_count: <dataset_results[].traceability.critical_trace_fail_count>
+        decision:
+          gate_result: <dataset_results[].gate_result>
+          go_no_go: <benchmark_run_record.final_decision.go_no_go>
+          rationale: <benchmark_run_record.final_decision.reason>
+```
+
+导出约束：
+
+- 每个 tier 生成一条 `metric_record`，禁止跨 tier 聚合后再导出。
+- 若某指标在当前 tier 不适用，保留字段并标注 `not_applicable` 或在 notes 说明。
+- proxy 映射仅限临时评审底稿，正式发布应替换为标准实测值。
+- 导出前需核对 go/no-go 与原始 run record 的 final_decision 一致。
+
 ## 阻断条件 | Stop Conditions
 
 - 缺少 intake、checklist 或 runbook 回链
@@ -124,3 +182,4 @@ benchmark_run_record:
 - proofreading-competitive-benchmark-runbook.md
 - ../../whitepaper/proofreading-competitive-results-template.md
 - ../../whitepaper/proofreading-competitive-results-sample-2026-05.md
+- ../../whitepaper/workflow-to-whitepaper-mapping-guide.md
