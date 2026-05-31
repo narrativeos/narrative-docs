@@ -37,6 +37,7 @@ source_of_truth: narrative-docs
 - [workflows](workflows/README.md): 用户与团队工作流
 - [roadmap](roadmap/README.md): 里程碑与优先级
 - [v1-design-baseline](v1-design-baseline.md): V1 可执行设计基线（范围、MVP、验收、Go/No-go）
+- [v1-two-week-sprint-plan](v1-two-week-sprint-plan.md): V1 两周执行排期（任务、负责人、依赖、验收）
 
 ## 平台化补充
 

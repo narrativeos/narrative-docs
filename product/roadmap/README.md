@@ -36,6 +36,8 @@ source_of_truth: narrative-docs
 
 执行基线：V1 阶段默认采用 [../v1-design-baseline.md](../v1-design-baseline.md) 的范围边界、双门槛验收（Product KPI + Engineering SLO）与 No-go 规则。
 
+执行排期：两周任务拆解与 owner 分配见 [../v1-two-week-sprint-plan.md](../v1-two-week-sprint-plan.md)。
+
 ### V1：作者/编辑工作流闭环
 
 目标：完成单文本从导入到诊断报告的高频闭环。

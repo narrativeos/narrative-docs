@@ -46,6 +46,7 @@ sections:
       - product/workflows/README.md
       - product/modules/README.md
       - product/v1-design-baseline.md
+      - product/v1-two-week-sprint-plan.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide
