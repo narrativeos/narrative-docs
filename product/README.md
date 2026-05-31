@@ -52,6 +52,16 @@ source_of_truth: narrative-docs
 - 平台域模块设计（当前基线六域）: [modules/platform-domains.md](modules/platform-domains.md)
 - 对应平台架构蓝图: [../architecture/platform/README.md](../architecture/platform/README.md)
 
+## 校对能力域融合导读
+
+校对补齐能力属于平台当前基线六域内的协同能力，而不是独立产品线。
+
+建议按以下顺序阅读：
+
+- 先读 [modules/platform-domains](modules/platform-domains.md) 查看功能点到域责任映射。
+- 再读 [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md) 查看阶段目标与跨域边界。
+- 最后读 [modules/proofreading-competitive-benchmark](modules/proofreading-competitive-benchmark.md) 查看竞争力判定口径。
+
 ## 协作规则 | Collaboration Rules
 
 - 产品文档更新需与 [Architecture](../architecture/README.md) 和 [Developer](../developer/README.md) 保持口径一致

@@ -41,3 +41,11 @@ source_of_truth: narrative-docs
 - [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力
 - [proofreading-capability-gap-closure-plan.md](proofreading-capability-gap-closure-plan.md): 校对补齐能力在产品中的角色、边界与演进路径
 - [proofreading-competitive-benchmark.md](proofreading-competitive-benchmark.md): 校对补齐竞争力是否成立的产品判断模块
+
+## 校对能力在模块体系中的位置
+
+校对相关条目用于说明“平台当前基线六域如何协同承接校对能力”。
+
+- 定位页：`proofreading-capability-gap-closure-plan.md` 负责定义角色与边界。
+- 判定页：`proofreading-competitive-benchmark.md` 负责定义 go/no-go 判断口径。
+- 总映射页：`platform-domains.md` 负责定义功能点到域模块责任表。
