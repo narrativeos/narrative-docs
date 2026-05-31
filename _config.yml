@@ -382,6 +382,20 @@ defaults:
       path: developer/workspace/ai-native-bootstrap-checklist.md
     values:
       title: AI-Native Bootstrap Checklist AI原生启动清单
+  - scope:
+      path: product/v1-design-baseline.md
+    values:
+      title: V1 Design Baseline V1设计基线
+      parent: Development Planning 开发计划
+      grand_parent: Developer 开发者
+      nav_order: 21
+  - scope:
+      path: product/v1-two-week-sprint-plan.md
+    values:
+      title: V1 Two-week Sprint Plan V1两周迭代计划
+      parent: Development Planning 开发计划
+      grand_parent: Developer 开发者
+      nav_order: 22
 
   - scope:
       path: user/README.md

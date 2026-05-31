@@ -36,8 +36,6 @@ source_of_truth: narrative-docs
 - [modules](modules/README.md): 核心模块职责与关系
 - [workflows](workflows/README.md): 用户与团队工作流
 - [roadmap](roadmap/README.md): 里程碑与优先级
-- [v1-design-baseline](v1-design-baseline.md): V1 可执行设计基线（范围、MVP、验收、Go/No-go）
-- [v1-two-week-sprint-plan](v1-two-week-sprint-plan.md): V1 两周执行排期（任务、负责人、依赖、验收）
 - [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md): V1 场景 mock 模拟数据包
 - [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
 - [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md): 校对补齐能力在产品中的角色、边界与阶段目标
@@ -48,6 +46,12 @@ source_of_truth: narrative-docs
 - [workflows/proofreading-competitive-pilot-intake-template](workflows/proofreading-competitive-pilot-intake-template.md): 校对补齐真实试点的入口锁定页
 - [workflows/fact-conflict-detection-minimal-runbook](workflows/fact-conflict-detection-minimal-runbook.md): 事实冲突识别的最小可执行作业单
 - [workflows/fact-conflict-detection-sample-2026-05](workflows/fact-conflict-detection-sample-2026-05.md): 事实冲突识别的一页式执行样例
+
+开发计划与版本推进文档现统一归入开发者导航分组：
+
+- [../developer/README.md](../developer/README.md)
+- [v1-design-baseline](v1-design-baseline.md)
+- [v1-two-week-sprint-plan](v1-two-week-sprint-plan.md)
 
 ## 平台化补充
 

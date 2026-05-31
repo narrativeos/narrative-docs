@@ -43,6 +43,15 @@ source_of_truth: narrative-docs
 - [coding/docs-release-readiness-checklist.md](coding/docs-release-readiness-checklist.md): 文档发布前就绪检查清单
 - [operations](operations/README.md): 安装验证、回滚与故障处置 Runbook
 - [workspace/ai-native-bootstrap-checklist.md](workspace/ai-native-bootstrap-checklist.md): AI-Native 仓库初始化检查清单
+- [../product/v1-design-baseline.md](../product/v1-design-baseline.md): V1 设计基线（开发计划）
+- [../product/v1-two-week-sprint-plan.md](../product/v1-two-week-sprint-plan.md): V1 两周执行排期（迭代计划）
+
+## 开发计划与版本管理 | Planning and Versioning
+
+- [../product/v1-design-baseline.md](../product/v1-design-baseline.md): 版本范围、MVP、验收门槛
+- [../product/v1-two-week-sprint-plan.md](../product/v1-two-week-sprint-plan.md): 迭代任务拆分、负责人与依赖关系
+- [../whats-new.md](../whats-new.md): 版本更新摘要
+- [../changelog.md](../changelog.md): 版本变更明细
 
 ## 开发流程专题 | Workflow Tracks
 
