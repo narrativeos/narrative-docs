@@ -383,6 +383,18 @@ defaults:
     values:
       title: AI-Native Bootstrap Checklist AI原生启动清单
   - scope:
+      path: changelog.md
+    values:
+      parent: Version Management 版本管理
+      grand_parent: Developer 开发者
+      nav_order: 31
+  - scope:
+      path: whats-new.md
+    values:
+      parent: Version Management 版本管理
+      grand_parent: Developer 开发者
+      nav_order: 32
+  - scope:
       path: product/v1-design-baseline.md
     values:
       title: V1 Design Baseline V1设计基线
