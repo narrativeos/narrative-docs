@@ -47,12 +47,21 @@ sections:
       - product/modules/README.md
       - product/scenarios/v1-mock-simulation-dataset.md
       - product/prototype/v1-prototype-spec.md
+      - product/modules/analysis-engine.md
+      - product/modules/corpus-observatory.md
+      - product/modules/insight-engine.md
+      - product/modules/library.md
+      - product/modules/platform-domains.md
+      - product/modules/style-genome.md
+      - product/modules/visual-os.md
       - product/modules/proofreading-capability-gap-closure-plan.md
       - product/modules/proofreading-competitive-benchmark.md
       - product/workflows/proofreading-competitive-benchmark-runbook.md
       - product/workflows/proofreading-competitive-benchmark-checklist.md
       - product/workflows/proofreading-competitive-benchmark-run-record-template.md
       - product/workflows/proofreading-competitive-pilot-intake-template.md
+      - product/workflows/fact-conflict-detection-minimal-runbook.md
+      - product/workflows/fact-conflict-detection-sample-2026-05.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide
@@ -71,6 +80,7 @@ sections:
       - developer/coding/README.md
       - developer/coding/docs-governance-standard.md
       - developer/coding/docs-governance-backlog.md
+      - developer/coding/storage-optimization-rollout-checklist.md
       - developer/coding/docs-release-readiness-checklist.md
       - developer/coding/docs-governance-release-report-2026-05.md
       - developer/coding/docs-governance-monthly-check-template.md
@@ -159,6 +169,12 @@ sections:
     entry: whitepaper/README.md
     children:
       - whitepaper/one-page-summary.md
+      - whitepaper/project-foundation.md
+      - whitepaper/architecture-feasibility.md
+      - whitepaper/implementation-freeze.md
+      - whitepaper/competitor-matrix.md
+      - whitepaper/market-acceptance.md
+      - whitepaper/evidence-registry.md
       - whitepaper/benchmark-and-acceptance-metrics.md
       - whitepaper/algorithm-evaluation-report.md
       - whitepaper/error-taxonomy-and-fix-plan.md
