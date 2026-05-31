@@ -309,6 +309,14 @@ options:
 - 默认引擎：当前基线六引擎全开（可按版本扩展或收敛）
 - 输出：可追溯诊断报告与可视化工件
 
+### Adaptive Routing & Incremental Reuse
+
+- 默认执行策略：优先 Fast Scan，仅在风险信号触发时升级 Full MRI。
+- 增量执行策略：采用 dirty-region reuse，避免每次变更触发全文重算。
+- 复用执行策略：采用 parse-once/fan-out-many，将高开销解析产物复用到多个引擎。
+- 资源执行策略：当资源不足时优先返回受限结果与 skip reason，而不是静默超时。
+- 工件执行策略：高成本中间结果通过 artifact handle 引用复用，降低重复装配成本。
+
 ## 依赖与边界
 
 - 输入来源：Input/Language Layer

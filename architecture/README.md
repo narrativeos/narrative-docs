@@ -61,5 +61,6 @@ source_of_truth: narrative-docs
 
 - [Benchmark and Acceptance Metrics](../whitepaper/benchmark-and-acceptance-metrics.md)
 - [Research Methodology and Reproducibility](../whitepaper/research-methodology-and-reproducibility.md)
+- [Algorithm Evaluation Report](../whitepaper/algorithm-evaluation-report.md)
 - [Core Docs Mapping](../developer/coding/core-docs-mapping.md)
 - [Readiness Checklist](../developer/coding/readiness-checklist.md)
