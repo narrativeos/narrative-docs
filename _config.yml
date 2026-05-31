@@ -312,7 +312,7 @@ defaults:
       path: developer/coding/README.md
     values:
       title: Coding Rules 编码规范
-      nav_order: 60
+      nav_order: 40
   - scope:
       path: developer/coding/docs-governance-standard.md
     values:
@@ -345,7 +345,7 @@ defaults:
       path: developer/operations/README.md
     values:
       title: Operations 运行手册
-      nav_order: 70
+      nav_order: 90
   - scope:
       path: developer/operations/academic-adoption-weekly-execution-checklist.md
     values:
@@ -362,12 +362,12 @@ defaults:
       path: developer/plugins/README.md
     values:
       title: Plugins 插件
-      nav_order: 50
+      nav_order: 60
   - scope:
       path: developer/sdk/README.md
     values:
       title: SDK 集成
-      nav_order: 40
+      nav_order: 50
   - scope:
       path: developer/setup/README.md
     values:
@@ -387,27 +387,27 @@ defaults:
     values:
       parent: Version Management 版本管理
       grand_parent: Developer 开发者
-      nav_order: 31
+      nav_order: 81
   - scope:
       path: whats-new.md
     values:
       parent: Version Management 版本管理
       grand_parent: Developer 开发者
-      nav_order: 32
+      nav_order: 82
   - scope:
       path: product/v1-design-baseline.md
     values:
       title: V1 Design Baseline V1设计基线
       parent: Development Planning 开发计划
       grand_parent: Developer 开发者
-      nav_order: 21
+      nav_order: 71
   - scope:
       path: product/v1-two-week-sprint-plan.md
     values:
       title: V1 Two-week Sprint Plan V1两周迭代计划
       parent: Development Planning 开发计划
       grand_parent: Developer 开发者
-      nav_order: 22
+      nav_order: 72
 
   - scope:
       path: user/README.md
