@@ -40,6 +40,8 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 
 V1 校对补齐对打执行约束：评测必须按 [proofreading-competitive-benchmark-runbook.md](proofreading-competitive-benchmark-runbook.md) 的 P0/P1/P2 顺序执行并记录。
 
+V1 校对补齐评审清单：周会与评审现场使用 [proofreading-competitive-benchmark-checklist.md](proofreading-competitive-benchmark-checklist.md) 逐项打勾并留档。
+
 ### 用户 1：作者/编辑（V1 核心路径）
 
 目标：完成单篇稿件的快速诊断与修订决策。

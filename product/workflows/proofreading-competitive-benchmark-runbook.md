@@ -116,6 +116,7 @@ benchmark_run_record:
 ## 关联文档
 
 - ../modules/proofreading-competitive-benchmark.md
+- proofreading-competitive-benchmark-checklist.md
 - ../modules/proofreading-capability-gap-closure-plan.md
 - ../scenarios/v1-mock-simulation-dataset.md
 - ../../academic/golden-set-threshold-policy.md
