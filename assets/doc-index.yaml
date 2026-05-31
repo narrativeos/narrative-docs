@@ -53,6 +53,7 @@ sections:
       - product/modules/proofreading-competitive-benchmark.md
       - product/workflows/proofreading-competitive-benchmark-runbook.md
       - product/workflows/proofreading-competitive-benchmark-checklist.md
+      - product/workflows/proofreading-competitive-benchmark-run-record-template.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide

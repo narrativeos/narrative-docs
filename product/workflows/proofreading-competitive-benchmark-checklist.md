@@ -94,6 +94,7 @@ final_decision:
 ## 关联文档
 
 - proofreading-competitive-benchmark-runbook.md
+- proofreading-competitive-benchmark-run-record-template.md
 - ../scenarios/v1-mock-simulation-dataset.md
 - ../modules/proofreading-competitive-benchmark.md
 - ../../whitepaper/proofreading-competitive-results-sample-2026-05.md

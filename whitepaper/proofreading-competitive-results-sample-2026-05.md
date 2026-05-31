@@ -161,6 +161,23 @@ risk_and_limits:
     - 引入至少 1 轮真实试点样本并复跑
 ```
 
+## 从样例升级到真实试点数据
+
+迁移规则：
+
+- 用真实试点 run_id 替换样例 run_id，并保留原始执行日期与操作者。
+- data_source_ref 必须补入真实运行记录页与对应 checklist。
+- 若真实试点只覆盖部分 tier，不得沿用本页的全量 pass 结论。
+- 若真实试点出现 fail/no-go，必须保留失败轮次，不得用样例结果覆盖。
+- 任何对外结论只允许引用真实试点 delta，不得继续使用本页样例数值。
+
+最小迁移步骤：
+
+1. 复制 [../product/workflows/proofreading-competitive-benchmark-run-record-template.md](../product/workflows/proofreading-competitive-benchmark-run-record-template.md) 生成真实运行记录。
+2. 按 [../product/workflows/proofreading-competitive-benchmark-checklist.md](../product/workflows/proofreading-competitive-benchmark-checklist.md) 完成逐项勾检。
+3. 按 [../product/workflows/proofreading-competitive-benchmark-runbook.md](../product/workflows/proofreading-competitive-benchmark-runbook.md) 复核阈值与回滚动作。
+4. 将本页中的样例指标替换为真实试点结果，并显式记录 sample_bias 与 baseline_bias。
+
 ## 关联文档
 
 - proofreading-competitive-results-template.md
@@ -168,3 +185,4 @@ risk_and_limits:
 - market-acceptance.md
 - ../product/workflows/proofreading-competitive-benchmark-runbook.md
 - ../product/workflows/proofreading-competitive-benchmark-checklist.md
+- ../product/workflows/proofreading-competitive-benchmark-run-record-template.md
