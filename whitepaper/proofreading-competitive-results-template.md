@@ -26,6 +26,7 @@ status: template
 - 本模板只记录已执行并可回放的评测结果。
 - 任何“优于竞品”结论必须附指标 delta 与证据回链。
 - 未达到阈值的轮次必须如实记录为 fail 或 no-go。
+- 本模板用于记录“域融合后”的校对能力表现，不作为独立产品线证明材料。
 
 ## 报告元信息
 
@@ -37,6 +38,8 @@ report_meta:
   reviewer: maintainer
   baseline_set: [Baseline-A, Baseline-B]
   data_source_ref:
+    - product/modules/platform-domains.md
+    - product/modules/proofreading-capability-gap-closure-plan.md
     - product/scenarios/v1-mock-simulation-dataset.md
     - product/workflows/proofreading-competitive-benchmark-runbook.md
     - product/workflows/proofreading-competitive-benchmark-checklist.md
@@ -99,6 +102,7 @@ metric_record:
 - 允许：在给定数据集和基线下，NarrativeOS 在 explanation_usable_rate 与 review_cycle_time_sec 上有优势。
 - 禁止：在无充足样本时宣称“全面领先所有竞品”。
 - 必填：风险、限制、样本偏差与后续验证计划。
+- 必须：结论需说明关键差异来自哪些平台域能力协同，而非单点校对功能。
 
 ## 风险与限制模板
 
@@ -117,5 +121,6 @@ risk_and_limits:
 - competitor-matrix.md
 - market-acceptance.md
 - ../product/modules/proofreading-competitive-benchmark.md
+- ../product/modules/platform-domains.md
 - ../product/workflows/proofreading-competitive-pilot-intake-template.md
 - ../product/workflows/proofreading-competitive-benchmark-runbook.md

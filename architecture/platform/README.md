@@ -166,6 +166,25 @@ Insight Engine
 Knowledge Graph
 ```
 
+## 校对能力在当前基线六域中的落点（并入方案）
+
+说明：校对能力按功能点并入当前基线六域，不新增独立域。
+
+| 校对功能点 | 主责域 | 协作域 | 架构责任 |
+| --- | --- | --- | --- |
+| typo / punctuation / grammar | Text Lab | Insight Engine | 输入预处理后触发基础问题发现 |
+| consistency | Text Lab | Knowledge Graph | 文内一致性、编号链与引用链冲突检测 |
+| knowledge | Insight Engine | Knowledge Graph | 事实核查解释与来源等级约束 |
+| risk / official_doc | Insight Engine | Narrative Atlas | 风险提示与证据定位回看 |
+| 规则/词条沉淀 | Knowledge Graph | Corpus Observatory | 候选规则与术语资产入库 |
+| 误报/漏报监测 | Corpus Observatory | Knowledge Graph | 跨批次质量趋势与漂移治理 |
+
+架构约束：
+
+- 不允许形成“域外校对子系统”绕开主链路。
+- 任何校对结论都必须沿用统一证据链语义与回滚策略。
+- Domain 扩展仅在职责重叠无法治理时触发，默认不新增 Proofreading Domain。
+
 该链路定义平台从“单次分析工具”向“长期认知基础设施”的演化路径。
 
 ## 架构约束 | Architecture Constraints

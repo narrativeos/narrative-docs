@@ -163,6 +163,25 @@ source_of_truth: narrative-docs
 Text Lab -> Narrative Atlas -> Corpus Observatory -> Style Genome -> Insight Engine -> Knowledge Graph
 ```
 
+## 校对能力域融合映射（并入当前基线六域）
+
+说明：校对能力不作为独立产品域存在，而是按功能点并入当前基线六域。
+
+| 校对功能点 | 主责域 | 协作域 | 产品承接 | 核心输出 |
+| --- | --- | --- | --- | --- |
+| typo / punctuation / grammar | Text Lab | Insight Engine | 单文入口快速发现与预警 | issue list + span 定位 |
+| consistency | Text Lab | Knowledge Graph | 文内一致性与编号链冲突检测 | consistency alerts |
+| knowledge | Insight Engine | Knowledge Graph | 事实核查与证据等级解释 | evidence-linked suggestions |
+| risk / official_doc | Insight Engine | Narrative Atlas | 高风险表达与规范冲突提醒 | risk alerts + rollback hint |
+| 建议定位与回看 | Narrative Atlas | Insight Engine | X-Ray 与证据锚点联动 | sentence_ref 回链 |
+| 规则/词条沉淀 | Knowledge Graph | Corpus Observatory | 规则候选与词条资产入库 | registry updates |
+| 误报/漏报演化 | Corpus Observatory | Knowledge Graph | 跨样本漂移监测与策略回流 | quality trend baseline |
+
+补充约束：
+
+- Style Genome 作为辅助解释维度参与趋势分析，不承担校对主判定职责。
+- 所有校对结论仍遵循“结论 -> 证据 -> 原文”的统一证据链标准。
+
 ## 关键平台能力
 
 - 规模分析：支持大规模文本持续纳入与比较

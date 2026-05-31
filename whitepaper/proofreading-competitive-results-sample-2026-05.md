@@ -4,6 +4,8 @@
 
 本页提供首版已填充样例结果，演示如何按照白皮书模板记录校对补齐同题对打评测。
 
+本页示例默认采用“校对能力并入平台当前基线六域”的产品架构口径。
+
 ## Executive Summary (EN)
 
 This page is a filled example report showing how to record proofreading competitive benchmark outcomes.
@@ -31,6 +33,8 @@ report_meta:
   reviewer: maintainer
   baseline_set: [Baseline-B]
   data_source_ref:
+    - product/modules/platform-domains.md
+    - product/modules/proofreading-capability-gap-closure-plan.md
     - product/scenarios/v1-mock-simulation-dataset.md
     - product/workflows/proofreading-competitive-benchmark-runbook.md
     - product/workflows/proofreading-competitive-benchmark-checklist.md
@@ -144,6 +148,7 @@ metric_records:
 final_decision:
   go_no_go: go
   reason: P0/P1/P2 全部通过，且无 critical traceability 失败。
+  domain_integration_note: 校对能力由 Text Lab、Narrative Atlas、Insight Engine、Knowledge Graph、Corpus Observatory 协同承接。
   constraints:
     - 样本仍为模拟数据，需继续扩展真实试点验证
     - baseline 仍需增加 Baseline-A 与 Baseline-C 的同题结果
@@ -181,6 +186,7 @@ risk_and_limits:
 ## 关联文档
 
 - proofreading-competitive-results-template.md
+- ../product/modules/platform-domains.md
 - competitor-matrix.md
 - market-acceptance.md
 - ../product/workflows/proofreading-competitive-benchmark-runbook.md

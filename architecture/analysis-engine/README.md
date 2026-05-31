@@ -376,12 +376,21 @@ options:
 
 为补齐校对类能力但保持可解释性，本架构采用“规则优先、模型增强”的扩展路线。
 
+该扩展默认按平台域并入执行：
+
+- Engine 7/8 提供分析能力，不直接形成独立产品域。
+- 发现入口由 Text Lab 承接，解释与建议由 Insight Engine 承接。
+- 规则与词条沉淀由 Knowledge Graph（产品层 Library）承接。
+- 误报/漏报趋势由 Corpus Observatory 承接。
+
 ### 扩展引擎候选
 
 - Engine 7（候选）：Proofreading Engine（基础校对）
 - Engine 8（候选）：Consistency & Reference Engine（一致性与引用校对）
 
 说明：候选引擎不改变当前基线六引擎默认执行路径；仅在 profile 或策略命中时启用。
+
+补充说明：候选引擎输出必须遵守平台域责任边界，禁止在分析层直接闭环发布结论。
 
 ### Engine 7 输入输出契约（建议）
 
