@@ -118,8 +118,10 @@ benchmark_record:
 ## 关联文档
 
 - proofreading-capability-gap-closure-plan.md
+- ../workflows/proofreading-competitive-benchmark-runbook.md
 - ../scenarios/v1-mock-simulation-dataset.md
 - ../prototype/v1-prototype-spec.md
 - ../../academic/golden-set-threshold-policy.md
 - ../../whitepaper/competitor-matrix.md
 - ../../whitepaper/market-acceptance.md
+- ../../whitepaper/proofreading-competitive-results-template.md

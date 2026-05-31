@@ -42,6 +42,7 @@ source_of_truth: narrative-docs
 - [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
 - [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md): 零规则库起步的校对能力补齐方案
 - [modules/proofreading-competitive-benchmark](modules/proofreading-competitive-benchmark.md): 校对补齐同题对打评测规范
+- [workflows/proofreading-competitive-benchmark-runbook](workflows/proofreading-competitive-benchmark-runbook.md): 校对补齐同题对打执行作业单
 
 ## 平台化补充
 

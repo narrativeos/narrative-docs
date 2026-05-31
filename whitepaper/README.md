@@ -94,6 +94,7 @@ source_of_truth: narrative-docs
 - [ALGO-TASK-001 首轮运行作业单](algo-task-001-runbook.md)
 - [ALGO-TASK-001 执行清单模板](algo-task-001-execution-checklist.md)
 - [ALGO-TASK-001 最小可填清单](algo-task-001-minimal-checklist.md)
+- [校对同题对打结果模板](proofreading-competitive-results-template.md)
 - [研究方法与复现基线](research-methodology-and-reproducibility.md)
 - [V2 语料比较研究模板](study-template-v2-corpus-comparative-analysis.md)
 - [叙事分段标注协议](annotation-protocol-narrative-segmentation.md)

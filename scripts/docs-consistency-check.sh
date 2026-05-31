@@ -35,6 +35,18 @@ require_not_contains() {
   pass "pattern absent in $f: $pattern"
 }
 
+require_count_ge() {
+  local f="$1"
+  local pattern="$2"
+  local min_count="$3"
+  local count
+  count=$(rg -n "$pattern" "$f" | wc -l | tr -d ' ')
+  if [[ "$count" -lt "$min_count" ]]; then
+    fail "pattern count in $f below threshold ($count < $min_count): $pattern"
+  fi
+  pass "pattern count in $f meets threshold ($count >= $min_count): $pattern"
+}
+
 require_file "index.md"
 require_file "_config.yml"
 require_file "assets/doc-index.yaml"
@@ -59,6 +71,11 @@ require_file "academic/templates-golden-set-fact-check-ledger.md"
 require_file "academic/examples-golden-set-fact-check-ledger-minimal.md"
 require_file "academic/examples-golden-set-research-minimal.md"
 require_file "academic/examples-golden-set-detective-minimal.md"
+require_file "product/scenarios/v1-mock-simulation-dataset.md"
+require_file "product/prototype/v1-prototype-spec.md"
+require_file "product/modules/proofreading-competitive-benchmark.md"
+require_file "product/workflows/proofreading-competitive-benchmark-runbook.md"
+require_file "whitepaper/proofreading-competitive-results-template.md"
 
 require_contains "index.md" "开发环境 10\+15 分钟自检"
 require_contains "index.md" "API 契约 15 分钟验证"
@@ -116,6 +133,38 @@ require_contains "academic/examples-golden-set-research-minimal.md" "gate_decisi
 require_contains "academic/examples-golden-set-detective-minimal.md" "Fail 分支演示（示例）"
 require_contains "academic/examples-golden-set-detective-minimal.md" "gate_decision: fail"
 
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P0-001"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P1-001"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P2-001"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_extension:"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "coverage_assertion:"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_recall"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_false_positive_ratio"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "term_consistency_alignment_rate"
+require_contains "product/scenarios/v1-mock-simulation-dataset.md" "registry_new_term_precision"
+require_count_ge "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_contract_valid: true" 3
+
+require_contains "product/prototype/v1-prototype-spec.md" "Gate-05"
+require_contains "product/prototype/v1-prototype-spec.md" "Gate-06"
+require_contains "product/prototype/v1-prototype-spec.md" "DS-V1-PRF-P0-001"
+require_contains "product/prototype/v1-prototype-spec.md" "DS-V1-PRF-P1-001"
+require_contains "product/prototype/v1-prototype-spec.md" "DS-V1-PRF-P2-001"
+
+require_contains "product/modules/proofreading-competitive-benchmark.md" "Proofreading Competitive Benchmark"
+require_contains "product/modules/proofreading-competitive-benchmark.md" "DS-V1-PRF-P0-001"
+require_contains "product/modules/proofreading-competitive-benchmark.md" "DS-V1-PRF-P1-001"
+require_contains "product/modules/proofreading-competitive-benchmark.md" "DS-V1-PRF-P2-001"
+
+require_contains "product/workflows/proofreading-competitive-benchmark-runbook.md" "Proofreading Competitive Benchmark Runbook"
+require_contains "product/workflows/proofreading-competitive-benchmark-runbook.md" "P0: DS-V1-PRF-P0-001"
+require_contains "product/workflows/proofreading-competitive-benchmark-runbook.md" "P1: DS-V1-PRF-P1-001"
+require_contains "product/workflows/proofreading-competitive-benchmark-runbook.md" "P2: DS-V1-PRF-P2-001"
+
+require_contains "whitepaper/proofreading-competitive-results-template.md" "Proofreading Competitive Results Template"
+require_contains "whitepaper/proofreading-competitive-results-template.md" "DS-V1-PRF-P0-001"
+require_contains "whitepaper/proofreading-competitive-results-template.md" "DS-V1-PRF-P1-001"
+require_contains "whitepaper/proofreading-competitive-results-template.md" "DS-V1-PRF-P2-001"
+
 require_contains "assets/doc-index.yaml" "developer/api/openapi/narrative-api-v1.yaml"
 require_contains "assets/doc-index.yaml" "user/getting-started/first-success-e2e-sample.md"
 require_contains "assets/doc-index.yaml" "academic/templates-golden-set-research-profile.md"
@@ -134,6 +183,8 @@ require_contains "assets/doc-index.yaml" "academic/templates-golden-set-fact-che
 require_contains "assets/doc-index.yaml" "academic/examples-golden-set-fact-check-ledger-minimal.md"
 require_contains "assets/doc-index.yaml" "academic/examples-golden-set-research-minimal.md"
 require_contains "assets/doc-index.yaml" "academic/examples-golden-set-detective-minimal.md"
+require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-benchmark-runbook.md"
+require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-template.md"
 
 require_contains "_config.yml" "parent: Whitepaper 白皮书"
 

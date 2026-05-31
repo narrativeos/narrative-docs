@@ -51,6 +51,7 @@ sections:
       - product/prototype/v1-prototype-spec.md
       - product/modules/proofreading-capability-gap-closure-plan.md
       - product/modules/proofreading-competitive-benchmark.md
+      - product/workflows/proofreading-competitive-benchmark-runbook.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide
@@ -169,6 +170,7 @@ sections:
       - whitepaper/bench-task-001-evidence-traceability-audit.md
       - whitepaper/rsch-task-001-v2-corpus-runbook.md
       - whitepaper/anno-task-001-segmentation-consistency.md
+      - whitepaper/proofreading-competitive-results-template.md
       - developer/coding/core-docs-mapping.md
       - developer/coding/readiness-checklist.md
   - id: governance

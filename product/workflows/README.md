@@ -38,6 +38,8 @@ V1 执行约束：作者/编辑路径必须满足 [../v1-design-baseline.md](../
 
 V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](../scenarios/v1-mock-simulation-dataset.md) 的场景数据编制，再进入 [../prototype/v1-prototype-spec.md](../prototype/v1-prototype-spec.md) 原型设计与评审。
 
+V1 校对补齐对打执行约束：评测必须按 [proofreading-competitive-benchmark-runbook.md](proofreading-competitive-benchmark-runbook.md) 的 P0/P1/P2 顺序执行并记录。
+
 ### 用户 1：作者/编辑（V1 核心路径）
 
 目标：完成单篇稿件的快速诊断与修订决策。
