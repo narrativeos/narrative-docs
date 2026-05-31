@@ -49,6 +49,23 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 
 这组 workflow 的目标不是描述更多流程细节，而是统一“谁先做、做完留什么、何时停止、何时进入下一阶段”的产品判断。
 
+按域责任执行图（并入当前基线六域）：
+
+```text
+试点 intake（workflow）
+	-> Text Lab: 基础发现与一致性预检
+	-> Narrative Atlas: 问题定位与证据锚点回看
+	-> Insight Engine: 建议解释与风险判断
+	-> Knowledge Graph/Library: 规则与词条沉淀
+	-> Corpus Observatory: 跨轮次质量趋势复核
+	-> run record + whitepaper evidence
+```
+
+执行约束：
+
+- 任一关键域未完成对应输出，不得标记本轮 go。
+- 任一关键域出现 no-go，必须记录对应 rollback_action。
+
 ### 用户 1：作者/编辑（V1 核心路径）
 
 目标：完成单篇稿件的快速诊断与修订决策。

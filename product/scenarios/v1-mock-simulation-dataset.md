@@ -521,6 +521,9 @@ scene_id: SCN-V1-001
 profile: fast_scan
 base_dataset_ref: DS-V1-AUTHOR-SHORT-001
 proofreading_extension:
+  domain_owner:
+    primary: Text Lab
+    collaborates_with: [Insight Engine, Knowledge Graph]
   threshold_tier: standard
   issue_summary:
     typo: 7
@@ -569,6 +572,9 @@ scene_id: SCN-V1-002
 profile: full_mri
 base_dataset_ref: DS-V1-AUTHOR-LONG-001
 proofreading_extension:
+  domain_owner:
+    primary: Insight Engine
+    collaborates_with: [Knowledge Graph, Text Lab]
   threshold_tier: standard
   issue_summary:
     typo: 3
@@ -621,6 +627,9 @@ scene_id: SCN-V1-005
 profile: full_mri
 base_dataset_ref: DS-V1-EXPORT-001
 proofreading_extension:
+  domain_owner:
+    primary: Insight Engine
+    collaborates_with: [Narrative Atlas, Knowledge Graph, Corpus Observatory]
   threshold_tier: strict
   issue_summary:
     typo: 1
@@ -689,6 +698,13 @@ constraints:
 | P0 | DS-V1-PRF-P0-001 | typo/punctuation/grammar/consistency | proofreading_recall, proofreading_false_positive_ratio | pass |
 | P1 | DS-V1-PRF-P1-001 | consistency/knowledge/risk | term_consistency_alignment_rate, registry_new_term_precision | pass |
 | P2 | DS-V1-PRF-P2-001 | risk/official_doc + 其他类型回归 | 四项核心阈值全覆盖 | pass |
+
+域责任提示（并入当前基线六域）：
+
+- P0 主责域：Text Lab
+- P1 主责域：Insight Engine
+- P2 主责域：Insight Engine
+- 词条与规则沉淀统一回流到 Knowledge Graph（产品层 Library）
 
 专项判定规则：
 
