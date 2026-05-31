@@ -24,6 +24,7 @@ source_of_truth: narrative-docs
 
 - 必须先加载场景数据：../scenarios/v1-mock-simulation-dataset.md
 - 原型评审必须按 scene_id + dataset_id 执行，不接受纯静态页面评审。
+- 原型评审前必须通过当前基线六引擎 I/O 全覆盖校验（见场景数据中的算法覆盖矩阵与 coverage_assertion 字段）。
 
 ## 原型目标
 
@@ -159,6 +160,7 @@ EvidenceBroken
 
 ## 原型评审门槛
 
+- Gate-00：所有参与评审的数据集满足 all_six_engines_present=true 且 contract_shape_valid=true。
 - Gate-01：五个场景均可跑通主路径。
 - Gate-02：SCN-V1-003 与 SCN-V1-004 的失败路径有明确恢复动作。
 - Gate-03：所有结论卡可回链到 sentence_ref（SCN-V1-004 允许先失败后恢复）。
