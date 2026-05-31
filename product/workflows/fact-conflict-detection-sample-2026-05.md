@@ -98,6 +98,37 @@ final_decision:
     - rerun from P0-equivalent verification set
 ```
 
+## Whitepaper 投影示例 | Whitepaper Projection
+
+以下片段演示如何将本页样例映射到白皮书结果模板中的 `metric_record`：
+
+```yaml
+metric_record:
+  run_id: fv-20260531-001
+  baseline_id: Baseline-B
+  tier: P1
+  dataset_id: DS-V1-PRF-P1-001
+  metrics:
+    proofreading_false_positive_ratio:
+      narrativeos: 0.33
+      baseline: 0.28
+      delta: +0.05
+      note: mapped from hallucination_ratio as risk proxy
+    knowledge_density_kd:
+      narrativeos: 0.044
+      baseline: 0.041
+      delta: +0.003
+  traceability:
+    issue_trace_pass_ratio: 0.67
+    critical_trace_fail_count: 1
+  decision:
+    gate_result: fail
+    go_no_go: no-go
+    rationale: fact_refuted exists; unresolved_conflict not closed; retrieval_gap with traceability fail
+```
+
+说明：本投影用于演示字段映射，正式发布应优先使用独立采集的 proofreading_false_positive_ratio 实测值。
+
 ## 域责任留痕 | Domain Trace
 
 - Text Lab：完成 claim 规范化与原文切分。

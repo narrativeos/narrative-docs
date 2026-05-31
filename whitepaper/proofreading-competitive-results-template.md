@@ -101,6 +101,29 @@ metric_record:
     rationale: <short rationale>
 ```
 
+## Workflow 到 Whitepaper 字段映射
+
+用于把 workflow 执行记录（含事实冲突识别）稳定映射到白皮书结果结构，避免“同一轮次多套口径”。
+
+| Workflow Source Field | Whitepaper Target Field | Mapping Rule |
+| --- | --- | --- |
+| run_context.run_id | metric_record.run_id | 直接拷贝 |
+| run_context.threshold_tier | metric_record.tier | 使用 tier 映射表：lenient->P0, standard->P1, strict->P2 |
+| run_context.corpus_ref | metric_record.dataset_id | 直接拷贝 |
+| summary_metrics.verifiability_rate | metric_record.traceability.issue_trace_pass_ratio | 若缺 issue_trace_pass_ratio，可临时回填并在 notes 标注 proxy |
+| summary_metrics.hallucination_ratio | metric_record.metrics.proofreading_false_positive_ratio.narrativeos | 在事实核查型轮次中作为风险代理，不替代标准 FPR 实测 |
+| summary_metrics.traceability_pass_rate | metric_record.traceability.issue_trace_pass_ratio | 直接拷贝，优先级高于 proxy |
+| summary_metrics.knowledge_density_kd | metric_record.metrics.knowledge_density_kd.narrativeos | 直接拷贝 |
+| final_decision.gate_decision | metric_record.decision.gate_result | pass/fail 直接映射 |
+| final_decision.publish_blocked | metric_record.decision.go_no_go | true->no-go, false->go |
+| final_decision.reason | metric_record.decision.rationale | 合并为短句并保留失败关键词 |
+
+映射约束：
+
+- 禁止仅凭 knowledge_density_kd 给出“事实可信”结论，必须同时披露 verifiability/hallucination 口径。
+- 若使用 proxy 字段（例如把 hallucination_ratio 暂映射到 FPR 位），必须在 Notes 中显式声明。
+- 映射后的结论必须保留域融合说明，不得写成“独立校对工具领先”叙事。
+
 ## 结论写法约束
 
 - 允许：在给定数据集和基线下，NarrativeOS 在 explanation_usable_rate 与 review_cycle_time_sec 上有优势。
