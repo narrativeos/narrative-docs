@@ -35,6 +35,7 @@ source_of_truth: narrative-docs
 - [docs-governance-standard.md](docs-governance-standard.md)
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
+- [storage-optimization-rollout-checklist.md](storage-optimization-rollout-checklist.md)
 
 EN: This document defines coding and delivery guardrails for AI-first, multi-repo development.
 

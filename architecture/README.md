@@ -41,7 +41,7 @@ source_of_truth: narrative-docs
 
 - [system](system/README.md): 总体系统边界与子系统关系（含系统全景图、平台域主链路图）
 - [platform](platform/README.md): 平台级蓝图、平台域模型（当前基线六域）与能力进化闭环
-- [storage](storage/README.md): DuckDB 与数据流
+- [storage](storage/README.md): 分层存储、增量重算持久化与 artifact 句柄注册
 - [runtime](runtime/README.md): Rust Host / TS UI / Python Worker 运行时分工与隔离
 - [spatial](spatial/README.md): 空间计算与 GIS 集成
 - [library](library/README.md): 知识库架构与语言百科沉淀机制
