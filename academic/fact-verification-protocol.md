@@ -92,6 +92,33 @@ rationale_spans:
 - retrieval_gap -> resolve_counterevidence
 - 任一修复后 -> rerun_golden_set
 
+## 从事实核查扩展到知识纠错
+
+本协议可直接复用于“知识性校对与名词入库”场景。
+
+### 扩展对象
+
+- 专有名词一致性（人名、机构名、法规名、术语）
+- 事实表述一致性（引用、时间、版本、来源）
+
+### 扩展输出字段
+
+```yaml
+correction_candidate_id: <id>
+candidate_type: term | citation | factual_statement
+correction_status: accepted | rejected | pending_review
+registry_action: add_term | merge_alias | deprecate_term | no_action
+registry_evidence:
+  - source_span: <span-ref>
+  - source_level: L1 | L2 | L3
+```
+
+### 门禁约束（知识纠错）
+
+- 无 L1 或可追溯来源时，correction_status 不得为 accepted。
+- registry_action=add_term 时，必须附最小来源回链。
+- 出现 rejected 且被误用的条目，必须触发 rerun_golden_set。
+
 ## 关联
 
 - [Trust and Methodology](trust-methodology.md)

@@ -40,6 +40,7 @@ source_of_truth: narrative-docs
 - [v1-two-week-sprint-plan](v1-two-week-sprint-plan.md): V1 两周执行排期（任务、负责人、依赖、验收）
 - [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md): V1 场景 mock 模拟数据包
 - [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
+- [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md): 零规则库起步的校对能力补齐方案
 
 ## 平台化补充
 

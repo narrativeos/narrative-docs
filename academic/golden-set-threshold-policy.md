@@ -54,6 +54,30 @@
 - standard: <= 0.02
 - strict: = 0
 
+### proofreading_recall
+
+- lenient: >= 0.80
+- standard: >= 0.88
+- strict: >= 0.93
+
+### proofreading_false_positive_ratio
+
+- lenient: <= 0.15
+- standard: <= 0.10
+- strict: <= 0.06
+
+### term_consistency_alignment_rate
+
+- lenient: >= 0.85
+- standard: >= 0.92
+- strict: >= 0.97
+
+### registry_new_term_precision
+
+- lenient: >= 0.85
+- standard: >= 0.92
+- strict: >= 0.97
+
 ## 阈值选择规则
 
 优先使用 standard。以下场景必须切换 strict：
@@ -69,6 +93,8 @@
 2. Golden Set 样例仍在建设期
 
 限制：连续两轮 lenient 后必须回到 standard。
+
+补充：若 proofreading_false_positive_ratio 在任一档位超阈值，自动降级到 shadow_only 并触发规则回滚评审。
 
 ## 治理与审计
 

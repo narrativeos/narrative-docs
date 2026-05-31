@@ -371,3 +371,88 @@ options:
 - 检查融合器权重是否使用默认基线
 
 更多问题见 [../../troubleshooting.md](../../troubleshooting.md)。
+
+## 校对能力补齐扩展（零规则库起步）
+
+为补齐校对类能力但保持可解释性，本架构采用“规则优先、模型增强”的扩展路线。
+
+### 扩展引擎候选
+
+- Engine 7（候选）：Proofreading Engine（基础校对）
+- Engine 8（候选）：Consistency & Reference Engine（一致性与引用校对）
+
+说明：候选引擎不改变当前基线六引擎默认执行路径；仅在 profile 或策略命中时启用。
+
+### Engine 7 输入输出契约（建议）
+
+输入最小字段：
+
+```yaml
+document_id: doc-001
+text: <content>
+mode: proofreading
+rule_bundle: seed | learned | hybrid
+```
+
+输出最小字段：
+
+```yaml
+proofreading:
+  metrics:
+    typo_recall: 0.0-1.0
+    punctuation_precision: 0.0-1.0
+    grammar_warning_count: int
+  diagnostics:
+    - id: prf-001
+      error_type: typo | punctuation | grammar | format | numbering
+      span_ref: sentence:12
+      suggestion: <fix-text>
+      evidence: [rule:RGX-001, context:span-12]
+      confidence: 0.0-1.0
+```
+
+### Engine 8 输入输出契约（建议）
+
+输入最小字段：
+
+```yaml
+document_id: doc-001
+text: <content>
+mode: consistency
+reference_scope: intra_doc | corpus
+```
+
+输出最小字段：
+
+```yaml
+consistency:
+  metrics:
+    entity_consistency_rate: 0.0-1.0
+    reference_alignment_rate: 0.0-1.0
+    duplication_alert_count: int
+  diagnostics:
+    - id: cns-001
+      conflict_type: term_inconsistency | citation_mismatch | numbering_chain_break
+      span_refs: [p03-s01, p17-s02]
+      suggestion: <normalize-or-fix>
+      evidence: [entity:XXX, rule:CNS-002]
+      confidence: 0.0-1.0
+```
+
+### 零规则库自学习生命周期
+
+规则生命周期：
+
+```text
+candidate
+  -> shadow_eval
+  -> gated_release
+  -> active
+  -> deprecated
+```
+
+约束：
+
+- 规则从 candidate 到 active 必须经过 Golden Set 回归。
+- 误报率超阈值的 active 规则必须自动回滚到上一个稳定版本。
+- 任何规则命中输出必须带 rule_id 与 evidence，禁止黑箱结论。

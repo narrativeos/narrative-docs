@@ -83,6 +83,46 @@ source_of_truth: narrative-docs
 
 支持跨学科论文语料在句法、风格、主题结构上的差异分析。
 
+## 零名词库自学习机制
+
+为支持“零名词库”起步，语料学习层增加动态词条注册与验证流程。
+
+### Seed Lexicon 生成
+
+生成来源：
+
+- 文档内实体抽取（人名、机构、地名、术语候选）
+- 跨文档共现与稳定拼写模式
+- 人工修订痕迹中的高频替换对
+
+最小结构：
+
+```yaml
+seed_lexicon_item:
+  term_id: term-001
+  canonical_form: <term>
+  aliases: [<alias-a>, <alias-b>]
+  source_spans: [doc-01:p03-s02, doc-12:p11-s01]
+  confidence: 0.0-1.0
+  status: candidate | verified | deprecated
+```
+
+### 自学习闭环
+
+```text
+发现错例
+  -> 规则/词条候选生成
+  -> 影子评估（不影响用户）
+  -> Golden Set 回归
+  -> 小流量启用
+  -> 全量启用或回滚
+```
+
+门禁约束：
+
+- candidate 词条不得直接用于强结论输出。
+- verified 词条必须保留来源回链与审核记录。
+- 若启用后误报率上升超阈值，自动降级为 shadow_only。
 ## 输出资产
 
 - 向量资产索引
