@@ -66,6 +66,31 @@ require_anchor_followed_by() {
   pass "anchor-follow check passed in $f: $anchor -> $expected"
 }
 
+require_doc_index_coverage() {
+  local index_file="$1"
+  shift
+  local missing=()
+  local d
+  for d in "$@"; do
+    while IFS= read -r md; do
+      [[ -z "$md" ]] && continue
+      if ! rg -n -F "$md" "$index_file" >/dev/null; then
+        missing+=("$md")
+      fi
+    done < <(rg --files "$d" | rg '\.md$' | sort)
+  done
+
+  if [[ ${#missing[@]} -gt 0 ]]; then
+    {
+      echo "doc-index coverage missing entries in $index_file:"
+      printf ' - %s\n' "${missing[@]}"
+    } >&2
+    fail "key directories have markdown files not indexed"
+  fi
+
+  pass "doc-index covers all markdown files in: $*"
+}
+
 require_file "index.md"
 require_file "_config.yml"
 require_file "assets/doc-index.yaml"
@@ -244,6 +269,7 @@ require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competi
 require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-pilot-intake-template.md"
 require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-template.md"
 require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-sample-2026-05.md"
+require_doc_index_coverage "assets/doc-index.yaml" "product" "developer" "whitepaper"
 
 require_contains "_config.yml" "parent: Whitepaper 白皮书"
 
