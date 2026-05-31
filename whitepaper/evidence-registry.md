@@ -74,6 +74,7 @@ next_review: 2026-06-12
 | MKT-001 | observation | [market-acceptance.md](market-acceptance.md) | 用户接受度判断 | documented | Public market signals from LanguageTool and ProWritingAid homepages show the direct market focuses on grammar/style correction, paraphrasing, integrations, and writing-app fit |
 | RSCH-001 | workflow_observation | [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md) | V2 研究回放链路最小闭环已验证 | documented | Source: RSCH-RUN-002-HANS003 using HANS-003 as primary sample and HANS-004 as control intake; outputs include trend summary, segment notes, excerpt review, compare draft, evidence links, and failure modes |
 | RSCH-002 | workflow_observation | [rsch-task-001-v2-corpus-runbook.md](rsch-task-001-v2-corpus-runbook.md) | 三样本稳定性扩展已完成首版复核 | documented | Source: RSCH-RUN-003-THIRD-SAMPLE selected HANS-001 as third sample; outputs include three-sample compare table, stability check note, and evidence delta note |
+| ALGO-001 | algorithm_validation | [algorithm-evaluation-report.md](algorithm-evaluation-report.md), [error-taxonomy-and-fix-plan.md](error-taxonomy-and-fix-plan.md) | 核心算法单机可行性边界与修复优先级已建立 | documented | Source: ALGO-TASK-001 document-level audit on mainstream laptops; includes complexity tiers, runtime defaults, and rerun protocol pending measured snapshots |
 | ACAD-001 | workflow_observation | [../academic/examples-evidence-traceability-first-snapshot.md](../academic/examples-evidence-traceability-first-snapshot.md) | Academic 首轮证据回链快照作业已定义 | documented | Source: ACAD-BENCH-001 defines measurable fields and measured-upgrade gates, pending first snapshot collection |
 | ACAD-002 | workflow_observation | [../academic/examples-systematic-review-minimal.md](../academic/examples-systematic-review-minimal.md) | Academic 系统综述最小闭环作业已定义 | documented | Source: ACAD-RSCH-002 defines corpus intake, observation table, evidence linkage, and failure case outputs |
 | ACAD-003 | workflow_observation | [../academic/examples-topic-evolution-three-slice.md](../academic/examples-topic-evolution-three-slice.md) | Academic 三时间片主题演化作业已定义 | documented | Source: ACAD-RSCH-003 defines three-slice stability checks and anomaly reporting |
@@ -408,7 +409,7 @@ reviewer: maintainer
 | task_id | 优先级 | 状态 | 负责人 | 目标完成时间 | 结果链接 |
 | --- | --- | --- | --- | --- | --- |
 | ARCH-OPT-TASK-001 | P0 | in_progress | architecture | 2026-06-20 | [architecture-feasibility.md](architecture-feasibility.md) |
-| ALGO-TASK-001 | P0 | in_progress | research | 2026-06-20 | [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md) |
+| ALGO-TASK-001 | P0 | in_progress | research | 2026-06-20 | [algorithm-evaluation-report.md](algorithm-evaluation-report.md) |
 | COMP-TASK-001 | P0 | done | product | 2026-06-05 | [COMP-001](#1-证据目录) |
 | MKT-TASK-001 | P0 | in_progress | product | 2026-06-05 | [MKT-001](#1-证据目录) |
 | BENCH-TASK-001 | P0 | in_progress | research | 2026-06-12 | [bench-task-001-evidence-traceability-audit.md](bench-task-001-evidence-traceability-audit.md) |
@@ -781,7 +782,7 @@ notes: 备注
 当前执行记录：
 
 - 状态：`in_progress`
-- 结果链接： [benchmark-and-acceptance-metrics.md](benchmark-and-acceptance-metrics.md)
+- 结果链接： [algorithm-evaluation-report.md](algorithm-evaluation-report.md), [error-taxonomy-and-fix-plan.md](error-taxonomy-and-fix-plan.md)
 - 备注：本任务作为当前 NarrativeOS 论证主线之一，目标是把 workflow 证据升级为可量化算法证据
 - 完成标记：`algorithm_validation_started`
 
@@ -789,11 +790,14 @@ notes: 备注
 
 - 目标：从“流程可执行”升级到“算法指标可比较、可复跑、可优化”
 - 最小产物：核心指标对照、失败模式定位、修复方案与复跑口径
+- 当前产物： [algorithm-evaluation-report.md](algorithm-evaluation-report.md), [error-taxonomy-and-fix-plan.md](error-taxonomy-and-fix-plan.md), [algo-task-001-measurement-sheet.md](algo-task-001-measurement-sheet.md)
+- 当前产物： [algorithm-evaluation-report.md](algorithm-evaluation-report.md), [error-taxonomy-and-fix-plan.md](error-taxonomy-and-fix-plan.md), [algo-task-001-measurement-sheet.md](algo-task-001-measurement-sheet.md), [algo-task-001-runbook.md](algo-task-001-runbook.md)
 
 下一步：
 
-- 定义 2 组核心指标基线并开始首轮测量。
-- 形成 1 条算法验证证据并回填证据目录。
+- 固化三轴测量基线并开始首轮测量记录。
+- 在测量表中冻结版本与样本窗后，更新 ALGO-001 为 measured-ready 状态评审。
+- 用 runbook 执行首轮跑批并回填 failure case table。
 
 ### 22.2 MKT-TASK-001
 

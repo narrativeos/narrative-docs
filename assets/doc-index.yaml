@@ -150,6 +150,12 @@ sections:
     children:
       - whitepaper/one-page-summary.md
       - whitepaper/benchmark-and-acceptance-metrics.md
+      - whitepaper/algorithm-evaluation-report.md
+      - whitepaper/error-taxonomy-and-fix-plan.md
+      - whitepaper/algo-task-001-measurement-sheet.md
+      - whitepaper/algo-task-001-runbook.md
+      - whitepaper/algo-task-001-execution-checklist.md
+      - whitepaper/algo-task-001-minimal-checklist.md
       - whitepaper/research-methodology-and-reproducibility.md
       - whitepaper/study-template-v2-corpus-comparative-analysis.md
       - whitepaper/annotation-protocol-narrative-segmentation.md

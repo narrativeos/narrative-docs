@@ -88,6 +88,12 @@ source_of_truth: narrative-docs
 ### Part III：发布与治理支撑
 
 - [基准测试与验收指标入口](benchmark-and-acceptance-metrics.md)
+- [ALGO-TASK-001 算法评估报告（单机可行性）](algorithm-evaluation-report.md)
+- [ALGO-TASK-001 误差分类与修复计划](error-taxonomy-and-fix-plan.md)
+- [ALGO-TASK-001 首轮测量表模板](algo-task-001-measurement-sheet.md)
+- [ALGO-TASK-001 首轮运行作业单](algo-task-001-runbook.md)
+- [ALGO-TASK-001 执行清单模板](algo-task-001-execution-checklist.md)
+- [ALGO-TASK-001 最小可填清单](algo-task-001-minimal-checklist.md)
 - [研究方法与复现基线](research-methodology-and-reproducibility.md)
 - [V2 语料比较研究模板](study-template-v2-corpus-comparative-analysis.md)
 - [叙事分段标注协议](annotation-protocol-narrative-segmentation.md)

@@ -247,8 +247,8 @@ scope:
 	- compare_stability
 	- evidence_traceability_accuracy
 deliverables:
-	- algorithm_evaluation_report.md
-	- error_taxonomy_and_fix_plan.md
+	- algorithm-evaluation-report.md
+	- error-taxonomy-and-fix-plan.md
 	- ALGO-001 evidence entry
 ```
 
@@ -274,6 +274,71 @@ deliverables:
 - 若 `ALGO-001` 未入账，不将算法能力写成“已优化完成”。
 - 若指标提升只在单样本成立，不升级为跨场景能力结论。
 
+### A4. 单机默认运行参数（万元以下主流笔记本）
+
+```yaml
+default_runtime_profile:
+	mode: fast_scan_first
+	threshold_tier: standard
+	retrieval_top_k: 50
+	rerank_top_k: 20
+	verify_batch_size: 8
+	full_mri_trigger:
+		- high_risk_diagnostics
+		- unresolved_counterevidence
+		- pre_release_review
+	full_mri_concurrency: 1
+	long_text_policy:
+		segmentation_first: true
+		chunk_then_aggregate: true
+```
+
+约束：
+
+- 默认不并发运行多个 Full MRI 任务。
+- 若出现 memory pressure 或 timeout，优先降低 `retrieval_top_k` 与 `verify_batch_size`。
+
+### A5. 测量记录入口
+
+- ALGO 首轮与复跑测量统一记录在 [algo-task-001-measurement-sheet.md](algo-task-001-measurement-sheet.md)。
+- 未填写 run freeze header 的结果不得作为 measured 证据入账。
+
+### A6. ALGO 首轮执行顺序与交付物
+
+首轮建议按以下顺序执行：
+
+1. 冻结样本与版本，使用 [algo-task-001-runbook.md](algo-task-001-runbook.md) 记录 `ALGO-RUN-001`。
+2. 按 [algo-task-001-measurement-sheet.md](algo-task-001-measurement-sheet.md) 填写三轴基线与错误分布。
+3. 将 failure case 与 rerun 差异回写到 runbook。
+4. 若需要复跑，按 [error-taxonomy-and-fix-plan.md](error-taxonomy-and-fix-plan.md) 的 P0 -> P1 -> P2 顺序处理。
+
+首轮最小交付物：
+
+- `metrics_summary.yaml`
+- `failure_case_table.md`
+- `rerun_delta_note.md`
+- 1 条 ALGO-001 evidence 入账或更新说明
+
+### A7. 算法效能速览
+
+以下为 [algorithm-evaluation-report.md](algorithm-evaluation-report.md) 的浓缩速览，仅用于快速判断整体架构可行性，不替代详细评测正文。
+
+| Algorithm | Representative Instance | Estimated Time | Estimated Memory | Tier | Quick Judgment |
+| --- | --- | --- | --- | --- | --- |
+| Golden Set Regression Gate | 100-300 rows | 10-120 ms | < 200 MB | A | 低开销，适合默认常开 |
+| Strength Degradation Logic | 20 chains | 1-20 ms | < 100 MB | A | 低开销，适合默认常开 |
+| Narrative Segmentation | 60-100 boundaries | 0.2-2.0 s | < 500 MB | B | 可作为前置切分 |
+| Fact Verification Pipeline | 1 claim / 50 retrieve / 20 rerank | 0.4-1.8 s | 1.5-4.0 GB | B | 可行，但要控 top-k |
+| Analysis Fast Scan | 3k-5k chars | 6-25 s | 1.2-3.5 GB | B | 适合主入口体验 |
+| Analysis Full MRI | 10k-20k chars | 3-18 min | 4.0-10.0 GB | C | 可跑，但应离线 |
+
+总判断：
+
+- 单机可行性成立，前提是把门禁和轻量分析作为默认路径，把 Full MRI 作为按需离线深度路径。
+- 效能瓶颈主要集中在检索重排、语义表示、聚类和图构建，而不是门禁规则本身。
+- 如果首期以“单文诊断 + 证据回链 + 轻量门禁”为目标，主流笔记本具备可交互运行条件。
+- 如果首期要把 Full MRI 也做成高频在线体验，则当前估算不支持这种宣称。
+
 ## 关联文档 | Related Docs
 
 - developer/coding/readiness-checklist.md
@@ -281,6 +346,9 @@ deliverables:
 - whitepaper/study-template-v2-corpus-comparative-analysis.md
 - whitepaper/annotation-protocol-narrative-segmentation.md
 - whitepaper/reproducibility-package-evidence-traceability.md
+- whitepaper/algorithm-evaluation-report.md
+- whitepaper/error-taxonomy-and-fix-plan.md
+- whitepaper/algo-task-001-measurement-sheet.md
 - product/roadmap/README.md
 - product/workflows/README.md
 - adr/README.md
