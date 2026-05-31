@@ -96,6 +96,7 @@ source_of_truth: narrative-docs
 - [ALGO-TASK-001 最小可填清单](algo-task-001-minimal-checklist.md)
 - [校对同题对打结果模板（平台域融合证据）](proofreading-competitive-results-template.md)
 - [校对同题对打结果样例（2026-05，平台域融合口径）](proofreading-competitive-results-sample-2026-05.md)
+- [Workflow 到 Whitepaper 映射指南](workflow-to-whitepaper-mapping-guide.md)
 - [研究方法与复现基线](research-methodology-and-reproducibility.md)
 - [V2 语料比较研究模板](study-template-v2-corpus-comparative-analysis.md)
 - [叙事分段标注协议](annotation-protocol-narrative-segmentation.md)

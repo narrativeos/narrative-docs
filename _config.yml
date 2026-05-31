@@ -576,6 +576,10 @@ defaults:
     values:
       title: Proofreading Competitive Results Sample 校对对打结果样例
   - scope:
+      path: whitepaper/workflow-to-whitepaper-mapping-guide.md
+    values:
+      title: Workflow to Whitepaper Mapping Guide 映射指南
+  - scope:
       path: whitepaper/research-methodology-and-reproducibility.md
     values:
       title: Research Methodology & Reproducibility 研究方法与复现

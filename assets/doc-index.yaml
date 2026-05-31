@@ -175,6 +175,7 @@ sections:
       - whitepaper/anno-task-001-segmentation-consistency.md
       - whitepaper/proofreading-competitive-results-template.md
       - whitepaper/proofreading-competitive-results-sample-2026-05.md
+      - whitepaper/workflow-to-whitepaper-mapping-guide.md
       - developer/coding/core-docs-mapping.md
       - developer/coding/readiness-checklist.md
   - id: governance
