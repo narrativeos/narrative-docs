@@ -426,6 +426,54 @@ defaults:
       path: academic/examples-acad-bench-001-first-fill-sample.md
     values:
       title: Example ACAD-BENCH-001 首轮填报样例
+  - scope:
+      path: academic/templates-golden-set-research-profile.md
+    values:
+      title: Template Golden Set Research 研究回归模板
+  - scope:
+      path: academic/templates-golden-set-detective-profile.md
+    values:
+      title: Template Golden Set Detective 推理回归模板
+  - scope:
+      path: academic/golden-set-field-dictionary.md
+    values:
+      title: Guide Golden Set Field Dictionary 字段口径字典
+  - scope:
+      path: academic/golden-set-threshold-policy.md
+    values:
+      title: Policy Golden Set Threshold 阈值治理策略
+  - scope:
+      path: academic/golden-set-action-playbook.md
+    values:
+      title: Playbook Golden Set Action 动作执行手册
+  - scope:
+      path: academic/golden-set-change-impact-matrix.md
+    values:
+      title: Guide Golden Set Change Impact 变更影响矩阵
+  - scope:
+      path: academic/templates-golden-set-change-review.md
+    values:
+      title: Template Golden Set Change Review 变更评审模板
+  - scope:
+      path: academic/examples-golden-set-change-review-minimal.md
+    values:
+      title: Example Golden Set Change Review 变更评审样例
+  - scope:
+      path: academic/templates-golden-set-release-ledger.md
+    values:
+      title: Template Golden Set Release Ledger 发布台账模板
+  - scope:
+      path: academic/examples-golden-set-release-ledger-minimal.md
+    values:
+      title: Example Golden Set Release Ledger 发布台账样例
+  - scope:
+      path: academic/examples-golden-set-research-minimal.md
+    values:
+      title: Example Golden Set Research 研究回归样例
+  - scope:
+      path: academic/examples-golden-set-detective-minimal.md
+    values:
+      title: Example Golden Set Detective 推理回归样例
 
   - scope:
       path: ai/README.md

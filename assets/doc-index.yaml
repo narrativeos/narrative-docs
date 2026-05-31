@@ -109,6 +109,18 @@ sections:
       - academic/examples-topic-evolution-three-slice.md
       - academic/researcher-quickstart-landing.md
       - academic/examples-acad-bench-001-first-fill-sample.md
+      - academic/templates-golden-set-research-profile.md
+      - academic/templates-golden-set-detective-profile.md
+      - academic/golden-set-field-dictionary.md
+      - academic/golden-set-threshold-policy.md
+      - academic/golden-set-action-playbook.md
+      - academic/golden-set-change-impact-matrix.md
+      - academic/templates-golden-set-change-review.md
+      - academic/examples-golden-set-change-review-minimal.md
+      - academic/templates-golden-set-release-ledger.md
+      - academic/examples-golden-set-release-ledger-minimal.md
+      - academic/examples-golden-set-research-minimal.md
+      - academic/examples-golden-set-detective-minimal.md
   - id: ai
     title_zh: AI 上下文层
     title_en: AI Context Layer

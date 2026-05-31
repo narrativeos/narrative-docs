@@ -2,6 +2,14 @@
 
 本页提供可直接进入论文与审稿流程的模板。
 
+## Kernel First 投稿约束
+
+投稿材料应先满足 Method Kernel 的统一质量门禁，再进入领域化叙述。
+
+- 不允许仅基于术语映射提升结论强度
+- 不允许绕过反证处理直接输出最终结论
+- 不允许隐藏 degrade_reasons
+
 ## 对外措辞规则
 
 - 若指标状态是 planned，只能写“目标”或“预期”
@@ -9,6 +17,47 @@
 - 若任务只到 study-ready，不写“已验证稳定”
 
 参考： [whitepaper/benchmark-and-acceptance-metrics.md](../whitepaper/benchmark-and-acceptance-metrics.md)
+
+## 审稿式压力测试清单（发布前）
+
+1. 可证伪性：是否提供了潜在反例或替代解释路径
+2. 外推边界：结论是否明确限定在样本与方法边界内
+3. 冲突证据处理：是否记录并解释了冲突证据
+4. 因果谨慎性：是否把相关性误写为因果
+5. 回链完整性：每条核心结论是否可跳转到 source_spans
+
+建议将清单结果以附件形式随稿提交，便于审稿复核。
+
+## 发布门禁（最低通过条件）
+
+以下条件全部满足才可进入对外提交：
+
+1. 核心结论均具备 claim-evidence-warrant 完整链
+2. 每条核心结论至少一条 counterevidence 或 alternative 记录
+3. strength 与 confidence、degrade_reasons 自洽
+4. profile 与 aggregation_policy 已在方法段明示
+
+## 回归门禁附件模板（建议随稿提供）
+
+建议在补充材料中附上一页回归门禁摘要：
+
+```text
+baseline_version: <version>
+profile_set: [research, detective]
+golden_set_cases: <count>
+traceability_pass_rate: <value>
+strength_shift_explained_rate: <value>
+unresolved_counterevidence_ratio: <value>
+gate_decision: pass | fail
+reviewer: <name_or_role>
+```
+
+说明：
+
+- gate_decision = fail 时，不应进行对外提交
+- 若存在强度跳变，必须在附件中列出对应 degrade_reasons
+- 若本轮涉及 required_actions 或阈值调整，建议附上 [Template: Golden Set Change Review](templates-golden-set-change-review.md) 的填报结果
+- 若一个发布窗口包含多笔变更，建议附上 [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md) 的聚合结论
 
 ## 方法段模板（骨架）
 
@@ -76,3 +125,6 @@
 - [Trust and Methodology](trust-methodology.md)
 - [Reproducibility Kit](reproducibility-kit.md)
 - [Research Workflows](research-workflows.md)
+- [Guide: Golden Set Change Impact Matrix](golden-set-change-impact-matrix.md)
+- [Template: Golden Set Change Review](templates-golden-set-change-review.md)
+- [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md)

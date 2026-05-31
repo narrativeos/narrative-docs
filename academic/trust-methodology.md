@@ -2,6 +2,137 @@
 
 本页定义 NarrativeOS 在学术场景中的方法透明规则。
 
+## Kernel First 方法约束
+
+本分区采用 Kernel First：先定义稳定、可泛化的底层方法内核，再通过上层配置适配领域场景。
+
+- Method Kernel（不可变核心）：原语、质量维度、强度分级、降级与失败分类
+- Scenario Composer（可变配置）：方法组合、数据聚合、术语映射、报告模板
+
+红线：领域术语和业务偏好不得下沉到 Method Kernel。
+
+## Method Kernel 不可变核心
+
+以下原语是跨域不可变核心，用于科学文献与叙事文本的统一论证分析：
+
+- claim
+- evidence
+- warrant
+- counterclaim
+- alternative
+- uncertainty
+- boundary
+
+## Kernel 输入输出契约（建议基线）
+
+输入示例：
+
+```yaml
+study_id: study-001
+document_id: doc-001
+claims:
+  - id: c-1
+    text: <claim-text>
+evidence_items:
+  - id: e-1
+    source_spans: ["sentence:12"]
+    support_to: ["c-1"]
+context:
+  profile: research | detective
+  aggregation_policy: conservative | balanced | aggressive
+```
+
+输出示例：
+
+```json
+{
+  "claim": "<claim-text>",
+  "evidence": ["e-1"],
+  "source_spans": ["sentence:12"],
+  "confidence": 0.81,
+  "strength": "moderate",
+  "degrade_reasons": [],
+  "action": "collect_more_counterevidence"
+}
+```
+
+## 质量维度与强度分级
+
+Method Kernel 的统一质量维度：
+
+- testability
+- sufficiency
+- validity
+- falsifiability
+- robustness
+- auditability
+
+结论强度分级：
+
+- strong
+- moderate
+- weak
+- exploratory
+
+## 降级触发规则（必须执行）
+
+出现任一情况时，结论强度必须自动降级至少一级：
+
+- missing_evidence
+- unresolved_conflict
+- broken_warrant
+- missing_boundary
+- overgeneralization
+
+## Failure Taxonomy（最小集合）
+
+- missing_pointer：证据定位缺失
+- weak_support：证据定位存在但语义支撑不足
+- unresolved_counterevidence：冲突证据未处理
+- unsupported_causality：将相关性表述为因果
+- scope_mismatch：结论超出声明边界
+
+## 稳定性验证矩阵（Kernel）
+
+Method Kernel 的发布优先级以稳定性为先，至少覆盖以下五类验证：
+
+1. 输入扰动稳定性：轻微文本扰动不应导致无理由强度跳变
+2. 参数漂移稳定性：profile 参数微调不应破坏结论链完整性
+3. 样本规模稳定性：样本扩增后主结论方向保持一致
+4. 跨语料一致性：同类任务在不同语料上的评分逻辑保持一致
+5. 冲突证据压力：存在反证时必须触发降级或补证动作
+
+建议记录字段：
+
+- test_case_id
+- baseline_version
+- profile
+- perturbation_type
+- expected_behavior
+- observed_behavior
+- pass_or_fail
+- reviewer
+
+## Golden Set Regression Gate
+
+每次 profile 变更或规则变更后，必须运行 Golden Set 回归：
+
+- 必含科学文献样例（research profile）
+- 必含叙事样例（detective profile）
+
+最低通过条件：
+
+1. claim-evidence-warrant 链完整率不下降
+2. unresolved_counterevidence 比例不上升到阈值外
+3. strength 跳变均有 degrade_reasons 解释
+4. source_spans 回链有效率保持在门槛以上
+
+## 与现有架构的对齐
+
+- 与 [architecture/system/README.md](../architecture/system/README.md) 对齐：Kernel 归属分析引擎层契约内核
+- 与 [architecture/insight-engine/README.md](../architecture/insight-engine/README.md) 对齐：输出保持“结论 -> 证据 -> 原文”链路
+- 与 [architecture/runtime/README.md](../architecture/runtime/README.md) 对齐：仅定义契约，不引入跨 runtime 直连依赖叙述
+
 ## 声明分级
 
 研究结论必须先归类再发布，分级与 [whitepaper/research-methodology-and-reproducibility.md](../whitepaper/research-methodology-and-reproducibility.md) 保持一致：
@@ -110,6 +241,15 @@ minimum_validation:
 - 是否给出了失败时的分流路径？
 
 不满足任一项时，该指标说明不应进入对外发布。
+
+## 发布门禁（Kernel First）
+
+以下条件必须同时满足，相关结论才可进入对外叙述：
+
+1. claim-evidence-warrant 链完整
+2. 至少记录 1 条替代解释或反证处理记录
+3. strength 与 degrade_reasons 自洽且可复核
+4. 输出可回链 source_spans
 
 ## 关联
 

@@ -1,0 +1,80 @@
+# Golden Set Threshold Policy
+
+本页定义 Golden Set 回归门禁的阈值治理策略，目标是在不同阶段平衡稳定性与迭代速度。
+
+## 阈值档位
+
+采用三档策略：
+
+- lenient（宽松）：用于早期探索与模板试运行
+- standard（标准）：用于常规发布与团队协作基线
+- strict（严格）：用于对外发布前或高风险变更
+
+## 指标阈值建议
+
+### traceability_pass_rate
+
+- lenient: >= 0.90
+- standard: >= 0.95
+- strict: >= 0.98
+
+### strength_shift_explained_rate
+
+- lenient: >= 0.95
+- standard: >= 0.98
+- strict: = 1.00
+
+### unresolved_counterevidence_ratio
+
+- lenient: <= 0.08
+- standard: <= 0.05
+- strict: <= 0.02
+
+### unsupported_causality_count（research）
+
+- lenient: <= 1
+- standard: = 0
+- strict: = 0
+
+### narrative_bias_misjudge_count（detective）
+
+- lenient: <= 1
+- standard: = 0
+- strict: = 0
+
+## 阈值选择规则
+
+优先使用 standard。以下场景必须切换 strict：
+
+1. 对外发布前
+2. Kernel 规则变更
+3. 新增或重写关键降级触发逻辑
+4. 前一轮出现 gate_decision = fail
+
+以下场景可临时使用 lenient：
+
+1. 首次引入新 profile
+2. Golden Set 样例仍在建设期
+
+限制：连续两轮 lenient 后必须回到 standard。
+
+## 治理与审计
+
+- 每次回归必须记录 threshold_tier 与选择理由
+- 变更 threshold_tier 需由 Kernel Owner 审核
+- 若使用 lenient 且结果为 pass，发布说明中必须显式标注
+
+## 回归记录建议字段
+
+```yaml
+threshold_tier: lenient | standard | strict
+tier_rationale: <reason>
+approved_by: <kernel-owner>
+approved_at: <yyyy-mm-dd>
+```
+
+## 关联
+
+- [Golden Set Field Dictionary](golden-set-field-dictionary.md)
+- [Template: Golden Set Research Profile](templates-golden-set-research-profile.md)
+- [Template: Golden Set Detective Profile](templates-golden-set-detective-profile.md)
