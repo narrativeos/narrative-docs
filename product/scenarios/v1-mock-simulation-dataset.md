@@ -83,7 +83,7 @@ mock_record:
         diagnostics: [{id, summary, evidence}]
         confidence: float
       semantic_network:
-        metrics: {paragraph_similarity_avg, semantic_overlap, topic_cluster_count}
+        metrics: {paragraph_similarity_avg, semantic_overlap, topic_cluster_count, knowledge_density_kd}
         signals: [signal_code]
         artifacts: {semantic_galaxy}
         diagnostics: [{id, summary, evidence}]
@@ -111,6 +111,7 @@ mock_record:
       ai_template_ratio: float
       rhythm_index: float
       sensory_density: float
+      knowledge_density_kd: float
     evidence_links:
       - sentence_ref: string
         evidence_type: string
@@ -159,7 +160,7 @@ output:
       diagnostics: [{id: diag-syn-01, summary: 中段句长趋同导致节奏轻微变平, evidence: [p03-s02, p03-s03]}]
       confidence: 0.88
     semantic_network:
-      metrics: {paragraph_similarity_avg: 0.61, semantic_overlap: 0.48, topic_cluster_count: 3}
+      metrics: {paragraph_similarity_avg: 0.61, semantic_overlap: 0.48, topic_cluster_count: 3, knowledge_density_kd: 0.052}
       signals: [semantic_centered_cluster]
       artifacts: {semantic_galaxy: artifact://semantic/galaxy/doc-short-001/v1}
       diagnostics: [{id: diag-sem-01, summary: 语义簇稳定但转场词不足, evidence: [p06-s01, p07-s01]}]
@@ -187,6 +188,7 @@ output:
     ai_template_ratio: 0.12
     rhythm_index: 0.67
     sensory_density: 0.58
+    knowledge_density_kd: 0.052
   evidence_links:
     - sentence_ref: p03-s02
       evidence_type: long_sentence_cluster
@@ -587,6 +589,7 @@ proofreading_extension:
   metrics:
     term_consistency_alignment_rate: 0.94
     registry_new_term_precision: 0.93
+    knowledge_density_kd: 0.047
   corrections:
     - issue_id: prf-p1-001
       issue_type: consistency
