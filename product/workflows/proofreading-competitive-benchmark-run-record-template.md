@@ -89,13 +89,16 @@ benchmark_run_record:
     rollback_action: none | switch_shadow_only | rollback_ruleset
     follow_up_due: YYYY-MM-DD
   linked_docs:
+    intake_ref: product/workflows/proofreading-competitive-pilot-intake-template.md
     checklist_ref: product/workflows/proofreading-competitive-benchmark-checklist.md
     runbook_ref: product/workflows/proofreading-competitive-benchmark-runbook.md
     whitepaper_ref: whitepaper/proofreading-competitive-results-template.md
+    evidence_registry_ref: whitepaper/evidence-registry.md
 ```
 
 ## 关联文档
 
+- proofreading-competitive-pilot-intake-template.md
 - proofreading-competitive-benchmark-checklist.md
 - proofreading-competitive-benchmark-runbook.md
 - ../../whitepaper/proofreading-competitive-results-template.md

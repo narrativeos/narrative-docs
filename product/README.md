@@ -45,6 +45,7 @@ source_of_truth: narrative-docs
 - [workflows/proofreading-competitive-benchmark-runbook](workflows/proofreading-competitive-benchmark-runbook.md): 校对补齐同题对打执行作业单
 - [workflows/proofreading-competitive-benchmark-checklist](workflows/proofreading-competitive-benchmark-checklist.md): 校对补齐同题对打执行清单
 - [workflows/proofreading-competitive-benchmark-run-record-template](workflows/proofreading-competitive-benchmark-run-record-template.md): 校对补齐同题对打运行记录模板
+- [workflows/proofreading-competitive-pilot-intake-template](workflows/proofreading-competitive-pilot-intake-template.md): 校对补齐真实试点 intake 模板
 
 ## 平台化补充
 

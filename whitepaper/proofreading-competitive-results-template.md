@@ -39,6 +39,9 @@ report_meta:
   data_source_ref:
     - product/scenarios/v1-mock-simulation-dataset.md
     - product/workflows/proofreading-competitive-benchmark-runbook.md
+    - product/workflows/proofreading-competitive-benchmark-checklist.md
+    - product/workflows/proofreading-competitive-benchmark-run-record-template.md
+    - whitepaper/evidence-registry.md
 ```
 
 ## 分层结果总表
@@ -114,4 +117,5 @@ risk_and_limits:
 - competitor-matrix.md
 - market-acceptance.md
 - ../product/modules/proofreading-competitive-benchmark.md
+- ../product/workflows/proofreading-competitive-pilot-intake-template.md
 - ../product/workflows/proofreading-competitive-benchmark-runbook.md

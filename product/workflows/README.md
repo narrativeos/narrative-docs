@@ -44,6 +44,8 @@ V1 校对补齐评审清单：周会与评审现场使用 [proofreading-competit
 
 V1 校对补齐运行记录：每次执行后需填写 [proofreading-competitive-benchmark-run-record-template.md](proofreading-competitive-benchmark-run-record-template.md) 并回链到结果页。
 
+V1 校对补齐试点 intake：真实试点启动前先填写 [proofreading-competitive-pilot-intake-template.md](proofreading-competitive-pilot-intake-template.md) 锁定授权范围、数据来源与 evidence_id。
+
 ### 用户 1：作者/编辑（V1 核心路径）
 
 目标：完成单篇稿件的快速诊断与修订决策。

@@ -96,6 +96,7 @@ require_file "product/modules/proofreading-competitive-benchmark.md"
 require_file "product/workflows/proofreading-competitive-benchmark-runbook.md"
 require_file "product/workflows/proofreading-competitive-benchmark-checklist.md"
 require_file "product/workflows/proofreading-competitive-benchmark-run-record-template.md"
+require_file "product/workflows/proofreading-competitive-pilot-intake-template.md"
 require_file "whitepaper/proofreading-competitive-results-template.md"
 require_file "whitepaper/proofreading-competitive-results-sample-2026-05.md"
 
@@ -195,8 +196,15 @@ require_contains "product/workflows/proofreading-competitive-benchmark-run-recor
 require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "DS-V1-PRF-P0-001"
 require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "DS-V1-PRF-P1-001"
 require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "DS-V1-PRF-P2-001"
+require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "intake_ref: product/workflows/proofreading-competitive-pilot-intake-template.md"
 require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "checklist_ref: product/workflows/proofreading-competitive-benchmark-checklist.md"
 require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "runbook_ref: product/workflows/proofreading-competitive-benchmark-runbook.md"
+require_contains "product/workflows/proofreading-competitive-benchmark-run-record-template.md" "evidence_registry_ref: whitepaper/evidence-registry.md"
+
+require_contains "product/workflows/proofreading-competitive-pilot-intake-template.md" "Proofreading Competitive Pilot Intake Template"
+require_contains "product/workflows/proofreading-competitive-pilot-intake-template.md" "target_evidence_id: PRF-002"
+require_contains "product/workflows/proofreading-competitive-pilot-intake-template.md" "contains_user_system_data: false"
+require_contains "product/workflows/proofreading-competitive-pilot-intake-template.md" "usage_permission: granted | pending | denied"
 
 require_contains "whitepaper/proofreading-competitive-results-template.md" "Proofreading Competitive Results Template"
 require_contains "whitepaper/proofreading-competitive-results-template.md" "DS-V1-PRF-P0-001"
@@ -233,6 +241,7 @@ require_contains "assets/doc-index.yaml" "academic/examples-golden-set-detective
 require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-benchmark-runbook.md"
 require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-benchmark-checklist.md"
 require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-benchmark-run-record-template.md"
+require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-pilot-intake-template.md"
 require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-template.md"
 require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-sample-2026-05.md"
 
