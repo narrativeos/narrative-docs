@@ -41,6 +41,7 @@ source_of_truth: narrative-docs
 - 面向作者、编辑、机构协作成员
 - 用于项目同步、协同编辑、权限控制
 - 不覆盖核心本地分析流程（本地模式可独立运行）
+- 不包含内建用户系统（账号、登录、注册、租户）；身份与访问控制由外部平台承接
 
 ## 运行模式
 
@@ -61,7 +62,7 @@ source_of_truth: narrative-docs
 ### 前置条件
 
 - 已完成 [getting-started](../getting-started/README.md)
-- 当前账号具备项目创建权限
+- 当前平台访问身份具备项目创建权限（由外部环境提供）
 - 网络连接可用（仅 Cloud Mode 需要）
 
 ### 步骤
@@ -97,7 +98,7 @@ source_of_truth: narrative-docs
 
 ### 现象 1：项目一直显示 Syncing
 
-- 检查网络与账号状态
+- 检查网络与外部身份接入状态
 - 检查项目权限是否被回收
 - 重试手动同步并查看错误提示
 
