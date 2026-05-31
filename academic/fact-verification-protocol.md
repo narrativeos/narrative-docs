@@ -96,6 +96,21 @@ rationale_spans:
 
 本协议可直接复用于“知识性校对与名词入库”场景。
 
+### 平台域责任映射（并入当前基线六域）
+
+本扩展按平台当前基线六域承接，不作为独立校对域：
+
+- Text Lab：承接事实候选发现与基础一致性预检。
+- Insight Engine：承接核查解释、建议生成与风险判定。
+- Narrative Atlas：承接证据锚点回看与定位联动。
+- Knowledge Graph（Library）：承接词条入库、别名合并与证据资产沉淀。
+- Corpus Observatory：承接跨批次误报/漏报与核查稳定性趋势。
+
+约束：
+
+- correction_status=accepted 必须具备可追溯 evidence，并能映射到对应域责任。
+- 任一关键域出现 no-go 信号时，不得给出 pass 型聚合结论。
+
 ### 扩展对象
 
 - 专有名词一致性（人名、机构名、法规名、术语）
@@ -118,6 +133,7 @@ registry_evidence:
 - 无 L1 或可追溯来源时，correction_status 不得为 accepted。
 - registry_action=add_term 时，必须附最小来源回链。
 - 出现 rejected 且被误用的条目，必须触发 rerun_golden_set。
+- 涉及跨域协作的 correction candidate，必须记录 primary_domain 与协作域。
 
 ## 关联
 
@@ -126,3 +142,4 @@ registry_evidence:
 - [Golden Set Field Dictionary](golden-set-field-dictionary.md)
 - [Golden Set Threshold Policy](golden-set-threshold-policy.md)
 - [Golden Set Action Playbook](golden-set-action-playbook.md)
+- [Product Platform Domains](../product/modules/platform-domains.md)

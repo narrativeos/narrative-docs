@@ -78,6 +78,20 @@
 - standard: >= 0.92
 - strict: >= 0.97
 
+## 校对相关阈值的域责任映射（并入当前基线六域）
+
+校对相关阈值按平台域协同解释，不按独立校对子系统解释：
+
+- proofreading_recall / proofreading_false_positive_ratio：Text Lab 主责，Insight Engine 协作。
+- term_consistency_alignment_rate：Insight Engine 主责，Knowledge Graph 协作。
+- registry_new_term_precision：Knowledge Graph（Library）主责，Insight Engine 协作。
+
+执行建议：
+
+- 回归记录中建议补充 `primary_domain` 与 `collab_domains` 字段。
+- 若主责域阈值未达标，即使协作域指标达标，gate_decision 仍应为 fail 或 shadow_only。
+- 若跨域指标互相冲突，优先采用“高误报保护”原则（先降级，再扩展）。
+
 ## 阈值选择规则
 
 优先使用 standard。以下场景必须切换 strict：
@@ -109,6 +123,8 @@ threshold_tier: lenient | standard | strict
 tier_rationale: <reason>
 approved_by: <kernel-owner>
 approved_at: <yyyy-mm-dd>
+primary_domain: Text Lab | Narrative Atlas | Insight Engine | Knowledge Graph | Corpus Observatory
+collab_domains: [<domain-name>]
 ```
 
 ## 关联
