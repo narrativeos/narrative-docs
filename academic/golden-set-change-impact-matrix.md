@@ -23,6 +23,8 @@
 | resolve_counterevidence | L2 | unresolved_counterevidence_ratio, strength_shift_explained_rate | 当前 profile 全量 Golden Set | 未完成前禁止发布 |
 | fix_unsupported_causality | L2 | unsupported_causality_count, strength_shift_explained_rate | research profile 全量 Golden Set | strict 档位建议 |
 | fix_bias_misjudge | L2 | narrative_bias_misjudge_count, strength_shift_explained_rate | detective profile 全量 Golden Set | strict 档位建议 |
+| rebound_to_discovery | L2 | verifiability_rate, hallucination_ratio | 当前 profile 全量 Fact Check Ledger + Golden Set | 未完成前禁止发布 |
+| update_grounding_baseline | L3 | verifiability_rate, hallucination_ratio, traceability_pass_rate | research + detective 双 profile 全量 Golden Set | 必须经 Kernel Owner 审批 |
 | threshold_tier change | L3 | 所有门禁指标阈值解释 | research + detective 双 profile 全量 Golden Set | 必须经 Kernel Owner 审批 |
 | degrade trigger change | L3 | strength_shift_explained_rate, traceability_pass_rate | 全量 Golden Set + 历史对照抽样 | 未通过前禁止发布 |
 

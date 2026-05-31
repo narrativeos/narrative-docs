@@ -52,6 +52,15 @@ domain_metric_delta:
   narrative_bias_misjudge_count: <delta>
 ```
 
+## 事实核查联动（若适用）
+
+```yaml
+fact_check_ref: <path-or-id>
+fact_gate_decision: pass | fail
+verifiability_rate: <value>
+hallucination_ratio: <value>
+```
+
 ## 决策与门禁
 
 ```yaml
@@ -69,3 +78,4 @@ approved_at: <yyyy-mm-dd>
 2. 若 blocked_release = true，必须写明 required_followups
 3. 若 metrics_before 与 metrics_after 出现强度跳变，必须补充 degrade_reasons
 4. 建议将通过评审的记录汇总到 [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md)
+5. 若 fact_gate_decision = fail，blocked_release 必须为 true

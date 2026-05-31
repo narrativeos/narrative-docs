@@ -117,6 +117,19 @@ report_profile: concise | review_ready | publication_ready
 - strength_shift_audit.csv
 - span_traceability_audit.csv
 
+## Workflow F: 事实发现与核查闭环
+
+- 输入：claim 候选集 + 检索证据池
+- 任务：按 Discover -> Retrieve -> Verify -> Aggregate 顺序完成事实闭环
+- 输出：fact_check_ledger.yaml + verification_summary.md
+
+建议最小输出：
+
+- fact_check_ledger.yaml
+- verification_summary.md
+- evidence_retrieval_audit.csv
+- gate_decision.yaml
+
 ## 每个工作流必须满足
 
 - 输入范围可描述
@@ -150,6 +163,10 @@ report_profile: concise | review_ready | publication_ready
 - [Example: Golden Set Change Review Minimal](examples-golden-set-change-review-minimal.md)
 - [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md)
 - [Example: Golden Set Release Ledger Minimal](examples-golden-set-release-ledger-minimal.md)
+- [Protocol: Fact Verification](fact-verification-protocol.md)
+- [Guide: Fact Verification Method Stack](fact-verification-method-stack.md)
+- [Template: Golden Set Fact Check Ledger](templates-golden-set-fact-check-ledger.md)
+- [Example: Golden Set Fact Check Ledger Minimal](examples-golden-set-fact-check-ledger-minimal.md)
 - [Example: Golden Set Research Minimal](examples-golden-set-research-minimal.md)
 - [Example: Golden Set Detective Minimal](examples-golden-set-detective-minimal.md)
 

@@ -119,6 +119,10 @@ sections:
       - academic/examples-golden-set-change-review-minimal.md
       - academic/templates-golden-set-release-ledger.md
       - academic/examples-golden-set-release-ledger-minimal.md
+      - academic/fact-verification-protocol.md
+      - academic/fact-verification-method-stack.md
+      - academic/templates-golden-set-fact-check-ledger.md
+      - academic/examples-golden-set-fact-check-ledger-minimal.md
       - academic/examples-golden-set-research-minimal.md
       - academic/examples-golden-set-detective-minimal.md
   - id: ai

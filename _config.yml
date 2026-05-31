@@ -467,6 +467,22 @@ defaults:
     values:
       title: Example Golden Set Release Ledger 发布台账样例
   - scope:
+      path: academic/fact-verification-protocol.md
+    values:
+      title: Protocol Fact Verification 事实核查协议
+  - scope:
+      path: academic/fact-verification-method-stack.md
+    values:
+      title: Guide Fact Verification Method Stack 事实核查方法栈
+  - scope:
+      path: academic/templates-golden-set-fact-check-ledger.md
+    values:
+      title: Template Golden Set Fact Check Ledger 事实核查台账模板
+  - scope:
+      path: academic/examples-golden-set-fact-check-ledger-minimal.md
+    values:
+      title: Example Golden Set Fact Check Ledger 事实核查台账样例
+  - scope:
       path: academic/examples-golden-set-research-minimal.md
     values:
       title: Example Golden Set Research 研究回归样例

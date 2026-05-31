@@ -20,6 +20,8 @@
 - unsupported_causality -> fix_unsupported_causality
 - unresolved_counterevidence -> resolve_counterevidence
 - narrative_bias_misjudge_count > 0 -> fix_bias_misjudge
+- fact_refuted -> rebound_to_discovery
+- hallucination_detected -> update_grounding_baseline
 - 任意修复后 -> rerun_golden_set
 
 ## 执行顺序建议
@@ -35,6 +37,13 @@
 1. fix_bias_misjudge
 2. resolve_counterevidence
 3. rerun_golden_set
+
+### Fact Check Fail Path
+
+1. rebound_to_discovery
+2. update_grounding_baseline
+3. resolve_counterevidence
+4. rerun_golden_set
 
 ## 强制重跑条件
 

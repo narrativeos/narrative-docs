@@ -8,6 +8,8 @@
 
 影响评估参见： [Golden Set Change Impact Matrix](golden-set-change-impact-matrix.md)
 
+事实核查台账参见： [Template: Golden Set Fact Check Ledger](templates-golden-set-fact-check-ledger.md)
+
 ## 使用范围
 
 - 场景：一次发布窗口内存在多笔 Golden Set 相关变更
@@ -34,6 +36,10 @@ entries:
     impact_level: L1 | L2 | L3
     gate_decision: pass | fail
     blocked_release: true | false
+    fact_gate_decision: pass | fail
+    fact_check_ref: <path-or-id>
+    hallucination_ratio: <value>
+    verifiability_rate: <value>
     required_followups:
       - rerun_golden_set
     review_ref: <path-or-id>
@@ -46,7 +52,10 @@ stats:
   total_changes: <count>
   l3_changes: <count>
   blocked_changes: <count>
+  blocked_by_fact_check: <count>
   unresolved_followups: <count>
+  max_hallucination_ratio: <value>
+  min_verifiability_rate: <value>
 release_go_no_go: go | no-go
 decision_reason: <reason>
 approved_by: <owner-or-reviewer>
@@ -58,3 +67,4 @@ approved_at: <yyyy-mm-dd>
 1. 任何条目 gate_decision = fail 且 blocked_release = true，release_go_no_go 必须为 no-go
 2. 若存在 impact_level = L3 条目，必须附审批人与审批时间
 3. unresolved_followups > 0 时，不得判定为 go
+4. 任何条目 fact_gate_decision = fail 时，不得判定为 go

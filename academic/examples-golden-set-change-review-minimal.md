@@ -42,12 +42,22 @@ domain_metric_delta:
   narrative_bias_misjudge_count: 0
 ```
 
+## 事实核查联动（若适用）
+
+```yaml
+fact_check_ref: academic/examples-golden-set-fact-check-ledger-minimal.md
+fact_gate_decision: fail
+verifiability_rate: 1.00
+hallucination_ratio: 0.50
+```
+
 ## 决策与门禁
 
 ```yaml
-gate_decision: pass
-blocked_release: false
+gate_decision: fail
+blocked_release: true
 required_followups:
+  - rebound_to_discovery
   - rerun_golden_set
 approved_by: architecture-reviewer
 approved_at: 2026-05-31
@@ -56,4 +66,4 @@ approved_at: 2026-05-31
 ## 说明
 
 - 本次变更属于 L2，要求 research profile 全量重跑
-- 因 unsupported_causality_count 已回到 0，可解除发布阻塞
+- 因 fact_gate_decision = fail，本轮 blocked_release 必须为 true

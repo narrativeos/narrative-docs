@@ -58,6 +58,8 @@ reviewer: <name_or_role>
 - 若存在强度跳变，必须在附件中列出对应 degrade_reasons
 - 若本轮涉及 required_actions 或阈值调整，建议附上 [Template: Golden Set Change Review](templates-golden-set-change-review.md) 的填报结果
 - 若一个发布窗口包含多笔变更，建议附上 [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md) 的聚合结论
+- 若涉及事实核查，建议附上 [Template: Golden Set Fact Check Ledger](templates-golden-set-fact-check-ledger.md) 并注明 verification_status 分布
+- 若 fact_gate_decision = fail，则本轮不得对外发布
 
 ## 方法段模板（骨架）
 
@@ -128,3 +130,6 @@ reviewer: <name_or_role>
 - [Guide: Golden Set Change Impact Matrix](golden-set-change-impact-matrix.md)
 - [Template: Golden Set Change Review](templates-golden-set-change-review.md)
 - [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md)
+- [Protocol: Fact Verification](fact-verification-protocol.md)
+- [Guide: Fact Verification Method Stack](fact-verification-method-stack.md)
+- [Template: Golden Set Fact Check Ledger](templates-golden-set-fact-check-ledger.md)

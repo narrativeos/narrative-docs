@@ -64,6 +64,46 @@
 - 可选值：lenient | standard | strict
 - 约束：默认 standard；若使用 lenient 需记录理由与审批
 
+### fact_candidate_id
+
+- 含义：发现阶段提取的事实候选唯一标识
+- 示例：fc-001
+- 约束：必须可回链到 claim_id
+
+### verification_status
+
+- 含义：事实核查状态
+- 可选值：verified | refuted | controversial | unverifiable
+- 约束：refuted 出现时必须触发处置动作
+
+### grounding_source
+
+- 含义：核查依据来源标识（如 DOI、知识库 ID、可信源）
+- 约束：必须可复核，不允许留空
+
+### verifiability_rate
+
+- 含义：可验证事实占比
+- 建议口径：(verified + refuted) / total_candidates
+- 约束：低于阈值时 gate_decision 不应为 pass
+
+### hallucination_ratio
+
+- 含义：被证伪事实占比
+- 建议口径：refuted / total_candidates
+- 约束：超过阈值必须阻塞发布或触发降级
+
+### fact_check_ref
+
+- 含义：事实核查台账或记录的引用路径/标识
+- 约束：涉及事实核查时必须可追踪到具体台账
+
+### fact_gate_decision
+
+- 含义：事实核查门禁结论
+- 可选值：pass | fail
+- 约束：fail 时 blocked_release 必须为 true
+
 ## 域专用扩展字段
 
 ### unsupported_causality_count（research）
@@ -83,6 +123,9 @@
 - unresolved_counterevidence
 - unsupported_causality
 - scope_mismatch
+- fact_refuted
+- hallucination_detected
+- retrieval_gap
 
 ## 处置动作枚举（required_actions / action）
 
@@ -92,6 +135,8 @@
 - resolve_counterevidence：补充或解决冲突证据
 - fix_unsupported_causality：修复错误因果表述（research 常用）
 - fix_bias_misjudge：修复叙事偏差误判（detective 常用）
+- rebound_to_discovery：回退到发现阶段重新抽取候选事实
+- update_grounding_baseline：更新核查依据源或基线
 
 约束：
 

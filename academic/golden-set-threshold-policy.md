@@ -42,6 +42,18 @@
 - standard: = 0
 - strict: = 0
 
+### verifiability_rate
+
+- lenient: >= 0.85
+- standard: >= 0.92
+- strict: >= 0.97
+
+### hallucination_ratio
+
+- lenient: <= 0.05
+- standard: <= 0.02
+- strict: = 0
+
 ## 阈值选择规则
 
 优先使用 standard。以下场景必须切换 strict：

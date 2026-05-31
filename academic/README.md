@@ -62,8 +62,12 @@ source_of_truth: narrative-docs
 21. [Example: Golden Set Change Review Minimal](examples-golden-set-change-review-minimal.md)
 22. [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md)
 23. [Example: Golden Set Release Ledger Minimal](examples-golden-set-release-ledger-minimal.md)
-24. [Example: Golden Set Research Minimal](examples-golden-set-research-minimal.md)
-25. [Example: Golden Set Detective Minimal](examples-golden-set-detective-minimal.md)
+24. [Protocol: Fact Verification](fact-verification-protocol.md)
+25. [Guide: Fact Verification Method Stack](fact-verification-method-stack.md)
+26. [Template: Golden Set Fact Check Ledger](templates-golden-set-fact-check-ledger.md)
+27. [Example: Golden Set Fact Check Ledger Minimal](examples-golden-set-fact-check-ledger-minimal.md)
+28. [Example: Golden Set Research Minimal](examples-golden-set-research-minimal.md)
+29. [Example: Golden Set Detective Minimal](examples-golden-set-detective-minimal.md)
 
 ## 关联入口
 
@@ -86,5 +90,9 @@ source_of_truth: narrative-docs
 - [Example: Golden Set Change Review Minimal](examples-golden-set-change-review-minimal.md)
 - [Template: Golden Set Release Ledger](templates-golden-set-release-ledger.md)
 - [Example: Golden Set Release Ledger Minimal](examples-golden-set-release-ledger-minimal.md)
+- [Protocol: Fact Verification](fact-verification-protocol.md)
+- [Guide: Fact Verification Method Stack](fact-verification-method-stack.md)
+- [Template: Golden Set Fact Check Ledger](templates-golden-set-fact-check-ledger.md)
+- [Example: Golden Set Fact Check Ledger Minimal](examples-golden-set-fact-check-ledger-minimal.md)
 - [Example: Golden Set Research Minimal](examples-golden-set-research-minimal.md)
 - [Example: Golden Set Detective Minimal](examples-golden-set-detective-minimal.md)

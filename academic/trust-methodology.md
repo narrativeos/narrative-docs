@@ -91,6 +91,27 @@ Method Kernel 的统一质量维度：
 - unresolved_counterevidence：冲突证据未处理
 - unsupported_causality：将相关性表述为因果
 - scope_mismatch：结论超出声明边界
+- fact_refuted：候选事实被证据直接反驳
+- hallucination_detected：核查结果与系统陈述冲突
+- retrieval_gap：候选事实无足够检索证据
+
+## 事实发现与核查（Kernel 扩展）
+
+事实发现与核查属于 Method Kernel 的 validity 与 auditability 维度约束，建议最小字段：
+
+- fact_candidate_id
+- verification_status
+- grounding_source
+
+核查状态：verified | refuted | controversial | unverifiable。
+
+降级约束：
+
+- 出现 refuted 时，结论强度必须至少降级一级
+- hallucination_detected 不得进入 pass 发布路径
+- retrieval_gap 未闭环时，gate_decision 不得为 pass
+
+协议参考： [Fact Verification Protocol](fact-verification-protocol.md)
 
 ## 稳定性验证矩阵（Kernel）
 
