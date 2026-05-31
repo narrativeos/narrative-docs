@@ -49,6 +49,16 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 
 这组 workflow 的目标不是描述更多流程细节，而是统一“谁先做、做完留什么、何时停止、何时进入下一阶段”的产品判断。
 
+## 事实冲突识别最小作业单
+
+当团队需要快速回答“当前系统是否可识别事实冲突”时，直接使用最小作业单执行一轮受控核查：
+
+- 执行页： [fact-conflict-detection-minimal-runbook.md](fact-conflict-detection-minimal-runbook.md)
+- 协议口径： [../../academic/fact-verification-protocol.md](../../academic/fact-verification-protocol.md)
+- 记录模板： [../../academic/templates-golden-set-fact-check-ledger.md](../../academic/templates-golden-set-fact-check-ledger.md)
+
+该作业单用于最小闭环验证，不替代完整校对补齐对打流程。
+
 按域责任执行图（并入当前基线六域）：
 
 ```text
