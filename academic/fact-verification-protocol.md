@@ -96,6 +96,37 @@ rationale_spans:
 
 本协议可直接复用于“知识性校对与名词入库”场景。
 
+### 术语统一：知识密度（Knowledge Density, KD）
+
+为避免“信息密度”“知识密度”“语义 density”混用，本协议统一采用：
+
+- Knowledge Density（KD）：单位文本长度内的不重复原子知识单元占比。
+- 原子知识单元：可进入事实核查或知识纠错流程的最小可判定单元。
+
+计算定义：
+
+$$
+KD = \frac{\sum_{i=1}^{N} k_i \cdot U(k_i)}{L}
+$$
+
+其中：
+
+- $N$：文档中原子知识单元总数。
+- $k_i$：第 $i$ 个原子知识单元。
+- $U(k_i)$：唯一性函数；唯一为 1，重复为 0。
+- $L$：文档总长度。
+
+解释：
+
+- 分子表示不重复知识单元总和。
+- 分母表示文本总长度。
+- KD 越高，单位文本内有效知识占比越高，重复冗余越低。
+
+输出约束：
+
+- KD 仅统计可回链到 evidence 的单元。
+- KD 与 verifiability_rate 同时使用，禁止仅凭 KD 给出“事实可信”结论。
+
 ### 平台域责任映射（并入当前基线六域）
 
 本扩展按平台当前基线六域承接，不作为独立校对域：
@@ -126,6 +157,7 @@ registry_action: add_term | merge_alias | deprecate_term | no_action
 registry_evidence:
   - source_span: <span-ref>
   - source_level: L1 | L2 | L3
+knowledge_density_kd: <float>
 ```
 
 ### 门禁约束（知识纠错）

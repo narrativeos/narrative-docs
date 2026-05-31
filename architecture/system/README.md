@@ -519,11 +519,13 @@ Feature
 - Structural：cohesion、transition、hierarchy
 - Rhythm：sentence_variance、breathing、cadence
 - Stylistic：metaphor、parallelism、abstractness
-- Semantic：topic、density、novelty
+- Semantic：topic、knowledge_density_kd、novelty
 - Emotional：nostalgia、tension、distance
 - Narrative：arc、shift、redundancy、bridge
 
 说明：bridge（断桥）在 2.0 中定义为正式特征对象，不再是临时诊断标签。
+
+补充语义约束：Semantic 维度中的 `knowledge_density_kd` 与 Academic 协议中的 Knowledge Density（KD）保持同一公式与同一含义，不与感官密度、修辞密度混用。
 
 ### Relation Schema（关系层）
 
