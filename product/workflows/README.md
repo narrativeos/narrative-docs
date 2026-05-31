@@ -34,6 +34,8 @@ source_of_truth: narrative-docs
 
 NarrativeOS 的日常使用路径采用多角色工作流设计，不使用“单界面服务全部用户”的产品策略。
 
+V1 执行约束：作者/编辑路径必须满足 [../v1-design-baseline.md](../v1-design-baseline.md) 定义的 In/Out Scope 与双门槛验收规则。
+
 ### 用户 1：作者/编辑（V1 核心路径）
 
 目标：完成单篇稿件的快速诊断与修订决策。

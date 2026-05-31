@@ -36,6 +36,7 @@ source_of_truth: narrative-docs
 - [modules](modules/README.md): 核心模块职责与关系
 - [workflows](workflows/README.md): 用户与团队工作流
 - [roadmap](roadmap/README.md): 里程碑与优先级
+- [v1-design-baseline](v1-design-baseline.md): V1 可执行设计基线（范围、MVP、验收、Go/No-go）
 
 ## 平台化补充
 
@@ -46,6 +47,7 @@ source_of_truth: narrative-docs
 
 - 产品文档更新需与 [Architecture](../architecture/README.md) 和 [Developer](../developer/README.md) 保持口径一致
 - 涉及对外承诺的条目需同步到白皮书映射
+- V1 阶段需求评审必须引用 [v1-design-baseline](v1-design-baseline.md) 的 In/Out Scope 与双门槛验收口径
 
 ## 标准参考 | Standards Reference
 

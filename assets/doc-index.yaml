@@ -45,6 +45,7 @@ sections:
       - product/roadmap/README.md
       - product/workflows/README.md
       - product/modules/README.md
+      - product/v1-design-baseline.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide
