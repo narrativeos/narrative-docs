@@ -20,6 +20,18 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
+## 本页用途 | Purpose
+
+本页用于为 Product V1 原型、评审和回归演练提供统一的场景数据基线，确保页面演示、交互判断和验收口径引用同一组 mock 输入。
+
+它不是算法设计页，也不是 workflow 执行页，而是产品层的数据入口页。
+
+## 使用方式 | How To Use
+
+- 原型评审、交互演示、可用性测试必须引用 scene_id 与 dataset_id。
+- 同一轮产品评审应固定使用同一批数据集，不在现场临时改口径。
+- 校对补齐专项必须按 P0 -> P1 -> P2 顺序读取对应数据集。
+
 ## 使用原则
 
 - 所有样本均为模拟数据，不承载真实用户身份信息。
@@ -489,9 +501,19 @@ constraints:
   external_identity_context: repro_workspace_gamma
 ```
 
+## 校对补齐专项数据 | Proofreading Extension Datasets
+
+本组数据用于在不改变当前基线六引擎主链路的前提下，验证校对补齐能力如何被产品层承接、解释和验收。
+
+读取原则：
+
+- P0 用于基础纠错能力验收。
+- P1 用于一致性、知识与术语协同验收。
+- P2 用于高风险表达与公文规范场景验收。
+
 ### Dataset F: 校对补齐 P0（基础纠错）
 
-说明：复用 Dataset A 的当前基线六引擎输出，叠加校对补齐负载用于基础能力验收。
+说明：复用 Dataset A 的当前基线六引擎输出，叠加校对补齐负载，用于验证基础纠错结果能否被产品界面稳定承接与回链。
 
 ```yaml
 dataset_id: DS-V1-PRF-P0-001
@@ -539,7 +561,7 @@ constraints:
 
 ### Dataset G: 校对补齐 P1（知识与一致性）
 
-说明：复用 Dataset B 的当前基线六引擎输出，叠加术语与知识校验负载。
+说明：复用 Dataset B 的当前基线六引擎输出，叠加术语与知识校验负载，用于验证一致性与知识校验结果的产品可读性。
 
 ```yaml
 dataset_id: DS-V1-PRF-P1-001
@@ -591,7 +613,7 @@ constraints:
 
 ### Dataset H: 校对补齐 P2（风险与公文专项）
 
-说明：复用 Dataset E 的当前基线六引擎输出，叠加高风险表达与公文规范负载。
+说明：复用 Dataset E 的当前基线六引擎输出，叠加高风险表达与公文规范负载，用于验证严格档位下的产品判定与回滚入口。
 
 ```yaml
 dataset_id: DS-V1-PRF-P2-001
@@ -673,13 +695,17 @@ constraints:
 - 任一 issue_type 建议若 traceability=fail，不得进入最终导出。
 - 任一阈值指标未达到对应 tier，要自动降级为 shadow_only 并进入回滚评审。
 
-## 原型测试读取建议
+## 原型读取建议 | Prototype Read Path
 
 - 交互层：默认加载 Dataset A 作为 happy path。
 - 稳定性演示：切换 Dataset C 验证降级可解释性。
 - 故障演练：使用 Dataset D 验证 evidence retry 流程。
 - 复现能力：使用 Dataset E 验证导出与回放一致性。
 - 校对补齐：依次加载 Dataset F/G/H 进行 P0/P1/P2 分层验收。
+
+## 评审输出契约 | Review Output Contract
+
+每次原型评审至少应沉淀一条可回链的记录，用于连接场景数据、页面表现和最终判断。
 
 ## 验收字段（原型评审必填）
 

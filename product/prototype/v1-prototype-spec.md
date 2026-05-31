@@ -20,13 +20,19 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 设计前置依赖
+## 本页用途 | Purpose
+
+本页用于把 V1 场景数据转成可评审、可验证、可回滚的产品原型规格，统一页面职责、交互状态和通过门槛。
+
+它不是视觉稿集合，也不是技术实现文档，而是产品原型的判断基线。
+
+## 评审前提 | Review Preconditions
 
 - 必须先加载场景数据：../scenarios/v1-mock-simulation-dataset.md
 - 原型评审必须按 scene_id + dataset_id 执行，不接受纯静态页面评审。
 - 原型评审前必须通过当前基线六引擎 I/O 全覆盖校验（见场景数据中的算法覆盖矩阵与 coverage_assertion 字段）。
 
-## 原型目标
+## 原型目标 | Prototype Goals
 
 - 验证 V1 的单文闭环体验是否成立。
 - 验证 Fast/Deep 双路径在真实交互中的可理解性。
@@ -55,7 +61,7 @@ Workspace
       └─ Snapshot Replay
 ```
 
-## 页面规格
+## 页面规格 | Screen Specs
 
 ### Screen P1: Import + Fast Start
 
@@ -125,7 +131,7 @@ Workspace
 
 ### Screen P6: Proofreading Workbench（补齐专项）
 
-目标：在不破坏当前基线六引擎主链路的前提下，承接校对补齐结果并可追溯落地。
+目标：在不破坏当前基线六引擎主链路的前提下，把校对补齐结果纳入统一工作台，并保证建议、证据和状态变化都可追溯。
 
 状态组件：
 
@@ -174,7 +180,7 @@ EvidenceBroken
 | EVT-P7-TERM-REGISTRY-ACTION | 术语条目动作 | dataset_id, term_id, action, reviewer_result |
 | EVT-P8-THRESHOLD-BREACH | 阈值越界 | dataset_id, metric_name, tier, observed_value |
 
-## 原型评审门槛
+## 原型评审门槛 | Review Gates
 
 - Gate-00：所有参与评审的数据集满足 all_six_engines_present=true 且 contract_shape_valid=true。
 - Gate-01：五个场景均可跑通主路径。
@@ -184,7 +190,7 @@ EvidenceBroken
 - Gate-05：补齐专项数据集（DS-V1-PRF-P0/1/2）均满足 traceability=pass 的建议可解释可回链。
 - Gate-06：阈值门槛满足 [../../academic/golden-set-threshold-policy.md](../../academic/golden-set-threshold-policy.md) 中 proofreading_recall、proofreading_false_positive_ratio、term_consistency_alignment_rate、registry_new_term_precision 对应档位要求。
 
-## 输出物清单
+## 输出物清单 | Deliverables
 
 - 低保真流程稿（Lo-fi flow）
 - 高保真关键屏（Hi-fi key screens）
