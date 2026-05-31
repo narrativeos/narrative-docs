@@ -73,6 +73,7 @@ run_meta:
 - [ ] 运行完成
 - [ ] term_consistency_alignment_rate 达标
 - [ ] registry_new_term_precision 达标
+- [ ] knowledge_density_kd 达标
 - [ ] consistency/knowledge 类 issue 覆盖
 - [ ] 关键建议 traceability=pass
 
@@ -80,6 +81,7 @@ run_meta:
 
 - [ ] 运行完成
 - [ ] strict 档阈值达标
+- [ ] knowledge_density_kd 达标
 - [ ] risk/official_doc 类 issue 覆盖
 - [ ] 导出前复核完成
 - [ ] 关键建议 traceability=pass

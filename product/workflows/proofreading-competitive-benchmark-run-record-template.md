@@ -76,6 +76,7 @@ benchmark_run_record:
       metrics:
         term_consistency_alignment_rate: <float>
         registry_new_term_precision: <float>
+        knowledge_density_kd: <float>
         explanation_usable_rate: <float>
         review_cycle_time_sec: <int>
       traceability:
@@ -90,6 +91,7 @@ benchmark_run_record:
         proofreading_false_positive_ratio: <float>
         term_consistency_alignment_rate: <float>
         registry_new_term_precision: <float>
+        knowledge_density_kd: <float>
         explanation_usable_rate: <float>
         review_cycle_time_sec: <int>
       traceability:

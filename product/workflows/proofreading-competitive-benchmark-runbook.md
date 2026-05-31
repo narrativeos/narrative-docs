@@ -80,6 +80,7 @@ required_fields:
   - proofreading_false_positive_ratio
   - term_consistency_alignment_rate
   - registry_new_term_precision
+  - knowledge_density_kd
   - explanation_usable_rate
   - review_cycle_time_sec
 ```
@@ -109,6 +110,7 @@ benchmark_run_record:
       metrics:
         term_consistency_alignment_rate: 0.94
         registry_new_term_precision: 0.93
+        knowledge_density_kd: 0.047
         explanation_usable_rate: 0.94
         review_cycle_time_sec: 79
     - dataset_id: DS-V1-PRF-P2-001
@@ -118,6 +120,7 @@ benchmark_run_record:
         proofreading_false_positive_ratio: 0.05
         term_consistency_alignment_rate: 0.98
         registry_new_term_precision: 0.98
+        knowledge_density_kd: 0.061
         explanation_usable_rate: 0.96
         review_cycle_time_sec: 76
   final_decision:

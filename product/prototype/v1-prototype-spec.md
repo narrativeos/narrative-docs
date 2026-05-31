@@ -196,7 +196,7 @@ EvidenceBroken
 - Gate-03：所有结论卡可回链到 sentence_ref（SCN-V1-004 允许先失败后恢复）。
 - Gate-04：导出与回放在 SCN-V1-005 中一致性通过。
 - Gate-05：补齐专项数据集（DS-V1-PRF-P0/1/2）均满足 traceability=pass 的建议可解释可回链。
-- Gate-06：阈值门槛满足 [../../academic/golden-set-threshold-policy.md](../../academic/golden-set-threshold-policy.md) 中 proofreading_recall、proofreading_false_positive_ratio、term_consistency_alignment_rate、registry_new_term_precision 对应档位要求。
+- Gate-06：阈值门槛满足 [../../academic/golden-set-threshold-policy.md](../../academic/golden-set-threshold-policy.md) 中 proofreading_recall、proofreading_false_positive_ratio、term_consistency_alignment_rate、registry_new_term_precision、knowledge_density_kd 对应档位要求。
 - Gate-07：P6 页面中每类校对建议都可映射到域责任标签，且可回链到对应证据与记录。
 
 ## 输出物清单 | Deliverables

@@ -80,6 +80,10 @@ metric_record:
       narrativeos: 0.93
       baseline: 0.85
       delta: +0.08
+    knowledge_density_kd:
+      narrativeos: 0.047
+      baseline: 0.041
+      delta: +0.006
     explanation_usable_rate:
       narrativeos: 0.96
       baseline: 0.71
