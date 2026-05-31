@@ -65,6 +65,7 @@ make docs-check
 
 - 基线入口一致性：`make docs-check-base`
 - 文档策略残留：`make docs-check-policy`
+- 数量术语护栏：`make docs-check-terminology`
 - PR 模板完整性：`make docs-check-template`
 
 发布前请同时对照：

@@ -63,6 +63,7 @@ make docs-check
 
 - `make docs-check-base`
 - `make docs-check-policy`
+- `make docs-check-terminology`
 - `make docs-check-template`
 
 ## 验收标准

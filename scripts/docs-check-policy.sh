@@ -21,4 +21,6 @@ echo "[INFO] Checking templated EN summary residue"
 ! rg -n "^This document describes" --glob '**/*.md' || fail "templated EN summary residue found"
 pass "no templated EN summary residue"
 
+./scripts/docs-check-terminology.sh
+
 echo "Policy docs checks passed."
