@@ -154,6 +154,48 @@ final_decision:
     - baseline 仍需增加 Baseline-A 与 Baseline-C 的同题结果
 ```
 
+## Workflow 映射应用附录（事实冲突识别）
+
+本附录演示如何将 workflow 层的事实冲突识别记录映射到 whitepaper 结构。
+
+说明：以下片段为映射演示样例，不计入本页上文的 go/no-go 结论。
+
+```yaml
+mapping_appendix_record:
+  source_run_id: fv-20260531-001
+  source_ref:
+    - ../product/workflows/fact-conflict-detection-minimal-runbook.md
+    - ../product/workflows/fact-conflict-detection-sample-2026-05.md
+  projected_metric_record:
+    run_id: fv-20260531-001
+    baseline_id: Baseline-B
+    tier: P1
+    dataset_id: DS-V1-PRF-P1-001
+    metrics:
+      proofreading_false_positive_ratio:
+        narrativeos: 0.33
+        baseline: 0.28
+        delta: +0.05
+        note: mapped from hallucination_ratio as risk proxy
+      knowledge_density_kd:
+        narrativeos: 0.044
+        baseline: 0.041
+        delta: +0.003
+    traceability:
+      issue_trace_pass_ratio: 0.67
+      critical_trace_fail_count: 1
+    decision:
+      gate_result: fail
+      go_no_go: no-go
+      rationale: fact_refuted exists; unresolved_conflict not closed; retrieval_gap with traceability fail
+```
+
+映射约束：
+
+- 若使用 proxy 字段，必须显式标注来源与替代关系。
+- 附录中的 fail/no-go 演示不得覆盖本轮主报告的结论状态。
+- 对外发布时，优先使用独立采集的标准指标，不以 proxy 长期替代。
+
 ## 风险与限制
 
 ```yaml
