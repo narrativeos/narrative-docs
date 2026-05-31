@@ -40,12 +40,12 @@ source_of_truth: narrative-docs
 - [v1-two-week-sprint-plan](v1-two-week-sprint-plan.md): V1 两周执行排期（任务、负责人、依赖、验收）
 - [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md): V1 场景 mock 模拟数据包
 - [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
-- [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md): 零规则库起步的校对能力补齐方案
-- [modules/proofreading-competitive-benchmark](modules/proofreading-competitive-benchmark.md): 校对补齐同题对打评测规范
-- [workflows/proofreading-competitive-benchmark-runbook](workflows/proofreading-competitive-benchmark-runbook.md): 校对补齐同题对打执行作业单
-- [workflows/proofreading-competitive-benchmark-checklist](workflows/proofreading-competitive-benchmark-checklist.md): 校对补齐同题对打执行清单
-- [workflows/proofreading-competitive-benchmark-run-record-template](workflows/proofreading-competitive-benchmark-run-record-template.md): 校对补齐同题对打运行记录模板
-- [workflows/proofreading-competitive-pilot-intake-template](workflows/proofreading-competitive-pilot-intake-template.md): 校对补齐真实试点 intake 模板
+- [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md): 校对补齐能力在产品中的角色、边界与阶段目标
+- [modules/proofreading-competitive-benchmark](modules/proofreading-competitive-benchmark.md): 校对补齐竞争力何时成立的产品判断页
+- [workflows/proofreading-competitive-benchmark-runbook](workflows/proofreading-competitive-benchmark-runbook.md): 校对补齐对打的标准执行主路径
+- [workflows/proofreading-competitive-benchmark-checklist](workflows/proofreading-competitive-benchmark-checklist.md): 校对补齐评审现场的逐项确认页
+- [workflows/proofreading-competitive-benchmark-run-record-template](workflows/proofreading-competitive-benchmark-run-record-template.md): 校对补齐正式运行记录页
+- [workflows/proofreading-competitive-pilot-intake-template](workflows/proofreading-competitive-pilot-intake-template.md): 校对补齐真实试点的入口锁定页
 
 ## 平台化补充
 

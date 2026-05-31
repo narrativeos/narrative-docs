@@ -38,13 +38,16 @@ V1 执行约束：作者/编辑路径必须满足 [../v1-design-baseline.md](../
 
 V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](../scenarios/v1-mock-simulation-dataset.md) 的场景数据编制，再进入 [../prototype/v1-prototype-spec.md](../prototype/v1-prototype-spec.md) 原型设计与评审。
 
-V1 校对补齐对打执行约束：评测必须按 [proofreading-competitive-benchmark-runbook.md](proofreading-competitive-benchmark-runbook.md) 的 P0/P1/P2 顺序执行并记录。
+## V1 校对补齐工作流闭环
 
-V1 校对补齐评审清单：周会与评审现场使用 [proofreading-competitive-benchmark-checklist.md](proofreading-competitive-benchmark-checklist.md) 逐项打勾并留档。
+校对补齐在 Product 层不是一组孤立模板，而是一条从试点准入到执行、复核、沉淀结果的闭环路径。
 
-V1 校对补齐运行记录：每次执行后需填写 [proofreading-competitive-benchmark-run-record-template.md](proofreading-competitive-benchmark-run-record-template.md) 并回链到结果页。
+- 试点入口页：先填写 [proofreading-competitive-pilot-intake-template.md](proofreading-competitive-pilot-intake-template.md)，锁定授权范围、数据来源与 evidence_id。
+- 执行主路径：按 [proofreading-competitive-benchmark-runbook.md](proofreading-competitive-benchmark-runbook.md) 的 P0/P1/P2 顺序运行并记录。
+- 现场复核页：用 [proofreading-competitive-benchmark-checklist.md](proofreading-competitive-benchmark-checklist.md) 完成逐项确认与留痕。
+- 正式记录页：将结果沉淀到 [proofreading-competitive-benchmark-run-record-template.md](proofreading-competitive-benchmark-run-record-template.md)，再回链到白皮书结果页。
 
-V1 校对补齐试点 intake：真实试点启动前先填写 [proofreading-competitive-pilot-intake-template.md](proofreading-competitive-pilot-intake-template.md) 锁定授权范围、数据来源与 evidence_id。
+这组 workflow 的目标不是描述更多流程细节，而是统一“谁先做、做完留什么、何时停止、何时进入下一阶段”的产品判断。
 
 ### 用户 1：作者/编辑（V1 核心路径）
 
