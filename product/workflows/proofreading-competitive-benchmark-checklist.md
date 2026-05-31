@@ -20,13 +20,25 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 使用说明
+## 本页用途 | Purpose
+
+本页用于把 runbook 中的执行要求转成评审现场可打勾、可留痕、可追责的检查单。
+
+它服务于执行确认，不替代 runbook、run record 或白皮书结果页。
+
+## 使用说明 | How To Use
 
 - 每次 run 使用一份独立清单。
 - 所有勾选项必须可回链到运行记录与证据。
 - 任一阻断项未通过，不得标记为 go。
 
-## 基础信息
+## 适用场景 | Use Cases
+
+- 周会或评审现场的逐项确认
+- 真实试点执行前的 readiness 检查
+- fail/no-go 后的复跑前核对
+
+## 基础信息 | Run Meta
 
 ```yaml
 run_meta:
@@ -37,7 +49,7 @@ run_meta:
   run_date: YYYY-MM-DD
 ```
 
-## 预检（Pre-flight）
+## 预检 | Pre-flight
 
 - [ ] 已确认数据集顺序为 P0 -> P1 -> P2
 - [ ] 已确认 DS-V1-PRF-P0-001 可读取
@@ -46,7 +58,7 @@ run_meta:
 - [ ] 已确认阈值映射：P0=standard, P1=standard, P2=strict
 - [ ] 已确认 traceability 字段写入策略
 
-## 执行检查（Execution）
+## 执行检查 | Execution Checks
 
 ### P0 / DS-V1-PRF-P0-001
 
@@ -72,13 +84,13 @@ run_meta:
 - [ ] 导出前复核完成
 - [ ] 关键建议 traceability=pass
 
-## 异常与回滚
+## 阻断项 | Blocking Checks
 
 - [ ] 无 critical traceability 失败
 - [ ] 若发生阈值越界，已执行 shadow_only 降级
 - [ ] 若发生 no-go，已记录 rollback_action
 
-## 结论
+## 结论 | Decision
 
 - [ ] 本轮结论为 go
 - [ ] 或本轮结论为 no-go（需附整改计划）
@@ -91,7 +103,7 @@ final_decision:
   follow_up_due: YYYY-MM-DD
 ```
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - proofreading-competitive-benchmark-runbook.md
 - proofreading-competitive-benchmark-run-record-template.md

@@ -21,13 +21,26 @@ source_of_truth: narrative-docs
 status: template
 ```
 
-## 使用说明
+## 本页用途 | Purpose
+
+本页用于保存一次完整 benchmark run 的正式记录，是 checklist 与白皮书结果页之间的中间权威载体。
+
+它负责沉淀“本轮到底跑了什么、结果如何、依据是什么”，而不是承担策略说明。
+
+## 使用说明 | How To Use
 
 - 每次真实或模拟 run 单独复制一份填写。
 - 必须与执行清单、runbook 和白皮书结果页互相回链。
 - 未完成全部必填字段，不得进入白皮书结论页。
 
-## 空白记录模板
+## 输入来源 | Inputs
+
+- pilot intake
+- runbook
+- checklist
+- 本轮数据集输出与证据记录
+
+## 标准记录结构 | Standard Record Shape
 
 ```yaml
 benchmark_run_record:
@@ -96,7 +109,13 @@ benchmark_run_record:
     evidence_registry_ref: whitepaper/evidence-registry.md
 ```
 
-## 关联文档
+## 阻断条件 | Stop Conditions
+
+- 缺少 intake、checklist 或 runbook 回链
+- 缺少 final_decision
+- 缺少任一 tier 的关键 metrics 或 traceability 记录
+
+## 关联文档 | Related Docs
 
 - proofreading-competitive-pilot-intake-template.md
 - proofreading-competitive-benchmark-checklist.md

@@ -21,13 +21,25 @@ source_of_truth: narrative-docs
 status: template
 ```
 
-## 使用说明
+## 本页用途 | Purpose
+
+本页用于在真实试点启动前锁定试点边界、授权状态、数据来源与证据回填目标，避免执行开始后再补合规与口径。
+
+它是 benchmark workflow 的入口页，不记录评测结果。
+
+## 使用说明 | How To Use
 
 - 每轮真实试点启动前必须先填写本页。
 - 未明确授权范围、数据来源与 evidence_id 目标，不得开始正式 run。
 - 本页只记录试点 intake，不记录评测结果。
 
-## 空白 Intake 模板
+## 适用场景 | Use Cases
+
+- 真实试点启动前的 intake 审查
+- 授权材料变更后的重新确认
+- 不同 baseline 或不同 domain 的试点切换
+
+## 标准 Intake 结构 | Standard Intake Shape
 
 ```yaml
 pilot_intake:
@@ -61,14 +73,21 @@ pilot_intake:
   notes: <text>
 ```
 
-## 阻断条件
+## 阻断条件 | Stop Conditions
 
 - usage_permission != granted
 - contains_user_system_data = true
 - threshold_mapping_confirmed = false
 - traceability_strategy_confirmed = false
 
-## 关联文档
+## 完成标准 | Completion Criteria
+
+- 授权已明确
+- 数据来源已说明
+- evidence_id 已绑定
+- runbook、checklist、run record 回链已固定
+
+## 关联文档 | Related Docs
 
 - proofreading-competitive-benchmark-runbook.md
 - proofreading-competitive-benchmark-checklist.md

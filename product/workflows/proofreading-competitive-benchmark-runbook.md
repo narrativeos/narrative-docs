@@ -20,19 +20,37 @@ agent_ready: true
 source_of_truth: narrative-docs
 ```
 
-## 前置条件
+## 本页用途 | Purpose
+
+本页用于定义校对补齐同题对打的标准执行路径，确保不同评测轮次采用同一套输入、判断和退出规则。
+
+它不是结果页，也不是策略页，而是 workflow 层的执行主文档。
+
+## 适用场景 | Use Cases
+
+- 校对补齐能力的内部对打评测
+- 真实试点前的标准化演练
+- fail/no-go 后的回归复跑
+
+## 前置条件 | Preconditions
 
 - 已完成 [../scenarios/v1-mock-simulation-dataset.md](../scenarios/v1-mock-simulation-dataset.md) 数据加载。
 - 已完成 [../prototype/v1-prototype-spec.md](../prototype/v1-prototype-spec.md) 原型门槛核对。
 - 评测策略遵循 [../modules/proofreading-competitive-benchmark.md](../modules/proofreading-competitive-benchmark.md)。
 
-## 数据集顺序
+## 输入约束 | Input Constraints
 
 - P0: DS-V1-PRF-P0-001
 - P1: DS-V1-PRF-P1-001
 - P2: DS-V1-PRF-P2-001
 
-## 执行步骤
+要求：
+
+- 必须按 P0 -> P1 -> P2 顺序执行。
+- 不允许跳过较低 tier 直接进入较高 tier。
+- threshold mapping 必须与场景数据保持一致。
+
+## 执行主路径 | Main Flow
 
 1. 初始化评测上下文
 
@@ -49,7 +67,7 @@ run_context:
 4. 汇总核心指标并与 baseline 对比。
 5. 输出 Go/No-go 结论并附回滚动作。
 
-## 强制记录字段
+## 必填输出 | Required Outputs
 
 ```yaml
 required_fields:
@@ -66,13 +84,13 @@ required_fields:
   - review_cycle_time_sec
 ```
 
-## 异常处理
+## 异常处理 | Failure Handling
 
 - 若 traceability=fail：该条不得进入最终导出，必须进入修复队列。
 - 若 proofreading_false_positive_ratio 超阈值：立即切换 shadow_only 并触发回滚评审。
 - 若 explanation_usable_rate 连续两轮低于 0.90：进入交互与证据链专项整改。
 
-## 结果记录模板
+## 结果结构 | Result Shape
 
 ```yaml
 benchmark_run_record:
@@ -108,12 +126,19 @@ benchmark_run_record:
     rollback_action: none | switch_shadow_only | rollback_ruleset
 ```
 
-## 退出条件
+## 阻断条件 | Stop Conditions
+
+- 未完成前置条件校验
+- 数据集顺序被打破
+- 关键 traceability 失败未修复
+- threshold mapping 与数据集定义不一致
+
+## 完成标准 | Completion Criteria
 
 - 连续两轮 P0/P1/P2 全部 pass，且无 critical traceability 失败，可进入下一阶段。
 - 任一轮出现 no-go，必须在修复后重新从 P0 开始执行。
 
-## 关联文档
+## 关联文档 | Related Docs
 
 - ../modules/proofreading-competitive-benchmark.md
 - proofreading-competitive-benchmark-checklist.md
