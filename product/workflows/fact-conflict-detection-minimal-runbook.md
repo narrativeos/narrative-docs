@@ -144,4 +144,5 @@ fact_conflict_run_record:
 - ../../academic/golden-set-threshold-policy.md
 - ../modules/platform-domains.md
 - proofreading-competitive-benchmark-runbook.md
+- fact-conflict-detection-sample-2026-05.md
 - ../../whitepaper/proofreading-competitive-results-template.md

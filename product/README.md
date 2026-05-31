@@ -47,6 +47,7 @@ source_of_truth: narrative-docs
 - [workflows/proofreading-competitive-benchmark-run-record-template](workflows/proofreading-competitive-benchmark-run-record-template.md): 校对补齐正式运行记录页
 - [workflows/proofreading-competitive-pilot-intake-template](workflows/proofreading-competitive-pilot-intake-template.md): 校对补齐真实试点的入口锁定页
 - [workflows/fact-conflict-detection-minimal-runbook](workflows/fact-conflict-detection-minimal-runbook.md): 事实冲突识别的最小可执行作业单
+- [workflows/fact-conflict-detection-sample-2026-05](workflows/fact-conflict-detection-sample-2026-05.md): 事实冲突识别的一页式执行样例
 
 ## 平台化补充
 
