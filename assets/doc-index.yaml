@@ -47,6 +47,8 @@ sections:
       - product/modules/README.md
       - product/v1-design-baseline.md
       - product/v1-two-week-sprint-plan.md
+      - product/scenarios/v1-mock-simulation-dataset.md
+      - product/prototype/v1-prototype-spec.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide

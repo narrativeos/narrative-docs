@@ -38,6 +38,8 @@ source_of_truth: narrative-docs
 - [roadmap](roadmap/README.md): 里程碑与优先级
 - [v1-design-baseline](v1-design-baseline.md): V1 可执行设计基线（范围、MVP、验收、Go/No-go）
 - [v1-two-week-sprint-plan](v1-two-week-sprint-plan.md): V1 两周执行排期（任务、负责人、依赖、验收）
+- [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md): V1 场景 mock 模拟数据包
+- [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
 
 ## 平台化补充
 
@@ -49,6 +51,7 @@ source_of_truth: narrative-docs
 - 产品文档更新需与 [Architecture](../architecture/README.md) 和 [Developer](../developer/README.md) 保持口径一致
 - 涉及对外承诺的条目需同步到白皮书映射
 - V1 阶段需求评审必须引用 [v1-design-baseline](v1-design-baseline.md) 的 In/Out Scope 与双门槛验收口径
+- V1 原型评审必须先引用 [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md) 的 scene_id 与 dataset_id
 
 ## 标准参考 | Standards Reference
 
