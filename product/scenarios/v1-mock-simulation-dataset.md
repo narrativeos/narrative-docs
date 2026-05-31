@@ -489,6 +489,159 @@ constraints:
   external_identity_context: repro_workspace_gamma
 ```
 
+### Dataset F: 校对补齐 P0（基础纠错）
+
+说明：复用 Dataset A 的当前基线六引擎输出，叠加校对补齐负载用于基础能力验收。
+
+```yaml
+dataset_id: DS-V1-PRF-P0-001
+scene_id: SCN-V1-001
+profile: fast_scan
+base_dataset_ref: DS-V1-AUTHOR-SHORT-001
+proofreading_extension:
+  threshold_tier: standard
+  issue_summary:
+    typo: 7
+    punctuation: 5
+    grammar: 4
+    consistency: 2
+    knowledge: 0
+    risk: 0
+    official_doc: 0
+  metrics:
+    proofreading_recall: 0.90
+    proofreading_false_positive_ratio: 0.09
+  corrections:
+    - issue_id: prf-p0-001
+      issue_type: typo
+      span_ref: p03-s02
+      suggestion: 将“堤防”更正为“提防”
+      evidence: [rule:RGX-TYPO-012, source_span:p03-s02]
+      confidence: 0.94
+      traceability: pass
+    - issue_id: prf-p0-002
+      issue_type: punctuation
+      span_ref: p06-s01
+      suggestion: 补全句末句号
+      evidence: [rule:PUNC-TERM-004, source_span:p06-s01]
+      confidence: 0.88
+      traceability: pass
+  registry_action: no_action
+  lifecycle_state: active
+coverage_assertion:
+  all_six_engines_present: true
+  contract_shape_valid: true
+  proofreading_contract_valid: true
+constraints:
+  no_user_system: true
+  external_identity_context: editorial_workspace_alpha
+```
+
+### Dataset G: 校对补齐 P1（知识与一致性）
+
+说明：复用 Dataset B 的当前基线六引擎输出，叠加术语与知识校验负载。
+
+```yaml
+dataset_id: DS-V1-PRF-P1-001
+scene_id: SCN-V1-002
+profile: full_mri
+base_dataset_ref: DS-V1-AUTHOR-LONG-001
+proofreading_extension:
+  threshold_tier: standard
+  issue_summary:
+    typo: 3
+    punctuation: 2
+    grammar: 3
+    consistency: 9
+    knowledge: 6
+    risk: 1
+    official_doc: 0
+  metrics:
+    term_consistency_alignment_rate: 0.94
+    registry_new_term_precision: 0.93
+  corrections:
+    - issue_id: prf-p1-001
+      issue_type: consistency
+      span_ref: p41-s03
+      suggestion: 统一“城界协议/城市边界协议”为“城市边界协议”
+      evidence: [rule:CNS-TERM-002, entity:城市边界协议, source_span:p41-s03]
+      confidence: 0.91
+      traceability: pass
+    - issue_id: prf-p1-002
+      issue_type: knowledge
+      span_ref: p52-s01
+      suggestion: 引用年份修正为 2024
+      evidence: [source:L1:ref-2024-article, source_span:p52-s01]
+      confidence: 0.89
+      traceability: pass
+  registry_action:
+    - action: add_term
+      term_id: term-city-boundary-protocol
+      source_level: L1
+      reviewer_result: accepted
+  lifecycle_state: active
+coverage_assertion:
+  all_six_engines_present: true
+  contract_shape_valid: true
+  proofreading_contract_valid: true
+constraints:
+  no_user_system: true
+  external_identity_context: editorial_workspace_alpha
+```
+
+### Dataset H: 校对补齐 P2（风险与公文专项）
+
+说明：复用 Dataset E 的当前基线六引擎输出，叠加高风险表达与公文规范负载。
+
+```yaml
+dataset_id: DS-V1-PRF-P2-001
+scene_id: SCN-V1-005
+profile: full_mri
+base_dataset_ref: DS-V1-EXPORT-001
+proofreading_extension:
+  threshold_tier: strict
+  issue_summary:
+    typo: 1
+    punctuation: 1
+    grammar: 2
+    consistency: 4
+    knowledge: 3
+    risk: 4
+    official_doc: 5
+  metrics:
+    proofreading_recall: 0.94
+    proofreading_false_positive_ratio: 0.05
+    term_consistency_alignment_rate: 0.98
+    registry_new_term_precision: 0.98
+  corrections:
+    - issue_id: prf-p2-001
+      issue_type: risk
+      span_ref: p18-s01
+      suggestion: 将绝对化表述“必须”改为“建议在...条件下执行”
+      evidence: [rule:RISK-LANG-008, source_span:p18-s01]
+      confidence: 0.9
+      traceability: pass
+    - issue_id: prf-p2-002
+      issue_type: official_doc
+      span_ref: p30-s03
+      suggestion: 编号格式改为“第3.2条”并补齐版本日期
+      evidence: [rule:OFFDOC-FMT-003, source_span:p30-s03]
+      confidence: 0.93
+      traceability: pass
+  registry_action:
+    - action: merge_alias
+      term_id: term-official-format-3-2
+      reviewer_result: accepted
+  lifecycle_state: active
+coverage_assertion:
+  all_six_engines_present: true
+  contract_shape_valid: true
+  proofreading_contract_valid: true
+constraints:
+  no_user_system: true
+  external_identity_context: governance_workspace_delta
+```
+
 ## 算法覆盖矩阵与判定规则
 
 | Engine | 必填输入覆盖 | 必填输出覆盖 | 覆盖状态 |
@@ -505,6 +658,20 @@ constraints:
 - 任一 dataset 缺失任一引擎节点，判定为 not-covered。
 - 任一引擎缺失 metrics/signals/artifacts/diagnostics/confidence 任一字段，判定为 not-covered。
 - prototype 评审时需同时满足 coverage_assertion.all_six_engines_present=true 与 coverage_assertion.contract_shape_valid=true。
+- 使用校对补齐专项数据集时，额外要求 coverage_assertion.proofreading_contract_valid=true。
+
+## 校对补齐覆盖矩阵（专项）
+
+| Tier | Dataset | issue_type 覆盖 | 阈值指标覆盖 | 判定 |
+| --- | --- | --- | --- | --- |
+| P0 | DS-V1-PRF-P0-001 | typo/punctuation/grammar/consistency | proofreading_recall, proofreading_false_positive_ratio | pass |
+| P1 | DS-V1-PRF-P1-001 | consistency/knowledge/risk | term_consistency_alignment_rate, registry_new_term_precision | pass |
+| P2 | DS-V1-PRF-P2-001 | risk/official_doc + 其他类型回归 | 四项核心阈值全覆盖 | pass |
+
+专项判定规则：
+
+- 任一 issue_type 建议若 traceability=fail，不得进入最终导出。
+- 任一阈值指标未达到对应 tier，要自动降级为 shadow_only 并进入回滚评审。
 
 ## 原型测试读取建议
 
@@ -512,6 +679,7 @@ constraints:
 - 稳定性演示：切换 Dataset C 验证降级可解释性。
 - 故障演练：使用 Dataset D 验证 evidence retry 流程。
 - 复现能力：使用 Dataset E 验证导出与回放一致性。
+- 校对补齐：依次加载 Dataset F/G/H 进行 P0/P1/P2 分层验收。
 
 ## 验收字段（原型评审必填）
 

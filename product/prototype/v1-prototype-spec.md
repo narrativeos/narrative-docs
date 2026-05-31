@@ -123,6 +123,19 @@ Workspace
 
 绑定数据：DS-V1-EXPORT-001
 
+### Screen P6: Proofreading Workbench（补齐专项）
+
+目标：在不破坏当前基线六引擎主链路的前提下，承接校对补齐结果并可追溯落地。
+
+状态组件：
+
+- 问题分组：typo/grammar/punctuation/consistency/knowledge/risk/official_doc
+- 建议编辑：逐条 suggestion + 一键应用（可撤销）
+- 证据回链：rule_id/source_span/confidence/traceability
+- 生命周期标记：candidate/shadow_only/active/deprecated
+
+绑定数据：DS-V1-PRF-P0-001、DS-V1-PRF-P1-001、DS-V1-PRF-P2-001
+
 ## 交互状态机
 
 ```text
@@ -157,6 +170,9 @@ EvidenceBroken
 | EVT-P3-DEGRADE-ENTER | 进入降级模式 | dataset_id, queue_state, reason_code |
 | EVT-P4-EVIDENCE-RETRY | 证据修复动作触发 | dataset_id, retry_count, result |
 | EVT-P5-EXPORT-REPLAY | 导出后回放校验 | dataset_id, snapshot_id, replay_result |
+| EVT-P6-PROOFREAD-APPLY | 应用校对建议 | dataset_id, issue_id, issue_type, confidence, traceability |
+| EVT-P7-TERM-REGISTRY-ACTION | 术语条目动作 | dataset_id, term_id, action, reviewer_result |
+| EVT-P8-THRESHOLD-BREACH | 阈值越界 | dataset_id, metric_name, tier, observed_value |
 
 ## 原型评审门槛
 
@@ -165,6 +181,8 @@ EvidenceBroken
 - Gate-02：SCN-V1-003 与 SCN-V1-004 的失败路径有明确恢复动作。
 - Gate-03：所有结论卡可回链到 sentence_ref（SCN-V1-004 允许先失败后恢复）。
 - Gate-04：导出与回放在 SCN-V1-005 中一致性通过。
+- Gate-05：补齐专项数据集（DS-V1-PRF-P0/1/2）均满足 traceability=pass 的建议可解释可回链。
+- Gate-06：阈值门槛满足 [../../academic/golden-set-threshold-policy.md](../../academic/golden-set-threshold-policy.md) 中 proofreading_recall、proofreading_false_positive_ratio、term_consistency_alignment_rate、registry_new_term_precision 对应档位要求。
 
 ## 输出物清单
 
@@ -172,6 +190,7 @@ EvidenceBroken
 - 高保真关键屏（Hi-fi key screens）
 - 交互状态表（state + transition）
 - 场景验收记录（scene_id + dataset_id）
+- 校对补齐验收记录（issue_type + traceability + threshold_tier）
 
 ## 关联文档
 
@@ -179,3 +198,5 @@ EvidenceBroken
 - ../v1-two-week-sprint-plan.md
 - ../scenarios/v1-mock-simulation-dataset.md
 - ../workflows/README.md
+- ../../academic/golden-set-threshold-policy.md
+- ../modules/proofreading-capability-gap-closure-plan.md

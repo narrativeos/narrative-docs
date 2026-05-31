@@ -50,6 +50,7 @@ sections:
       - product/scenarios/v1-mock-simulation-dataset.md
       - product/prototype/v1-prototype-spec.md
       - product/modules/proofreading-capability-gap-closure-plan.md
+      - product/modules/proofreading-competitive-benchmark.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide

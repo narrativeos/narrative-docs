@@ -250,6 +250,11 @@ defaults:
       title: Proofreading Gap Closure 校对能力补齐方案
       nav_order: 18
   - scope:
+      path: product/modules/proofreading-competitive-benchmark.md
+    values:
+      title: Proofreading Competitive Benchmark 校对对打评测
+      nav_order: 19
+  - scope:
       path: product/vision/README.md
     values:
       title: Vision 产品愿景

@@ -41,6 +41,7 @@ source_of_truth: narrative-docs
 - [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md): V1 场景 mock 模拟数据包
 - [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
 - [modules/proofreading-capability-gap-closure-plan](modules/proofreading-capability-gap-closure-plan.md): 零规则库起步的校对能力补齐方案
+- [modules/proofreading-competitive-benchmark](modules/proofreading-competitive-benchmark.md): 校对补齐同题对打评测规范
 
 ## 平台化补充
 

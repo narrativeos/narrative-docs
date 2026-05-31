@@ -40,3 +40,4 @@ source_of_truth: narrative-docs
 - [insight-engine.md](insight-engine.md): 证据链驱动的 AI 洞察模块
 - [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力
 - [proofreading-capability-gap-closure-plan.md](proofreading-capability-gap-closure-plan.md): 校对能力补齐与自学习闭环方案
+- [proofreading-competitive-benchmark.md](proofreading-competitive-benchmark.md): 校对补齐同题对打评测规范
