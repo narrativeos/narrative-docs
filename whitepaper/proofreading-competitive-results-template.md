@@ -147,6 +147,7 @@ risk_and_limits:
 
 - competitor-matrix.md
 - market-acceptance.md
+- workflow-to-whitepaper-mapping-guide.md
 - ../product/modules/proofreading-competitive-benchmark.md
 - ../product/modules/platform-domains.md
 - ../product/workflows/proofreading-competitive-pilot-intake-template.md

@@ -228,6 +228,7 @@ risk_and_limits:
 ## 关联文档
 
 - proofreading-competitive-results-template.md
+- workflow-to-whitepaper-mapping-guide.md
 - ../product/modules/platform-domains.md
 - competitor-matrix.md
 - market-acceptance.md
