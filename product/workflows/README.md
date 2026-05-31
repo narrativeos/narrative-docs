@@ -55,6 +55,7 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 
 - 执行页： [fact-conflict-detection-minimal-runbook.md](fact-conflict-detection-minimal-runbook.md)
 - 一页样例： [fact-conflict-detection-sample-2026-05.md](fact-conflict-detection-sample-2026-05.md)
+- 映射指南： [../../whitepaper/workflow-to-whitepaper-mapping-guide.md](../../whitepaper/workflow-to-whitepaper-mapping-guide.md)
 - 协议口径： [../../academic/fact-verification-protocol.md](../../academic/fact-verification-protocol.md)
 - 记录模板： [../../academic/templates-golden-set-fact-check-ledger.md](../../academic/templates-golden-set-fact-check-ledger.md)
 

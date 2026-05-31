@@ -146,3 +146,4 @@ fact_conflict_run_record:
 - proofreading-competitive-benchmark-runbook.md
 - fact-conflict-detection-sample-2026-05.md
 - ../../whitepaper/proofreading-competitive-results-template.md
+- ../../whitepaper/workflow-to-whitepaper-mapping-guide.md
