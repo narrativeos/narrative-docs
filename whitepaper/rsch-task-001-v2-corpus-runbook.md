@@ -293,7 +293,7 @@ second_pass_verification:
 
 ## P1 Formal Admission Checklist (Historical Snapshot)
 
-以下检查单仅适用于 `P1` 主线来源，即当前最接近正式样本的非 CNKI 文学研究条目。
+以下检查单仅适用于 `P1` 主线来源，即当前最接近正式样本的正式文学研究条目。
 
 ```yaml
 formal_admission_checklist:
@@ -335,38 +335,20 @@ formal_admission_checklist:
 - `CN-URBAN-2015-001` 已从 demo 路线放弃，不再消耗研究精力。
 - 除非未来出现新的直接全文链路，否则不再恢复这条线索的 admission 检查。
 
-## CNKI 方法学参照线索 | CNKI Methodology Leads
+## Formal Lead Queue
 
-用户提供的 CNKI 专题入口 [cp.cnki.net/szrw](https://cp.cnki.net/szrw/) 已检查。当前首页更像“数字人文 / 文学研究方法”聚合页，而不是“中文城市写作文本”直接入口。
+当前已确认以下正式来源线索可继续跟踪：
 
-首批可登记的方法学线索：
-
-| method_lead_id | title | source | date | role |
+| formal_lead_id | title | doi | source_chain | provisional_role |
 | --- | --- | --- | --- | --- |
-| CNKI-METHOD-001 | 重新发现定量文学研究：概念、传统与范式 | 数字人文研究 | 2024-12-28 | quant-literature framing reference |
-| CNKI-METHOD-002 | 数字人文视域下的文学创作与接受研究 | 文艺论坛 | 2024-12-01 | literature reception / creation framing reference |
-| CNKI-METHOD-003 | 清初至嘉道时期词人地理分布可视化分析 | 浙江大学学报(人文社会科学版) | 2024-11-15 | literary geography method reference |
+| FORMAL-001 | Unraveling the Urban Myth: History, City, and Literature in Xi Xi's Fiction | 10.1080/21514399.2019.1605255 | Chinese Literature Today / Taylor & Francis / Crossref | dropped_due_to_fulltext_access |
+| FORMAL-002 | The City as the Protagonist | 10.1080/21514399.2020.1750850 | Chinese Literature Today / Taylor & Francis / Crossref | thematic supplement lead |
+| FORMAL-003 | Ruined City | 10.1080/21514399.2017.1319202 | Chinese Literature Today / Taylor & Francis / Crossref | text-type lead pending genre check |
 
 当前判断：
 
-- 这些条目适合补充中文方法学参照池。
-- 它们暂不替代 `LEAD-2015-*` 这一组城市文学正式来源线索。
-- 若后续要扩展“中文本土数字人文方法先例”章节，可优先从该入口继续抽取。
-
-## Non-CNKI Lead Queue
-
-当前已确认以下非 CNKI 来源线索可继续跟踪：
-
-| non_cnki_lead_id | title | doi | source_chain | provisional_role |
-| --- | --- | --- | --- | --- |
-| NONCNKI-001 | Unraveling the Urban Myth: History, City, and Literature in Xi Xi's Fiction | 10.1080/21514399.2019.1605255 | Chinese Literature Today / Taylor & Francis / Crossref | dropped_due_to_fulltext_access |
-| NONCNKI-002 | The City as the Protagonist | 10.1080/21514399.2020.1750850 | Chinese Literature Today / Taylor & Francis / Crossref | thematic supplement lead |
-| NONCNKI-003 | Ruined City | 10.1080/21514399.2017.1319202 | Chinese Literature Today / Taylor & Francis / Crossref | text-type lead pending genre check |
-
-当前判断：
-
-- `NONCNKI-001` 与现有 `LEAD-2015-001` 实际上是同一条核心正式来源线索的“非 CNKI 来源确认”，当前已因全文获取失败而放弃。
-- `NONCNKI-002` 和 `NONCNKI-003` 可以证明，除了 CNKI 之外，仍存在围绕 city / urban narrative 的连续出版链路。
+- `FORMAL-001` 与现有 `LEAD-2015-001` 实际上是同一条核心正式来源线索确认，当前已因全文获取失败而放弃。
+- `FORMAL-002` 和 `FORMAL-003` 可以证明，围绕 city / urban narrative 仍存在连续出版链路。
 - 但它们暂未进入正式样本槽位，因为体裁与正文可达性尚未逐条核验。
 
 ## Explicit OA Journal Queue
@@ -488,10 +470,10 @@ oa_admission_note:
 
 | priority | lead_bucket | representative_ids | default_action | escalation_rule |
 | --- | --- | --- | --- | --- |
-| P1 | non-cnki formal leads | LEAD-2015-001 / NONCNKI-001 | drop on access failure | 已探测到全文不可直接获取的条目直接移出 |
+| P1 | formal literature leads | LEAD-2015-001 / FORMAL-001 | drop on access failure | 已探测到全文不可直接获取的条目直接移出 |
 | P2 | direct-access OA urban-narrative leads | HANS-003 / HANS-001 / HANS-004 | maintain HANS-003 as baseline evidence, use HANS-001/004 as controls | HANS-003 已完成 RSCH-001/002，可作为后续扩展基线 |
 | P3 | explicit OA methodology leads | OA-002 / HANS-002 | retain as methodology_only | 不进入当前正式语料槽位 |
-| P4 | CNKI methodology leads | CNKI-METHOD-001..003 | retain as methodology references | 不进入当前正式语料槽位 |
+| P4 | localized methodology leads | METHOD-001..003 | retain as methodology references | 不进入当前正式语料槽位 |
 
 执行说明（当前有效）：
 

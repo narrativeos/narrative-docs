@@ -92,7 +92,7 @@ owner: maintainer
 
 ## 中文方法学线索池 | Chinese Methodology Lead Pool
 
-来自 CNKI 专题入口 [cp.cnki.net/szrw](https://cp.cnki.net/szrw/) 的当前判断是：它更适合补充中文数字人文与文学研究的方法学参照，而不是直接充当“中文城市写作”正式语料入口。
+来自相关专题入口（链接已移除）的当前判断是：它更适合补充中文数字人文与文学研究的方法学参照，而不是直接充当“中文城市写作”正式语料入口。
 
 当前可回查的本土方法学线索包括：
 
@@ -105,19 +105,19 @@ owner: maintainer
 - 上述条目当前应用于方法学与任务设计参照，不直接进入 `CORPUS-URBAN-CN-1990-2025` 的正式比较语料。
 - 若后续需要构建“中国本土数字人文方法参照清单”，可从该入口继续扩展。
 
-## 非 CNKI 来源线索 | Non-CNKI Source Leads
+## 来源线索 | Source Leads
 
-除了 CNKI 入口，当前还已确认一组来自期刊官网 / Crossref 元数据链路的非 CNKI 线索。
+当前还已确认一组来自期刊官网 / Crossref 元数据链路的来源线索。
 
 当前较相关的条目包括：
 
-- Unraveling the Urban Myth: History, City, and Literature in Xi Xi's Fiction. DOI: 10.1080/21514399.2019.1605255. 来源链路为 Chinese Literature Today / Taylor & Francis，不是 CNKI。
-- The City as the Protagonist. DOI: 10.1080/21514399.2020.1750850. 来源链路为 Chinese Literature Today / Taylor & Francis，不是 CNKI，可作为“城市作为叙事主体”方向的补充线索。
-- Ruined City. DOI: 10.1080/21514399.2017.1319202. 来源链路为 Chinese Literature Today / Taylor & Francis，不是 CNKI，主题上接近城市叙事文本，但体裁需单独核验。
+- Unraveling the Urban Myth: History, City, and Literature in Xi Xi's Fiction. DOI: 10.1080/21514399.2019.1605255. 来源链路为 Chinese Literature Today / Taylor & Francis。
+- The City as the Protagonist. DOI: 10.1080/21514399.2020.1750850. 来源链路为 Chinese Literature Today / Taylor & Francis，可作为“城市作为叙事主体”方向的补充线索。
+- Ruined City. DOI: 10.1080/21514399.2017.1319202. 来源链路为 Chinese Literature Today / Taylor & Francis，主题上接近城市叙事文本，但体裁需单独核验。
 
 使用边界：
 
-- 这些条目说明“不是 CNKI 的来源”是存在的，尤其集中在 Chinese Literature Today 这一出版链路。
+- 这些条目说明多来源链路是存在的，尤其集中在 Chinese Literature Today 这一出版链路。
 - 但它们与现有 Xi Xi 条目一样，仍可能受站点访问策略影响，不能自动等同于正文可稳定抓取。
 - 在正式纳入前，仍需分别核验体裁、全文可达性和是否适配当前 `genres: [essay, criticism]` 的约束。
 
@@ -163,10 +163,10 @@ Hanspub 新来源线索（用户提供）：
 
 | 优先级 | 来源类型 | 当前代表条目 | 默认角色 | 进入正式样本前仍需补充 |
 | --- | --- | --- | --- | --- |
-| P1 | 非 CNKI 正式文学研究线索 | 10.1080/21514399.2019.1605255 | `dropped_due_to_fulltext_access` | 已探测到正文直接获取失败，因此不再纳入 demo 路线 |
+| P1 | 正式文学研究线索 | 10.1080/21514399.2019.1605255 | `dropped_due_to_fulltext_access` | 已探测到正文直接获取失败，因此不再纳入 demo 路线 |
 | P2 | 明确公开存取且可浏览器直接下载的城市相关条目 | 10.12677/arl.2026.151004 | `documented workflow evidence`（RSCH-001） | 下一步补第 3 样本并复跑 compare，检验结论稳定性 |
 | P3 | 明确公开存取期刊中的方法学/平台研究条目 | 10.22599/wcj.75 | `methodology_only` | 不进入正式语料，只补方法参照 |
-| P4 | CNKI 专题入口中的中文方法学条目 | CNKI-METHOD-001..003 | `methodology reference` | 不进入正式语料，只补中文本土方法先例 |
+| P4 | 中文方法学条目 | METHOD-001..003 | `methodology reference` | 不进入正式语料，只补中文本土方法先例 |
 
 执行规则：
 

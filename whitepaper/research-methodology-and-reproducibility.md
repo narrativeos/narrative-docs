@@ -102,8 +102,8 @@ status: design-ready | study-ready | evidence-ready
 
 来源策略补充：
 
-- 不应默认把 CNKI 视为唯一或必需入口；正式样本与方法学参照均可来自期刊官网、出版社页面、DOI 落地页、开放数据库或其他可回查来源。
-- 同一条来源线索若存在 CNKI 与非 CNKI 双重链路，应优先记录更稳定、可公开回查的链路。
+- 不应默认把某单一数据库入口视为唯一或必需渠道；正式样本与方法学参照均可来自期刊官网、出版社页面、DOI 落地页、开放数据库或其他可回查来源。
+- 同一条来源线索若存在多条可回查链路，应优先记录更稳定、可公开回查的链路。
 - “来源可回查”与“正文可稳定抓取”不是同一件事；若站点受到登录墙、Cloudflare challenge 或机构权限限制，必须单独记录。
 - 上述登录墙或权限限制仅作为来源可达性风险记录，不代表项目内建用户系统设计。
 - 若某来源只适合承担方法学参照角色，而不适合进入正式比较语料，也应显式标注其角色边界。
@@ -144,10 +144,10 @@ source_leads:
       role: thematic supplement lead
   methodology_leads:
     - title: 重新发现定量文学研究：概念、传统与范式
-      source_chain: 数字人文研究 / CNKI专题入口可回查
+      source_chain: 数字人文研究 / 专题入口可回查
       role: methodology reference
     - title: 数字人文视域下的文学创作与接受研究
-      source_chain: 文艺论坛 / CNKI专题入口可回查
+      source_chain: 文艺论坛 / 专题入口可回查
       role: methodology reference
   oa_journal_leads:
     - title: "The City's Charms and Challenges" by P K Leung (translation)
