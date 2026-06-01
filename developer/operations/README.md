@@ -81,3 +81,7 @@ source_of_truth: narrative-docs
 - [cross-repo-release-checklist.md](cross-repo-release-checklist.md)
 - [go-no-go-meeting-template.md](go-no-go-meeting-template.md)
 - [cross-repo-ci-status-matrix-template.md](cross-repo-ci-status-matrix-template.md)
+- [milestone-planning-template.md](milestone-planning-template.md)
+- [risk-register-template.md](risk-register-template.md)
+- [prototype-page-level-task-breakdown.md](prototype-page-level-task-breakdown.md)
+- [novel100-kepub-dataset.md](novel100-kepub-dataset.md)

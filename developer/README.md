@@ -42,6 +42,7 @@ source_of_truth: narrative-docs
 - [coding](coding/README.md): 编码规范与质量门禁
 - [coding/docs-release-readiness-checklist.md](coding/docs-release-readiness-checklist.md): 文档发布前就绪检查清单
 - [operations](operations/README.md): 安装验证、回滚与故障处置 Runbook
+- [operations/novel100-kepub-dataset.md](operations/novel100-kepub-dataset.md): 原型开发样本数据集（20世纪中文小说100强 x kepub）
 - [operations/cross-repo-release-checklist.md](operations/cross-repo-release-checklist.md): 跨仓联合发布硬门禁清单
 - [operations/go-no-go-meeting-template.md](operations/go-no-go-meeting-template.md): 发布 go/no-go 会议模板
 - [operations/cross-repo-ci-status-matrix-template.md](operations/cross-repo-ci-status-matrix-template.md): 跨仓 CI 状态与证据矩阵模板
