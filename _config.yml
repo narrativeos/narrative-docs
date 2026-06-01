@@ -252,7 +252,7 @@ defaults:
   - scope:
       path: product/modules/proofreading-competitive-benchmark.md
     values:
-      title: Proofreading Competitive Benchmark 校对对打评测
+      title: Proofreading Competitive Benchmark 校对竞争力设定
       nav_order: 19
   - scope:
       path: product/vision/README.md
@@ -342,6 +342,13 @@ defaults:
       grand_parent: Developer 开发者
       nav_order: 14
   - scope:
+      path: developer/coding/docs-terminology-note-template.md
+    values:
+      title: Terminology Note Template 术语说明模板
+      parent: Governance 治理与标准
+      grand_parent: Developer 开发者
+      nav_order: 15
+  - scope:
       path: developer/operations/README.md
     values:
       title: Operations 运行手册
@@ -408,6 +415,27 @@ defaults:
       parent: Development Planning 开发计划
       grand_parent: Developer 开发者
       nav_order: 72
+  - scope:
+      path: product/prototype/v1-frontend-issue-breakdown.md
+    values:
+      title: V1 Frontend Issue Breakdown V1前端任务拆分
+      parent: Development Planning 开发计划
+      grand_parent: Developer 开发者
+      nav_order: 73
+  - scope:
+      path: product/prototype/v1-frontend-issue-paste-pack.md
+    values:
+      title: V1 Frontend Issue Paste Pack V1前端工单粘贴包
+      parent: Development Planning 开发计划
+      grand_parent: Developer 开发者
+      nav_order: 74
+  - scope:
+      path: product/prototype/v1-frontend-swimlane-allocation.md
+    values:
+      title: V1 Frontend Swimlane Allocation V1前端分泳道计划
+      parent: Development Planning 开发计划
+      grand_parent: Developer 开发者
+      nav_order: 75
 
   - scope:
       path: user/README.md

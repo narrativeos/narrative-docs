@@ -2,11 +2,17 @@
 
 ## 摘要（中文）
 
-本清单用于周会或评审现场逐项打勾，确保校对补齐同题对打评测执行一致、记录完整、结论可追溯。
+本清单用于周会或评审现场逐项打勾，确保校对补齐竞争力验证执行一致、记录完整、结论可追溯。
 
 ## Executive Summary (EN)
 
-This checklist provides a meeting-ready execution sheet for proofreading competitive benchmark runs.
+This checklist provides a meeting-ready execution sheet for proofreading competitive validation runs.
+
+## 术语说明 | Terminology Note
+
+本页沿用 Benchmark 命名以保持流程兼容，但所有评审口径均按 competitive validation（竞争力验证）解释。
+
+术语规范来源： [../../developer/coding/docs-terminology-note-template.md](../../developer/coding/docs-terminology-note-template.md)
 
 ## Machine-readable Metadata | 机读元数据
 

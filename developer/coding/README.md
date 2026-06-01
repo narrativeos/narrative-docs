@@ -33,6 +33,7 @@ source_of_truth: narrative-docs
 ## 标准参考 | Standards Reference
 
 - [docs-governance-standard.md](docs-governance-standard.md)
+- [docs-terminology-note-template.md](docs-terminology-note-template.md)
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 - [storage-optimization-rollout-checklist.md](storage-optimization-rollout-checklist.md)

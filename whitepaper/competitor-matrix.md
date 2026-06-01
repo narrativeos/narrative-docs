@@ -8,6 +8,16 @@
 
 This document frames NarrativeOS against competing and adjacent tools so that positioning, differentiation, and adoption assumptions can be tested before implementation.
 
+## 术语说明 | Terminology Note
+
+本页中的“竞品与替代”用于比较坐标系表达，不用于支持“全面替代第三方工具”承诺。
+
+- 用途：识别差异化与补位空间
+- 非用途：输出替代性营销宣称
+- 边界语句：complement, not replace
+
+术语规范来源： [../developer/coding/docs-terminology-note-template.md](../developer/coding/docs-terminology-note-template.md)
+
 ## Machine-readable Metadata | 机读元数据
 
 ```yaml

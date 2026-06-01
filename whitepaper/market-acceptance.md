@@ -8,6 +8,16 @@
 
 This document defines the market acceptance framework for NarrativeOS across target user groups, adoption friction, value triggers, and validation questions.
 
+## 术语说明 | Terminology Note
+
+本页涉及“工具切换与采用”判断时，默认语义为补充增强路径，而非替代路径。
+
+- 用途：评估采用条件与阻力
+- 非用途：支持“替代第三方校对产品”结论
+- 边界语句：complement, not replace
+
+术语规范来源： [../developer/coding/docs-terminology-note-template.md](../developer/coding/docs-terminology-note-template.md)
+
 ## Machine-readable Metadata | 机读元数据
 
 ```yaml
@@ -65,7 +75,7 @@ next_review: 2026-06-12
 
 - 场景：批量审稿、跨版本对照、质量把控
 - 需求：统一标准、批量判断、可追溯证据
-- 采用条件：能替代部分重复审阅劳动
+- 采用条件：能减少重复审阅劳动，并提升证据化复核效率
 
 ### 1.3 研究者
 

@@ -2,11 +2,13 @@
 
 ## 摘要（中文）
 
-本模板用于白皮书侧沉淀校对补齐同题对打结果，支持对外评审中的可复核展示与结论约束。
+本模板用于白皮书侧沉淀校对补齐竞争力验证结果，支持对外评审中的可复核展示与结论约束。
+
+定位约束：本模板服务于“必要补充 + 本地增强”叙事，不用于支持“全面替代第三方校对产品”叙事。
 
 ## Executive Summary (EN)
 
-This template standardizes how proofreading competitive benchmark results are reported in the whitepaper context.
+This template standardizes how proofreading competitive validation results are reported in the whitepaper context.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -27,6 +29,9 @@ status: template
 - 任何“优于竞品”结论必须附指标 delta 与证据回链。
 - 未达到阈值的轮次必须如实记录为 fail 或 no-go。
 - 本模板用于记录“域融合后”的校对能力表现，不作为独立产品线证明材料。
+- 对外文本必须显式包含边界语句：complement, not replace。
+
+术语规范来源： [../developer/coding/docs-terminology-note-template.md](../developer/coding/docs-terminology-note-template.md)
 
 ## 报告元信息
 
@@ -130,6 +135,7 @@ metric_record:
 - 禁止：在无充足样本时宣称“全面领先所有竞品”。
 - 必填：风险、限制、样本偏差与后续验证计划。
 - 必须：结论需说明关键差异来自哪些平台域能力协同，而非单点校对功能。
+- 必须：明确声明 NarrativeOS 校对能力是补充增强层，而非第三方校对产品替代品。
 
 ## 风险与限制模板
 

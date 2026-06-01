@@ -94,8 +94,8 @@ source_of_truth: narrative-docs
 - [ALGO-TASK-001 首轮运行作业单](algo-task-001-runbook.md)
 - [ALGO-TASK-001 执行清单模板](algo-task-001-execution-checklist.md)
 - [ALGO-TASK-001 最小可填清单](algo-task-001-minimal-checklist.md)
-- [校对同题对打结果模板（平台域融合证据）](proofreading-competitive-results-template.md)
-- [校对同题对打结果样例（2026-05，平台域融合口径）](proofreading-competitive-results-sample-2026-05.md)
+- [校对竞争力验证结果模板（平台域融合证据）](proofreading-competitive-results-template.md)
+- [校对竞争力验证结果样例（2026-05，平台域融合口径）](proofreading-competitive-results-sample-2026-05.md)
 - [Workflow 到 Whitepaper 映射指南](workflow-to-whitepaper-mapping-guide.md)
 - [研究方法与复现基线](research-methodology-and-reproducibility.md)
 - [V2 语料比较研究模板](study-template-v2-corpus-comparative-analysis.md)
@@ -113,7 +113,7 @@ Part II 负责支撑“为什么这样判断”。
 
 Part III 负责回答“在什么条件下这些判断可以被对外宣称”。其中研究方法基线用于约束研究型论断的任务定义、语料口径、标注协议与复现要求；study template、annotation protocol 和 reproducibility package example 用于把这些约束下沉到可执行样板；task worksheet 用于承接真实运行与证据回填；映射表与就绪度清单属于附录性质的发布支撑材料，而不是正文主线。
 
-补充说明：校对同题对打相关页面在白皮书中属于“平台当前基线六域融合证据”，用于支持域协同能力判断，不用于支持独立校对产品线叙事。
+补充说明：校对竞争力验证相关页面在白皮书中属于“平台当前基线六域融合证据”，用于支持域协同能力判断，不用于支持独立校对产品线叙事，也不用于支持“替代第三方校对产品”叙事。
 
 ## 推荐阅读顺序
 

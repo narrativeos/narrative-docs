@@ -2,13 +2,17 @@
 
 ## 摘要（中文）
 
-本页提供首版已填充样例结果，演示如何按照白皮书模板记录校对补齐同题对打评测。
+本页提供首版已填充样例结果，演示如何按照白皮书模板记录校对补齐竞争力验证。
 
 本页示例默认采用“校对能力并入平台当前基线六域”的产品架构口径。
 
+边界声明：本样例用于证明补充增强价值，不用于支持“替代第三方校对产品”结论。
+
+术语规范来源： [../developer/coding/docs-terminology-note-template.md](../developer/coding/docs-terminology-note-template.md)
+
 ## Executive Summary (EN)
 
-This page is a filled example report showing how to record proofreading competitive benchmark outcomes.
+This page is a filled example report showing how to record proofreading competitive validation outcomes.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -152,6 +156,7 @@ final_decision:
   constraints:
     - 样本仍为模拟数据，需继续扩展真实试点验证
     - baseline 仍需增加 Baseline-A 与 Baseline-C 的同题结果
+    - 对外叙事应保持 complement, not replace 边界
 ```
 
 ## Workflow 映射应用附录（事实冲突识别）

@@ -2,11 +2,11 @@
 
 ## 摘要（中文）
 
-本模板用于在真实试点启动前记录试点背景、数据来源、授权范围、评测基线与证据回填目标。
+本模板用于在真实试点启动前记录试点背景、数据来源、授权范围、竞争力验证基线与证据回填目标。
 
 ## Executive Summary (EN)
 
-This template captures pilot intake information before a real proofreading competitive benchmark run starts.
+This template captures pilot intake information before a real proofreading competitive validation run starts.
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -25,7 +25,9 @@ status: template
 
 本页用于在真实试点启动前锁定试点边界、授权状态、数据来源与证据回填目标，避免执行开始后再补合规与口径。
 
-它是 benchmark workflow 的入口页，不记录评测结果。
+它是竞争力验证 workflow 的入口页，不记录评测结果。
+
+术语规范来源： [../../developer/coding/docs-terminology-note-template.md](../../developer/coding/docs-terminology-note-template.md)
 
 ## 使用说明 | How To Use
 

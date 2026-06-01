@@ -8,6 +8,16 @@
 
 This document establishes the pre-implementation foundation for NarrativeOS: positioning, boundaries, competitor framing, architecture feasibility, market acceptance assumptions, and the long-term constitutional layer for future implementation.
 
+## 术语说明 | Terminology Note
+
+本页中的“竞品与替代方案”用于建立战略边界与比较框架，不用于支持替代性产品承诺。
+
+- 用途：定义定位、边界与验证问题
+- 非用途：宣称对第三方工具的全面替代
+- 边界语句：complement, not replace
+
+术语规范来源： [../developer/coding/docs-terminology-note-template.md](../developer/coding/docs-terminology-note-template.md)
+
 ## Machine-readable Metadata | 机读元数据
 
 ```yaml

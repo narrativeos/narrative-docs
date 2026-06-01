@@ -2,11 +2,19 @@
 
 ## 摘要（中文）
 
-本页提供可直接复制填写的空白运行记录，用于保存一次完整的校对补齐同题对打评测结果。
+本页提供可直接复制填写的空白运行记录，用于保存一次完整的校对补齐竞争力验证结果。
 
 ## Executive Summary (EN)
 
-This template is a blank run record for one complete proofreading competitive benchmark execution.
+This template is a blank run record for one complete proofreading competitive validation execution.
+
+## 术语说明 | Terminology Note
+
+本页中的 Benchmark run 为兼容字段命名（如 benchmark_run_record）而保留。
+
+语义上统一解释为 competitive validation（竞争力验证）。
+
+术语规范来源： [../../developer/coding/docs-terminology-note-template.md](../../developer/coding/docs-terminology-note-template.md)
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -26,6 +34,8 @@ status: template
 本页用于保存一次完整 benchmark run 的正式记录，是 checklist 与白皮书结果页之间的中间权威载体。
 
 它负责沉淀“本轮到底跑了什么、结果如何、依据是什么”，而不是承担策略说明。
+
+边界说明：本页记录用于支持“必要补充 + 本地增强”的产品叙事，不用于支持“替代第三方校对产品”叙事。
 
 ## 使用说明 | How To Use
 

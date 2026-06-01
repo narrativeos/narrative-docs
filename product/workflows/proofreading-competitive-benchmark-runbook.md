@@ -2,11 +2,20 @@
 
 ## 摘要（中文）
 
-本页提供校对补齐同题对打评测的可执行作业步骤，确保从数据准备、执行、记录到 Go/No-go 判定可复现。
+本页提供校对补齐竞争力验证的可执行作业步骤，确保从数据准备、执行、记录到 Go/No-go 判定可复现。
 
 ## Executive Summary (EN)
 
-This runbook defines an executable, repeatable procedure for the proofreading competitive benchmark.
+This runbook defines an executable, repeatable procedure for proofreading competitive validation.
+
+## 术语说明 | Terminology Note
+
+本页沿用文件名中的 Benchmark 命名，但语义指向 competitive validation（竞争力验证）。
+
+- 用途：验证补充增强价值
+- 非用途：支持替代第三方校对产品叙事
+
+术语规范来源： [../../developer/coding/docs-terminology-note-template.md](../../developer/coding/docs-terminology-note-template.md)
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -22,13 +31,13 @@ source_of_truth: narrative-docs
 
 ## 本页用途 | Purpose
 
-本页用于定义校对补齐同题对打的标准执行路径，确保不同评测轮次采用同一套输入、判断和退出规则。
+本页用于定义校对补齐竞争力验证的标准执行路径，确保不同评测轮次采用同一套输入、判断和退出规则。
 
 它不是结果页，也不是策略页，而是 workflow 层的执行主文档。
 
 ## 适用场景 | Use Cases
 
-- 校对补齐能力的内部对打评测
+- 校对补齐能力的内部竞争力验证
 - 真实试点前的标准化演练
 - fail/no-go 后的回归复跑
 

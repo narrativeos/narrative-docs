@@ -59,7 +59,7 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 - 协议口径： [../../academic/fact-verification-protocol.md](../../academic/fact-verification-protocol.md)
 - 记录模板： [../../academic/templates-golden-set-fact-check-ledger.md](../../academic/templates-golden-set-fact-check-ledger.md)
 
-该作业单用于最小闭环验证，不替代完整校对补齐对打流程。
+该作业单用于最小闭环验证，不替代完整校对补齐竞争力验证流程。
 
 按域责任执行图（并入当前基线六域）：
 
