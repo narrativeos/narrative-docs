@@ -80,5 +80,5 @@ status: draft
 - [temporal-knowledge-core-task-pack.md](temporal-knowledge-core-task-pack.md)
 - [temporal-knowledge-api-task-pack.md](temporal-knowledge-api-task-pack.md)
 - [temporal-knowledge-studio-task-pack.md](temporal-knowledge-studio-task-pack.md)
-- [../modules/temporal-knowledge-processing-repo-design.md](../modules/temporal-knowledge-processing-repo-design.md)
+- [../../product/modules/temporal-knowledge-processing-repo-design.md](../../product/modules/temporal-knowledge-processing-repo-design.md)
 - [local-cloud-function-alignment-sprint-pack.md](local-cloud-function-alignment-sprint-pack.md)

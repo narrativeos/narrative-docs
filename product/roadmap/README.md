@@ -34,7 +34,7 @@ source_of_truth: narrative-docs
 - 云端（Cloud Project）：跨对象聚合、长期演化分析、规模化查询服务。
 - 共享契约：ID、时间语义、证据回链、增量同步动作。
 
-执行入口： [../developer/coding/local-cloud-function-alignment-sprint-pack.md](../developer/coding/local-cloud-function-alignment-sprint-pack.md)
+执行入口： [../../developer/coding/local-cloud-function-alignment-sprint-pack.md](../../developer/coding/local-cloud-function-alignment-sprint-pack.md)
 
 ### 功能点对齐矩阵
 

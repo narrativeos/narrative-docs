@@ -174,9 +174,9 @@ status: draft
 ## 关联文档 | Related Docs
 
 - [temporal-knowledge-processing.md](temporal-knowledge-processing.md)
-- [../coding/temporal-knowledge-core-task-pack.md](../coding/temporal-knowledge-core-task-pack.md)
-- [../coding/temporal-knowledge-api-task-pack.md](../coding/temporal-knowledge-api-task-pack.md)
-- [../coding/temporal-knowledge-studio-task-pack.md](../coding/temporal-knowledge-studio-task-pack.md)
+- [../../developer/coding/temporal-knowledge-core-task-pack.md](../../developer/coding/temporal-knowledge-core-task-pack.md)
+- [../../developer/coding/temporal-knowledge-api-task-pack.md](../../developer/coding/temporal-knowledge-api-task-pack.md)
+- [../../developer/coding/temporal-knowledge-studio-task-pack.md](../../developer/coding/temporal-knowledge-studio-task-pack.md)
 - [README.md](README.md)
 - [platform-domains.md](platform-domains.md)
 - [analysis-engine.md](analysis-engine.md)
