@@ -100,6 +100,7 @@ product/prototype/v1-frontend-issue-paste-pack.md
 product/prototype/v1-frontend-swimlane-allocation.md
 product/prototype/v1-prototype-spec.md
 product/README.md
+product/roadmap/product-director-30-60-90-battlecard.md
 product/roadmap/README.md
 product/scenarios/v1-mock-simulation-dataset.md
 product/v1-design-baseline.md

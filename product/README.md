@@ -36,6 +36,7 @@ source_of_truth: narrative-docs
 - [modules](modules/README.md): 核心模块职责与关系
 - [workflows](workflows/README.md): 用户与团队工作流
 - [roadmap](roadmap/README.md): 里程碑与优先级
+- [roadmap/product-director-30-60-90-battlecard](roadmap/product-director-30-60-90-battlecard.md): 产品总监 30/60/90 天作战图
 - [scenarios/v1-mock-simulation-dataset](scenarios/v1-mock-simulation-dataset.md): V1 场景 mock 模拟数据包
 - [prototype/v1-prototype-spec](prototype/v1-prototype-spec.md): 基于 mock 数据的 V1 原型规范
 - [prototype/v1-frontend-issue-breakdown](prototype/v1-frontend-issue-breakdown.md): V1 前端任务拆分（按页面/组件/验收）

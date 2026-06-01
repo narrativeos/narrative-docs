@@ -52,6 +52,7 @@ sections:
     children:
       - product/vision/README.md
       - product/roadmap/README.md
+      - product/roadmap/product-director-30-60-90-battlecard.md
       - product/workflows/README.md
       - product/modules/README.md
       - product/scenarios/v1-mock-simulation-dataset.md

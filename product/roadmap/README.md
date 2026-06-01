@@ -40,6 +40,8 @@ source_of_truth: narrative-docs
 
 算法选型冻结： [../../whitepaper/algorithm-selection-freeze-v1.md](../../whitepaper/algorithm-selection-freeze-v1.md)
 
+产品总监作战图： [product-director-30-60-90-battlecard.md](product-director-30-60-90-battlecard.md)
+
 ## 文档治理推进板（开发向）
 
 ### P0（本周内）交付稳定性
