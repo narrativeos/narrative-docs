@@ -38,6 +38,25 @@ source_of_truth: narrative-docs
 
 执行排期：两周任务拆解与 owner 分配见 [../v1-two-week-sprint-plan.md](../v1-two-week-sprint-plan.md)。
 
+### 校对补齐路线挂钩（跨阶段）
+
+为避免校对能力在模块清单中显得孤立，路线图采用“阶段挂钩 + 判定页面分离”策略：
+
+- 路线图只定义阶段目标与进入条件。
+- 产品判定规则与对外边界保留在专页，不折叠进时间线正文。
+
+阶段挂钩：
+
+- V1：完成 P0/P1/P2 最小补齐闭环并建立 go/no-go 判定基线。
+- V2：将术语一致性、证据回链与误报治理纳入跨样本稳定性验证。
+- V3：形成机构场景下可复核、可留痕的校对增强运营节奏。
+
+判定与执行入口：
+
+- 判定口径： [../modules/proofreading-competitive-benchmark.md](../modules/proofreading-competitive-benchmark.md)
+- 角色与边界： [../modules/proofreading-capability-gap-closure-plan.md](../modules/proofreading-capability-gap-closure-plan.md)
+- 执行作业单： [../workflows/proofreading-competitive-benchmark-runbook.md](../workflows/proofreading-competitive-benchmark-runbook.md)
+
 ### V1：作者/编辑工作流闭环
 
 目标：完成单文本从导入到诊断报告的高频闭环。
