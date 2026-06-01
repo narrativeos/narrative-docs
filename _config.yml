@@ -701,6 +701,11 @@ defaults:
     values:
       title: Terminology Hierarchy Issue Pack 术语层级工单包
       nav_exclude: true
+  - scope:
+      path: developer/coding/local-cloud-function-alignment-sprint-pack.md
+    values:
+      title: Local-Cloud Alignment Sprint Pack 本地云端功能对齐工单包
+      nav_exclude: true
 
   - scope:
       path: api-compatibility-and-versioning.md

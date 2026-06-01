@@ -92,6 +92,7 @@ sections:
       - developer/coding/docs-governance-monthly-check-template.md
       - developer/coding/terminology-hierarchy-core-implementation-breakdown.md
       - developer/coding/terminology-hierarchy-implementation-issue-pack.md
+      - developer/coding/local-cloud-function-alignment-sprint-pack.md
       - developer/plugins/README.md
       - developer/sdk/README.md
       - product/v1-design-baseline.md

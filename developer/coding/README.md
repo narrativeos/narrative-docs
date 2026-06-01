@@ -36,6 +36,7 @@ source_of_truth: narrative-docs
 - [docs-terminology-note-template.md](docs-terminology-note-template.md)
 - [terminology-hierarchy-core-implementation-breakdown.md](terminology-hierarchy-core-implementation-breakdown.md)
 - [terminology-hierarchy-implementation-issue-pack.md](terminology-hierarchy-implementation-issue-pack.md)
+- [local-cloud-function-alignment-sprint-pack.md](local-cloud-function-alignment-sprint-pack.md)
 - [../../whitepaper/benchmark-and-acceptance-metrics.md](../../whitepaper/benchmark-and-acceptance-metrics.md)
 - [../../developer/coding/readiness-checklist.md](../../developer/coding/readiness-checklist.md)
 - [storage-optimization-rollout-checklist.md](storage-optimization-rollout-checklist.md)
