@@ -18,7 +18,7 @@ python3 -m http.server 4173
 
 然后访问：
 
-- http://localhost:4173/prototypes/html-v1/
+- prototypes/html-v1/index.html（通过本地静态服务访问）
 
 ## 数据依赖
 
