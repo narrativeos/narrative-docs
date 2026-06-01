@@ -1,0 +1,98 @@
+[
+  {
+    "rank": 1,
+    "title": "呐喊",
+    "author": "鲁迅",
+    "kepub_book_no": "1109",
+    "kepub_book_name": "呐喊",
+    "kepub_author": "鲁迅",
+    "kepub_book_url": "https://www.kepub.net/book/1109",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1109/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 3,
+    "title": "骆驼祥子",
+    "author": "老舍",
+    "kepub_book_no": "1107",
+    "kepub_book_name": "骆驼祥子",
+    "kepub_author": "老舍",
+    "kepub_book_url": "https://www.kepub.net/book/1107",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1107/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 9,
+    "title": "呼兰河传",
+    "author": "萧红",
+    "kepub_book_no": "11002",
+    "kepub_book_name": "呼兰河传",
+    "kepub_author": "萧红",
+    "kepub_book_url": "https://www.kepub.net/book/11002",
+    "kepub_fulltext_url": "https://www.kepub.net/book/11002/10002",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 12,
+    "title": "彷徨",
+    "author": "鲁迅",
+    "kepub_book_no": "1098",
+    "kepub_book_name": "彷徨",
+    "kepub_author": "鲁迅",
+    "kepub_book_url": "https://www.kepub.net/book/1098",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1098/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 17,
+    "title": "死水微澜",
+    "author": "李劼人",
+    "kepub_book_no": "1093",
+    "kepub_book_name": "死水微澜",
+    "kepub_author": "李劼人",
+    "kepub_book_url": "https://www.kepub.net/book/1093",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1093/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 25,
+    "title": "四世同堂",
+    "author": "老舍",
+    "kepub_book_no": "1084",
+    "kepub_book_name": "四世同堂",
+    "kepub_author": "老舍",
+    "kepub_book_url": "https://www.kepub.net/book/1084",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1084/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 27,
+    "title": "啼笑因缘",
+    "author": "张恨水",
+    "kepub_book_no": "1080",
+    "kepub_book_name": "啼笑因缘",
+    "kepub_author": "张恨水",
+    "kepub_book_url": "https://www.kepub.net/book/1080",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1080/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  },
+  {
+    "rank": 66,
+    "title": "二月",
+    "author": "柔石",
+    "kepub_book_no": "1031",
+    "kepub_book_name": "二月",
+    "kepub_author": "柔石",
+    "kepub_book_url": "https://www.kepub.net/book/1031",
+    "kepub_fulltext_url": "https://www.kepub.net/book/1031/10001",
+    "match_score": 105,
+    "match_status": "matched"
+  }
+]
