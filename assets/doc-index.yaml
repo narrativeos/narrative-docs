@@ -91,6 +91,7 @@ sections:
       - developer/coding/docs-governance-release-report-2026-05.md
       - developer/coding/docs-governance-monthly-check-template.md
       - developer/coding/terminology-hierarchy-core-implementation-breakdown.md
+      - developer/coding/terminology-hierarchy-implementation-issue-pack.md
       - developer/plugins/README.md
       - developer/sdk/README.md
       - product/v1-design-baseline.md

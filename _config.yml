@@ -696,6 +696,11 @@ defaults:
     values:
       title: Terminology Hierarchy Core Breakdown 术语层级核心实现拆解
       nav_exclude: true
+  - scope:
+      path: developer/coding/terminology-hierarchy-implementation-issue-pack.md
+    values:
+      title: Terminology Hierarchy Issue Pack 术语层级工单包
+      nav_exclude: true
 
   - scope:
       path: api-compatibility-and-versioning.md
