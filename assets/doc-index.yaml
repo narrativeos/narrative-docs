@@ -57,6 +57,7 @@ sections:
       - product/modules/platform-domains.md
       - product/modules/style-genome.md
       - product/modules/visual-os.md
+      - product/modules/temporal-knowledge-processing.md
       - product/modules/proofreading-capability-gap-closure-plan.md
       - product/modules/proofreading-competitive-benchmark.md
       - product/workflows/proofreading-competitive-benchmark-runbook.md

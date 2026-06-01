@@ -39,6 +39,7 @@ source_of_truth: narrative-docs
 - [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（当前基线六引擎）与产品交付物
 - [insight-engine.md](insight-engine.md): 证据链驱动的 AI 洞察模块
 - [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力
+- [temporal-knowledge-processing.md](temporal-knowledge-processing.md): 时序知识加工模块（本地提取、加工与当前对象分析）
 - [proofreading-capability-gap-closure-plan.md](proofreading-capability-gap-closure-plan.md): 校对补齐能力在产品中的角色、边界与演进路径
 - [proofreading-competitive-benchmark.md](proofreading-competitive-benchmark.md): 校对补齐竞争力是否成立的产品判断模块
 
