@@ -16,10 +16,17 @@ sections:
     entry: architecture/README.md
     children:
       - architecture/system/README.md
+      - architecture/analysis-engine/README.md
       - architecture/runtime/README.md
       - architecture/storage/README.md
       - architecture/atlas/README.md
+      - architecture/platform/README.md
       - architecture/spatial/README.md
+      - architecture/library/README.md
+      - architecture/corpus-learning/README.md
+      - architecture/style-genome/README.md
+      - architecture/insight-engine/README.md
+      - architecture/visual-os/README.md
   - id: adr
     title_zh: 架构决策记录
     title_en: Architecture Decision Records
@@ -97,6 +104,7 @@ sections:
       - developer/coding/terminology-hierarchy-core-implementation-breakdown.md
       - developer/coding/terminology-hierarchy-implementation-issue-pack.md
       - developer/coding/local-cloud-function-alignment-sprint-pack.md
+      - developer/coding/developer-docs-execution-sprint-plan.md
       - developer/coding/temporal-knowledge-sprint-execution.md
       - developer/coding/temporal-knowledge-core-task-pack.md
       - developer/coding/temporal-knowledge-api-task-pack.md
@@ -172,6 +180,7 @@ sections:
     children:
       - ai/copilot/README.md
       - ai/prompts/README.md
+      - ai/prompts/templates/task-template.md
       - ai/repo-rules/README.md
       - ai/architecture-context/README.md
   - id: whitepaper

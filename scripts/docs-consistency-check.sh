@@ -269,7 +269,7 @@ require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competi
 require_contains "assets/doc-index.yaml" "product/workflows/proofreading-competitive-pilot-intake-template.md"
 require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-template.md"
 require_contains "assets/doc-index.yaml" "whitepaper/proofreading-competitive-results-sample-2026-05.md"
-require_doc_index_coverage "assets/doc-index.yaml" "product" "developer" "whitepaper"
+require_doc_index_coverage "assets/doc-index.yaml" "architecture" "adr" "product" "developer" "user" "academic" "ai" "whitepaper"
 
 require_contains "_config.yml" "parent: Whitepaper 白皮书"
 

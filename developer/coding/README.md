@@ -37,6 +37,7 @@ source_of_truth: narrative-docs
 - [terminology-hierarchy-core-implementation-breakdown.md](terminology-hierarchy-core-implementation-breakdown.md)
 - [terminology-hierarchy-implementation-issue-pack.md](terminology-hierarchy-implementation-issue-pack.md)
 - [local-cloud-function-alignment-sprint-pack.md](local-cloud-function-alignment-sprint-pack.md)
+- [developer-docs-execution-sprint-plan.md](developer-docs-execution-sprint-plan.md)
 - [temporal-knowledge-sprint-execution.md](temporal-knowledge-sprint-execution.md)
 - [temporal-knowledge-core-task-pack.md](temporal-knowledge-core-task-pack.md)
 - [temporal-knowledge-api-task-pack.md](temporal-knowledge-api-task-pack.md)

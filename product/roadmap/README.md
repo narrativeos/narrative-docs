@@ -36,6 +36,46 @@ source_of_truth: narrative-docs
 
 执行入口： [../../developer/coding/local-cloud-function-alignment-sprint-pack.md](../../developer/coding/local-cloud-function-alignment-sprint-pack.md)
 
+开发推进清单： [../../developer/coding/developer-docs-execution-sprint-plan.md](../../developer/coding/developer-docs-execution-sprint-plan.md)
+
+## 文档治理推进板（开发向）
+
+### P0（本周内）交付稳定性
+
+1. 把链接有效性检查并入门禁链路（本地 + CI）。
+2. 建立文档门禁基线快照（以 `assets/doc-index.yaml` 为清单源）。
+3. 将 docs 质量目标纳入短期推进看板。
+
+P0 指标（本周）：
+
+- 断链数：0
+- docs-check-all 通过率：100%
+- 关键入口可达率（README/index/contributing 三跳内）：100%
+
+### P1（2-4 周）跨仓协同效率
+
+1. 建立 API 文档同步节奏：`openapi -> docs -> compatibility` 固定流程。
+2. 强化贡献路径可执行性：新贡献者 15 分钟走查常态化。
+3. 清理导航信息架构：按 user/developer/academic/product 角色复核入口语义。
+
+P1 指标（双周）：
+
+- API 契约改动文档联动覆盖率：100%
+- 新贡献者首个成功任务（15 分钟）达成率：>= 90%
+- 导航歧义项清零率：100%
+
+### P2（1-2 个月）规模化治理能力
+
+1. 建立季度文档审计机制：结构、时效、跨仓一致性三类审计。
+2. 建立术语与双语一致性治理：关键概念词典变更流程化。
+3. 沉淀故障与决策闭环：`troubleshooting -> ADR -> rules -> gates`。
+
+P2 指标（月/季度）：
+
+- 季度审计执行率：100%
+- 术语/双语漂移问题环比下降：持续下降
+- 高频问题回灌时效（发现到落库）：<= 7 天
+
 ### 功能点对齐矩阵
 
 | 功能点 | 本地 NarrativeOS | 云端项目 | 共享契约 | 说明 |
