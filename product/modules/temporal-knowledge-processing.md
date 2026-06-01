@@ -161,6 +161,7 @@ Temporal Knowledge Processing 是 Knowledge Graph 的前置加工层。
 ## 关联文档 | Related Docs
 
 - [README.md](README.md)
+- [temporal-knowledge-processing-repo-design.md](temporal-knowledge-processing-repo-design.md)
 - [platform-domains.md](platform-domains.md)
 - [analysis-engine.md](analysis-engine.md)
 - [library.md](library.md)

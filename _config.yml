@@ -250,6 +250,11 @@ defaults:
       title: Temporal Knowledge Processing Module 时序知识加工模块
       nav_order: 18
   - scope:
+      path: product/modules/temporal-knowledge-processing-repo-design.md
+    values:
+      title: Temporal Knowledge Processing Repo Design 仓库级模块设计
+      nav_order: 19
+  - scope:
       path: product/modules/proofreading-capability-gap-closure-plan.md
     values:
       title: Proofreading Gap Closure 校对能力补齐方案
