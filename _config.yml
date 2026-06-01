@@ -717,6 +717,11 @@ defaults:
       title: Local-Cloud Alignment Sprint Pack 本地云端功能对齐工单包
       nav_exclude: true
   - scope:
+      path: developer/coding/temporal-knowledge-sprint-execution.md
+    values:
+      title: Temporal Knowledge Sprint Execution 时序知识加工 Sprint 执行版
+      nav_exclude: true
+  - scope:
       path: developer/coding/temporal-knowledge-core-task-pack.md
     values:
       title: Temporal Knowledge Core Task Pack 时序知识加工 Core 任务单
