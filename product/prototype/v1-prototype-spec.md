@@ -28,8 +28,8 @@ source_of_truth: narrative-docs
 
 ## 评审前提 | Review Preconditions
 
-- 必须先加载场景数据：../scenarios/v1-mock-simulation-dataset.md
-- 原型评审必须按 scene_id + dataset_id 执行，不接受纯静态页面评审。
+- 必须准备可导入资源包（单文件包或文件夹包），每次上传视为一本文献。
+- 原型评审必须覆盖“上传资源包 -> 打开正文 -> 标注/检索 -> 导出”的完整路径，不接受纯静态页面评审。
 - 原型评审前必须通过当前基线六引擎 I/O 全覆盖校验（见场景数据中的算法覆盖矩阵与 coverage_assertion 字段）。
 
 ## 原型目标 | Prototype Goals
@@ -43,6 +43,7 @@ source_of_truth: narrative-docs
 ```text
 Workspace
   ├─ Import Panel
+  │   └─ CiteSpace Bridge Metadata
   ├─ Diagnostic Console
   │   ├─ Fast Summary
   │   ├─ Deep Progress
@@ -52,7 +53,7 @@ Workspace
   │   ├─ Semantic Galaxy
   │   ├─ Rhythm Timeline
   │   └─ Heat Layer
-  ├─ Insight Panel
+  ├─ 洞察面板 Insight Panel
   │   ├─ Conclusion Cards
   │   ├─ Evidence Links
   │   └─ Retry/Repair Actions
@@ -65,13 +66,13 @@ Workspace
 
 ### Screen P1: Import + Fast Start
 
-目标：导入后 2 秒内出现首次可用反馈。
+目标：资源包导入后 2 秒内出现首次可用反馈，并可进入正文打开路径。
 
 主要元素：
 
-- 文稿基本信息卡（title/word_count/paragraph_count）
-- Fast Scan 首次反馈卡（latency、关键指标）
-- Deep 分析状态条（queued/running/completed）
+- 资源包上传入口（导入文件包 / 导入文件夹包）
+- 文献选择器与“打开正文”入口
+- Import/Fast/Deep 状态条（importing/running/completed/degraded）
 
 绑定数据：DS-V1-AUTHOR-SHORT-001、DS-V1-AUTHOR-LONG-001
 
@@ -81,19 +82,52 @@ Workspace
 
 布局：
 
-- 左栏 Text Pane
-- 中栏 Atlas View
-- 右栏 Insight Panel
+- 左栏 Import + 文本定位 + 标注 + CiteSpace 元数据
+- 中栏 Main Stage（Atlas + 正文预览并排）
+- 右栏 洞察面板 Insight Panel
 
 关键交互：
 
+- 左栏先上传并导入资源包，再打开正文；导入状态与正文打开状态分离。
+- 导航层级遵循“全局主导航 -> 上下文导航（Layer/Mode）-> 工具控件（钻取/缩放）-> 当前位置面包屑”的秩序，避免同层竞争。
+- 顶栏全局导航区增加微标注（Global Navigation），明确其为一级入口而非页面内参数切换。
+- 导航术语统一为中英对照并保持固定映射：全局导航 Global Navigation、层 Layer、模式 Mode、粒度 Drill、洞察面板 Insight Panel、工作流状态 Workflow State、证据账本 Evidence Ledger、X-Ray 工作台 X-Ray Workbench、降级恢复 Degrade Recovery、证据修复 Evidence Repair；面包屑需沿用同一术语。
+- 标题命名规范：页面左上主标题使用 Studio，导航项使用 Workspace；浏览器页签标题采用 NarrativeOS Studio Workspace Prototype v1，避免双 Workspace 语义冲突。
+- 选择文件或文件夹后自动触发导入，导入按钮保留为手动重试入口。
+- 导入重复资源包时通过左栏内联决策面板提供“替换现有文献 / 保留副本 / 取消导入”分支，避免误覆盖。
+- 导入后的文献列表支持轻量管理动作：重命名文献、删除文献（并级联删除其标注）；删除动作通过左栏内联确认面板完成。
+- 导入后的文献列表采用“双时态模型”：已导入待加载（imported）与近期项目（loaded），并按最近活动时间排序。
+- 导入后的文献列表提供“仅看近期项目（24h）”筛选开关；筛选开启时仅保留 24 小时内已加载文献，空结果显示明确占位提示。
+- 近期项目条目追加“NEW 24h”标识与相对时间（如“刚刚 / 5 分钟前”），提升时态可读性。
+- 左栏“打开正文”按钮需根据当前选中文献状态切换文案：首次加载显示“打开正文”，已加载文献显示“重新加载正文”。
+- 左栏导入区块需具备状态联动反馈：空状态、已导入状态、已加载状态；状态文本与视觉样式同步更新。
+- 任一文献首次加载后，导入区默认进入精简态（自动收起导入抽屉，仅保留文献选择、状态与核心操作）；用户可通过“展开导入抽屉 / 收起导入抽屉”手动切换。
+- 右栏采用“决策优先”信息层级：洞察面板（结论）> 工作流状态（进度）> X-Ray 工作台（修复决策）> 证据账本（追溯）；通过卡片权重、对比度与排版节奏区分主次。
+- 中栏 Atlas 上下文导航升级为“控制面驾驶舱”：在 Layer/Mode/Drill 之上增加控制面元信息（Control Surface），并通过胶囊状态、边框层级与按钮反馈强化“当前模式 -> 当前层 -> 当前粒度”的快速判读。
+- 右栏信息面板支持“按块折叠/展开”并持久化用户偏好（刷新后保留），用于高密度场景下的注意力管理。
+- 右栏支持“自动焦点面板”模式（默认开启）：随当前 Mode 自动展开最相关卡片并收起次级卡片；支持 Alt+A 快速切换自动/手动密度管理。
+- 工作流面板提供三种“密度模板”一键切换：Research / Debug / Review；选择模板时自动关闭自动焦点并持久化布局，刷新后保留。
+- 增加高频快捷键：Alt+O（打开/重载正文）、Alt+F（聚焦搜索）、Alt+I（展开/收起导入抽屉）、Alt+X（切换 X-Ray）、Alt+A（自动焦点开关）、Alt+R/D/V（Research/Debug/Review 模板）、Alt+1..4（切换 Layer）。
 - 点击句子 -> Atlas 对应节点高亮
 - 点击 Insight 证据 -> 左栏定位原文句子
 - 切换 Layer 保持右栏结论上下文不丢失
+- 搜索框支持 Enter 跳转下一命中，Shift+Enter 跳转上一命中。
+
+导出一致性要求：
+
+- Export + Replay 产物需包含 import_audit（导入决策轨迹），记录 new_import / duplicate_replace / duplicate_copy / duplicate_cancel / rename / delete 等事件，确保文献管理操作可追溯。
+- 左栏提供“最近导入审计”可视列表（最近 N 条），用于快速核对导入与管理动作。
+- 移动端（窄屏）上下文导航采用双行 sticky（Layer 行 + Mode 行），滚动时保持可见，减少导航漂移。
+
+新增组件（CiteSpace Bridge Metadata）：
+
+- 当前文献引用元数据卡：record_id/source_dataset/times_cited/centrality/burst/cluster
+- 对接 JSON 预览：用于与 CiteSpace 或外部引文网络工具对接
+- 元数据来源：优先读取数据集中的 citespace 字段；缺失时由系统按当前文献生成 fallback 元数据
 
 绑定数据：DS-V1-AUTHOR-SHORT-001、DS-V1-AUTHOR-LONG-001
 
-### Screen P3: Degrade Recovery
+### Screen P3: 降级恢复 Degrade Recovery
 
 目标：系统降级时仍可解释、可继续。
 
@@ -101,18 +135,18 @@ Workspace
 
 - 当前状态：Degraded due to queue pressure
 - 降级原因：queue_state/high_watermark
-- 可执行动作：Retry Deep、Continue Fast、Export Partial
+- 可执行动作：重试深度分析 Retry Deep、继续快速路径 Continue Fast、导出部分结果 Export Partial
 
 绑定数据：DS-V1-DEGRADE-001
 
-### Screen P4: Evidence Repair
+### Screen P4: 证据修复 Evidence Repair
 
 目标：当 evidence link 失效时引导修复而非静默失败。
 
 状态组件：
 
 - 失效提示：Evidence anchor not found
-- 修复动作：Retry Anchor、Switch Nearby Evidence、Report Issue
+- 修复动作：重试锚点 Retry Anchor、切换邻近证据 Switch Nearby Evidence、上报问题 Report Issue
 - 修复结果：新锚点回链或标记为待修复
 
 绑定数据：DS-V1-EVIDENCE-FAIL-001

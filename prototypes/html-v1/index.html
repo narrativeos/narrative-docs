@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NarrativeOS Studio Workspace Prototype v1</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="studio-topbar">
+      <div class="brand">
+        <p class="eyebrow">NarrativeOS Studio Prototype</p>
+        <h1>NarrativeOS Studio</h1>
+      </div>
+      <div class="top-nav-group">
+        <p class="top-nav-label">全局导航 Global Navigation</p>
+        <nav class="top-nav" aria-label="Studio 主导航">
+          <button class="nav-item active">Workspace</button>
+          <button class="nav-item">Atlas</button>
+          <button class="nav-item">Corpus</button>
+          <button class="nav-item">Genome</button>
+          <button class="nav-item">Insight</button>
+          <button class="nav-item">Library</button>
+        </nav>
+      </div>
+      <div class="top-actions">
+        <button id="btn-command" class="command-btn">Command (Cmd/Ctrl+K)</button>
+        <div class="status-pill" id="status-line">Mission: 阅读 -> 标注 -> 证据 -> 导出</div>
+      </div>
+    </header>
+
+    <main class="studio-shell">
+      <aside class="pane pane-left">
+        <section class="panel-block panel-import" id="panel-import">
+          <h2>数据导入</h2>
+          <button id="btn-toggle-import-controls" class="small-btn ghost import-toggle hidden">收起导入抽屉</button>
+          <div id="import-drawer" class="import-drawer">
+            <p class="muted import-intro">上传文件或文件夹，每次上传都视为一个文献资源包。上传后可直接在下方文档列表中打开。</p>
+            <div class="upload-block">
+              <label class="field-label" for="package-file">上传单文件资源包</label>
+              <input id="package-file" type="file" accept="application/json,.json,text/plain,.txt,.md" />
+              <button id="btn-import-file-package" class="small-btn">导入文件包</button>
+            </div>
+            <div class="upload-block">
+              <label class="field-label" for="package-folder">上传文件夹资源包</label>
+              <input id="package-folder" type="file" webkitdirectory directory multiple />
+              <button id="btn-import-folder-package" class="small-btn">导入文件夹包</button>
+              <p class="muted">建议包含 manifest.json（可选）和正文文件（txt/md/json）。</p>
+            </div>
+            <p id="import-hint" class="muted">尚未上传资源包。</p>
+            <div id="duplicate-panel" class="duplicate-panel hidden" role="status" aria-live="polite">
+              <p id="duplicate-message" class="duplicate-message">检测到重复资源包，请选择处理方式。</p>
+              <div class="duplicate-actions">
+                <button id="btn-dup-replace" class="small-btn">替换现有文献</button>
+                <button id="btn-dup-copy" class="small-btn">保留为副本</button>
+                <button id="btn-dup-cancel" class="small-btn ghost">取消本次导入</button>
+              </div>
+            </div>
+          </div>
+          <label class="field-label" for="book-select">导入后的文档</label>
+          <select id="book-select"></select>
+          <label class="recent-filter-row" for="import-recent-only">
+            <input id="import-recent-only" type="checkbox" />
+            <span>仅看近期项目（24h）</span>
+          </label>
+          <p id="import-block-state" class="import-block-state muted">状态：尚未导入文档。</p>
+          <div class="import-actions">
+            <button id="btn-open-book" class="small-btn">打开正文</button>
+            <button id="btn-rename-book" class="small-btn">重命名文献</button>
+            <button id="btn-delete-book" class="small-btn danger">删除文献</button>
+          </div>
+          <div id="rename-panel" class="rename-panel hidden">
+            <label class="field-label" for="rename-book-input">新标题</label>
+            <input id="rename-book-input" type="text" placeholder="输入新的文献标题" />
+            <div class="rename-actions">
+              <button id="btn-rename-apply" class="small-btn">保存标题</button>
+              <button id="btn-rename-cancel" class="small-btn ghost">取消</button>
+            </div>
+          </div>
+          <div id="delete-panel" class="delete-panel hidden" role="status" aria-live="polite">
+            <p id="delete-message" class="delete-message">确认删除当前文献？</p>
+            <div class="delete-actions">
+              <button id="btn-delete-confirm" class="small-btn danger">确认删除</button>
+              <button id="btn-delete-cancel" class="small-btn ghost">取消</button>
+            </div>
+          </div>
+          <div class="audit-panel">
+            <p class="field-label">最近导入审计</p>
+            <ul id="import-audit-list" class="audit-list"></ul>
+          </div>
+        </section>
+
+        <section class="panel-block">
+          <h2>文本定位</h2>
+          <p class="muted">通过关键词快速定位到正文中的目标句段，再进行标注。</p>
+          <div class="search-row">
+            <input id="reader-search" type="text" placeholder="输入关键词，例如：铁屋、希望" />
+            <button id="btn-search-prev" class="small-btn">上一处</button>
+            <button id="btn-search-next" class="small-btn">下一处</button>
+          </div>
+          <p id="reader-search-status" class="muted">请先打开文档后再搜索。</p>
+        </section>
+
+        <section class="panel-block citespace-block">
+          <h2>CiteSpace 引用元数据</h2>
+          <p class="muted">面向 CiteSpace 的对接数据，同时显示当前已打开文献的引用网络元数据。</p>
+          <div id="citespace-meta" class="citespace-meta-grid"></div>
+          <details class="citespace-json-wrap">
+            <summary>查看对接 JSON</summary>
+            <pre id="citespace-json" class="citespace-json">请先加载并打开文档。</pre>
+          </details>
+        </section>
+
+        <section class="panel-block">
+          <h2>标注与证据</h2>
+          <p class="muted">先在正文窗口选中一句话，再填写标签与说明，最后点击保存。</p>
+          <div class="inline-toolbar">
+            <label for="tag-select">标签</label>
+            <select id="tag-select">
+              <option value="人物">人物</option>
+              <option value="事件">事件</option>
+              <option value="主题">主题</option>
+              <option value="问题信号">问题信号</option>
+            </select>
+            <label for="priority-select">优先级</label>
+            <select id="priority-select">
+              <option value="P1">P1</option>
+              <option value="P2" selected>P2</option>
+              <option value="P3">P3</option>
+            </select>
+            <input id="note-input" type="text" placeholder="输入你对该句的判断，例如：存在重复叙述" />
+            <button id="btn-add-annotation" class="primary">保存当前选中句段</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="pane pane-center">
+        <header class="stage-head">
+          <div>
+            <h2>主舞台 Atlas Main Stage</h2>
+            <p class="muted">中栏：地图主舞台，保持上下文联动。</p>
+            <p id="stage-path" class="stage-path">Workspace / Atlas / Structure / 章节 / City</p>
+          </div>
+        </header>
+
+        <section class="stage-context-nav" aria-label="Atlas 上下文导航">
+          <div class="context-meta">
+            <span class="context-meta-item">Atlas Control Surface</span>
+            <span class="context-meta-item">实时联动</span>
+            <span class="context-meta-item">Narrative Signal</span>
+          </div>
+          <div class="context-track">
+            <span class="context-label">层 Layer</span>
+            <div class="view-switch" role="tablist" aria-label="Atlas 四层模型">
+              <button class="view-btn active" data-layer="structure">Structure</button>
+              <button class="view-btn" data-layer="semantic">Semantic</button>
+              <button class="view-btn" data-layer="rhythm">Rhythm</button>
+              <button class="view-btn" data-layer="heat">Heat</button>
+            </div>
+          </div>
+          <div class="context-track context-secondary">
+            <span class="context-label">模式 Mode</span>
+            <div class="atlas-mode-bar" role="tablist" aria-label="Atlas 模式">
+              <button class="mode-btn mode-pill active" data-mode="city">City</button>
+              <button class="mode-btn mode-pill" data-mode="galaxy">Galaxy</button>
+              <button class="mode-btn mode-pill" data-mode="music">Music</button>
+              <button class="mode-btn mode-pill" data-mode="emotion">Emotion</button>
+              <button class="mode-btn mode-pill" data-mode="xray">X-Ray</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="mode-brief" aria-live="polite">
+          <p id="mode-brief-title" class="mode-brief-title">City Mode | 结构区块与迁移路径</p>
+          <p id="mode-brief-desc" class="muted">适用于长文结构诊断，优先看断桥段与信息密度波动。</p>
+          <div id="mode-brief-signals" class="mode-signals"></div>
+        </section>
+
+        <section class="atlas-controls">
+          <div class="control-group">
+            <span>交互能力</span>
+            <button id="btn-zoom-in" class="small-btn">缩放 +</button>
+            <button id="btn-zoom-out" class="small-btn">缩放 -</button>
+            <button id="btn-reset-camera" class="small-btn">重置视角</button>
+          </div>
+          <div class="control-group">
+            <span>粒度 Drill</span>
+            <button class="drill-btn drill-chip active" data-drill="chapter">章节</button>
+            <button class="drill-btn drill-chip" data-drill="paragraph">段落</button>
+            <button class="drill-btn drill-chip" data-drill="sentence">句子</button>
+          </div>
+        </section>
+
+        <section class="stage-content">
+          <div id="boot-overlay" class="boot-overlay hidden" aria-live="polite">
+            <div class="boot-card">
+              <h3>语言地图生成中</h3>
+              <p>CT 扫描式显影，正在构建结构与证据索引...</p>
+              <div class="scan-line"></div>
+            </div>
+          </div>
+
+          <div class="stage-split">
+            <div id="atlas-viewport" class="atlas-viewport">
+              <div id="atlas-canvas" class="atlas-canvas">
+                <article id="layer-structure" class="layer-panel active">
+                  <p class="muted">Structure Terrain：信息密度与结构断点</p>
+                  <div id="atlas-structure" class="atlas-grid"></div>
+                </article>
+
+                <article id="layer-semantic" class="layer-panel">
+                  <p class="muted">Semantic Galaxy：语义网络与主题关系</p>
+                  <div id="atlas-semantic" class="atlas-grid semantic-grid"></div>
+                </article>
+
+                <article id="layer-rhythm" class="layer-panel">
+                  <p class="muted">Rhythm Timeline：节奏异常段定位</p>
+                  <div id="timeline" class="timeline"></div>
+                </article>
+
+                <article id="layer-heat" class="layer-panel">
+                  <p class="muted">Heat Layer：问题热区与信号回溯</p>
+                  <div id="heat-zones" class="heat-grid"></div>
+                </article>
+              </div>
+            </div>
+
+            <section class="reader-stage">
+              <h3 id="reader-title">正文预览</h3>
+              <p id="reader-meta" class="muted">请先导入并打开文档</p>
+              <div id="reader-content" class="reader-text">请先在左侧完成数据导入。</div>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <aside class="pane pane-right command-rail">
+        <section class="panel-block panel-insight">
+          <h2>洞察面板 Insight Panel</h2>
+          <p class="muted">结论 -> 证据 -> 原文</p>
+          <div class="insight-metrics">
+            <div><span>结构完整度</span><strong id="metric-structure">74</strong></div>
+            <div><span>节奏指数</span><strong id="metric-rhythm">68</strong></div>
+            <div><span>感官密度</span><strong id="metric-sensory">57</strong></div>
+            <div><span>AI 模板率</span><strong id="metric-ai">12%</strong></div>
+          </div>
+          <div class="focus-block">
+            <h3>当前证据焦点</h3>
+            <p id="focus-line" class="focus-line">尚未选择段落</p>
+            <p id="focus-conclusion" class="muted">结论：等待段落聚焦</p>
+          </div>
+        </section>
+
+        <section class="panel-block metrics panel-workflow">
+          <h2>工作流状态 Workflow State</h2>
+          <label class="auto-focus-row" for="auto-focus-panels">
+            <input id="auto-focus-panels" type="checkbox" checked />
+            <span>自动焦点面板（随 Mode 调整）</span>
+          </label>
+          <div class="panel-preset-row" role="group" aria-label="面板布局模板">
+            <button id="btn-preset-research" class="ghost small-btn" type="button">Research</button>
+            <button id="btn-preset-debug" class="ghost small-btn" type="button">Debug</button>
+            <button id="btn-preset-review" class="ghost small-btn" type="button">Review</button>
+          </div>
+          <p id="panel-preset-label" class="muted panel-preset-label">当前布局：Auto Focus</p>
+          <div class="metric-row"><span>样本书目</span><strong id="metric-books">-</strong></div>
+          <div class="metric-row"><span>已打开文档</span><strong id="metric-fulltext">-</strong></div>
+          <div class="metric-row"><span>当前标注数</span><strong id="metric-annotations">-</strong></div>
+          <div class="metric-row"><span>最近导出</span><strong id="metric-export">未导出</strong></div>
+          <div class="pipeline-grid">
+            <div class="pipeline-item"><span>Import</span><strong id="state-import" class="state-chip idle">idle</strong></div>
+            <div class="pipeline-item"><span>Fast Scan</span><strong id="state-fast" class="state-chip idle">idle</strong></div>
+            <div class="pipeline-item"><span>Full MRI</span><strong id="state-deep" class="state-chip idle">idle</strong></div>
+          </div>
+          <div class="action-list">
+            <button id="btn-trigger-degrade" class="ghost">模拟降级</button>
+            <button id="btn-retry-deep" class="ghost">Retry Deep</button>
+            <button id="btn-continue-fast" class="ghost">Continue Fast</button>
+            <button id="btn-export-partial" class="ghost">Export Partial</button>
+          </div>
+        </section>
+
+        <section class="panel-block xray-workbench panel-xray">
+          <h2>X-Ray 工作台 X-Ray Workbench</h2>
+          <p class="muted">X-Ray 模式下进行问题优先级分流与定位。</p>
+          <div class="xray-actions">
+            <button id="btn-preview-xray-batch" class="small-btn">预览批次</button>
+            <button id="btn-export-xray-batch" class="small-btn">导出修复批次</button>
+          </div>
+          <div class="xray-filter-row">
+            <label for="xray-batch-scope">导出范围</label>
+            <select id="xray-batch-scope">
+              <option value="FILTERED" selected>当前过滤</option>
+              <option value="TOPN">当前过滤 TopN</option>
+              <option value="BOOK_ALL">当前书目全量</option>
+            </select>
+            <label for="xray-topn">TopN</label>
+            <input id="xray-topn" type="number" min="1" max="200" value="12" />
+          </div>
+          <div class="xray-filter-row">
+            <label for="xray-filter">优先级过滤</label>
+            <select id="xray-filter">
+              <option value="ALL" selected>ALL</option>
+              <option value="P1">P1</option>
+              <option value="P2">P2</option>
+              <option value="P3">P3</option>
+            </select>
+          </div>
+          <div id="xray-counts" class="xray-counts"></div>
+          <div id="xray-list" class="xray-list"></div>
+        </section>
+
+        <section id="degrade-panel" class="panel-block hidden">
+          <h2>降级恢复 Degrade Recovery</h2>
+          <p class="muted" id="degrade-reason">Degraded due to queue pressure.</p>
+          <div class="action-list">
+            <button id="btn-retry-deep-2" class="small-btn">重试深度分析 Retry Deep</button>
+            <button id="btn-continue-fast-2" class="small-btn">继续快速路径 Continue Fast</button>
+            <button id="btn-export-partial-2" class="small-btn">导出部分结果 Export Partial</button>
+          </div>
+        </section>
+
+        <section id="repair-panel" class="panel-block hidden">
+          <h2>证据修复 Evidence Repair</h2>
+          <p id="repair-message" class="muted">Evidence anchor not found.</p>
+          <div class="action-list">
+            <button id="btn-repair-retry" class="small-btn">重试锚点 Retry Anchor</button>
+            <button id="btn-repair-nearby" class="small-btn">切换邻近证据 Switch Nearby Evidence</button>
+            <button id="btn-repair-report" class="small-btn">上报问题 Report Issue</button>
+          </div>
+        </section>
+
+        <section class="panel-block panel-ledger">
+          <h2>证据账本 Evidence Ledger</h2>
+          <p class="muted">锚点状态：anchored / auto_recovered / manual_repaired</p>
+          <div class="ledger-actions">
+            <button id="btn-export-json">导出 JSON</button>
+            <button id="btn-export-csv">导出 CSV</button>
+            <button id="btn-export-replay">导出并回放 Export + Replay</button>
+            <button id="btn-clear" class="danger">清空标注</button>
+          </div>
+          <p id="export-log" class="muted">尚未执行导出。</p>
+          <p class="muted">snapshot_id: <strong id="snapshot-id">-</strong> | replay: <strong id="replay-result">-</strong></p>
+
+          <div class="ledger-list" id="ledger-list"></div>
+        </section>
+      </aside>
+    </main>
+
+    <div id="command-palette" class="palette hidden" role="dialog" aria-modal="true" aria-label="Command Palette">
+      <div class="palette-card">
+        <input id="palette-input" type="text" placeholder="输入命令，例如：切换 Atlas / 导出 JSON" />
+        <ul id="palette-list"></ul>
+      </div>
+    </div>
+
+    <div id="xray-batch-preview" class="palette hidden" role="dialog" aria-modal="true" aria-label="X-Ray Batch Preview">
+      <div class="palette-card batch-preview-card">
+        <h3>修复批次预览</h3>
+        <p id="batch-preview-meta" class="muted">-</p>
+        <div id="batch-preview-stats" class="batch-preview-stats"></div>
+        <div id="batch-preview-list" class="batch-preview-list"></div>
+        <div class="ledger-actions">
+          <button id="btn-batch-preview-export" class="primary">确认导出</button>
+          <button id="btn-batch-preview-close" class="ghost">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
