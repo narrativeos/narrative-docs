@@ -84,4 +84,5 @@ source_of_truth: narrative-docs
 - [milestone-planning-template.md](milestone-planning-template.md)
 - [risk-register-template.md](risk-register-template.md)
 - [prototype-page-level-task-breakdown.md](prototype-page-level-task-breakdown.md)
+- [prototype-page-level-work-items.md](prototype-page-level-work-items.md)
 - [novel100-kepub-dataset.md](novel100-kepub-dataset.md)

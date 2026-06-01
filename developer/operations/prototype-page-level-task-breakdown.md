@@ -1,17 +1,19 @@
-# Prototype Page-level Task Breakdown (v1)
+# Prototype Page-level Task Breakdown (v2)
 
 ## 摘要（中文）
 
-本清单将原型工作拆解到页面级别，适用于首版闭环“选书-阅读-标注-导出”。每个页面均提供目标、关键任务、数据依赖、验收标准与角色分工，便于快速排期和周会跟踪。
+本清单将原型工作拆解到页面级别，适用于首版闭环“阅读-标注-证据-导出”。
+
+说明：找书仅作为开发样本准备，不作为核心产品能力。
 
 ## Executive Summary (EN)
 
-This page-level breakdown defines tasks, dependencies, acceptance gates, and ownership for the first prototype loop: discover, read, annotate, and export.
+This page-level breakdown defines tasks, dependencies, acceptance gates, and ownership for the first prototype loop: read, annotate, evidence, and export. Book discovery is treated as data preparation only.
 
 ## Machine-readable Metadata | 机读元数据
 
 ```yaml
-doc_id: developer-operations-prototype-page-level-task-breakdown-v1
+doc_id: developer-operations-prototype-page-level-task-breakdown-v2
 path: developer/operations/prototype-page-level-task-breakdown.md
 lang_primary: zh-CN
 lang_secondary: en
@@ -23,16 +25,17 @@ source_of_truth: narrative-docs
 ## 0. 原型边界与目标 | Scope & Goal
 
 - 目标用户：数字人文研究者（主）
-- 闭环任务：选书 -> 阅读 -> 标注 -> 证据登记 -> 导出
+- 闭环任务：阅读 -> 标注 -> 证据登记 -> 导出
+- 非核心能力（本阶段降级）：找书、推荐、复杂检索策略
 - 本阶段不做：多租户权限、实时协作、复杂推荐算法
 - 目标周期：2 周
 
-## 1. 页面清单（建议 10 页） | Page Inventory
+## 1. 页面清单（建议 9 页） | Page Inventory
 
 | Page ID | 页面名称 | 优先级 | 目标完成时间 |
 | --- | --- | --- | --- |
 | P01 | 项目首页 / Workspace Dashboard | P0 | D2 |
-| P02 | 书目浏览页 / Book Catalog | P0 | D3 |
+| P02 | 样本选择页 / Sample Selector | P2 | D9 |
 | P03 | 书籍详情页 / Book Detail | P0 | D4 |
 | P04 | 阅读器页 / Reader | P0 | D5 |
 | P05 | 标注面板页 / Annotation Panel | P0 | D6 |
@@ -40,7 +43,7 @@ source_of_truth: narrative-docs
 | P07 | 导出中心页 / Export Center | P0 | D8 |
 | P08 | 检索与过滤页 / Search & Filter | P1 | D9 |
 | P09 | 会话与版本页 / Session & Version | P1 | D10 |
-| P10 | 可用性测试页 / Task Playback | P1 | D10 |
+| P10 | 可用性测试页 / Task Playback | P0 | D10 |
 
 ## 2. 页面级任务拆解 | Per-page Breakdown
 
@@ -49,39 +52,39 @@ source_of_truth: narrative-docs
 - 页面目标：让用户在 30 秒内理解当前数据集、进度和下一步动作。
 - 关键模块：项目卡片、数据集状态、最近会话、快速入口。
 - 必做任务：
-  1. 显示可用书目数量和全文样本数量。
+  1. 显示当前研究任务、样本数量和标注进度。
   2. 显示最近一次导出时间。
-  3. 提供“开始标注”主按钮。
+  3. 提供“继续阅读”与“进入证据台账”双主按钮。
 - 数据依赖：
   - assets/datasets/novel100_kepub_fulltext_top10.json
   - assets/datasets/fulltext/novel100_kepub_fulltext_top10/download_summary.json
 - 验收标准：
-  - 新用户 30 秒内点击到 P02。
+  - 新用户 30 秒内点击到 P04。
   - 关键统计字段完整无空值。
 - 角色分工：PM 需求验收，Design 信息层级，FE 实现卡片组件，QA 冒烟测试。
 
-### P02 书目浏览页 / Book Catalog
+### P02 样本选择页 / Sample Selector（非核心）
 
-- 页面目标：让用户快速找到目标书目并进入阅读。
-- 关键模块：列表、排序、标签筛选、状态标记（未读/已标注）。
+- 页面目标：让开发者在小样本集合中选择测试书目。
+- 关键模块：固定样本列表、状态标记（未读/已标注）、快速进入。
 - 必做任务：
-  1. 默认按 rank 升序展示。
-  2. 提供标题/作者筛选。
-  3. 提供“继续阅读”快捷入口。
+  1. 默认展示固定 8-10 本开发样本。
+  2. 支持标题直达（可选，不做复杂筛选）。
+  3. 提供“进入阅读”快捷入口。
 - 数据依赖：
   - assets/datasets/novel100_kepub_fulltext_top10.json
 - 验收标准：
-  - 10 秒内找到指定书目并进入 P03。
-  - 筛选结果与总数一致。
-- 角色分工：PM 定义筛选优先级，Design 设计信息密度，FE 实现虚拟滚动，QA 校验筛选逻辑。
+  - 10 秒内选中样本并进入 P03。
+  - 不依赖外部搜索服务。
+- 角色分工：PM 定义最小样本集，Design 简化页面密度，FE 实现轻量列表，QA 校验样本可达性。
 
 ### P03 书籍详情页 / Book Detail
 
-- 页面目标：让用户在进入正文前完成书目信任确认。
-- 关键模块：元信息、章节统计、来源与版权提示、开始阅读按钮。
+- 页面目标：让用户在进入正文前确认研究上下文与使用边界。
+- 关键模块：元信息、章节统计、使用边界提示、开始阅读按钮。
 - 必做任务：
   1. 展示 rank、title、author、章节总数。
-  2. 展示来源链接与使用边界提示。
+  2. 展示数据来源与使用边界提示。
   3. 一键跳转 P04 第一章。
 - 数据依赖：
   - assets/datasets/fulltext/novel100_kepub_fulltext_top10/*/meta.json
@@ -97,7 +100,7 @@ source_of_truth: narrative-docs
 - 必做任务：
   1. 加载章节 txt 并保持段落结构。
   2. 提供章节导航和当前位置记录。
-  3. 支持选中文本并呼出标注动作。
+  3. 支持选中文本并一键创建标注。
 - 数据依赖：
   - assets/datasets/fulltext/novel100_kepub_fulltext_top10/*/chapters/*.txt
 - 验收标准：
@@ -111,7 +114,7 @@ source_of_truth: narrative-docs
 - 关键模块：高亮片段、标签选择、注释输入、保存。
 - 必做任务：
   1. 支持文本选择后创建标注。
-  2. 支持至少 3 类标签（人物/事件/主题）。
+  2. 支持至少 4 类标签（人物/事件/主题/证据强度）。
   3. 保存后立即可见并可编辑。
 - 数据依赖：
   - 本地标注存储（JSON 或 IndexedDB，原型期可 JSON）
@@ -123,17 +126,17 @@ source_of_truth: narrative-docs
 ### P06 证据台账页 / Evidence Ledger
 
 - 页面目标：形成可追溯证据链，支持研究复核。
-- 关键模块：标注列表、定位回跳、状态（草稿/确认）、审阅备注。
+- 关键模块：标注列表、定位回跳、状态（草稿/确认）、审阅备注、冲突标记。
 - 必做任务：
   1. 列表显示每条标注的来源章节和偏移。
   2. 支持点击回跳到正文定位。
-  3. 支持状态流转（draft -> confirmed）。
+  3. 支持状态流转（draft -> reviewed -> confirmed）。
 - 数据依赖：
   - 标注数据集合
   - 章节索引
 - 验收标准：
   - 任一证据可在 2 次点击内回到原文。
-  - 状态流转日志完整。
+  - 状态流转日志完整且可回溯操作者。
 - 角色分工：PM 定义证据字段标准，Design 设计复核流，FE 实现定位映射，QA 校验追溯准确性。
 
 ### P07 导出中心页 / Export Center
@@ -154,14 +157,14 @@ source_of_truth: narrative-docs
 
 ### P08 检索与过滤页 / Search & Filter
 
-- 页面目标：跨书目快速定位相关片段。
-- 关键模块：全文检索、标签过滤、结果高亮。
+- 页面目标：在已加载样本与已标注内容中快速回查。
+- 关键模块：关键词检索、标签过滤、结果高亮。
 - 必做任务：
-  1. 支持关键词全文检索。
+  1. 支持样本内关键词检索。
   2. 支持按标签和作者过滤。
   3. 支持从结果跳转原文位置。
 - 数据依赖：
-  - 章节文本索引
+  - 本地章节文本索引
   - 标注标签索引
 - 验收标准：
   - 结果召回可解释，跳转位置准确。
@@ -169,7 +172,7 @@ source_of_truth: narrative-docs
 
 ### P09 会话与版本页 / Session & Version
 
-- 页面目标：让用户知道每次工作何时做、改了什么。
+- 页面目标：让用户知道每次研究会话做了什么、改了什么。
 - 关键模块：会话记录、版本快照、回滚提示。
 - 必做任务：
   1. 展示最近会话和修改数量。
@@ -184,10 +187,10 @@ source_of_truth: narrative-docs
 
 ### P10 可用性测试页 / Task Playback
 
-- 页面目标：统一执行任务测试并记录指标。
+- 页面目标：统一执行核心闭环任务测试并记录指标。
 - 关键模块：任务脚本、计时、成功/失败记录、问题标签。
 - 必做任务：
-  1. 内置 3 条测试任务。
+  1. 内置 3 条核心任务（阅读定位、创建标注、导出结果）。
   2. 自动记录完成时长与错误点。
   3. 输出测试结果摘要。
 - 数据依赖：
@@ -201,18 +204,25 @@ source_of_truth: narrative-docs
 
 | Day | 交付目标 | 页面 |
 | --- | --- | --- |
-| D1-D2 | IA 与导航框架 | P01-P02 |
-| D3-D4 | 阅读主链路可走通 | P03-P04 |
+| D1-D2 | 核心 IA 与阅读入口 | P01-P03 |
+| D3-D4 | 阅读主链路可走通 | P04 |
 | D5-D6 | 标注与台账闭环 | P05-P06 |
 | D7-D8 | 导出与可演示路径 | P07 |
-| D9-D10 | 检索/会话/测试补齐 | P08-P10 |
+| D9 | 检索与样本选择补齐 | P02-P08 |
+| D10 | 会话与测试收敛 | P09-P10 |
 
 ## 4. 通过门槛（原型 Ready） | Prototype Ready Gates
 
-- [ ] Gate A：P01-P07 全流程无阻塞可演示。
+- [ ] Gate A：P01、P03、P04、P05、P06、P07 全流程无阻塞可演示。
 - [ ] Gate B：至少 3 位目标用户完成任务测试。
 - [ ] Gate C：导出文件经抽检字段一致。
 - [ ] Gate D：风险台账中 High 风险均有处置动作。
+
+## 6. 非核心功能降级原则 | Non-core Feature De-scope Rules
+
+- 找书仅保留固定样本选择，不做开放式爬取与推荐。
+- 检索仅覆盖本地样本与本地标注，不引入复杂召回策略。
+- 任何新增“找书”需求默认进入下一里程碑，不阻断当前原型闭环交付。
 
 ## 5. 周会追踪字段（复制到任务工具） | Weekly Tracking Fields
 
