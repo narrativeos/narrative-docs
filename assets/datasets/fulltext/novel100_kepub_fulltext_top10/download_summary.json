@@ -1,0 +1,82 @@
+[
+  {
+    "rank": 1,
+    "title": "呐喊",
+    "author": "鲁迅",
+    "kepub_book_url": "https://www.kepub.net/book/1109",
+    "chapters_discovered": 15,
+    "chapters_downloaded": 15,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/001_呐喊_鲁迅",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/001_呐喊_鲁迅/fulltext.txt"
+  },
+  {
+    "rank": 3,
+    "title": "骆驼祥子",
+    "author": "老舍",
+    "kepub_book_url": "https://www.kepub.net/book/1107",
+    "chapters_discovered": 24,
+    "chapters_downloaded": 24,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/003_骆驼祥子_老舍",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/003_骆驼祥子_老舍/fulltext.txt"
+  },
+  {
+    "rank": 9,
+    "title": "呼兰河传",
+    "author": "萧红",
+    "kepub_book_url": "https://www.kepub.net/book/11002",
+    "chapters_discovered": 8,
+    "chapters_downloaded": 8,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/009_呼兰河传_萧红",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/009_呼兰河传_萧红/fulltext.txt"
+  },
+  {
+    "rank": 12,
+    "title": "彷徨",
+    "author": "鲁迅",
+    "kepub_book_url": "https://www.kepub.net/book/1098",
+    "chapters_discovered": 11,
+    "chapters_downloaded": 11,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/012_彷徨_鲁迅",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/012_彷徨_鲁迅/fulltext.txt"
+  },
+  {
+    "rank": 17,
+    "title": "死水微澜",
+    "author": "李劼人",
+    "kepub_book_url": "https://www.kepub.net/book/1093",
+    "chapters_discovered": 53,
+    "chapters_downloaded": 53,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/017_死水微澜_李劼人",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/017_死水微澜_李劼人/fulltext.txt"
+  },
+  {
+    "rank": 25,
+    "title": "四世同堂",
+    "author": "老舍",
+    "kepub_book_url": "https://www.kepub.net/book/1084",
+    "chapters_discovered": 101,
+    "chapters_downloaded": 101,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/025_四世同堂_老舍",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/025_四世同堂_老舍/fulltext.txt"
+  },
+  {
+    "rank": 27,
+    "title": "啼笑因缘",
+    "author": "张恨水",
+    "kepub_book_url": "https://www.kepub.net/book/1080",
+    "chapters_discovered": 22,
+    "chapters_downloaded": 22,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/027_啼笑因缘_张恨水",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/027_啼笑因缘_张恨水/fulltext.txt"
+  },
+  {
+    "rank": 66,
+    "title": "二月",
+    "author": "柔石",
+    "kepub_book_url": "https://www.kepub.net/book/1031",
+    "chapters_discovered": 24,
+    "chapters_downloaded": 24,
+    "local_dir": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/066_二月_柔石",
+    "local_fulltext": "assets/datasets/fulltext/novel100_kepub_fulltext_top10/066_二月_柔石/fulltext.txt"
+  }
+]

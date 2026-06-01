@@ -1,0 +1,9 @@
+rank,title,author,kepub_book_url,chapters_discovered,chapters_downloaded,local_dir,local_fulltext
+1,呐喊,鲁迅,https://www.kepub.net/book/1109,15,15,assets/datasets/fulltext/novel100_kepub_fulltext_top10/001_呐喊_鲁迅,assets/datasets/fulltext/novel100_kepub_fulltext_top10/001_呐喊_鲁迅/fulltext.txt
+3,骆驼祥子,老舍,https://www.kepub.net/book/1107,24,24,assets/datasets/fulltext/novel100_kepub_fulltext_top10/003_骆驼祥子_老舍,assets/datasets/fulltext/novel100_kepub_fulltext_top10/003_骆驼祥子_老舍/fulltext.txt
+9,呼兰河传,萧红,https://www.kepub.net/book/11002,8,8,assets/datasets/fulltext/novel100_kepub_fulltext_top10/009_呼兰河传_萧红,assets/datasets/fulltext/novel100_kepub_fulltext_top10/009_呼兰河传_萧红/fulltext.txt
+12,彷徨,鲁迅,https://www.kepub.net/book/1098,11,11,assets/datasets/fulltext/novel100_kepub_fulltext_top10/012_彷徨_鲁迅,assets/datasets/fulltext/novel100_kepub_fulltext_top10/012_彷徨_鲁迅/fulltext.txt
+17,死水微澜,李劼人,https://www.kepub.net/book/1093,53,53,assets/datasets/fulltext/novel100_kepub_fulltext_top10/017_死水微澜_李劼人,assets/datasets/fulltext/novel100_kepub_fulltext_top10/017_死水微澜_李劼人/fulltext.txt
+25,四世同堂,老舍,https://www.kepub.net/book/1084,101,101,assets/datasets/fulltext/novel100_kepub_fulltext_top10/025_四世同堂_老舍,assets/datasets/fulltext/novel100_kepub_fulltext_top10/025_四世同堂_老舍/fulltext.txt
+27,啼笑因缘,张恨水,https://www.kepub.net/book/1080,22,22,assets/datasets/fulltext/novel100_kepub_fulltext_top10/027_啼笑因缘_张恨水,assets/datasets/fulltext/novel100_kepub_fulltext_top10/027_啼笑因缘_张恨水/fulltext.txt
+66,二月,柔石,https://www.kepub.net/book/1031,24,24,assets/datasets/fulltext/novel100_kepub_fulltext_top10/066_二月_柔石,assets/datasets/fulltext/novel100_kepub_fulltext_top10/066_二月_柔石/fulltext.txt

@@ -41,6 +41,18 @@ node scripts/build-novel100-kepub-dataset.mjs
 - `assets/datasets/novel100_kepub.csv`
 - `assets/datasets/novel100_kepub.json`
 
+抓取“可获取全文样本”到本地：
+
+```bash
+node scripts/download-kepub-fulltext.mjs
+```
+
+会生成目录：
+
+- `assets/datasets/fulltext/novel100_kepub_fulltext_top10/`
+- 每本书目录下包含：`chapters/*.txt`、`fulltext.txt`、`meta.json`
+- 汇总文件：`download_summary.csv`、`download_summary.json`
+
 ## 使用建议
 
 - Demo 数据源：优先使用 `novel100_kepub_matched_only.csv`。
