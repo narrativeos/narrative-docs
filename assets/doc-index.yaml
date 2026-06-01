@@ -95,6 +95,7 @@ sections:
       - developer/api/terminology-hierarchy-api-storage-contract-v1.md
       - developer/api/v1-contract-freeze-checklist.md
       - developer/operations/README.md
+      - developer/operations/cross-repo-ci-status-matrix-template.md
       - developer/operations/cross-repo-release-checklist.md
       - developer/operations/go-no-go-meeting-template.md
       - developer/workspace/ai-native-bootstrap-checklist.md

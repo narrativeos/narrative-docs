@@ -1,4 +1,4 @@
-.PHONY: help docs-check docs-check-base docs-check-policy docs-check-terminology docs-check-template docs-check-links docs-check-index-baseline docs-check-api-contract-sync docs-check-all
+.PHONY: help docs-check docs-check-base docs-check-policy docs-check-terminology docs-check-template docs-check-links docs-check-index-baseline docs-check-api-contract-sync docs-check-release-evidence docs-check-all
 
 help:
 	@echo "Available targets:"
@@ -10,6 +10,7 @@ help:
 	@echo "  make docs-check-links   Run markdown relative-link checks"
 	@echo "  make docs-check-index-baseline Validate doc-index baseline snapshot"
 	@echo "  make docs-check-api-contract-sync Validate OpenAPI and compatibility doc sync"
+	@echo "  make docs-check-release-evidence Validate release evidence templates"
 	@echo "  make docs-check-all     Run full local docs quality gates"
 
 docs-check:
@@ -35,6 +36,9 @@ docs-check-index-baseline:
 
 docs-check-api-contract-sync:
 	@./scripts/docs-check-api-contract-sync.sh
+
+docs-check-release-evidence:
+	@./scripts/docs-check-release-evidence.sh
 
 docs-check-all:
 	@./scripts/docs-check-all.sh

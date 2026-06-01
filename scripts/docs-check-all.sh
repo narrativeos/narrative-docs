@@ -9,6 +9,7 @@ cd "$ROOT_DIR"
 ./scripts/docs-check-template.sh
 ./scripts/docs-check-links.sh
 ./scripts/docs-check-api-contract-sync.sh
+./scripts/docs-check-release-evidence.sh
 ./scripts/docs-check-index-baseline.sh
 
 echo "All docs check-all gates passed."

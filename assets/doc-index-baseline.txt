@@ -77,6 +77,7 @@ developer/coding/terminology-hierarchy-implementation-issue-pack.md
 developer/operations/academic-adoption-role-assignment-raci.md
 developer/operations/academic-adoption-weekly-execution-checklist.md
 developer/operations/academic-adoption-weekly-status-report-template.md
+developer/operations/cross-repo-ci-status-matrix-template.md
 developer/operations/cross-repo-release-checklist.md
 developer/operations/go-no-go-meeting-template.md
 developer/operations/README.md

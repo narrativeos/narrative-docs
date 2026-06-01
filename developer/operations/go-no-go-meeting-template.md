@@ -48,6 +48,7 @@ optional_repositories:
 - [ ] [cross-repo-release-checklist.md](cross-repo-release-checklist.md) 全部勾选。
 - [ ] API 契约与兼容策略已对齐。
 - [ ] CI 状态与关键测试报告可访问。
+- [ ] [cross-repo-ci-status-matrix-template.md](cross-repo-ci-status-matrix-template.md) 已填报并附证据链接。
 - [ ] 回滚剧本可执行。
 - [ ] 风险与缓解计划已定责。
 
@@ -84,5 +85,6 @@ follow_ups:
 
 - [README.md](README.md)
 - [cross-repo-release-checklist.md](cross-repo-release-checklist.md)
+- [cross-repo-ci-status-matrix-template.md](cross-repo-ci-status-matrix-template.md)
 - [../../changelog.md](../../changelog.md)
 - [../../whats-new.md](../../whats-new.md)

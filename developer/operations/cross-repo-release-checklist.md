@@ -70,6 +70,7 @@ reviewer: technical-director
 
 - [README.md](README.md)
 - [go-no-go-meeting-template.md](go-no-go-meeting-template.md)
+- [cross-repo-ci-status-matrix-template.md](cross-repo-ci-status-matrix-template.md)
 - [../../api-compatibility-and-versioning.md](../../api-compatibility-and-versioning.md)
 - [../api/v1-contract-freeze-checklist.md](../api/v1-contract-freeze-checklist.md)
 - [../../product/roadmap/technical-director-30-60-90-battlecard.md](../../product/roadmap/technical-director-30-60-90-battlecard.md)

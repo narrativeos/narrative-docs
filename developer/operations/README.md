@@ -80,3 +80,4 @@ source_of_truth: narrative-docs
 - [academic-adoption-role-assignment-raci.md](academic-adoption-role-assignment-raci.md)
 - [cross-repo-release-checklist.md](cross-repo-release-checklist.md)
 - [go-no-go-meeting-template.md](go-no-go-meeting-template.md)
+- [cross-repo-ci-status-matrix-template.md](cross-repo-ci-status-matrix-template.md)

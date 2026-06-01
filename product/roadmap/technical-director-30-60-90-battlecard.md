@@ -91,4 +91,5 @@ reviewer: maintainer
 - [../../whitepaper/algo-task-001-m2-measured-plan.md](../../whitepaper/algo-task-001-m2-measured-plan.md)
 - [../../developer/operations/cross-repo-release-checklist.md](../../developer/operations/cross-repo-release-checklist.md)
 - [../../developer/operations/go-no-go-meeting-template.md](../../developer/operations/go-no-go-meeting-template.md)
+- [../../developer/operations/cross-repo-ci-status-matrix-template.md](../../developer/operations/cross-repo-ci-status-matrix-template.md)
 - [../../api-compatibility-and-versioning.md](../../api-compatibility-and-versioning.md)

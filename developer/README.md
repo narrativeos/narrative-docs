@@ -44,6 +44,7 @@ source_of_truth: narrative-docs
 - [operations](operations/README.md): 安装验证、回滚与故障处置 Runbook
 - [operations/cross-repo-release-checklist.md](operations/cross-repo-release-checklist.md): 跨仓联合发布硬门禁清单
 - [operations/go-no-go-meeting-template.md](operations/go-no-go-meeting-template.md): 发布 go/no-go 会议模板
+- [operations/cross-repo-ci-status-matrix-template.md](operations/cross-repo-ci-status-matrix-template.md): 跨仓 CI 状态与证据矩阵模板
 - [workspace/ai-native-bootstrap-checklist.md](workspace/ai-native-bootstrap-checklist.md): AI-Native 仓库初始化检查清单
 - [../product/v1-design-baseline.md](../product/v1-design-baseline.md): V1 设计基线（开发计划）
 - [../product/v1-two-week-sprint-plan.md](../product/v1-two-week-sprint-plan.md): V1 两周执行排期（迭代计划）
