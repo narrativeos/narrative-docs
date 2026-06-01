@@ -716,6 +716,21 @@ defaults:
     values:
       title: Local-Cloud Alignment Sprint Pack 本地云端功能对齐工单包
       nav_exclude: true
+  - scope:
+      path: developer/coding/temporal-knowledge-core-task-pack.md
+    values:
+      title: Temporal Knowledge Core Task Pack 时序知识加工 Core 任务单
+      nav_exclude: true
+  - scope:
+      path: developer/coding/temporal-knowledge-api-task-pack.md
+    values:
+      title: Temporal Knowledge API Task Pack 时序知识加工 API 任务单
+      nav_exclude: true
+  - scope:
+      path: developer/coding/temporal-knowledge-studio-task-pack.md
+    values:
+      title: Temporal Knowledge Studio Task Pack 时序知识加工 Studio 任务单
+      nav_exclude: true
 
   - scope:
       path: api-compatibility-and-versioning.md
