@@ -296,6 +296,57 @@ Acceptance:
 - 发布 `modality` 与 `locator_type` 兼容矩阵。
 - 提供至少 6 条跨模态验收样例（text/figure/table/video）。
 
+## 算力估算基线（新增多模态功能）
+
+本节用于补齐本次新增功能点的容量与算力基线，作为 P0 计划估算口径，不替代压测实测值。
+
+### 估算输入假设
+
+- 本地基线机器：8 CPU cores / 32GB RAM / 无独立 GPU（可选 8GB 显存加速）
+- 云端基线规格：8 vCPU / 32GB RAM / 单实例 1x T4 级别 GPU（16GB 显存）
+- 文档对象口径：100 页 PDF（含图表 25 张，表格 20 个）
+- 视频对象口径：60 分钟视频（16k 单声道音频）
+- 目标并发口径：本地 2 并发任务；云端 10 并发增量摄取
+
+### 新增工单算力估算
+
+| Ticket | 主要负载 | 本地估算（单对象） | 云端估算（单对象） | 资源瓶颈 | 降级策略 |
+| --- | --- | --- | --- | --- | --- |
+| LC-LOCAL-107 | OCR + layout + ASR + time segmentation | PDF: CPU 35-70 min, RAM 6-10GB；Video: CPU 45-90 min 或 GPU 15-30 min | 不作为主路径 | CPU/GPU 推理与 I/O | 仅做 OCR+ASR，关闭 chart parsing |
+| LC-LOCAL-108 | anchor_ref 过滤查询与序列化 | p95 查询 120-260ms，RAM +0.5GB | p95 查询 80-180ms | 索引命中率与 JSON 序列化 | 限制 locator_payload 返回字段 |
+| LC-LOCAL-109 | 多模态证据回跳渲染 | 文本/图片 16-80ms；视频 seek 150-450ms | 不作为主路径 | 前端解码与随机读 | 优先关键帧预览，延迟加载原视频 |
+| LC-CLOUD-205 | anchor_ref 聚合去重 | 不作为主路径 | 10 并发下 ingest 120-260 edges/s，RAM 12-20GB，GPU 非必需 | 去重键索引与批写入 | 批大小从 1000 降到 300 |
+| LC-CLOUD-206 | 模态覆盖率统计 | 不作为主路径 | 每 1M edges 聚合 CPU 8-16 min，RAM 8-14GB | 聚合扫描与 group by | 改为小时级预聚合表 |
+
+### 日预算估算（P0 试运行）
+
+| 场景 | 规模假设 | 估算资源消耗 | 备注 |
+| --- | --- | --- | --- |
+| 本地研究工作站 | 20 份 PDF/天 + 5 小时视频/天 | CPU 28-52 core-hours；可选 GPU 6-12 GPU-hours | 峰值集中在 LC-LOCAL-107 |
+| 云端聚合服务 | 200 增量包/天（每包 2k edges） | CPU 42-78 vCPU-hours；GPU 0-4 GPU-hours | 主耗时在去重与统计 |
+
+### 发布门禁补充（算力相关）
+
+- 交互路径：证据查询接口 `p95 <= 300ms`，连续 10 分钟超标视为阻断项。
+- 本地批处理：100 页 PDF 全链路处理 `<= 90 min`（CPU-only）或 `<= 35 min`（GPU-on）。
+- 云端摄取：10 并发下增量摄取成功率 `>= 99.0%`，且去重冲突回退率 `< 1%`。
+- 统计任务：1M edges 覆盖率聚合作业 `<= 20 min`。
+
+### 实测回填字段（上线前必填）
+
+```yaml
+compute_estimation:
+	local_pdf_100p_cpu_min: TBD
+	local_video_60m_cpu_min: TBD
+	local_video_60m_gpu_min: TBD
+	local_query_p95_ms: TBD
+	cloud_ingest_edges_per_sec_at_10_concurrency: TBD
+	cloud_coverage_agg_1m_edges_min: TBD
+	peak_ram_local_gb: TBD
+	peak_ram_cloud_gb: TBD
+	fallback_trigger_count_per_day: TBD
+```
+
 ## 两周验收标准
 
 - 本地可生成带时间与证据的结构化关系。
