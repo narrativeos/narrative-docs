@@ -83,6 +83,123 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /v1/terminology/edges/candidates:
+    post:
+      tags: [terminology]
+      summary: Submit a terminology edge candidate
+      operationId: createTerminologyEdgeCandidate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTerminologyEdgeCandidateRequest'
+      responses:
+        '202':
+          description: Candidate accepted for validation and review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTerminologyEdgeCandidateResponse'
+        '400':
+          description: Invalid candidate payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/terminology/edges/{edgeId}/review:
+    post:
+      tags: [terminology]
+      summary: Review a terminology edge candidate
+      operationId: reviewTerminologyEdgeCandidate
+      parameters:
+        - name: edgeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewTerminologyEdgeRequest'
+      responses:
+        '200':
+          description: Candidate review applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewTerminologyEdgeResponse'
+        '404':
+          description: Edge not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/terminology/hierarchy/{termId}:
+    get:
+      tags: [terminology]
+      summary: Get terminology hierarchy for a term
+      operationId: getTerminologyHierarchy
+      parameters:
+        - name: termId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: depth
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 8
+            default: 2
+        - name: direction
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [up, down, both]
+            default: up
+      responses:
+        '200':
+          description: Hierarchy fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminologyHierarchyResponse'
+        '404':
+          description: Term not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/terminology/validate/hierarchy:
+    post:
+      tags: [terminology]
+      summary: Validate hierarchy constraints for edges
+      operationId: validateTerminologyHierarchy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateTerminologyHierarchyRequest'
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateTerminologyHierarchyResponse'
+        '400':
+          description: Invalid validation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     HealthResponse:
@@ -149,6 +266,165 @@ components:
           additionalProperties: true
         error:
           $ref: '#/components/schemas/Error'
+    RelationType:
+      type: string
+      enum: [subclass_of, instance_of, part_of, related_to]
+    ReviewStatus:
+      type: string
+      enum: [candidate, accepted, rejected]
+    HierarchyDirection:
+      type: string
+      enum: [up, down, both]
+    ValidationCheck:
+      type: string
+      enum: [dag, duplicate, domain_boundary]
+    ValidationState:
+      type: string
+      enum: [pending, passed, failed]
+    ValidationResult:
+      type: string
+      enum: [passed, failed]
+    TermNode:
+      type: object
+      required: [termId, label]
+      properties:
+        termId:
+          type: string
+        label:
+          type: string
+    TerminologyEdge:
+      type: object
+      required: [edgeId, sourceTermId, targetTermId, relationType]
+      properties:
+        edgeId:
+          type: string
+        sourceTermId:
+          type: string
+        targetTermId:
+          type: string
+        relationType:
+          $ref: '#/components/schemas/RelationType'
+    EdgeEvidence:
+      type: object
+      required: [evidenceRef]
+      properties:
+        evidenceRef:
+          type: string
+        sentenceRef:
+          type: string
+        excerpt:
+          type: string
+    CreateTerminologyEdgeCandidateRequest:
+      type: object
+      required:
+        [sourceTermId, targetTermId, relationType, confidence, evidence, proposedBy]
+      properties:
+        sourceTermId:
+          type: string
+        targetTermId:
+          type: string
+        relationType:
+          $ref: '#/components/schemas/RelationType'
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        evidence:
+          $ref: '#/components/schemas/EdgeEvidence'
+        proposedBy:
+          type: string
+        ruleId:
+          type: string
+    CreateTerminologyEdgeCandidateResponse:
+      type: object
+      required: [edgeId, status, validation]
+      properties:
+        edgeId:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReviewStatus'
+        validation:
+          type: object
+          required: [dagCheck, duplicateCheck]
+          properties:
+            dagCheck:
+              $ref: '#/components/schemas/ValidationState'
+            duplicateCheck:
+              $ref: '#/components/schemas/ValidationState'
+    ReviewTerminologyEdgeRequest:
+      type: object
+      required: [action, reviewer]
+      properties:
+        action:
+          type: string
+          enum: [accept, reject]
+        reviewer:
+          type: string
+        comment:
+          type: string
+    ReviewTerminologyEdgeResponse:
+      type: object
+      required: [edgeId, status, updatedAt]
+      properties:
+        edgeId:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReviewStatus'
+        updatedAt:
+          type: string
+          format: date-time
+    TerminologyHierarchyResponse:
+      type: object
+      required: [termId, direction, nodes, edges]
+      properties:
+        termId:
+          type: string
+        direction:
+          $ref: '#/components/schemas/HierarchyDirection'
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TermNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/TerminologyEdge'
+    ValidateTerminologyHierarchyRequest:
+      type: object
+      required: [edgeIds, checks]
+      properties:
+        edgeIds:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        checks:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ValidationCheck'
+    ValidationViolation:
+      type: object
+      required: [type, message]
+      properties:
+        type:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        message:
+          type: string
+    ValidateTerminologyHierarchyResponse:
+      type: object
+      required: [result, violations]
+      properties:
+        result:
+          $ref: '#/components/schemas/ValidationResult'
+        violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationViolation'
     Error:
       type: object
       required: [code, message]

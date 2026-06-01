@@ -39,6 +39,7 @@ developer/api/
 当前最小可用契约文件：
 
 - [openapi/narrative-api-v1.yaml](openapi/narrative-api-v1.yaml)
+- [terminology-hierarchy-api-storage-contract-v1.md](terminology-hierarchy-api-storage-contract-v1.md)
 
 ## OpenAPI 最小要求
 

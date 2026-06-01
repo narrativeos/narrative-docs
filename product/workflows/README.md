@@ -61,6 +61,22 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 
 该作业单用于最小闭环验证，不替代完整校对补齐竞争力验证流程。
 
+## 术语上下位关系发现最小规范
+
+当团队需要把术语关系从“候选”提升为“可入库知识边”时，使用本规范执行最小闭环：
+
+- 执行规范： [terminology-hierarchy-discovery-minimal-spec.md](terminology-hierarchy-discovery-minimal-spec.md)
+- 架构承接： [../../architecture/system/README.md](../../architecture/system/README.md), [../../architecture/storage/README.md](../../architecture/storage/README.md)
+- 产品承接： [../modules/platform-domains.md](../modules/platform-domains.md), [../modules/library.md](../modules/library.md)
+- 证据口径： [../../academic/fact-verification-protocol.md](../../academic/fact-verification-protocol.md)
+
+最小执行目标：
+
+- 固定关系类型与方向（默认子类到父类）。
+- 保证每条关系都有 evidence_ref。
+- 在入库前完成 DAG 与冲突校验。
+- 审核通过后写入 Knowledge Graph 并回填运行记录。
+
 按域责任执行图（并入当前基线六域）：
 
 ```text

@@ -65,6 +65,7 @@ sections:
       - product/workflows/proofreading-competitive-pilot-intake-template.md
       - product/workflows/fact-conflict-detection-minimal-runbook.md
       - product/workflows/fact-conflict-detection-sample-2026-05.md
+      - product/workflows/terminology-hierarchy-discovery-minimal-spec.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide
@@ -78,6 +79,7 @@ sections:
       - developer/workspace/README.md
       - developer/api/README.md
       - developer/api/openapi/narrative-api-v1.yaml
+      - developer/api/terminology-hierarchy-api-storage-contract-v1.md
       - developer/operations/README.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
@@ -88,6 +90,7 @@ sections:
       - developer/coding/docs-release-readiness-checklist.md
       - developer/coding/docs-governance-release-report-2026-05.md
       - developer/coding/docs-governance-monthly-check-template.md
+      - developer/coding/terminology-hierarchy-core-implementation-breakdown.md
       - developer/plugins/README.md
       - developer/sdk/README.md
       - product/v1-design-baseline.md
