@@ -40,6 +40,7 @@ developer/api/
 
 - [openapi/narrative-api-v1.yaml](openapi/narrative-api-v1.yaml)
 - [terminology-hierarchy-api-storage-contract-v1.md](terminology-hierarchy-api-storage-contract-v1.md)
+- [v1-contract-freeze-checklist.md](v1-contract-freeze-checklist.md)
 
 ## OpenAPI 最小要求
 

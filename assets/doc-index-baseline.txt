@@ -55,6 +55,7 @@ architecture/visual-os/README.md
 developer/api/openapi/narrative-api-v1.yaml
 developer/api/README.md
 developer/api/terminology-hierarchy-api-storage-contract-v1.md
+developer/api/v1-contract-freeze-checklist.md
 developer/coding/core-docs-mapping.md
 developer/coding/developer-docs-execution-sprint-plan.md
 developer/coding/docs-governance-backlog.md
@@ -76,6 +77,8 @@ developer/coding/terminology-hierarchy-implementation-issue-pack.md
 developer/operations/academic-adoption-role-assignment-raci.md
 developer/operations/academic-adoption-weekly-execution-checklist.md
 developer/operations/academic-adoption-weekly-status-report-template.md
+developer/operations/cross-repo-release-checklist.md
+developer/operations/go-no-go-meeting-template.md
 developer/operations/README.md
 developer/plugins/README.md
 developer/README.md
@@ -102,6 +105,7 @@ product/prototype/v1-prototype-spec.md
 product/README.md
 product/roadmap/product-director-30-60-90-battlecard.md
 product/roadmap/README.md
+product/roadmap/technical-director-30-60-90-battlecard.md
 product/scenarios/v1-mock-simulation-dataset.md
 product/v1-design-baseline.md
 product/v1-two-week-sprint-plan.md
@@ -122,6 +126,7 @@ user/getting-started/README.md
 user/gis/README.md
 user/README.md
 whitepaper/algo-task-001-execution-checklist.md
+whitepaper/algo-task-001-m2-measured-plan.md
 whitepaper/algo-task-001-measurement-sheet.md
 whitepaper/algo-task-001-minimal-checklist.md
 whitepaper/algo-task-001-runbook.md

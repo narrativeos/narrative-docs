@@ -53,6 +53,7 @@ sections:
       - product/vision/README.md
       - product/roadmap/README.md
       - product/roadmap/product-director-30-60-90-battlecard.md
+      - product/roadmap/technical-director-30-60-90-battlecard.md
       - product/workflows/README.md
       - product/modules/README.md
       - product/scenarios/v1-mock-simulation-dataset.md
@@ -92,7 +93,10 @@ sections:
       - developer/api/README.md
       - developer/api/openapi/narrative-api-v1.yaml
       - developer/api/terminology-hierarchy-api-storage-contract-v1.md
+      - developer/api/v1-contract-freeze-checklist.md
       - developer/operations/README.md
+      - developer/operations/cross-repo-release-checklist.md
+      - developer/operations/go-no-go-meeting-template.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
       - developer/coding/docs-governance-standard.md
@@ -205,6 +209,7 @@ sections:
       - whitepaper/benchmark-and-acceptance-metrics.md
       - whitepaper/algorithm-evaluation-report.md
       - whitepaper/algorithm-selection-freeze-v1.md
+      - whitepaper/algo-task-001-m2-measured-plan.md
       - whitepaper/error-taxonomy-and-fix-plan.md
       - whitepaper/algo-task-001-measurement-sheet.md
       - whitepaper/algo-task-001-runbook.md

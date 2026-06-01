@@ -42,6 +42,33 @@ source_of_truth: narrative-docs
 
 产品总监作战图： [product-director-30-60-90-battlecard.md](product-director-30-60-90-battlecard.md)
 
+技术总监作战图： [technical-director-30-60-90-battlecard.md](technical-director-30-60-90-battlecard.md)
+
+## 技术总监推进板（30/60/90）
+
+### 30 天：契约冻结
+
+1. 固化 V1 不可变字段与错误模型。
+2. 上线 OpenAPI 改动联动门禁。
+3. 把版本影响与迁移说明纳入变更模板。
+
+### 60 天：M2 实测
+
+1. 完成 ALGO-TASK-001 measured 入账。
+2. 建立双周回归与失败分类机制。
+3. 将 evidence 回链纳入默认验收项。
+
+### 90 天：发布纪律
+
+1. 形成跨仓 release checklist。
+2. 将兼容评审纳入 go/no-go 会议。
+3. 完成关键变更可审计追溯链。
+
+执行入口：
+
+- [../../developer/operations/cross-repo-release-checklist.md](../../developer/operations/cross-repo-release-checklist.md)
+- [../../developer/operations/go-no-go-meeting-template.md](../../developer/operations/go-no-go-meeting-template.md)
+
 ## 文档治理推进板（开发向）
 
 ### P0（本周内）交付稳定性
