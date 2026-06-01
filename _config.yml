@@ -640,6 +640,14 @@ defaults:
       path: adr/ADR-002-storage.md
     values:
       title: ADR-002 Storage Baseline 存储基线
+  - scope:
+      path: adr/ADR-003-execution-oriented-storage.md
+    values:
+      title: ADR-003 Execution-Oriented Storage 执行导向存储
+  - scope:
+      path: adr/ADR-004-multimodal-evidence-model.md
+    values:
+      title: ADR-004 Multimodal Evidence Model 多模态证据模型
 
   - scope:
       path: whitepaper/README.md

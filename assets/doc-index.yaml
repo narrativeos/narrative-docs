@@ -31,6 +31,8 @@ sections:
     children:
       - adr/ADR-001-runtime.md
       - adr/ADR-002-storage.md
+      - adr/ADR-003-execution-oriented-storage.md
+      - adr/ADR-004-multimodal-evidence-model.md
   - id: product
     title_zh: 产品知识
     title_en: Product Knowledge

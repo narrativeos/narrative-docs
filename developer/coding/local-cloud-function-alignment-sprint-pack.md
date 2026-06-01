@@ -27,21 +27,29 @@ status: draft
 - 云端项目：跨对象聚合、长期演化分析、规模化查询服务。
 - 双端共享：统一 ID、时间语义、证据模型与增量同步契约。
 
+## 多模态增量对齐（ADR-004）
+
+- 多模态对象先进入派生表示层（OCR、ASR、layout、shot 等），再进入节点边加工链路。
+- `anchor_ref` 是双端共享证据锚点模型，`evidence_ref` 作为兼容别名保留。
+- 本地继续只负责当前对象，多模态不改变本地/云端职责边界。
+- 云端继续只消费增量包并做跨对象聚合，不反向接管本地抽取实现。
+
 ## P0 本地功能点（NarrativeOS）
 
 1. 时序字段落地：entity/edge 增加 event_time、valid_from、valid_to、version、provenance。
-2. 当前对象抽取：面向单文或当前批次输出节点与关系。
-3. 当前对象溯源查询：支持概念在当前对象内的来源和演化片段查询。
+2. 当前对象抽取：面向单文或当前批次输出节点与关系，并支持多模态派生单元输入。
+3. 当前对象溯源查询：支持概念在当前对象内的来源和演化片段查询，返回 modality-aware 证据锚点。
 4. 本地时间过滤检索：RAG 或检索层支持时间窗过滤。
-5. 审核闭环：候选关系审核、冲突提示、证据回链。
-6. 增量导出：按统一契约导出增量包到云端。
+5. 审核闭环：候选关系审核、冲突提示、证据回链，支持 text/image/figure/table/audio/video。
+6. 增量导出：按统一契约导出增量包到云端，支持 `anchor_ref`。
+7. 证据查看：本地 UI 支持文本锚点、页图区域、表格单元和视频时间段回跳。
 
 ## P0 云端功能点（Cloud）
 
 1. 聚合入库：接收多客户端增量包并合并去重。
 2. 时序图谱存储：支持增量更新，不做全量重建。
-3. 跨对象查询：按概念/时期/来源做全局检索。
-4. 全局统计：概念热度、关系增长、来源覆盖率。
+3. 跨对象查询：按概念/时期/来源做全局检索，支持多模态证据返回。
+4. 全局统计：概念热度、关系增长、来源覆盖率，补充模态覆盖率。
 5. 质量看板：增量导入成功率、冲突率、人工复核率。
 6. 聚合 API：提供查询与统计 API 供上层调用。
 
@@ -49,8 +57,9 @@ status: draft
 
 1. ID 规则：node_id、edge_id 生成策略一致。
 2. 时间语义：event_time 与 valid_time 语义分离。
-3. 证据模型：每条关系可回链到来源与文本锚点。
+3. 证据模型：每条关系可回链到来源与 `anchor_ref`（文本锚点为特例）。
 4. 增量动作：create/update/delete/rollback 动作枚举一致。
+5. 模态兼容：`modality` 与 `locator_type` 组合受统一兼容矩阵约束。
 
 ## Sprint Ticket Pack（可直接建单）
 
@@ -119,6 +128,43 @@ Acceptance:
 
 - 支持 create/update/delete/rollback 四类动作导出。
 - 导出包包含 schema_version。
+- 导出包支持 `anchor_ref`，并保持 `evidence_ref` 兼容输出。
+
+### LC-LOCAL-107
+
+Title: [Local][P0] 多模态派生表示抽取管道
+
+Owner: narrative-core
+
+Acceptance:
+
+- 支持文档类输入的 OCR 与 layout 抽取，输出可入库候选节点边。
+- 支持视频类输入的 ASR 与时间段切分，输出 time_range 锚点。
+- 每条候选边至少绑定一个 `anchor_ref`。
+
+### LC-LOCAL-108
+
+Title: [Local][P0] Modality-aware Evidence 查询返回
+
+Owner: narrative-api
+
+Acceptance:
+
+- 查询接口返回 `anchor_ref`，并兼容返回 `evidence_ref`。
+- 支持 `modality`、`locator_type` 过滤参数。
+- 对不兼容的 `modality`/`locator_type` 组合返回显式错误码。
+
+### LC-LOCAL-109
+
+Title: [Local][P0] 多模态证据回跳查看器
+
+Owner: narrative-studio
+
+Acceptance:
+
+- 支持文本句段定位、页图 bbox 高亮、表格单元定位、视频时间段回放。
+- 证据查看遵循结论 -> 证据 -> 原对象链路，不允许只显示结论。
+- 对无效锚点给出可操作错误提示与回退动作。
 
 ### LC-CLOUD-201
 
@@ -164,6 +210,28 @@ Acceptance:
 - 输出概念热度、关系增长、来源覆盖率。
 - 支持按时间窗口聚合。
 
+### LC-CLOUD-205
+
+Title: [Cloud][P0] 多模态证据聚合与去重
+
+Owner: cloud-project
+
+Acceptance:
+
+- 对 `anchor_ref.anchor_id` 做幂等去重与版本覆盖策略。
+- 支持同一关系跨模态证据并存，不互相覆盖。
+
+### LC-CLOUD-206
+
+Title: [Cloud][P0] 模态覆盖率统计 API
+
+Owner: cloud-project
+
+Acceptance:
+
+- 统计 text/image/figure/table/audio/video 覆盖率。
+- 输出按时间窗和来源分组的覆盖率结果。
+
 ### LC-SHARED-301
 
 Title: [Shared][P0] 双端 ID 与时间语义契约冻结
@@ -206,14 +274,38 @@ Acceptance:
 
 - 定义 P0 发布门禁：准确性、可追溯性、稳定性三类指标。
 
+### LC-SHARED-305
+
+Title: [Shared][P0] anchor_ref v1 契约冻结
+
+Owner: narrative-docs
+
+Acceptance:
+
+- 发布 `anchor_ref` 字段表、枚举表与兼容策略。
+- 明确 `evidence_ref == anchor_ref.anchor_id` 的一致性规则。
+
+### LC-SHARED-306
+
+Title: [Shared][P0] modality-locator 兼容矩阵与验收用例
+
+Owner: narrative-docs
+
+Acceptance:
+
+- 发布 `modality` 与 `locator_type` 兼容矩阵。
+- 提供至少 6 条跨模态验收样例（text/figure/table/video）。
+
 ## 两周验收标准
 
 - 本地可生成带时间与证据的结构化关系。
 - 云端可接收并聚合增量包。
 - 可回答一个跨对象时间问题，并能回链原始证据。
+- 至少 1 条 figure_region 与 1 条 time_range 证据链路完成端到端回放。
 
 ## 关联文档
 
+- [../../adr/ADR-004-multimodal-evidence-model.md](../../adr/ADR-004-multimodal-evidence-model.md)
 - [terminology-hierarchy-implementation-issue-pack.md](terminology-hierarchy-implementation-issue-pack.md)
 - [terminology-hierarchy-core-implementation-breakdown.md](terminology-hierarchy-core-implementation-breakdown.md)
 - [../api/terminology-hierarchy-api-storage-contract-v1.md](../api/terminology-hierarchy-api-storage-contract-v1.md)
