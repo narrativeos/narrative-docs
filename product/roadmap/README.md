@@ -36,6 +36,19 @@ source_of_truth: narrative-docs
 
 执行入口： [../developer/coding/local-cloud-function-alignment-sprint-pack.md](../developer/coding/local-cloud-function-alignment-sprint-pack.md)
 
+### 功能点对齐矩阵
+
+| 功能点 | 本地 NarrativeOS | 云端项目 | 共享契约 | 说明 |
+| --- | --- | --- | --- | --- |
+| 时序字段 | 负责落地 | 接收并保留 | 统一语义 | entity/edge 时间属性 |
+| 当前对象抽取 | 主责 | 不主责 | 统一 schema | 单文/批次加工 |
+| 当前对象溯源查询 | 主责 | 不主责 | 统一证据模型 | 局部演化链路 |
+| 时间窗检索 | 主责 | 可复用索引 | 统一参数 | 本地过滤优先 |
+| 审核与冲突提示 | 主责 | 仅接收结果 | 统一状态枚举 | 候选边审阅 |
+| 增量导出/接入 | 主责导出 | 主责接入 | 统一包格式 | create/update/delete/rollback |
+| 跨对象聚合分析 | 不主责 | 主责 | 统一 ID | 仅云端做聚合 |
+| 全局统计 | 不主责 | 主责 | 统一指标口径 | 概念热度/增长/覆盖率 |
+
 ## 中期重点
 
 - 完善跨模块 contract 与 schema 管理
