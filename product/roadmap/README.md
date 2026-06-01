@@ -26,6 +26,16 @@ source_of_truth: narrative-docs
 - 统一开发环境基线（VS Code + Copilot）
 - 建立 AI-First 工程流程与 CI 守门
 
+## 当前功能点对齐
+
+本阶段不展开长期规划，优先对齐当前可执行功能点：
+
+- 本地（NarrativeOS）：提取、加工、当前工作对象分析。
+- 云端（Cloud Project）：跨对象聚合、长期演化分析、规模化查询服务。
+- 共享契约：ID、时间语义、证据回链、增量同步动作。
+
+执行入口： [../developer/coding/local-cloud-function-alignment-sprint-pack.md](../developer/coding/local-cloud-function-alignment-sprint-pack.md)
+
 ## 中期重点
 
 - 完善跨模块 contract 与 schema 管理
