@@ -203,6 +203,7 @@ sections:
       - whitepaper/evidence-registry.md
       - whitepaper/benchmark-and-acceptance-metrics.md
       - whitepaper/algorithm-evaluation-report.md
+      - whitepaper/algorithm-selection-freeze-v1.md
       - whitepaper/error-taxonomy-and-fix-plan.md
       - whitepaper/algo-task-001-measurement-sheet.md
       - whitepaper/algo-task-001-runbook.md

@@ -89,6 +89,7 @@ source_of_truth: narrative-docs
 
 - [基准测试与验收指标入口](benchmark-and-acceptance-metrics.md)
 - [ALGO-TASK-001 算法评估报告（单机可行性）](algorithm-evaluation-report.md)
+- [ALGO-TASK-001 V1 选型冻结与落地清单](algorithm-selection-freeze-v1.md)
 - [ALGO-TASK-001 误差分类与修复计划](error-taxonomy-and-fix-plan.md)
 - [ALGO-TASK-001 首轮测量表模板](algo-task-001-measurement-sheet.md)
 - [ALGO-TASK-001 首轮运行作业单](algo-task-001-runbook.md)

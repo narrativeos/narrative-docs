@@ -92,6 +92,7 @@ baseline_hardware_profile:
 - [../academic/trust-methodology.md](../academic/trust-methodology.md)
 - [../academic/golden-set-threshold-policy.md](../academic/golden-set-threshold-policy.md)
 - [../architecture/analysis-engine/README.md](../architecture/analysis-engine/README.md)
+- [algorithm-selection-freeze-v1.md](algorithm-selection-freeze-v1.md)
 - [annotation-protocol-narrative-segmentation.md](annotation-protocol-narrative-segmentation.md)
 
 ## 复杂度与效率核实总表 | Complexity and Efficiency Audit

@@ -38,6 +38,8 @@ source_of_truth: narrative-docs
 
 开发推进清单： [../../developer/coding/developer-docs-execution-sprint-plan.md](../../developer/coding/developer-docs-execution-sprint-plan.md)
 
+算法选型冻结： [../../whitepaper/algorithm-selection-freeze-v1.md](../../whitepaper/algorithm-selection-freeze-v1.md)
+
 ## 文档治理推进板（开发向）
 
 ### P0（本周内）交付稳定性

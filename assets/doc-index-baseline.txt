@@ -125,6 +125,7 @@ whitepaper/algo-task-001-measurement-sheet.md
 whitepaper/algo-task-001-minimal-checklist.md
 whitepaper/algo-task-001-runbook.md
 whitepaper/algorithm-evaluation-report.md
+whitepaper/algorithm-selection-freeze-v1.md
 whitepaper/anno-task-001-segmentation-consistency.md
 whitepaper/annotation-protocol-narrative-segmentation.md
 whitepaper/architecture-feasibility.md
