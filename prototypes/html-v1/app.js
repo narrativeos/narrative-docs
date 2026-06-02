@@ -9,7 +9,7 @@ const AUTO_FOCUS_PANELS_KEY = "narrativeos.prototype.autoFocusPanels.v1";
 const PANEL_PRESET_KEY = "narrativeos.prototype.panelPreset.v1";
 const NARRATIVE_MARKER_FILTERS_KEY = "narrativeos.prototype.narrativeMarkerFilters.v1";
 const RECENT_PROJECT_WINDOW_MS = 24 * 60 * 60 * 1000;
-
+  
 // 纯前端轻量分词器（基于规则，不依赖外部库）
 function simpleChineseTokenizer(text) {
   if (!text || typeof text !== 'string') return [];
@@ -917,6 +917,8 @@ function renderReaderWordSetPanel() {
       ? "音序"
       : state.readerWordSortMode === "freq"
       ? "频次"
+      : state.readerWordSortMode === "length"
+      ? "字数"
       : "原序";
   metaEl.textContent = `总词数 ${stats.wordStats.totalWords} · 去重 ${stats.wordStats.uniqueWords} · TTR ${stats.wordStats.ttr}% · ${modeLabel}`;
 
@@ -949,6 +951,10 @@ function sortUniqueWords(words, mode = state.readerWordSortMode, freqMap = {}) {
     return [...words].sort((a, b) => (freqMap[b] || 0) - (freqMap[a] || 0));
   }
 
+  if (mode === "length") {
+    return [...words].sort((a, b) => b.length - a.length || (freqMap[b] || 0) - (freqMap[a] || 0));
+  }
+
   // pinyin mode
   const collator = new Intl.Collator("zh-u-co-pinyin", { sensitivity: "base", numeric: true });
   return [...words].sort((a, b) => collator.compare(a, b));
@@ -963,7 +969,7 @@ function wireReaderWordSetPanel() {
     const btn = target.closest(".word-sort-btn");
     if (!(btn instanceof HTMLButtonElement)) return;
     const mode = btn.dataset.wordSort;
-    if (!["original", "pinyin", "freq"].includes(mode)) return;
+    if (!["original", "pinyin", "freq", "length"].includes(mode)) return;
     if (state.readerWordSortMode === mode) return;
     state.readerWordSortMode = mode;
     renderReaderWordSetPanel();
@@ -5565,16 +5571,16 @@ function initTopNavigation() {
     });
 
     const navKey = navKeyFromButton(targetBtn);
+    const domainChanged = state.activeDomain !== navKey;
     state.activeDomain = navKey;
     state.narrative.spotlightType = null;
     const rule = navRules[navKey] || navRules.textlab;
     applyStageSelection(rule);
     applyDomainLayout();
 
-    if (rule.focusId) {
-      const section = $(rule.focusId);
-      if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    // Domain layout changes are handled by applyDomainLayout().
+    // Do not scroll into view: pane-center has overflow:hidden, so scrollIntoView
+    // would scroll the body/viewport causing unwanted page jumps.
 
     const status = $("status-line");
     if (status && rule.mission) status.textContent = rule.mission;
@@ -5682,6 +5688,9 @@ function setLayer(layer) {
 }
 
 function setMode(mode) {
+  // Skip if mode hasn't changed to avoid unnecessary re-renders
+  // and layout shifts that interfere with scroll positioning.
+  if (state.activeMode === mode) return;
   state.activeMode = mode;
   renderModes();
   renderModeBrief();
