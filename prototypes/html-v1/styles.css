@@ -470,8 +470,9 @@ button.danger {
 }
 
 .import-drawer-shell {
-  position: absolute;
-  inset: 0;
+  position: sticky;
+  top: 0;
+  min-height: 100%;
   z-index: 40;
 }
 
@@ -2033,6 +2034,36 @@ button.danger {
     overflow: visible;
   }
 
+  .pane-left {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .import-drawer-shell {
+    position: fixed;
+    inset: 74px 10px 10px;
+    min-height: auto;
+    z-index: 60;
+  }
+
+  .import-drawer-backdrop {
+    border-radius: 14px;
+  }
+
+  .import-drawer {
+    border-radius: 14px;
+  }
+
+  .source-drawer-toolbar {
+    align-items: flex-start;
+  }
+
+  .source-drawer-toolbar .source-workspace-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
   .stage-head {
     position: sticky;
     top: 78px;
@@ -2076,6 +2107,88 @@ button.danger {
 
   .source-workspace-head {
     flex-direction: column;
+  }
+
+  .source-workspace-actions {
+    width: 100%;
+  }
+
+  .source-workspace-actions .small-btn {
+    width: 100%;
+  }
+
+  .import-drawer-shell {
+    inset: 70px 8px 8px;
+    min-height: auto;
+  }
+
+  .import-drawer {
+    padding: 10px;
+  }
+
+  .import-drawer-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .import-drawer-head .small-btn {
+    width: 100%;
+  }
+
+  .source-drawer-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .source-drawer-toolbar .source-workspace-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .source-item,
+  .source-drawer-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .source-item input,
+  .source-drawer-check {
+    margin-top: 0;
+    padding-top: 0;
+    justify-content: flex-start;
+  }
+
+  .source-item-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .source-rank {
+    margin-top: -2px;
+  }
+
+  .source-detail-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .source-activate-state,
+  .source-activate-toggle,
+  .source-remove-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .source-cite-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .source-cite-summary strong {
+    text-align: left;
+  }
+
+  .source-cite-grid {
+    grid-template-columns: 1fr;
   }
 
   .citespace-meta-grid {

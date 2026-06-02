@@ -1696,7 +1696,9 @@ function renderImportPanelLayout() {
   if (!panel || !toggle || !drawerShell) return;
 
   if (leftPane && drawerShell.parentElement !== leftPane) {
-    leftPane.appendChild(drawerShell);
+    leftPane.prepend(drawerShell);
+  } else if (leftPane && leftPane.firstElementChild !== drawerShell) {
+    leftPane.prepend(drawerShell);
   }
 
   if (!state.importControlsExpanded && drawer?.contains(document.activeElement)) {
@@ -1705,6 +1707,7 @@ function renderImportPanelLayout() {
 
   panel.classList.toggle("drawer-open", state.importControlsExpanded);
   drawerShell.classList.toggle("hidden", !state.importControlsExpanded);
+
   toggle.textContent = state.importControlsExpanded ? "关闭源抽屉" : "打开源抽屉";
   toggle.setAttribute("aria-expanded", state.importControlsExpanded ? "true" : "false");
   if (drawer) {
@@ -2505,6 +2508,10 @@ function wireImportFlow() {
       state.importControlsExpanded = false;
       updateInteractionGuards();
     }
+  });
+
+  window.addEventListener("resize", () => {
+    if (state.importControlsExpanded) renderImportPanelLayout();
   });
 
   $("import-recent-only")?.addEventListener("change", (event) => {
