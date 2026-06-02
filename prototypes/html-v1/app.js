@@ -1301,6 +1301,7 @@ function renderStagePath() {
 
 function applyDomainLayout() {
   const domainMeta = DOMAIN_META[state.activeDomain] || DOMAIN_META.textlab;
+  const persistentLeftPanelIds = new Set(["panel-import"]);
   const stageTitle = $("stage-title");
   const stageDesc = $("stage-desc");
   const stageContextNav = $("stage-context-nav");
@@ -1349,7 +1350,7 @@ function applyDomainLayout() {
   leftPanelIds.forEach((id) => {
     const panel = $(id);
     if (!panel) return;
-    panel.classList.toggle("hidden", !domainMeta.visibleLeft.includes(id));
+    panel.classList.toggle("hidden", !persistentLeftPanelIds.has(id) && !domainMeta.visibleLeft.includes(id));
   });
 
   rightPanelIds.forEach((id) => {
