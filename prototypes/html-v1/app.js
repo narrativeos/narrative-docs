@@ -758,6 +758,14 @@ function getTextCharacterStats() {
   const digitChars = compactText.match(/[0-9]/g) || [];
   const punctuationChars = compactText.match(/[\u3000-\u303f\uff00-\uffef\p{P}\p{S}]/gu) || [];
 
+  // 字符频率统计
+  const charFreqMap = {};
+  if (hasOpenDoc) {
+    for (const ch of compactText) {
+      charFreqMap[ch] = (charFreqMap[ch] || 0) + 1;
+    }
+  }
+
   // 词汇级统计（基于内置规则分词器）
   let wordStats = null;
   if (hasOpenDoc) {
@@ -792,13 +800,18 @@ function getTextCharacterStats() {
     charsetSummary: hasOpenDoc
       ? `汉${hanziChars.length} 英${latinChars.length} 数${digitChars.length} 符${punctuationChars.length}`
       : "-",
+    charFreqMap,
     wordStats,
   };
 }
 
-function sortUniqueChars(chars, mode = state.readerCharSortMode) {
+function sortUniqueChars(chars, mode = state.readerCharSortMode, charFreqMap = {}) {
   if (!Array.isArray(chars) || chars.length === 0) return [];
   if (mode === "original") return [...chars];
+
+  if (mode === "freq") {
+    return [...chars].sort((a, b) => (charFreqMap[b] || 0) - (charFreqMap[a] || 0));
+  }
 
   const hanziRe = /[\u3400-\u4dbf\u4e00-\u9fff]/;
   const hanzi = chars.filter((char) => hanziRe.test(char));
@@ -832,12 +845,14 @@ function renderReaderCharSetPanel() {
     return;
   }
 
-  const sortedChars = sortUniqueChars(stats.uniqueChars || [], state.readerCharSortMode);
+  const sortedChars = sortUniqueChars(stats.uniqueChars || [], state.readerCharSortMode, stats.charFreqMap);
   const modeLabel =
     state.readerCharSortMode === "pinyin"
       ? "音序"
       : state.readerCharSortMode === "radical"
       ? "部首"
+      : state.readerCharSortMode === "freq"
+      ? "字频"
       : "原序";
   metaEl.textContent = `总字符 ${stats.totalChars} · 去重 ${stats.uniqueCharCount} · ${modeLabel}`;
 
@@ -855,7 +870,10 @@ function renderReaderCharSetPanel() {
   }
 
   setEl.innerHTML = sortedChars
-    .map((char) => `<span class="reader-char-item" title="${escapeHtml(char)}">${escapeHtml(char)}</span>`)
+    .map((char) => {
+      const freq = stats.charFreqMap?.[char] || 0;
+      return `<span class="reader-char-item" title="${escapeHtml(char)} (${freq}次)">${escapeHtml(char)}</span>`;
+    })
     .join("");
 }
 
@@ -868,7 +886,7 @@ function wireReaderCharSetPanel() {
     const btn = target.closest(".char-sort-btn");
     if (!(btn instanceof HTMLButtonElement)) return;
     const mode = btn.dataset.charSort;
-    if (!["original", "pinyin", "radical"].includes(mode)) return;
+    if (!["original", "pinyin", "radical", "freq"].includes(mode)) return;
     if (state.readerCharSortMode === mode) return;
     state.readerCharSortMode = mode;
     renderReaderCharSetPanel();
