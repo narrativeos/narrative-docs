@@ -270,7 +270,25 @@
             <section id="reader-stage" class="reader-stage">
               <h3 id="reader-title">正文预览</h3>
               <p id="reader-meta" class="muted">请先导入并打开文档</p>
-              <div id="reader-content" class="reader-text">请先在左侧完成数据导入。</div>
+              <div class="reader-body">
+                <div class="reader-main">
+                  <div id="reader-content" class="reader-text">请先在左侧完成数据导入。</div>
+                </div>
+                <aside id="reader-char-panel" class="reader-char-panel hidden" aria-live="polite">
+                  <div class="reader-char-head">
+                    <strong>不重复字符集合</strong>
+                    <div class="reader-char-head-right">
+                      <span id="reader-char-meta" class="muted">-</span>
+                      <div id="reader-char-sort" class="reader-char-sort" role="group" aria-label="字符排序方式">
+                        <button type="button" class="char-sort-btn active" data-char-sort="original">原序</button>
+                        <button type="button" class="char-sort-btn" data-char-sort="pinyin">音序</button>
+                        <button type="button" class="char-sort-btn" data-char-sort="radical">部首</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="reader-char-set" class="reader-char-set">-</div>
+                </aside>
+              </div>
             </section>
           </div>
 

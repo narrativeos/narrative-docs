@@ -1715,6 +1715,104 @@ button.danger {
   font-size: 14px;
 }
 
+.reader-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 10px;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.reader-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-char-panel {
+  border: 1px dashed #bfd2e5;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 260px;
+  max-height: min(54vh, 640px);
+  min-width: 0;
+}
+
+.reader-char-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.reader-char-head-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.reader-char-sort {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.char-sort-btn {
+  width: auto;
+  border: 1px solid #bfd2e5;
+  border-radius: 999px;
+  background: #f7fbff;
+  color: #2f536f;
+  font-size: 11px;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+.char-sort-btn.active {
+  border-color: #0f6cbd;
+  color: #154568;
+  background: linear-gradient(180deg, #edf5ff 0%, #dcecff 100%);
+}
+
+.reader-char-head strong {
+  font-size: 12px;
+  color: #1b3f5f;
+}
+
+.reader-char-set {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+  gap: 4px;
+  align-content: start;
+  overflow: auto;
+  border: 1px solid #d5e3f0;
+  border-radius: 6px;
+  background: #fcfeff;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  word-break: break-all;
+}
+
+.reader-char-item {
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d5e3f0;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #224763;
+  font-size: 12px;
+  line-height: 1;
+}
+
 .boot-overlay {
   position: absolute;
   inset: 0;
@@ -2574,6 +2672,13 @@ button.danger {
   color: #123d62;
 }
 
+.ops-kpi-card strong.ops-kpi-value-compact {
+  font-size: 12px;
+  line-height: 1.35;
+  width: 100%;
+  word-break: break-all;
+}
+
 .stage-context-nav {
   border-color: #c7d9eb;
   background: linear-gradient(180deg, #f9fcff 0%, #eef6ff 100%);
@@ -3354,6 +3459,15 @@ button.danger {
 
   .axis-anchor-chip-clear {
     margin-left: 0;
+  }
+
+  .reader-body {
+    grid-template-columns: 1fr;
+  }
+
+  .reader-char-panel {
+    min-height: 132px;
+    max-height: 180px;
   }
 }
 

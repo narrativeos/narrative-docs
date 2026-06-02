@@ -245,6 +245,7 @@ const state = {
   },
   paletteCommands: [],
   paletteIndex: 0,
+  readerCharSortMode: "original",
   narrative: {
     axisMode: "narrative",
     anchorLine: 0,
@@ -658,6 +659,7 @@ function updateMetrics() {
   if (metricSensory) metricSensory.textContent = String(sensory);
   if (metricAi) metricAi.textContent = `${ai}%`;
   renderOpsKpiCards({ structure, rhythm, sensory, ai });
+  renderReaderCharSetPanel();
 
   if (typeof state.activeLine === "number") {
     updateInsightForLine(state.activeLine);
@@ -667,6 +669,108 @@ function updateMetrics() {
   renderGenomeWorkbench();
   renderInsightWorkbench();
   renderLibraryWorkbench();
+}
+
+function getTextCharacterStats() {
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  const rawText = hasOpenDoc ? state.readerLines.join("") : "";
+  const compactText = rawText.replace(/\s+/g, "");
+  const totalChars = compactText.length;
+  const uniqueChars = hasOpenDoc ? Array.from(new Set([...compactText])) : [];
+  const uniqueCharCount = uniqueChars.length;
+  const hanziChars = compactText.match(/[\u3400-\u4dbf\u4e00-\u9fff]/g) || [];
+  const latinChars = compactText.match(/[A-Za-z]/g) || [];
+  const digitChars = compactText.match(/[0-9]/g) || [];
+  const punctuationChars = compactText.match(/[\u3000-\u303f\uff00-\uffef\p{P}\p{S}]/gu) || [];
+  return {
+    hasOpenDoc,
+    totalChars,
+    uniqueCharCount,
+    uniqueChars,
+    uniqueCharSet: hasOpenDoc ? uniqueChars.join("") : "-",
+    charsetSummary: hasOpenDoc
+      ? `汉${hanziChars.length} 英${latinChars.length} 数${digitChars.length} 符${punctuationChars.length}`
+      : "-",
+  };
+}
+
+function sortUniqueChars(chars, mode = state.readerCharSortMode) {
+  if (!Array.isArray(chars) || chars.length === 0) return [];
+  if (mode === "original") return [...chars];
+
+  const hanziRe = /[\u3400-\u4dbf\u4e00-\u9fff]/;
+  const hanzi = chars.filter((char) => hanziRe.test(char));
+  const others = chars.filter((char) => !hanziRe.test(char));
+
+  const hanziCollator =
+    mode === "pinyin"
+      ? new Intl.Collator("zh-u-co-pinyin", { sensitivity: "base", numeric: true })
+      : new Intl.Collator("zh-u-co-stroke", { sensitivity: "base", numeric: true });
+  const otherCollator = new Intl.Collator("zh", { sensitivity: "base", numeric: true });
+
+  const sortedHanzi = [...hanzi].sort((a, b) => hanziCollator.compare(a, b));
+  const sortedOthers = [...others].sort((a, b) => otherCollator.compare(a, b));
+  return [...sortedHanzi, ...sortedOthers];
+}
+
+function renderReaderCharSetPanel() {
+  const panel = $("reader-char-panel");
+  const metaEl = $("reader-char-meta");
+  const setEl = $("reader-char-set");
+  const sortWrap = $("reader-char-sort");
+  if (!panel || !metaEl || !setEl) return;
+
+  const stats = getTextCharacterStats();
+  const visible = state.activeDomain === "textlab" && stats.hasOpenDoc;
+  panel.classList.toggle("hidden", !visible);
+
+  if (!visible) {
+    metaEl.textContent = "-";
+    setEl.innerHTML = "-";
+    return;
+  }
+
+  const sortedChars = sortUniqueChars(stats.uniqueChars || [], state.readerCharSortMode);
+  const modeLabel =
+    state.readerCharSortMode === "pinyin"
+      ? "音序"
+      : state.readerCharSortMode === "radical"
+      ? "部首"
+      : "原序";
+  metaEl.textContent = `总字符 ${stats.totalChars} · 去重 ${stats.uniqueCharCount} · ${modeLabel}`;
+
+  if (sortWrap) {
+    sortWrap.querySelectorAll(".char-sort-btn").forEach((btn) => {
+      const active = btn.dataset.charSort === state.readerCharSortMode;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  if (sortedChars.length === 0) {
+    setEl.innerHTML = "-";
+    return;
+  }
+
+  setEl.innerHTML = sortedChars
+    .map((char) => `<span class="reader-char-item" title="${escapeHtml(char)}">${escapeHtml(char)}</span>`)
+    .join("");
+}
+
+function wireReaderCharSetPanel() {
+  const sortWrap = $("reader-char-sort");
+  if (!sortWrap) return;
+  sortWrap.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const btn = target.closest(".char-sort-btn");
+    if (!(btn instanceof HTMLButtonElement)) return;
+    const mode = btn.dataset.charSort;
+    if (!["original", "pinyin", "radical"].includes(mode)) return;
+    if (state.readerCharSortMode === mode) return;
+    state.readerCharSortMode = mode;
+    renderReaderCharSetPanel();
+  });
 }
 
 function renderOpsKpiCards(metrics = null) {
@@ -701,14 +805,15 @@ function renderOpsKpiCards(metrics = null) {
   const confidence = hasOpenDoc ? Math.max(62, Math.min(94, 70 + Math.floor(lineLen / 18))) : 0;
   const fatigueRisk = !hasOpenDoc ? "待分析" : lineLen > 42 ? "中高" : lineLen > 26 ? "中" : "低";
   const timePeriods = state.books.filter((b) => b.imported_at).length;
+  const textStats = getTextCharacterStats();
 
   const byDomain = {
     textlab: {
-      note: "导入与正文就绪度优先。",
+      note: "字符基线（主舞台查看不重复字符集合）",
       cards: [
-        { label: "样本书目", value: `${totalBooks}` },
-        { label: "打开文档", value: `${state.openedRanks.size}` },
-        { label: "当前标注", value: `${totalAnnotations}` },
+        { label: "总字符数", value: textStats.hasOpenDoc ? `${textStats.totalChars}` : "-" },
+        { label: "去重字符数", value: textStats.hasOpenDoc ? `${textStats.uniqueCharCount}` : "-" },
+        { label: "字符构成", value: textStats.charsetSummary },
       ],
     },
     atlas: {
@@ -758,6 +863,8 @@ function renderOpsKpiCards(metrics = null) {
   config.cards.forEach((card, idx) => {
     cards[idx].labelEl.textContent = card.label;
     cards[idx].valueEl.textContent = card.value;
+    const compact = String(card.value || "").length > 22;
+    cards[idx].valueEl.classList.toggle("ops-kpi-value-compact", compact);
   });
 }
 
@@ -1734,6 +1841,7 @@ function applyDomainLayout() {
 
   renderDomainOperations();
   renderOpsKpiCards();
+  renderReaderCharSetPanel();
   renderStagePath();
   renderNarrativeAxis();
 }
@@ -3606,6 +3714,7 @@ function renderReaderLines() {
   });
 
   applySearchHighlight();
+  renderReaderCharSetPanel();
   renderNarrativeAxis();
 }
 
@@ -5394,6 +5503,7 @@ async function init() {
   initCommandPalette();
   initPanelDensityControls();
   initAutoFocusControl();
+  wireReaderCharSetPanel();
   if (!state.autoFocusPanels && ["research", "debug", "review"].includes(state.panelPreset)) {
     applyPanelPreset(state.panelPreset);
   } else {
