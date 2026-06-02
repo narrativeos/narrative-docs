@@ -98,6 +98,11 @@ sections:
       - developer/operations/cross-repo-ci-status-matrix-template.md
       - developer/operations/cross-repo-release-checklist.md
       - developer/operations/go-no-go-meeting-template.md
+      - developer/operations/milestone-planning-template.md
+      - developer/operations/novel100-kepub-dataset.md
+      - developer/operations/prototype-page-level-task-breakdown.md
+      - developer/operations/prototype-page-level-work-items.md
+      - developer/operations/risk-register-template.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
       - developer/coding/docs-governance-standard.md

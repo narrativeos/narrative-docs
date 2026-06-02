@@ -76,23 +76,31 @@ Workspace
 
 绑定数据：DS-V1-AUTHOR-SHORT-001、DS-V1-AUTHOR-LONG-001
 
-### Screen P2: Workspace Tri-pane
+### Screen P2: Text Lab Tri-pane
 
 目标：形成阅读-观察-诊断连续回路。
 
 布局：
 
-- 左栏 Import + 文本定位 + 标注 + CiteSpace 元数据
-- 中栏 Main Stage（Atlas + 正文预览并排）
+- 左栏 Source Foundation（Brand/Source/File/Load State）+ Import + 文本定位 + 标注 + CiteSpace 元数据
+- 中栏 Main Stage（Domain Navigation + 域主舞台；Atlas/Text Lab 含正文预览，Corpus/Genome/Insight/Library 使用独立工作台）
 - 右栏 洞察面板 Insight Panel
 
 关键交互：
 
 - 左栏先上传并导入资源包，再打开正文；导入状态与正文打开状态分离。
-- 导航层级遵循“全局主导航 -> 上下文导航（Layer/Mode）-> 工具控件（钻取/缩放）-> 当前位置面包屑”的秩序，避免同层竞争。
-- 顶栏全局导航区增加微标注（Global Navigation），明确其为一级入口而非页面内参数切换。
+- 导航层级遵循“域导航（与主舞台同栏）-> 上下文导航（Layer/Mode，仅 Atlas）-> 工具控件（钻取/缩放）-> 当前位置面包屑”的秩序，避免同层竞争。
+- 域导航 Domain Navigation 固定为（Text Lab/Atlas/Corpus/Genome/Insight/Library），不随当前文件切换而改变入口集合。
+- 左栏顶部 Source Foundation 承载 Brand / Source / File / Load State 等对象上下文，且需随当前选中文献与加载状态实时联动。
+- 左栏 Source Foundation 与相关输入面板服务于所有域：域切换时左栏结构与可见性保持稳定。
+- 一级导航需与主舞台保持强联动：Text Lab/Atlas/Corpus/Genome/Insight/Library 每个入口都必须驱动到对应域的默认任务与主舞台，且点击后状态与面包屑立即同步。
+- Insight 域主舞台需包含 Conclusion Card / Evidence Chain / Actionable Suggestions / Source Preview 四块，并提供 Show Evidence 证据跳转。
+- Library 域主舞台需包含 Structured Entries / Entity Relations / Concept & Topic Index / Evidence Provenance 四块，用于承载知识沉淀视图。
+- 层级约束：Domain 是页面骨架切换层；Layer/Mode/Drill 仅作为 Atlas 域内上下文导航，不应泄漏到非 Atlas 域。
+- 一级导航映射允许通过页面内 JSON 配置覆盖默认规则（`#top-nav-rules`），用于快速调整 IA 语义而不改联动逻辑代码。
+- 中栏主舞台顶部的域导航区增加微标注（Global Navigation），明确其为一级入口而非页面内参数切换。
 - 导航术语统一为中英对照并保持固定映射：全局导航 Global Navigation、层 Layer、模式 Mode、粒度 Drill、洞察面板 Insight Panel、工作流状态 Workflow State、证据账本 Evidence Ledger、X-Ray 工作台 X-Ray Workbench、降级恢复 Degrade Recovery、证据修复 Evidence Repair；面包屑需沿用同一术语。
-- 标题命名规范：页面左上主标题使用 Studio，导航项使用 Workspace；浏览器页签标题采用 NarrativeOS Studio Workspace Prototype v1，避免双 Workspace 语义冲突。
+- 标题命名规范：页面左上主标题使用 Studio，导航项首项使用 Text Lab；浏览器页签标题采用 NarrativeOS Studio Workspace Prototype v1（保留历史命名以兼容已有外部链接）。
 - 选择文件或文件夹后自动触发导入，导入按钮保留为手动重试入口。
 - 导入重复资源包时通过左栏内联决策面板提供“替换现有文献 / 保留副本 / 取消导入”分支，避免误覆盖。
 - 导入后的文献列表支持轻量管理动作：重命名文献、删除文献（并级联删除其标注）；删除动作通过左栏内联确认面板完成。

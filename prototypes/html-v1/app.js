@@ -73,6 +73,120 @@ const MODE_SEMANTICS = {
   },
 };
 
+const TOP_NAV_RULES_DEFAULT = {
+  textlab: {
+    layer: "structure",
+    mode: "city",
+    drill: "chapter",
+    focusId: "panel-import",
+    mission: "Mission: Text Lab 视图，优先导入、阅读与标注",
+  },
+  atlas: {
+    layer: "structure",
+    mode: "city",
+    drill: "chapter",
+    focusId: "atlas-canvas",
+    mission: "Mission: Atlas 视图，聚焦结构与模式切换",
+  },
+  corpus: {
+    layer: "rhythm",
+    mode: "music",
+    drill: "paragraph",
+    focusId: "corpus-workbench",
+    mission: "Mission: Corpus 视图，聚焦语料趋势、聚类与对比",
+  },
+  genome: {
+    layer: "semantic",
+    mode: "galaxy",
+    drill: "paragraph",
+    focusId: "genome-workbench",
+    mission: "Mission: Genome 视图，聚焦风格画像、对比与演化追踪",
+  },
+  insight: {
+    layer: "heat",
+    mode: "emotion",
+    drill: "paragraph",
+    focusId: "insight-workbench",
+    mission: "Mission: Insight 视图，聚焦结论与证据链",
+  },
+  library: {
+    layer: "heat",
+    mode: "xray",
+    drill: "sentence",
+    focusId: "library-workbench",
+    mission: "Mission: Library 视图，聚焦知识条目、关系网络与证据来源",
+  },
+};
+
+const DOMAIN_META = {
+  textlab: {
+    label: "Text Lab",
+    stageTitle: "主舞台 Text Lab Stage",
+    stageDesc: "中栏：导入后阅读、检索、标注与快速诊断的连续工作台。",
+    stageTask: "Import & Diagnose",
+    showAtlasControls: false,
+    showAtlasViewport: false,
+    showReader: true,
+    visibleLeft: ["panel-context", "panel-import", "panel-search", "panel-citespace", "panel-annotation"],
+    visibleRight: ["panel-insight", "panel-workflow", "panel-xray", "panel-ledger", "degrade-panel", "repair-panel"],
+  },
+  atlas: {
+    label: "Atlas",
+    stageTitle: "主舞台 Atlas Main Stage",
+    stageDesc: "中栏：地图主舞台，聚焦结构与模式探索。",
+    stageTask: "Explore Maps",
+    showAtlasControls: true,
+    showAtlasViewport: true,
+    showReader: true,
+    visibleLeft: ["panel-context", "panel-search"],
+    visibleRight: ["panel-insight", "panel-workflow"],
+  },
+  corpus: {
+    label: "Corpus",
+    stageTitle: "主舞台 Corpus Observatory",
+    stageDesc: "中栏：语料趋势、聚类与比较任务入口。",
+    stageTask: "Trend / Cluster / Compare",
+    showAtlasControls: false,
+    showAtlasViewport: false,
+    showReader: false,
+    visibleLeft: ["panel-context"],
+    visibleRight: ["panel-workflow", "panel-insight"],
+  },
+  genome: {
+    label: "Genome",
+    stageTitle: "主舞台 Style Genome Stage",
+    stageDesc: "中栏：风格画像与演化对比的基因工作台。",
+    stageTask: "Fingerprint & Evolution",
+    showAtlasControls: false,
+    showAtlasViewport: false,
+    showReader: false,
+    visibleLeft: ["panel-context"],
+    visibleRight: ["panel-insight"],
+  },
+  insight: {
+    label: "Insight",
+    stageTitle: "主舞台 Insight Engine Stage",
+    stageDesc: "中栏：解释、证据与修订建议决策视图。",
+    stageTask: "Explain & Decide",
+    showAtlasControls: false,
+    showAtlasViewport: false,
+    showReader: false,
+    visibleLeft: ["panel-context", "panel-search"],
+    visibleRight: ["panel-insight", "panel-workflow"],
+  },
+  library: {
+    label: "Library",
+    stageTitle: "主舞台 Library Knowledge Stage",
+    stageDesc: "中栏：证据账本与知识沉淀的可追溯视图。",
+    stageTask: "Ledger & Knowledge",
+    showAtlasControls: false,
+    showAtlasViewport: false,
+    showReader: false,
+    visibleLeft: ["panel-context", "panel-citespace"],
+    visibleRight: ["panel-ledger", "panel-insight"],
+  },
+};
+
 const state = {
   books: [],
   summary: [],
@@ -82,6 +196,7 @@ const state = {
   activeLine: null,
   activeLayer: "structure",
   activeMode: "city",
+  activeDomain: "textlab",
   drill: "chapter",
   zoom: 1,
   xrayFilter: "ALL",
@@ -260,13 +375,55 @@ function hideRepair() {
   $("repair-panel").classList.add("hidden");
 }
 
-function updateMetrics() {
-  $("metric-books").textContent = String(state.books.length);
-  $("metric-fulltext").textContent = String(state.openedRanks.size);
-  $("metric-annotations").textContent = String(state.annotations.length);
+function renderContextHeader() {
+  const brandEl = $("ctx-brand");
+  const sourceEl = $("ctx-source");
+  const fileEl = $("ctx-file");
+  const loadEl = $("ctx-load");
+  if (!brandEl || !sourceEl || !fileEl || !loadEl) return;
 
+  brandEl.textContent = "NarrativeOS Studio";
+
+  const selectedRank = Number($("book-select")?.value);
+  const selectedBook = state.books.find((x) => x.rank === selectedRank) || null;
+  const contextBook = state.currentBook || selectedBook;
+
+  if (!contextBook) {
+    sourceEl.textContent = "未绑定";
+    fileEl.textContent = "未选择文档";
+    loadEl.textContent = state.books.length > 0 ? "imported" : "idle";
+    return;
+  }
+
+  if (contextBook.source_type === "prepared") {
+    sourceEl.textContent = "novel100 dataset";
+  } else {
+    sourceEl.textContent = contextBook.kepub_book_url || "本地导入";
+  }
+
+  if (state.currentBook) {
+    fileEl.textContent = `${contextBook.rank}. ${contextBook.title}`;
+  } else {
+    fileEl.textContent = `已选 ${contextBook.rank}. ${contextBook.title}`;
+  }
+
+  if (state.currentBook && state.readerLines.length > 0) {
+    loadEl.textContent = `loaded · open ${contextBook.open_count || 1}x`;
+  } else if (state.currentBook && state.workflow.fast === WORKFLOW.RUNNING) {
+    loadEl.textContent = "loading";
+  } else if (state.workflow.degraded) {
+    loadEl.textContent = "degraded";
+  } else if (contextBook.last_opened_at) {
+    loadEl.textContent = "ready-to-reload";
+  } else {
+    loadEl.textContent = "imported";
+  }
+}
+
+function updateMetrics() {
   const lastExport = localStorage.getItem(EXPORT_TS_KEY);
-  $("metric-export").textContent = lastExport || "未导出";
+  const metricExport = $("metric-export");
+  if (metricExport) metricExport.textContent = lastExport || "未导出";
 
   const profile = MODE_PROFILES[state.activeMode] || MODE_PROFILES.city;
   const structure = Math.max(40, Math.min(97, 88 - state.annotations.length + profile.structureBias));
@@ -276,14 +433,513 @@ function updateMetrics() {
     Math.min(96, 48 + Math.floor(state.annotations.length * 1.4) + profile.sensoryBias)
   );
   const ai = Math.max(4, Math.min(42, 18 - Math.floor(state.annotations.length / 2) + profile.aiBias));
-  $("metric-structure").textContent = String(structure);
-  $("metric-rhythm").textContent = String(rhythm);
-  $("metric-sensory").textContent = String(sensory);
-  $("metric-ai").textContent = `${ai}%`;
+  const metricStructure = $("metric-structure");
+  const metricRhythm = $("metric-rhythm");
+  const metricSensory = $("metric-sensory");
+  const metricAi = $("metric-ai");
+  if (metricStructure) metricStructure.textContent = String(structure);
+  if (metricRhythm) metricRhythm.textContent = String(rhythm);
+  if (metricSensory) metricSensory.textContent = String(sensory);
+  if (metricAi) metricAi.textContent = `${ai}%`;
+  renderOpsKpiCards({ structure, rhythm, sensory, ai });
 
   if (typeof state.activeLine === "number") {
     updateInsightForLine(state.activeLine);
   }
+
+  renderCorpusWorkbench();
+  renderGenomeWorkbench();
+  renderInsightWorkbench();
+  renderLibraryWorkbench();
+}
+
+function renderOpsKpiCards(metrics = null) {
+  const noteEl = $("ops-kpi-note");
+  const cards = [1, 2, 3].map((idx) => ({
+    labelEl: $(`ops-kpi-${idx}-label`),
+    valueEl: $(`ops-kpi-${idx}-value`),
+  }));
+  if (!noteEl || cards.some((card) => !card.labelEl || !card.valueEl)) return;
+
+  const profile = MODE_PROFILES[state.activeMode] || MODE_PROFILES.city;
+  const resolvedMetrics =
+    metrics || {
+      structure: Math.max(40, Math.min(97, 88 - state.annotations.length + profile.structureBias)),
+      rhythm: Math.max(30, Math.min(97, 55 + state.annotations.length * 2 + profile.rhythmBias)),
+      sensory: Math.max(22, Math.min(96, 48 + Math.floor(state.annotations.length * 1.4) + profile.sensoryBias)),
+      ai: Math.max(4, Math.min(42, 18 - Math.floor(state.annotations.length / 2) + profile.aiBias)),
+    };
+
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  const totalBooks = state.books.length;
+  const uniqueAuthors = new Set(state.books.map((b) => String(b.author || "未知作者"))).size;
+  const imported24h = state.books.filter((b) => isWithinRecentWindow(b.imported_at)).length;
+  const totalAnnotations = state.annotations.length;
+  const relationEstimate = totalBooks * 2 + totalAnnotations;
+  const withRef = state.annotations.filter((ann) => Boolean(ann.sentence_ref)).length;
+  const provenanceRate = totalAnnotations ? `${Math.round((withRef / totalAnnotations) * 100)}%` : "0%";
+  const active = typeof state.activeLine === "number" ? state.activeLine : 0;
+  const bounded = Math.max(0, Math.min(Math.max(state.readerLines.length - 1, 0), active));
+  const lineText = state.readerLines[bounded] || "";
+  const lineLen = lineText.length;
+  const confidence = hasOpenDoc ? Math.max(62, Math.min(94, 70 + Math.floor(lineLen / 18))) : 0;
+  const fatigueRisk = !hasOpenDoc ? "待分析" : lineLen > 42 ? "中高" : lineLen > 26 ? "中" : "低";
+  const timePeriods = state.books.filter((b) => b.imported_at).length;
+
+  const byDomain = {
+    textlab: {
+      note: "导入与正文就绪度优先。",
+      cards: [
+        { label: "样本书目", value: `${totalBooks}` },
+        { label: "打开文档", value: `${state.openedRanks.size}` },
+        { label: "当前标注", value: `${totalAnnotations}` },
+      ],
+    },
+    atlas: {
+      note: "保留地图级显著信号。",
+      cards: [
+        { label: "结构完整度", value: `${resolvedMetrics.structure}` },
+        { label: "节奏指数", value: `${resolvedMetrics.rhythm}` },
+        { label: "感官密度", value: `${resolvedMetrics.sensory}` },
+      ],
+    },
+    corpus: {
+      note: "突出语料覆盖与样本活跃度。",
+      cards: [
+        { label: "语料总量", value: `${totalBooks}` },
+        { label: "作者覆盖", value: `${uniqueAuthors}` },
+        { label: "24h 新增", value: `${imported24h}` },
+      ],
+    },
+    genome: {
+      note: "聚焦风格画像与可比性。",
+      cards: [
+        { label: "空间感", value: hasOpenDoc ? "72" : "-" },
+        { label: "抽象度", value: hasOpenDoc ? "58" : "-" },
+        { label: "时间样本", value: `${timePeriods}` },
+      ],
+    },
+    insight: {
+      note: "突出结论置信度与当前风险。",
+      cards: [
+        { label: "置信度", value: hasOpenDoc ? `${confidence}%` : "-" },
+        { label: "疲劳风险", value: fatigueRisk },
+        { label: "当前焦点", value: hasOpenDoc ? `L${bounded + 1}` : "-" },
+      ],
+    },
+    library: {
+      note: "突出知识沉淀规模与来源质量。",
+      cards: [
+        { label: "作品条目", value: `${totalBooks}` },
+        { label: "关系估算", value: `${relationEstimate}` },
+        { label: "来源完整率", value: provenanceRate },
+      ],
+    },
+  };
+
+  const config = byDomain[state.activeDomain] || byDomain.textlab;
+  noteEl.textContent = config.note;
+  config.cards.forEach((card, idx) => {
+    cards[idx].labelEl.textContent = card.label;
+    cards[idx].valueEl.textContent = card.value;
+  });
+}
+
+function setCorpusRows(el, rows) {
+  if (!el) return;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    el.innerHTML = '<div class="corpus-row"><span>暂无数据</span><strong>-</strong></div>';
+    return;
+  }
+  el.innerHTML = rows
+    .map((row) => `<div class="corpus-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}</strong></div>`)
+    .join("");
+}
+
+function renderCorpusWorkbench() {
+  const explorerEl = $("corpus-explorer-summary");
+  const trendEl = $("corpus-trend-summary");
+  const clusterEl = $("corpus-cluster-summary");
+  const compareEl = $("corpus-compare-summary");
+  if (!explorerEl || !trendEl || !clusterEl || !compareEl) return;
+
+  const totalBooks = state.books.length;
+  const openedBooks = state.books.filter((b) => Boolean(b.last_opened_at)).length;
+  const uniqueAuthors = new Set(state.books.map((b) => String(b.author || "未知作者"))).size;
+  const imported24h = state.books.filter((b) => isWithinRecentWindow(b.imported_at)).length;
+
+  setCorpusRows(explorerEl, [
+    { label: "语料总量", value: `${totalBooks} 本` },
+    { label: "作者覆盖", value: `${uniqueAuthors} 位` },
+    { label: "24h 新增", value: `${imported24h} 本` },
+  ]);
+
+  const trendRows = [
+    { label: "已加载样本", value: `${openedBooks} 本` },
+    { label: "标注总量", value: `${state.annotations.length} 条` },
+    { label: "活跃度（24h）", value: `${state.books.filter((b) => isWithinRecentWindow(b.last_opened_at)).length} 本` },
+  ];
+  setCorpusRows(trendEl, trendRows);
+
+  const authorCounts = new Map();
+  state.books.forEach((book) => {
+    const author = String(book.author || "未知作者");
+    authorCounts.set(author, (authorCounts.get(author) || 0) + 1);
+  });
+  const topAuthors = Array.from(authorCounts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([author, count]) => ({ label: `作者群：${author}`, value: `${count} 本` }));
+  setCorpusRows(clusterEl, topAuthors);
+
+  const ranked = [...state.books].sort((a, b) => Number(b.open_count || 0) - Number(a.open_count || 0));
+  const a = ranked[0];
+  const b = ranked[1];
+  if (!a || !b) {
+    setCorpusRows(compareEl, [{ label: "对比对象", value: "至少需要 2 本语料" }]);
+  } else {
+    const aAnn = state.annotations.filter((ann) => ann.rank === a.rank).length;
+    const bAnn = state.annotations.filter((ann) => ann.rank === b.rank).length;
+    setCorpusRows(compareEl, [
+      { label: `${a.title} vs ${b.title}`, value: `open ${a.open_count || 0}/${b.open_count || 0}` },
+      { label: "标注差异", value: `${aAnn - bAnn >= 0 ? "+" : ""}${aAnn - bAnn}` },
+      { label: "建议", value: "进入 Compare 深度分析" },
+    ]);
+  }
+}
+
+function setGenomeRows(el, rows) {
+  if (!el) return;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    el.innerHTML = '<div class="genome-row"><span>暂无数据</span><strong>-</strong></div>';
+    return;
+  }
+  el.innerHTML = rows
+    .map((row) => {
+      const evidenceLine = Number.isInteger(row.evidenceLine) ? row.evidenceLine : null;
+      const evidenceBtn =
+        evidenceLine === null
+          ? ""
+          : `<button type="button" class="genome-evidence-btn" data-evidence-line="${evidenceLine}">证据</button>`;
+      return `<div class="genome-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${evidenceBtn}</strong></div>`;
+    })
+    .join("");
+}
+
+function jumpToGenomeEvidence(lineIndex) {
+  if (!Number.isInteger(lineIndex) || state.readerLines.length === 0) return;
+  const bounded = Math.max(0, Math.min(state.readerLines.length - 1, lineIndex));
+  setActiveLine(bounded);
+  const focusEl = $("panel-insight") || $("reader-stage");
+  if (focusEl) {
+    focusEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function bindGenomeEvidenceButtons(...containers) {
+  containers.forEach((container) => {
+    if (!container) return;
+    container.querySelectorAll(".genome-evidence-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const line = Number(e.currentTarget.dataset.evidenceLine);
+        if (Number.isInteger(line)) jumpToGenomeEvidence(line);
+      });
+    });
+  });
+}
+
+function renderGenomeWorkbench() {
+  const cardEl = $("genome-card-summary");
+  const radarEl = $("genome-radar-summary");
+  const diffEl = $("genome-diff-summary");
+  const evolutionEl = $("genome-evolution-summary");
+  if (!cardEl || !radarEl || !diffEl || !evolutionEl) return;
+
+  // Language Genome Card - 基于当前打开文档的风格维度画像
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  if (!hasOpenDoc) {
+    setGenomeRows(cardEl, [{ label: "状态", value: "请先打开文档" }]);
+  } else {
+    const evidenceLines = [0, 4, 8, 12, 16].map((line) =>
+      Math.max(0, Math.min(state.readerLines.length - 1, line))
+    );
+    // 模拟风格维度分值（V1 mock）
+    const dimensions = [
+      { label: "空间感", value: "72", evidenceLine: evidenceLines[0] },
+      { label: "抽象度", value: "58", evidenceLine: evidenceLines[1] },
+      { label: "感官率", value: "65", evidenceLine: evidenceLines[2] },
+      { label: "节奏波动", value: "43", evidenceLine: evidenceLines[3] },
+      { label: "解释倾向", value: "31", evidenceLine: evidenceLines[4] },
+    ];
+    setGenomeRows(cardEl, dimensions);
+  }
+
+  // Style Radar - 绘制雷达图
+  if (hasOpenDoc) {
+    drawRadarChart(radarEl, [72, 58, 65, 43, 31], ["空间感", "抽象度", "感官率", "节奏波动", "解释倾向"]);
+  } else {
+    radarEl.innerHTML = '<div class="genome-row"><span>雷达图</span><strong>请先打开文档</strong></div>';
+  }
+
+  // Diff Report - 跨对象对比
+  const ranked = [...state.books].sort((a, b) => Number(b.open_count || 0) - Number(a.open_count || 0));
+  if (ranked.length < 2) {
+    setGenomeRows(diffEl, [{ label: "对比对象", value: "至少需要 2 本语料" }]);
+  } else {
+    const a = ranked[0];
+    const b = ranked[1];
+    const lineA = Math.max(0, Math.min(state.readerLines.length - 1, 6));
+    const lineB = Math.max(0, Math.min(state.readerLines.length - 1, 14));
+    setGenomeRows(diffEl, [
+      { label: `${a.title} vs ${b.title}`, value: "对比中" },
+      { label: "空间感差异", value: "+12", evidenceLine: lineA },
+      { label: "抽象度差异", value: "-8", evidenceLine: lineB },
+      { label: "感官率差异", value: "+5", evidenceLine: lineA },
+      { label: "建议", value: "进入 Diff 深度分析" },
+    ]);
+  }
+
+  // Evolution Timeline - 演化时间线
+  const timePeriods = state.books.filter((b) => b.imported_at).length;
+  if (timePeriods === 0) {
+    setGenomeRows(evolutionEl, [{ label: "时间线", value: "暂无时间维度数据" }]);
+  } else {
+    const lineStable = Math.max(0, Math.min(state.readerLines.length - 1, 10));
+    const lineNew = Math.max(0, Math.min(state.readerLines.length - 1, 18));
+    setGenomeRows(evolutionEl, [
+      { label: "样本区间", value: `${state.books.length} 本` },
+      { label: "稳定特征", value: "空间感持续偏高", evidenceLine: lineStable },
+      { label: "新增倾向", value: "感官率上升趋势", evidenceLine: lineNew },
+      { label: "建议", value: "进入 Evolution 深度分析" },
+    ]);
+  }
+
+  bindGenomeEvidenceButtons(cardEl, diffEl, evolutionEl);
+}
+
+function drawRadarChart(container, values, labels) {
+  // Simple radar chart using canvas
+  const canvas = document.createElement("canvas");
+  const size = Math.min(container.clientWidth || 200, 200);
+  canvas.width = size;
+  canvas.height = size;
+  canvas.style.maxWidth = "100%";
+  canvas.style.maxHeight = "100%";
+  container.innerHTML = "";
+  container.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = size * 0.35;
+  const n = values.length;
+
+  // Draw grid
+  ctx.strokeStyle = "#c8d9e8";
+  ctx.lineWidth = 0.5;
+  for (let ring = 1; ring <= 4; ring++) {
+    const r = (radius * ring) / 4;
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  // Draw axes
+  ctx.strokeStyle = "#a8c4d8";
+  ctx.lineWidth = 0.5;
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    ctx.stroke();
+  }
+
+  // Draw data polygon
+  ctx.fillStyle = "rgba(15, 108, 189, 0.15)";
+  ctx.strokeStyle = "#0f6cbd";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i <= n; i++) {
+    const idx = i % n;
+    const angle = (Math.PI * 2 * idx) / n - Math.PI / 2;
+    const r = (radius * values[idx]) / 100;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.fill();
+  ctx.stroke();
+
+  // Draw labels
+  ctx.fillStyle = "#1d3f5a";
+  ctx.font = "10px sans-serif";
+  ctx.textAlign = "center";
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+    const labelR = radius + 14;
+    const x = cx + labelR * Math.cos(angle);
+    const y = cy + labelR * Math.sin(angle);
+    ctx.fillText(labels[i], x, y + 3);
+  }
+}
+
+function setInsightRows(el, rows) {
+  if (!el) return;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    el.innerHTML = '<div class="insight-row"><span>暂无数据</span><strong>-</strong></div>';
+    return;
+  }
+  el.innerHTML = rows
+    .map((row) => {
+      const evidenceLine = Number.isInteger(row.evidenceLine) ? row.evidenceLine : null;
+      const evidenceBtn =
+        evidenceLine === null
+          ? ""
+          : `<button type="button" class="insight-evidence-btn" data-evidence-line="${evidenceLine}">Show Evidence</button>`;
+      return `<div class="insight-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${evidenceBtn}</strong></div>`;
+    })
+    .join("");
+}
+
+function jumpToInsightEvidence(lineIndex) {
+  if (!Number.isInteger(lineIndex) || state.readerLines.length === 0) return;
+  const bounded = Math.max(0, Math.min(state.readerLines.length - 1, lineIndex));
+  setActiveLine(bounded);
+  renderInsightWorkbench();
+  const focusEl = $("panel-insight") || $("insight-workbench");
+  if (focusEl) {
+    focusEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function bindInsightEvidenceButtons(...containers) {
+  containers.forEach((container) => {
+    if (!container) return;
+    container.querySelectorAll(".insight-evidence-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const line = Number(e.currentTarget.dataset.evidenceLine);
+        if (Number.isInteger(line)) jumpToInsightEvidence(line);
+      });
+    });
+  });
+}
+
+function renderInsightWorkbench() {
+  const conclusionEl = $("insight-conclusion-summary");
+  const chainEl = $("insight-evidence-chain");
+  const actionsEl = $("insight-actions-summary");
+  const sourceEl = $("insight-source-preview");
+  if (!conclusionEl || !chainEl || !actionsEl || !sourceEl) return;
+
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  if (!hasOpenDoc) {
+    setInsightRows(conclusionEl, [{ label: "结论", value: "请先打开文档" }]);
+    setInsightRows(chainEl, [{ label: "证据", value: "暂无原文样本" }]);
+    setInsightRows(actionsEl, [{ label: "建议", value: "暂无可执行建议" }]);
+    sourceEl.innerHTML = '<div class="insight-source-line">请先在 Text Lab 打开正文，再进入 Insight 分析。</div>';
+    return;
+  }
+
+  const active = typeof state.activeLine === "number" ? state.activeLine : 0;
+  const bounded = Math.max(0, Math.min(state.readerLines.length - 1, active));
+  const lineText = state.readerLines[bounded] || "";
+  const lineLen = lineText.length;
+  const nearby = [bounded - 1, bounded, bounded + 1].filter((idx) => idx >= 0 && idx < state.readerLines.length);
+  const confidence = Math.max(62, Math.min(94, 70 + Math.floor(lineLen / 18)));
+  const fatigueRisk = lineLen > 42 ? "中高" : lineLen > 26 ? "中" : "低";
+
+  setInsightRows(conclusionEl, [
+    { label: "结论", value: `存在${fatigueRisk}阅读疲劳风险` },
+    { label: "置信度", value: `${confidence}%` },
+    { label: "当前焦点", value: `L${bounded + 1}` },
+  ]);
+
+  setInsightRows(chainEl, [
+    { label: "证据 A：句长偏高", value: `${lineLen} 字`, evidenceLine: bounded },
+    { label: "证据 B：近邻节奏波动", value: `${nearby.length} 段`, evidenceLine: nearby[0] ?? bounded },
+    { label: "证据 C：已有关联标注", value: `${state.annotations.filter((x) => x.line === bounded).length} 条`, evidenceLine: bounded },
+  ]);
+
+  setInsightRows(actionsEl, [
+    { label: "建议 1", value: "长句断开为 2-3 句" },
+    { label: "建议 2", value: "抽象词替换为具象表达" },
+    { label: "建议 3", value: "加入节奏变化与情绪拐点" },
+  ]);
+
+  sourceEl.innerHTML = nearby
+    .map((idx) => {
+      const activeClass = idx === bounded ? " active" : "";
+      const line = escapeHtml(state.readerLines[idx] || "");
+      return `<div class="insight-source-line${activeClass}"><strong>L${idx + 1}</strong> ${line}</div>`;
+    })
+    .join("");
+
+  bindInsightEvidenceButtons(chainEl);
+}
+
+function setLibraryRows(el, rows) {
+  if (!el) return;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    el.innerHTML = '<div class="library-row"><span>暂无数据</span><strong>-</strong></div>';
+    return;
+  }
+  el.innerHTML = rows
+    .map((row) => `<div class="library-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}</strong></div>`)
+    .join("");
+}
+
+function renderLibraryWorkbench() {
+  const entriesEl = $("library-entries-summary");
+  const relationsEl = $("library-relations-summary");
+  const indexEl = $("library-index-summary");
+  const provenanceEl = $("library-provenance-summary");
+  if (!entriesEl || !relationsEl || !indexEl || !provenanceEl) return;
+
+  const totalWorks = state.books.length;
+  const totalAuthors = new Set(state.books.map((b) => String(b.author || "未知作者"))).size;
+  const totalAnnotations = state.annotations.length;
+  const recentImported = state.books.filter((b) => isWithinRecentWindow(b.imported_at)).length;
+
+  setLibraryRows(entriesEl, [
+    { label: "作品条目", value: `${totalWorks} 条` },
+    { label: "作者条目", value: `${totalAuthors} 条` },
+    { label: "24h 增量", value: `${recentImported} 条` },
+  ]);
+
+  const relationEstimate = totalWorks * 2 + totalAnnotations;
+  setLibraryRows(relationsEl, [
+    { label: "作品-作者", value: `${totalWorks} 组` },
+    { label: "条目-证据", value: `${totalAnnotations} 条` },
+    { label: "关系总量（估算）", value: `${relationEstimate}` },
+  ]);
+
+  const topTags = new Map();
+  state.annotations.forEach((ann) => {
+    const tag = String(ann.tag || "untagged");
+    topTags.set(tag, (topTags.get(tag) || 0) + 1);
+  });
+  const indexRows = Array.from(topTags.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([tag, count]) => ({ label: `索引：${tag}`, value: `${count} 条` }));
+  setLibraryRows(indexEl, indexRows);
+
+  const anchored = state.annotations.filter((ann) => (ann.anchor_state || "anchored") === "anchored").length;
+  const recovered = state.annotations.filter((ann) => (ann.anchor_state || "anchored") !== "anchored").length;
+  const withRef = state.annotations.filter((ann) => Boolean(ann.sentence_ref)).length;
+  setLibraryRows(provenanceEl, [
+    { label: "已锚定证据", value: `${anchored} 条` },
+    { label: "恢复证据", value: `${recovered} 条` },
+    { label: "来源完整率", value: totalAnnotations ? `${Math.round((withRef / totalAnnotations) * 100)}%` : "0%" },
+  ]);
 }
 
 function updateInteractionGuards() {
@@ -305,16 +961,16 @@ function updateInteractionGuards() {
   setDisabled("btn-import-file-package", importing);
   setDisabled("btn-import-folder-package", importing);
   setDisabled("btn-open-book", importing || !hasSelectableBook);
+  setDisabled("btn-open-book-quick", importing || !hasSelectableBook);
   setDisabled("btn-rename-book", importing || !hasSelectableBook);
   setDisabled("btn-delete-book", importing || !hasSelectableBook);
   setDisabled("import-recent-only", importing || !hasPackages);
 
-  const openBtn = $("btn-open-book");
-  if (openBtn) {
-    if (!hasSelectableBook) openBtn.textContent = "打开正文";
-    else if (selectedBook?.last_opened_at) openBtn.textContent = "重新加载正文";
-    else openBtn.textContent = "打开正文";
-  }
+  const openLabel = !hasSelectableBook ? "打开正文" : selectedBook?.last_opened_at ? "重新加载正文" : "打开正文";
+  ["btn-open-book", "btn-open-book-quick"].forEach((id) => {
+    const btn = $(id);
+    if (btn) btn.textContent = openLabel;
+  });
 
   setDisabled("reader-search", !hasOpenDoc);
   setDisabled("btn-search-prev", !hasOpenDoc);
@@ -327,6 +983,8 @@ function updateInteractionGuards() {
 
   renderSearchStatus();
   renderImportPanelState();
+  renderContextHeader();
+  renderDomainOperations();
 }
 
 function renderSearchStatus() {
@@ -350,6 +1008,113 @@ function renderSearchStatus() {
   }
 
   el.textContent = `命中 ${state.searchHitIndex + 1}/${state.searchHits.length}`;
+}
+
+function syncSearchInputs(query) {
+  const value = String(query || "").trim();
+  const readerSearch = $("reader-search");
+  const opsSearch = $("ops-search");
+  if (readerSearch && readerSearch.value !== value) readerSearch.value = value;
+  if (opsSearch && opsSearch.value !== value) opsSearch.value = value;
+}
+
+function applySearchQuery(query, jumpToFirst = true) {
+  state.searchQuery = String(query || "").trim();
+  syncSearchInputs(state.searchQuery);
+  applySearchHighlight();
+  if (jumpToFirst && state.searchHits.length > 0) {
+    state.searchHitIndex = 0;
+    jumpToLine(state.searchHits[0], null);
+  }
+}
+
+function renderDomainOperations() {
+  const titleEl = $("domain-ops-title");
+  const descEl = $("domain-ops-desc");
+  const actionsEl = $("domain-ops-actions");
+  if (!titleEl || !descEl || !actionsEl) return;
+
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  const ledgerPanel = $("panel-ledger");
+  const ledgerCollapsed = Boolean(ledgerPanel && ledgerPanel.classList.contains("collapsed"));
+
+  const byDomain = {
+    textlab: {
+      title: "Text Lab 操作",
+      desc: "打开正文、聚焦搜索、记录标注。",
+      actions: [
+        { label: "打开正文", onClick: () => $("btn-open-book-quick")?.click(), disabled: $("btn-open-book-quick")?.disabled },
+        { label: "聚焦搜索", onClick: () => $("reader-search")?.focus(), disabled: $("reader-search")?.disabled },
+        { label: "保存标注", onClick: () => $("btn-add-annotation")?.click(), disabled: $("btn-add-annotation")?.disabled },
+      ],
+    },
+    atlas: {
+      title: "Atlas 操作",
+      desc: "切层、切模式、重置视角。",
+      actions: [
+        { label: "Structure Layer", onClick: () => setLayer("structure") },
+        { label: "Galaxy Mode", onClick: () => setMode("galaxy") },
+        { label: "重置视角", onClick: () => $("btn-reset-camera")?.click() },
+      ],
+    },
+    corpus: {
+      title: "Corpus 操作",
+      desc: "聚焦趋势、对比与批次预览。",
+      actions: [
+        { label: "Music Mode", onClick: () => setMode("music") },
+        {
+          label: "Compare View",
+          onClick: () => $("corpus-compare-summary")?.scrollIntoView({ behavior: "smooth", block: "start" }),
+        },
+        { label: "预览批次", onClick: () => $("btn-preview-xray-batch")?.click() },
+      ],
+    },
+    genome: {
+      title: "Genome 操作",
+      desc: "跳差异证据、看演化证据、切基因模式。",
+      actions: [
+        { label: "差异证据", onClick: () => jumpToGenomeEvidence(6), disabled: !hasOpenDoc },
+        { label: "演化证据", onClick: () => jumpToGenomeEvidence(10), disabled: !hasOpenDoc },
+        { label: "Galaxy Mode", onClick: () => setMode("galaxy") },
+      ],
+    },
+    insight: {
+      title: "Insight 操作",
+      desc: "证据回跳、情绪模式与定位搜索。",
+      actions: [
+        { label: "Show Evidence", onClick: () => $("btn-focus-show-evidence")?.click() },
+        { label: "Emotion Mode", onClick: () => setMode("emotion") },
+        { label: "聚焦搜索", onClick: () => $("reader-search")?.focus(), disabled: $("reader-search")?.disabled },
+      ],
+    },
+    library: {
+      title: "Library 操作",
+      desc: "知识沉淀、账本展开与导出。",
+      actions: [
+        {
+          label: ledgerCollapsed ? "展开账本" : "收起账本",
+          onClick: () => ledgerPanel?.querySelector(".panel-collapse-btn")?.click(),
+        },
+        { label: "导出 JSON", onClick: () => $("btn-export-json")?.click() },
+        { label: "导出 CSV", onClick: () => $("btn-export-csv")?.click() },
+      ],
+    },
+  };
+
+  const config = byDomain[state.activeDomain] || byDomain.textlab;
+  titleEl.textContent = config.title;
+  descEl.textContent = config.desc;
+  actionsEl.innerHTML = "";
+
+  config.actions.forEach((action) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "small-btn domain-op-btn";
+    btn.textContent = action.label;
+    btn.disabled = Boolean(action.disabled);
+    btn.addEventListener("click", action.onClick);
+    actionsEl.appendChild(btn);
+  });
 }
 
 function stageLayerLabel(layer) {
@@ -379,13 +1144,15 @@ function stageModeLabel(mode) {
 function renderStagePath() {
   const el = $("stage-path");
   if (!el) return;
-  const parts = [
-    "Workspace",
-    "Atlas",
-    `Layer:${stageLayerLabel(state.activeLayer)}`,
-    `Drill:${stageDrillLabel(state.drill)}`,
-    `Mode:${stageModeLabel(state.activeMode)}`,
-  ];
+  const domainMeta = DOMAIN_META[state.activeDomain] || DOMAIN_META.textlab;
+  const parts = [domainMeta.label];
+  if (state.activeDomain === "atlas") {
+    parts.push(`Layer:${stageLayerLabel(state.activeLayer)}`);
+    parts.push(`Drill:${stageDrillLabel(state.drill)}`);
+    parts.push(`Mode:${stageModeLabel(state.activeMode)}`);
+  } else {
+    parts.push(`Task:${domainMeta.stageTask}`);
+  }
   el.textContent = parts.join(" / ");
 
   const colorByMode = {
@@ -396,6 +1163,78 @@ function renderStagePath() {
     xray: "#8b5822",
   };
   el.style.color = colorByMode[state.activeMode] || "#46607a";
+}
+
+function applyDomainLayout() {
+  const domainMeta = DOMAIN_META[state.activeDomain] || DOMAIN_META.textlab;
+  const stageTitle = $("stage-title");
+  const stageDesc = $("stage-desc");
+  const stageContextNav = $("stage-context-nav");
+  const modeBrief = $("mode-brief");
+  const atlasControls = $("atlas-controls");
+  const stageSplit = $("stage-split");
+  const atlasViewport = $("atlas-viewport");
+  const corpusWorkbench = $("corpus-workbench");
+  const genomeWorkbench = $("genome-workbench");
+  const insightWorkbench = $("insight-workbench");
+  const libraryWorkbench = $("library-workbench");
+  const readerStage = $("reader-stage");
+
+  if (stageTitle) stageTitle.textContent = domainMeta.stageTitle;
+  if (stageDesc) stageDesc.textContent = domainMeta.stageDesc;
+  if (stageContextNav) stageContextNav.classList.toggle("hidden", !domainMeta.showAtlasControls);
+  if (modeBrief) modeBrief.classList.toggle("hidden", !domainMeta.showAtlasControls);
+  if (atlasControls) atlasControls.classList.toggle("hidden", !domainMeta.showAtlasControls);
+  if (stageSplit) {
+    stageSplit.classList.toggle(
+      "hidden",
+      state.activeDomain === "corpus" ||
+        state.activeDomain === "genome" ||
+        state.activeDomain === "insight" ||
+        state.activeDomain === "library"
+    );
+  }
+  if (atlasViewport) atlasViewport.classList.toggle("hidden", !domainMeta.showAtlasViewport);
+  if (corpusWorkbench) corpusWorkbench.classList.toggle("hidden", state.activeDomain !== "corpus");
+  if (genomeWorkbench) genomeWorkbench.classList.toggle("hidden", state.activeDomain !== "genome");
+  if (insightWorkbench) insightWorkbench.classList.toggle("hidden", state.activeDomain !== "insight");
+  if (libraryWorkbench) libraryWorkbench.classList.toggle("hidden", state.activeDomain !== "library");
+  if (readerStage) readerStage.classList.toggle("hidden", !domainMeta.showReader);
+
+  const leftPanelIds = ["panel-context", "panel-import", "panel-search", "panel-citespace", "panel-annotation"];
+  const rightPanelIds = [
+    "panel-insight",
+    "panel-workflow",
+    "panel-xray",
+    "panel-ledger",
+    "degrade-panel",
+    "repair-panel",
+  ];
+
+  // Source foundation is cross-domain: keep left pane stable during domain switches.
+  leftPanelIds.forEach((id) => {
+    const panel = $(id);
+    if (!panel) return;
+    panel.classList.remove("hidden");
+  });
+
+  rightPanelIds.forEach((id) => {
+    const panel = $(id);
+    if (!panel) return;
+    panel.classList.toggle("hidden", !domainMeta.visibleRight.includes(id));
+  });
+
+  if (state.activeDomain === "library") {
+    const ledgerPanel = $("panel-ledger");
+    if (ledgerPanel) {
+      state.panelCollapsed[ledgerPanel.id] = true;
+      applySinglePanelCollapsedState(ledgerPanel, true);
+    }
+  }
+
+  renderDomainOperations();
+  renderOpsKpiCards();
+  renderStagePath();
 }
 
 function renderLayers() {
@@ -1196,6 +2035,12 @@ function wireImportFlow() {
     await loadBook(rank);
   });
 
+  $("btn-open-book-quick")?.addEventListener("click", async () => {
+    if (state.books.length === 0) return;
+    const rank = Number($("book-select").value);
+    await loadBook(rank);
+  });
+
   $("book-select").addEventListener("change", () => {
     updateInteractionGuards();
   });
@@ -1599,6 +2444,7 @@ async function loadBook(rank) {
   const book = state.books.find((x) => x.rank === rank);
   if (!book) return;
   state.currentBook = book;
+  renderContextHeader();
   renderCitespaceMeta();
 
   $("reader-title").textContent = `${book.rank}. ${book.title}`;
@@ -2169,6 +3015,18 @@ function wireXrayWorkbench() {
   syncBatchControls();
 }
 
+function wireInsightPanelActions() {
+  const btn = $("btn-focus-show-evidence");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    if (typeof state.activeLine !== "number") {
+      $("status-line").textContent = "Mission: Insight 视图，请先在正文中选择段落后再 Show Evidence";
+      return;
+    }
+    jumpToLine(state.activeLine, null);
+  });
+}
+
 function replayValidate(snapshot) {
   const hasSentenceRef = snapshot.artifacts.annotations.every((ann) => Boolean(ann.sentence_ref));
   const hasAnchor = snapshot.artifacts.annotations.every((ann) => Boolean(ann.anchor_id));
@@ -2372,12 +3230,7 @@ function jumpToSearchHit(delta) {
 
 function wireReaderSearch() {
   $("reader-search").addEventListener("input", (e) => {
-    state.searchQuery = e.target.value.trim();
-    applySearchHighlight();
-    if (state.searchHits.length > 0) {
-      state.searchHitIndex = 0;
-      jumpToLine(state.searchHits[0], null);
-    }
+    applySearchQuery(e.target.value, true);
   });
 
   $("reader-search").addEventListener("keydown", (e) => {
@@ -2392,6 +3245,36 @@ function wireReaderSearch() {
 
   $("btn-search-prev").addEventListener("click", () => jumpToSearchHit(-1));
   $("btn-search-next").addEventListener("click", () => jumpToSearchHit(1));
+}
+
+function wireOperationsRail() {
+  const opsSearch = $("ops-search");
+  if (opsSearch) {
+    opsSearch.addEventListener("input", (e) => {
+      applySearchQuery(e.target.value, true);
+    });
+    opsSearch.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      if (state.searchHits.length === 0) {
+        applySearchQuery(opsSearch.value, true);
+        return;
+      }
+      jumpToSearchHit(e.shiftKey ? -1 : 1);
+    });
+  }
+
+  const prev = $("ops-search-prev");
+  const next = $("ops-search-next");
+  const focusLeft = $("ops-focus-left");
+  if (prev) prev.addEventListener("click", () => jumpToSearchHit(-1));
+  if (next) next.addEventListener("click", () => jumpToSearchHit(1));
+  if (focusLeft) {
+    focusLeft.addEventListener("click", () => {
+      const left = $("reader-search");
+      if (left) left.focus();
+    });
+  }
 }
 
 function wireRecoveryActions() {
@@ -2629,6 +3512,7 @@ function initPanelDensityControls() {
       state.panelCollapsed[section.id] = !Boolean(state.panelCollapsed[section.id]);
       savePanelCollapseState();
       applySinglePanelCollapsedState(section, Boolean(state.panelCollapsed[section.id]));
+      renderDomainOperations();
     });
 
     applySinglePanelCollapsedState(section, Boolean(state.panelCollapsed[section.id]));
@@ -2766,6 +3650,7 @@ function initAutoFocusControl() {
 function applyShortcutHints() {
   const hintMap = {
     "btn-open-book": "Alt+O",
+    "btn-open-book-quick": "Alt+O",
     "reader-search": "Alt+F",
     "btn-toggle-import-controls": "Alt+I",
     "btn-command": "Cmd/Ctrl+K",
@@ -2776,6 +3661,99 @@ function applyShortcutHints() {
     const label = el.getAttribute("aria-label") || el.textContent || "";
     el.setAttribute("title", `${String(label).trim()} (${hint})`);
   });
+}
+
+function initTopNavigation() {
+  const navButtons = Array.from(document.querySelectorAll(".top-nav .nav-item"));
+  if (navButtons.length === 0) return;
+
+  const loadTopNavRules = () => {
+    const rules = Object.fromEntries(
+      Object.entries(TOP_NAV_RULES_DEFAULT).map(([key, value]) => [key, { ...value }])
+    );
+    const configEl = $("top-nav-rules");
+    if (!configEl) return rules;
+
+    const raw = String(configEl.textContent || "").trim();
+    if (!raw) return rules;
+
+    try {
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object") return rules;
+      Object.entries(parsed).forEach(([key, value]) => {
+        if (!rules[key] || !value || typeof value !== "object") return;
+        rules[key] = { ...rules[key], ...value };
+      });
+      return rules;
+    } catch {
+      const status = $("status-line");
+      if (status) {
+        status.textContent = "Mission: 顶部导航配置解析失败，已回退默认映射";
+      }
+      return rules;
+    }
+  };
+
+  const navRules = loadTopNavRules();
+
+  const navKeyFromButton = (btn) => {
+    if (btn?.dataset?.nav) return btn.dataset.nav;
+    const label = String(btn?.textContent || "")
+      .trim()
+      .toLowerCase();
+    const byLabel = {
+      "text lab": "textlab",
+      textlab: "textlab",
+      atlas: "atlas",
+      corpus: "corpus",
+      genome: "genome",
+      insight: "insight",
+      library: "library",
+    };
+    return byLabel[label] || "textlab";
+  };
+
+  const applyStageSelection = (rule) => {
+    if (!rule) return;
+    if (rule.layer) setLayer(rule.layer);
+    if (rule.mode) setMode(rule.mode);
+    if (rule.drill) {
+      state.drill = rule.drill;
+      renderDrill();
+      renderAtlas();
+    }
+  };
+
+  const activateNav = (targetBtn) => {
+    navButtons.forEach((btn) => {
+      const active = btn === targetBtn;
+      btn.classList.toggle("active", active);
+      if (active) btn.setAttribute("aria-current", "page");
+      else btn.removeAttribute("aria-current");
+    });
+
+    const navKey = navKeyFromButton(targetBtn);
+    state.activeDomain = navKey;
+    const rule = navRules[navKey] || navRules.textlab;
+    applyStageSelection(rule);
+    applyDomainLayout();
+
+    if (rule.focusId) {
+      const section = $(rule.focusId);
+      if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    const status = $("status-line");
+    if (status && rule.mission) status.textContent = rule.mission;
+    renderContextHeader();
+  };
+
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => activateNav(btn));
+  });
+
+  const initialBtn = navButtons.find((btn) => btn.classList.contains("active")) || navButtons[0];
+  if (initialBtn) activateNav(initialBtn);
 }
 
 function wireStudioShortcuts() {
@@ -2883,10 +3861,13 @@ function setMode(mode) {
 }
 
 async function init() {
+  initTopNavigation();
   initLayersAndModes();
   wireImportFlow();
   wireReaderSearch();
+  wireOperationsRail();
   wireXrayWorkbench();
+  wireInsightPanelActions();
   wireExport();
   wireRecoveryActions();
   initCommandPalette();
@@ -2915,6 +3896,7 @@ async function init() {
 
   renderWorkflow();
   renderBookSelect();
+  renderContextHeader();
   renderCitespaceMeta();
   renderImportAudit();
   if (state.books.length > 0) {

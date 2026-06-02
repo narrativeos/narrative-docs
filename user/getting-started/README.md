@@ -101,7 +101,7 @@ EN: Quick onboarding from zero to first successful user workflow and first contr
 
 首页包含：
 
-- 顶栏导航：Workspace / Atlas / Corpus / Genome / Insight / Library
+- 顶栏导航：Text Lab / Atlas / Corpus / Genome / Insight / Library
 - 左侧资源树：我的项目、最近分析、语料库、收藏、标签
 - 中间动态卡片：最近分析、语料增量、待查看报告
 

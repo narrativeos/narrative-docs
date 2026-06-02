@@ -40,3 +40,13 @@ node scripts/download-kepub-fulltext.mjs
 - 标注数据保存在浏览器 localStorage，不写回仓库文件。
 - 导出支持 JSON 和 CSV。
 - 样本选择只用于开发准备，不作为核心产品能力。
+
+## 域回归检查
+
+在 narrative-docs 根目录执行：
+
+```bash
+bash scripts/prototype-check-six-domains.sh
+```
+
+该脚本会检查域导航映射、主舞台容器、渲染调用链、显隐切换逻辑、证据跳转入口和规格文档同步状态。

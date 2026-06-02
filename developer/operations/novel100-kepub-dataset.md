@@ -6,7 +6,7 @@
 
 ## Executive Summary (EN)
 
-This document describes the 20th-century Chinese novel sample dataset mapped to kepub for prototype development, testing, and reproducible demos.
+It documents a 20th-century Chinese novel sample dataset mapped to kepub for prototype development, testing, and reproducible demos.
 
 ## Machine-readable Metadata | 机读元数据
 
