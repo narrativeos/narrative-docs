@@ -12,35 +12,35 @@
 
     <header class="studio-topbar">
       <div class="brand brand-global">
-        <p class="eyebrow">NarrativeOS Studio Prototype</p>
-        <h1>NarrativeOS Studio</h1>
+        <p class="eyebrow">NarrativeOS Studio Prototype 原型</p>
+        <h1>NarrativeOS Studio 叙事工作室</h1>
       </div>
       <div class="top-actions">
-        <button id="btn-command" class="command-btn">Command (Cmd/Ctrl+K)</button>
-        <div class="status-pill" id="status-line">Mission: 阅读 -> 标注 -> 证据 -> 导出</div>
+        <button id="btn-command" class="command-btn">Command 命令面板 (Cmd/Ctrl+K)</button>
+        <div class="status-pill" id="status-line">Mission 任务流: 阅读 -> 标注 -> 证据 -> 导出</div>
       </div>
     </header>
 
     <main class="studio-shell">
       <aside class="pane pane-left">
         <section class="panel-block context-header" id="panel-context">
-          <p class="panel-kicker">Workspace Premise</p>
+          <p class="panel-kicker">Workspace Premise 工作区前提</p>
           <h2>已选源汇总 Source Summary</h2>
           <p class="muted">这里专门汇总当前已选择源的状态，先看集合关系，再进入多源阅读与对比。</p>
           <div class="context-grid">
-            <div class="context-item"><span>Selection Set</span><strong id="ctx-brand">尚未成组</strong></div>
-            <div class="context-item"><span>Selected</span><strong id="ctx-selected">0 个源</strong></div>
-            <div class="context-item"><span>Focus</span><strong id="ctx-focus">未设置</strong></div>
-            <div class="context-item"><span>Parallel Active</span><strong id="ctx-parallel">1 路展开</strong></div>
-            <div class="context-item"><span>Version Track</span><strong id="ctx-version">单版本</strong></div>
-            <div class="context-item"><span>Source Scope</span><strong id="ctx-source">未绑定</strong></div>
-            <div class="context-item"><span>Load State</span><strong id="ctx-load">idle</strong></div>
+            <div class="context-item"><span>Selection Set 选择集</span><strong id="ctx-brand">尚未成组</strong></div>
+            <div class="context-item"><span>Selected 已选</span><strong id="ctx-selected">0 个源</strong></div>
+            <div class="context-item"><span>Focus 焦点</span><strong id="ctx-focus">未设置</strong></div>
+            <div class="context-item"><span>Parallel Active 并行活跃</span><strong id="ctx-parallel">1 路展开</strong></div>
+            <div class="context-item"><span>Version Track 版本追踪</span><strong id="ctx-version">单版本</strong></div>
+            <div class="context-item"><span>Source Scope 源范围</span><strong id="ctx-source">未绑定</strong></div>
+            <div class="context-item"><span>Load State 加载状态</span><strong id="ctx-load">idle 空闲</strong></div>
           </div>
           <p id="ctx-summary" class="context-summary muted">当前尚未选择源。</p>
         </section>
 
         <section class="panel-block panel-import" id="panel-import">
-          <p class="panel-kicker">Source Workbench</p>
+          <p class="panel-kicker">Source Workbench 源工作台</p>
           <h2>已选源详情 Source Desk</h2>
           <div class="source-workspace-head">
             <div>
@@ -124,7 +124,7 @@
         </section>
 
         <section id="panel-citespace" class="panel-block citespace-block">
-          <p class="panel-kicker">Bridge Metadata</p>
+          <p class="panel-kicker">Bridge Metadata 桥接元数据</p>
           <h2>CiteSpace 引用元数据</h2>
           <p class="muted">面向 CiteSpace 的对接数据，同时显示当前已打开文献的引用网络元数据。</p>
           <div id="citespace-meta" class="citespace-meta-grid"></div>
@@ -140,12 +140,12 @@
         <section class="stage-domain-nav">
           <p class="top-nav-label">域导航 Domain Navigation</p>
           <nav class="top-nav" aria-label="Studio 域导航">
-            <button class="nav-item active" type="button" data-nav="textlab" aria-current="page">Text Lab</button>
-            <button class="nav-item" type="button" data-nav="atlas">Atlas</button>
-            <button class="nav-item" type="button" data-nav="corpus">Corpus</button>
-            <button class="nav-item" type="button" data-nav="genome">Genome</button>
-            <button class="nav-item" type="button" data-nav="insight">Insight</button>
-            <button class="nav-item" type="button" data-nav="library">Library</button>
+            <button class="nav-item active" type="button" data-nav="textlab" aria-current="page">Text Lab 文本实验室</button>
+            <button class="nav-item" type="button" data-nav="atlas">Atlas 图谱</button>
+            <button class="nav-item" type="button" data-nav="corpus">Corpus 语料库</button>
+            <button class="nav-item" type="button" data-nav="genome">Genome 基因</button>
+            <button class="nav-item" type="button" data-nav="insight">Insight 洞察</button>
+            <button class="nav-item" type="button" data-nav="library">Library 知识库</button>
           </nav>
         </section>
 
@@ -153,33 +153,33 @@
           <div>
             <h2 id="stage-title">主舞台 Main Stage</h2>
             <p id="stage-desc" class="muted">中栏：根据当前域加载对应分析工作台。</p>
-            <p id="stage-path" class="stage-path">Text Lab / Task: Import & Diagnose</p>
+            <p id="stage-path" class="stage-path">Text Lab 文本实验室 / Task 任务: Import 导入 & Diagnose 诊断</p>
           </div>
         </header>
 
         <section id="stage-context-nav" class="stage-context-nav" aria-label="Atlas 上下文导航">
           <div class="context-meta">
-            <span class="context-meta-item">Atlas Control Surface</span>
+            <span class="context-meta-item">Atlas Control Surface 图谱控制面板</span>
             <span class="context-meta-item">实时联动</span>
-            <span class="context-meta-item">Narrative Signal</span>
+            <span class="context-meta-item">Narrative Signal 叙事信号</span>
           </div>
           <div class="context-track">
             <span class="context-label">层 Layer</span>
             <div class="view-switch" role="tablist" aria-label="Atlas 四层模型">
-              <button class="view-btn active" data-layer="structure">Structure</button>
-              <button class="view-btn" data-layer="semantic">Semantic</button>
-              <button class="view-btn" data-layer="rhythm">Rhythm</button>
-              <button class="view-btn" data-layer="heat">Heat</button>
+              <button class="view-btn active" data-layer="structure">Structure 结构</button>
+              <button class="view-btn" data-layer="semantic">Semantic 语义</button>
+              <button class="view-btn" data-layer="rhythm">Rhythm 节奏</button>
+              <button class="view-btn" data-layer="heat">Heat 热力</button>
             </div>
           </div>
           <div class="context-track context-secondary">
             <span class="context-label">模式 Mode</span>
             <div class="atlas-mode-bar" role="tablist" aria-label="Atlas 模式">
-              <button class="mode-btn mode-pill active" data-mode="city">City</button>
-              <button class="mode-btn mode-pill" data-mode="galaxy">Galaxy</button>
-              <button class="mode-btn mode-pill" data-mode="music">Music</button>
-              <button class="mode-btn mode-pill" data-mode="emotion">Emotion</button>
-              <button class="mode-btn mode-pill" data-mode="xray">X-Ray</button>
+              <button class="mode-btn mode-pill active" data-mode="city">City 城市</button>
+              <button class="mode-btn mode-pill" data-mode="galaxy">Galaxy 星系</button>
+              <button class="mode-btn mode-pill" data-mode="music">Music 音乐</button>
+              <button class="mode-btn mode-pill" data-mode="emotion">Emotion 情感</button>
+              <button class="mode-btn mode-pill" data-mode="xray">X-Ray X光</button>
             </div>
           </div>
         </section>
@@ -199,16 +199,16 @@
           </div>
           <div class="control-group">
             <span>粒度 Drill</span>
-            <button class="drill-btn drill-chip active" data-drill="chapter">章节</button>
-            <button class="drill-btn drill-chip" data-drill="paragraph">段落</button>
-            <button class="drill-btn drill-chip" data-drill="sentence">句子</button>
+            <button class="drill-btn drill-chip active" data-drill="chapter">章节 Chapter</button>
+            <button class="drill-btn drill-chip" data-drill="paragraph">段落 Paragraph</button>
+            <button class="drill-btn drill-chip" data-drill="sentence">句子 Sentence</button>
           </div>
         </section>
 
         <section id="narrative-axis-panel" class="narrative-axis-panel" aria-label="文序双轴">
           <div class="narrative-axis-head">
             <div>
-              <p class="panel-kicker">Narrative Navigation</p>
+              <p class="panel-kicker">Narrative Navigation 叙事导航</p>
               <h3>文序双轴 Narrative Axis</h3>
               <p id="narrative-axis-summary" class="muted">请先加载正文后再使用文序双轴。</p>
             </div>
@@ -307,105 +307,105 @@
             </section>
           </div>
 
-          <section id="corpus-workbench" class="corpus-workbench hidden" aria-label="Corpus Observatory Workbench">
+          <section id="corpus-workbench" class="corpus-workbench hidden" aria-label="Corpus 语料库工作台">
             <article class="corpus-card">
-              <h3>Corpus Explorer</h3>
+              <h3>Corpus Explorer 语料浏览器</h3>
               <p class="muted">语料浏览、检索与筛选摘要。</p>
               <div id="corpus-explorer-summary" class="corpus-list"></div>
             </article>
 
             <article class="corpus-card">
-              <h3>Trend View</h3>
+              <h3>Trend View 趋势视图</h3>
               <p class="muted">关键指标趋势与阶段拐点预览。</p>
               <div id="corpus-trend-summary" class="corpus-list"></div>
             </article>
 
             <article class="corpus-card">
-              <h3>Cluster View</h3>
+              <h3>Cluster View 聚类视图</h3>
               <p class="muted">风格群与结构群聚类摘要。</p>
               <div id="corpus-cluster-summary" class="corpus-list"></div>
             </article>
 
             <article class="corpus-card">
-              <h3>Compare View</h3>
+              <h3>Compare View 对比视图</h3>
               <p class="muted">对象间结构与风格差异对比。</p>
               <div id="corpus-compare-summary" class="corpus-list"></div>
             </article>
           </section>
 
-          <section id="genome-workbench" class="genome-workbench hidden" aria-label="Style Genome Workbench">
+          <section id="genome-workbench" class="genome-workbench hidden" aria-label="Style Genome 风格基因工作台">
             <article class="genome-card">
-              <h3>Language Genome Card</h3>
+              <h3>Language Genome Card 语言基因卡</h3>
               <p class="muted">语言基因卡：风格维度的结构化画像。</p>
               <div id="genome-card-summary" class="genome-list"></div>
             </article>
 
             <article class="genome-card">
-              <h3>Style Radar</h3>
+              <h3>Style Radar 风格雷达</h3>
               <p class="muted">风格雷达图：多维度风格特征可视化。</p>
               <div id="genome-radar-summary" class="genome-radar"></div>
             </article>
 
             <article class="genome-card">
-              <h3>Diff Report</h3>
+              <h3>Diff Report 差异报告</h3>
               <p class="muted">差异对比报告：跨对象风格差异明细。</p>
               <div id="genome-diff-summary" class="genome-list"></div>
             </article>
 
             <article class="genome-card">
-              <h3>Evolution Timeline</h3>
+              <h3>Evolution Timeline 演化时间线</h3>
               <p class="muted">演化时间线：跨时间风格变化追踪。</p>
               <div id="genome-evolution-summary" class="genome-list"></div>
             </article>
           </section>
 
-          <section id="insight-workbench" class="insight-workbench hidden" aria-label="Insight Engine Workbench">
+          <section id="insight-workbench" class="insight-workbench hidden" aria-label="Insight 洞察引擎工作台">
             <article class="insight-card">
-              <h3>Insight Conclusion Card</h3>
+              <h3>Insight Conclusion Card 洞察结论卡</h3>
               <p class="muted">结论与置信度：解释当前问题风险。</p>
               <div id="insight-conclusion-summary" class="insight-list"></div>
             </article>
 
             <article class="insight-card">
-              <h3>Evidence Chain</h3>
+              <h3>Evidence Chain 证据链</h3>
               <p class="muted">结论 -> 证据 -> 原文定位。</p>
               <div id="insight-evidence-chain" class="insight-list"></div>
             </article>
 
             <article class="insight-card">
-              <h3>Actionable Suggestions</h3>
+              <h3>Actionable Suggestions 可执行建议</h3>
               <p class="muted">可执行建议清单，支持修订决策。</p>
               <div id="insight-actions-summary" class="insight-list"></div>
             </article>
 
             <article class="insight-card">
-              <h3>Source Preview</h3>
+              <h3>Source Preview 原文预览</h3>
               <p class="muted">原文句段预览，支持证据回跳。</p>
               <div id="insight-source-preview" class="insight-source-list"></div>
             </article>
           </section>
 
-          <section id="library-workbench" class="library-workbench hidden" aria-label="Library Knowledge Workbench">
+          <section id="library-workbench" class="library-workbench hidden" aria-label="Library 知识库工作台">
             <article class="library-card">
-              <h3>Structured Entries</h3>
+              <h3>Structured Entries 结构化条目</h3>
               <p class="muted">结构化知识条目与增量入库摘要。</p>
               <div id="library-entries-summary" class="library-list"></div>
             </article>
 
             <article class="library-card">
-              <h3>Entity Relations</h3>
+              <h3>Entity Relations 实体关系</h3>
               <p class="muted">作品 / 作者 / 概念 / 主题 / 风格 / 修辞关系网络。</p>
               <div id="library-relations-summary" class="library-list"></div>
             </article>
 
             <article class="library-card">
-              <h3>Concept & Topic Index</h3>
+              <h3>Concept & Topic Index 概念与主题索引</h3>
               <p class="muted">概念与主题索引，支持跨对象追踪。</p>
               <div id="library-index-summary" class="library-list"></div>
             </article>
 
             <article class="library-card">
-              <h3>Evidence Provenance</h3>
+              <h3>Evidence Provenance 证据溯源</h3>
               <p class="muted">来源、时间与证据链完整性检查。</p>
               <div id="library-provenance-summary" class="library-list"></div>
             </article>
@@ -425,7 +425,7 @@
           </div>
           <div class="ops-search-actions">
             <button id="ops-focus-search" class="ghost small-btn" type="button">聚焦搜索框</button>
-            <button id="btn-focus-show-evidence" class="small-btn" type="button">Show Evidence</button>
+            <button id="btn-focus-show-evidence" class="small-btn" type="button">Show Evidence 显示证据</button>
           </div>
           <p id="reader-search-status" class="muted">请先加载后再搜索。</p>
           <div class="insight-metrics">
@@ -448,9 +448,9 @@
             <span>自动焦点面板（随 Mode 调整）</span>
           </label>
           <div class="panel-preset-row" role="group" aria-label="面板布局模板">
-            <button id="btn-preset-research" class="ghost small-btn" type="button">Research</button>
-            <button id="btn-preset-debug" class="ghost small-btn" type="button">Debug</button>
-            <button id="btn-preset-review" class="ghost small-btn" type="button">Review</button>
+            <button id="btn-preset-research" class="ghost small-btn" type="button">Research 研究</button>
+            <button id="btn-preset-debug" class="ghost small-btn" type="button">Debug 调试</button>
+            <button id="btn-preset-review" class="ghost small-btn" type="button">Review 审查</button>
           </div>
           <p id="panel-preset-label" class="muted panel-preset-label">当前布局：Auto Focus</p>
           <div class="domain-ops-block">
@@ -480,15 +480,15 @@
           </div>
           <div class="metric-row"><span>最近导出</span><strong id="metric-export">未导出</strong></div>
           <div class="pipeline-grid">
-            <div class="pipeline-item"><span>Import</span><strong id="state-import" class="state-chip idle">idle</strong></div>
-            <div class="pipeline-item"><span>Fast Scan</span><strong id="state-fast" class="state-chip idle">idle</strong></div>
-            <div class="pipeline-item"><span>Full MRI</span><strong id="state-deep" class="state-chip idle">idle</strong></div>
+            <div class="pipeline-item"><span>Import 导入</span><strong id="state-import" class="state-chip idle">idle 空闲</strong></div>
+            <div class="pipeline-item"><span>Fast Scan 快速扫描</span><strong id="state-fast" class="state-chip idle">idle 空闲</strong></div>
+            <div class="pipeline-item"><span>Full MRI 深度扫描</span><strong id="state-deep" class="state-chip idle">idle 空闲</strong></div>
           </div>
           <div class="action-list">
             <button id="btn-trigger-degrade" class="ghost">模拟降级</button>
-            <button id="btn-retry-deep" class="ghost">Retry Deep</button>
-            <button id="btn-continue-fast" class="ghost">Continue Fast</button>
-            <button id="btn-export-partial" class="ghost">Export Partial</button>
+            <button id="btn-retry-deep" class="ghost">Retry Deep 重试深度扫描</button>
+            <button id="btn-continue-fast" class="ghost">Continue Fast 继续快速扫描</button>
+            <button id="btn-export-partial" class="ghost">Export Partial 导出部分结果</button>
           </div>
         </section>
 
@@ -528,13 +528,13 @@
               <option value="TOPN">当前过滤 TopN</option>
               <option value="BOOK_ALL">当前书目全量</option>
             </select>
-            <label for="xray-topn">TopN</label>
+            <label for="xray-topn">TopN 前N条</label>
             <input id="xray-topn" type="number" min="1" max="200" value="12" />
           </div>
           <div class="xray-filter-row">
             <label for="xray-filter">优先级过滤</label>
             <select id="xray-filter">
-              <option value="ALL" selected>ALL</option>
+              <option value="ALL" selected>ALL 全部</option>
               <option value="P1">P1</option>
               <option value="P2">P2</option>
               <option value="P3">P3</option>
@@ -546,7 +546,7 @@
 
         <section id="degrade-panel" class="panel-block hidden">
           <h2>降级恢复 Degrade Recovery</h2>
-          <p class="muted" id="degrade-reason">Degraded due to queue pressure.</p>
+          <p class="muted" id="degrade-reason">Degraded due to queue pressure. 因队列压力降级。</p>
           <div class="action-list">
             <button id="btn-retry-deep-2" class="small-btn">重试深度分析 Retry Deep</button>
             <button id="btn-continue-fast-2" class="small-btn">继续快速路径 Continue Fast</button>
@@ -556,7 +556,7 @@
 
         <section id="repair-panel" class="panel-block hidden">
           <h2>证据修复 Evidence Repair</h2>
-          <p id="repair-message" class="muted">Evidence anchor not found.</p>
+          <p id="repair-message" class="muted">Evidence anchor not found. 未找到证据锚点。</p>
           <div class="action-list">
             <button id="btn-repair-retry" class="small-btn">重试锚点 Retry Anchor</button>
             <button id="btn-repair-nearby" class="small-btn">切换邻近证据 Switch Nearby Evidence</button>
