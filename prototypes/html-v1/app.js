@@ -10,6 +10,79 @@ const PANEL_PRESET_KEY = "narrativeos.prototype.panelPreset.v1";
 const NARRATIVE_MARKER_FILTERS_KEY = "narrativeos.prototype.narrativeMarkerFilters.v1";
 const RECENT_PROJECT_WINDOW_MS = 24 * 60 * 60 * 1000;
 
+// 纯前端轻量分词器（基于规则，不依赖外部库）
+function simpleChineseTokenizer(text) {
+  if (!text || typeof text !== 'string') return [];
+  
+  // 常见中文双字词库（高频词）
+  const bigramDict = new Set([
+    '鲁迅', '呐喊', '中国', '人民', '社会', '国家', '世界', '问题', '思想', '文化',
+    '文学', '艺术', '历史', '哲学', '科学', '技术', '经济', '政治', '军事', '外交',
+    '教育', '科学', '技术', '发展', '进步', '改革', '开放', '创新', '传统', '现代',
+    '青年', '学生', '老师', '朋友', '家庭', '生活', '工作', '学习', '研究', '分析',
+    '讨论', '思考', '理解', '认识', '感觉', '知道', '认为', '觉得', '希望', '想要',
+    '能够', '可以', '应该', '必须', '需要', '重要', '关键', '核心', '基础', '根本',
+    '原因', '结果', '条件', '方法', '手段', '目的', '目标', '计划', '方案', '措施',
+    '政策', '法律', '制度', '体制', '机制', '结构', '系统', '组织', '机构', '单位',
+    '部门', '行业', '领域', '方面', '部分', '整体', '局部', '全局', '宏观', '微观',
+    '抽象', '具体', '理论', '实践', '现实', '理想', '过去', '现在', '未来', '今天',
+    '昨天', '明天', '上午', '下午', '晚上', '早晨', '中午', '夜晚', '白天', '黑夜',
+    '春天', '夏天', '秋天', '冬天', '季节', '气候', '天气', '温度', '湿度', '风力',
+    '雨水', '阳光', '月亮', '星星', '天空', '大地', '山川', '河流', '海洋', '湖泊',
+    '森林', '草原', '沙漠', '冰川', '火山', '地震', '台风', '洪水', '干旱', '灾害',
+    '自然', '环境', '生态', '资源', '能源', '矿产', '土地', '水源', '空气', '土壤',
+    '植物', '动物', '昆虫', '鸟类', '鱼类', '哺乳', '人类', '种族', '民族', '种族',
+    '宗教', '信仰', '道德', '伦理', '价值', '观念', '意识', '心理', '情感', '情绪',
+    '性格', '气质', '能力', '智慧', '知识', '信息', '数据', '事实', '真相', '谎言',
+    '新闻', '报道', '消息', '通知', '公告', '声明', '声明', '声明', '声明',
+  ]);
+  
+  const tokens = [];
+  let i = 0;
+  while (i < text.length) {
+    const char = text[i];
+    
+    // 标点符号单独成词
+    if (/[\u3000-\u303f\uff00-\uffef\p{P}\p{S}]/u.test(char)) {
+      tokens.push(char);
+      i++;
+      continue;
+    }
+    
+    // 英文/数字单独成词
+    if (/[A-Za-z0-9]/.test(char)) {
+      let word = char;
+      while (i + 1 < text.length && /[A-Za-z0-9]/.test(text[i + 1])) {
+        word += text[++i];
+      }
+      tokens.push(word);
+      i++;
+      continue;
+    }
+    
+    // 中文：尝试双字词
+    if (i + 1 < text.length) {
+      const bigram = text[i] + text[i + 1];
+      if (bigramDict.has(bigram)) {
+        tokens.push(bigram);
+        i += 2;
+        continue;
+      }
+    }
+    
+    // 单字成词
+    tokens.push(char);
+    i++;
+  }
+  
+  return tokens;
+}
+
+async function initSegmentit() {
+  // 使用内置规则分词器，无需加载外部库
+  return { do: simpleChineseTokenizer };
+}
+
 const WORKFLOW = {
   IDLE: "idle",
   RUNNING: "running",
@@ -246,6 +319,7 @@ const state = {
   paletteCommands: [],
   paletteIndex: 0,
   readerCharSortMode: "original",
+  readerWordSortMode: "original",
   narrative: {
     axisMode: "narrative",
     anchorLine: 0,
@@ -660,6 +734,7 @@ function updateMetrics() {
   if (metricAi) metricAi.textContent = `${ai}%`;
   renderOpsKpiCards({ structure, rhythm, sensory, ai });
   renderReaderCharSetPanel();
+  renderReaderWordSetPanel();
 
   if (typeof state.activeLine === "number") {
     updateInsightForLine(state.activeLine);
@@ -682,6 +757,32 @@ function getTextCharacterStats() {
   const latinChars = compactText.match(/[A-Za-z]/g) || [];
   const digitChars = compactText.match(/[0-9]/g) || [];
   const punctuationChars = compactText.match(/[\u3000-\u303f\uff00-\uffef\p{P}\p{S}]/gu) || [];
+
+  // 词汇级统计（基于内置规则分词器）
+  let wordStats = null;
+  if (hasOpenDoc) {
+    try {
+      const tokens = simpleChineseTokenizer(compactText);
+      const wordTokens = tokens.filter(t => t && t.trim());
+      const wordSet = new Set(wordTokens);
+      const totalWords = wordTokens.length;
+      const uniqueWords = wordSet.size;
+      const ttr = totalWords > 0 ? ((uniqueWords / totalWords) * 100).toFixed(1) : "0";
+      // 词频统计
+      const freqMap = {};
+      wordTokens.forEach(t => { freqMap[t] = (freqMap[t] || 0) + 1; });
+      wordStats = {
+        totalWords,
+        uniqueWords,
+        ttr,
+        wordSet: Array.from(wordSet),
+        freqMap,
+      };
+    } catch (e) {
+      console.warn('分词失败，回退到字符级统计:', e.message);
+    }
+  }
+
   return {
     hasOpenDoc,
     totalChars,
@@ -691,6 +792,7 @@ function getTextCharacterStats() {
     charsetSummary: hasOpenDoc
       ? `汉${hanziChars.length} 英${latinChars.length} 数${digitChars.length} 符${punctuationChars.length}`
       : "-",
+    wordStats,
   };
 }
 
@@ -773,6 +875,83 @@ function wireReaderCharSetPanel() {
   });
 }
 
+function renderReaderWordSetPanel() {
+  const panel = $("reader-word-panel");
+  const metaEl = $("reader-word-meta");
+  const setEl = $("reader-word-set");
+  const sortWrap = $("reader-word-sort");
+  if (!panel || !metaEl || !setEl) return;
+
+  const stats = getTextCharacterStats();
+  const visible = state.activeDomain === "textlab" && stats.hasOpenDoc && stats.wordStats;
+  panel.classList.toggle("hidden", !visible);
+
+  if (!visible) {
+    metaEl.textContent = "-";
+    setEl.innerHTML = "-";
+    return;
+  }
+
+  const { wordSet, freqMap } = stats.wordStats;
+  const sortedWords = sortUniqueWords(wordSet || [], state.readerWordSortMode, freqMap);
+  const modeLabel =
+    state.readerWordSortMode === "pinyin"
+      ? "音序"
+      : state.readerWordSortMode === "freq"
+      ? "频次"
+      : "原序";
+  metaEl.textContent = `总词数 ${stats.wordStats.totalWords} · 去重 ${stats.wordStats.uniqueWords} · TTR ${stats.wordStats.ttr}% · ${modeLabel}`;
+
+  if (sortWrap) {
+    sortWrap.querySelectorAll(".word-sort-btn").forEach((btn) => {
+      const active = btn.dataset.wordSort === state.readerWordSortMode;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  if (sortedWords.length === 0) {
+    setEl.innerHTML = "-";
+    return;
+  }
+
+  setEl.innerHTML = sortedWords
+    .map((word) => {
+      const freq = freqMap?.[word] || 0;
+      return `<span class="reader-word-item" title="${escapeHtml(word)} (${freq}次)">${escapeHtml(word)}</span>`;
+    })
+    .join("");
+}
+
+function sortUniqueWords(words, mode = state.readerWordSortMode, freqMap = {}) {
+  if (!Array.isArray(words) || words.length === 0) return [];
+  if (mode === "original") return [...words];
+
+  if (mode === "freq") {
+    return [...words].sort((a, b) => (freqMap[b] || 0) - (freqMap[a] || 0));
+  }
+
+  // pinyin mode
+  const collator = new Intl.Collator("zh-u-co-pinyin", { sensitivity: "base", numeric: true });
+  return [...words].sort((a, b) => collator.compare(a, b));
+}
+
+function wireReaderWordSetPanel() {
+  const sortWrap = $("reader-word-sort");
+  if (!sortWrap) return;
+  sortWrap.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const btn = target.closest(".word-sort-btn");
+    if (!(btn instanceof HTMLButtonElement)) return;
+    const mode = btn.dataset.wordSort;
+    if (!["original", "pinyin", "freq"].includes(mode)) return;
+    if (state.readerWordSortMode === mode) return;
+    state.readerWordSortMode = mode;
+    renderReaderWordSetPanel();
+  });
+}
+
 function renderOpsKpiCards(metrics = null) {
   const noteEl = $("ops-kpi-note");
   const cards = [1, 2, 3].map((idx) => ({
@@ -809,11 +988,16 @@ function renderOpsKpiCards(metrics = null) {
 
   const byDomain = {
     textlab: {
-      note: "字符基线（主舞台查看不重复字符集合）",
+      note: textStats.wordStats
+        ? `字符基线 · 词汇丰富度 TTR ${textStats.wordStats.ttr}%（主舞台查看集合）`
+        : "字符基线（主舞台查看不重复字符集合）",
       cards: [
         { label: "总字符数", value: textStats.hasOpenDoc ? `${textStats.totalChars}` : "-" },
         { label: "去重字符数", value: textStats.hasOpenDoc ? `${textStats.uniqueCharCount}` : "-" },
-        { label: "字符构成", value: textStats.charsetSummary },
+        { label: textStats.wordStats ? "TTR 词汇丰富度" : "字符构成",
+          value: textStats.wordStats
+            ? `${textStats.wordStats.ttr}% (词${textStats.wordStats.totalWords} 去重${textStats.wordStats.uniqueWords})`
+            : textStats.charsetSummary },
       ],
     },
     atlas: {
@@ -1409,7 +1593,7 @@ function bindLibraryEvidenceButtons(container) {
   if (!container) return;
   container.querySelectorAll(".library-evidence-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const line = Number(e.currentTarget.dataset.evidenceLine);
+     
       if (Number.isInteger(line)) jumpToWorkbenchEvidence(line, "library-workbench");
     });
   });
@@ -1842,6 +2026,7 @@ function applyDomainLayout() {
   renderDomainOperations();
   renderOpsKpiCards();
   renderReaderCharSetPanel();
+  renderReaderWordSetPanel();
   renderStagePath();
   renderNarrativeAxis();
 }
@@ -3715,6 +3900,7 @@ function renderReaderLines() {
 
   applySearchHighlight();
   renderReaderCharSetPanel();
+  renderReaderWordSetPanel();
   renderNarrativeAxis();
 }
 
@@ -5490,6 +5676,8 @@ function setMode(mode) {
 }
 
 async function init() {
+  // 初始化分词器
+  await initSegmentit();
   initTopNavigation();
   initLayersAndModes();
   wireImportFlow();
@@ -5504,6 +5692,7 @@ async function init() {
   initPanelDensityControls();
   initAutoFocusControl();
   wireReaderCharSetPanel();
+  wireReaderWordSetPanel();
   if (!state.autoFocusPanels && ["research", "debug", "review"].includes(state.panelPreset)) {
     applyPanelPreset(state.panelPreset);
   } else {
