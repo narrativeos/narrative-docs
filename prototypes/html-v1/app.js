@@ -1,7 +1,6 @@
 const DOCS_BASE = window.location.pathname.includes("/narrative-docs/") ? "/narrative-docs" : "";
 const DATASET_URL = `${DOCS_BASE}/assets/datasets/novel100_kepub_fulltext_top10.json`;
-const SUMMARY_URL =
-  `${DOCS_BASE}/assets/datasets/fulltext/novel100_kepub_fulltext_top10/download_summary.json`;
+const SUMMARY_URL = `${DOCS_BASE}/assets/datasets/fulltext/novel100_kepub_fulltext_top10/download_summary.json`;
 const STORAGE_KEY = "narrativeos.prototype.annotations.v2";
 const EXPORT_TS_KEY = "narrativeos.prototype.lastExport.v2";
 const IMPORT_AUDIT_KEY = "narrativeos.prototype.importAudit.v1";
@@ -127,8 +126,8 @@ const DOMAIN_META = {
     showAtlasControls: false,
     showAtlasViewport: false,
     showReader: true,
-    visibleLeft: ["panel-context", "panel-import", "panel-search", "panel-citespace", "panel-annotation"],
-    visibleRight: ["panel-insight", "panel-workflow", "panel-xray", "panel-ledger", "degrade-panel", "repair-panel"],
+    visibleLeft: ["panel-context", "panel-import"],
+    visibleRight: ["panel-insight", "panel-workflow", "panel-annotation", "panel-xray", "panel-ledger", "degrade-panel", "repair-panel"],
   },
   atlas: {
     label: "Atlas",
@@ -138,8 +137,8 @@ const DOMAIN_META = {
     showAtlasControls: true,
     showAtlasViewport: true,
     showReader: true,
-    visibleLeft: ["panel-context", "panel-search"],
-    visibleRight: ["panel-insight", "panel-workflow"],
+    visibleLeft: ["panel-context"],
+    visibleRight: ["panel-insight", "panel-workflow", "panel-annotation"],
   },
   corpus: {
     label: "Corpus",
@@ -150,7 +149,7 @@ const DOMAIN_META = {
     showAtlasViewport: false,
     showReader: false,
     visibleLeft: ["panel-context"],
-    visibleRight: ["panel-workflow", "panel-insight"],
+    visibleRight: ["panel-workflow", "panel-insight", "panel-annotation"],
   },
   genome: {
     label: "Genome",
@@ -161,7 +160,7 @@ const DOMAIN_META = {
     showAtlasViewport: false,
     showReader: false,
     visibleLeft: ["panel-context"],
-    visibleRight: ["panel-insight"],
+    visibleRight: ["panel-insight", "panel-annotation"],
   },
   insight: {
     label: "Insight",
@@ -171,8 +170,8 @@ const DOMAIN_META = {
     showAtlasControls: false,
     showAtlasViewport: false,
     showReader: false,
-    visibleLeft: ["panel-context", "panel-search"],
-    visibleRight: ["panel-insight", "panel-workflow"],
+    visibleLeft: ["panel-context"],
+    visibleRight: ["panel-insight", "panel-workflow", "panel-annotation"],
   },
   library: {
     label: "Library",
@@ -182,8 +181,8 @@ const DOMAIN_META = {
     showAtlasControls: false,
     showAtlasViewport: false,
     showReader: false,
-    visibleLeft: ["panel-context", "panel-citespace"],
-    visibleRight: ["panel-ledger", "panel-insight"],
+    visibleLeft: ["panel-context"],
+    visibleRight: ["panel-ledger", "panel-insight", "panel-annotation"],
   },
 };
 
@@ -203,9 +202,12 @@ const state = {
   xrayBatchScope: "FILTERED",
   xrayTopN: 12,
   importRecentOnly: false,
-  importControlsExpanded: true,
+  importControlsExpanded: false,
   importAutoCollapsed: false,
   auditFilter: "ALL",
+  selectedSourceRanks: [],
+  focusSourceRank: null,
+  parallelSourceRanks: [],
   searchQuery: "",
   searchHits: [],
   searchHitIndex: 0,
@@ -220,7 +222,7 @@ const state = {
   },
   deleteChoice: {
     open: false,
-    rank: null,
+    ranks: [],
   },
   undoAction: {
     open: false,
@@ -246,6 +248,110 @@ const state = {
 
 function $(id) {
   return document.getElementById(id);
+}
+
+function normalizeSourceBaseTitle(text) {
+  return normalizeIdentityText(
+    String(text || "")
+      .replace(/（副本\d*）$/g, "")
+      .replace(/\(副本\d*\)$/g, "")
+      .replace(/（版本\d+）$/g, "")
+      .replace(/(?:\sversion\s*\d+|\sv\d+)$/gi, "")
+      .trim()
+  );
+}
+
+function sourceFamilyKey(book) {
+  return `${normalizeSourceBaseTitle(book?.title)}|${normalizeIdentityText(book?.author)}`;
+}
+
+function getVisibleSourceBooks() {
+  const ordered = [...state.books].sort((a, b) => activityTimestamp(b) - activityTimestamp(a));
+  const recentLoadedAll = ordered.filter((book) => Boolean(book.last_opened_at));
+  const recentLoaded = recentLoadedAll.filter((book) => !state.importRecentOnly || isWithinRecentWindow(book.last_opened_at));
+  const importedOnly = state.importRecentOnly ? [] : ordered.filter((book) => !book.last_opened_at);
+  return [...recentLoaded, ...importedOnly];
+}
+
+function syncLegacyBookSelect() {
+  const select = $("book-select");
+  if (!select) return;
+
+  if (state.focusSourceRank !== null) {
+    const matched = Array.from(select.options).some((op) => op.value === String(state.focusSourceRank));
+    if (matched) {
+      select.value = String(state.focusSourceRank);
+      return;
+    }
+  }
+
+  if (select.options.length > 0) {
+    select.value = select.options[0].value;
+    const rank = Number(select.value);
+    state.focusSourceRank = Number.isFinite(rank) ? rank : null;
+  } else {
+    state.focusSourceRank = null;
+  }
+}
+
+function ensureSourceSelection(visibleBooks = getVisibleSourceBooks()) {
+  const availableRanks = new Set(state.books.map((book) => book.rank));
+  const visibleRanks = visibleBooks.map((book) => book.rank);
+
+  state.selectedSourceRanks = Array.from(new Set(state.selectedSourceRanks))
+    .map((rank) => Number(rank))
+    .filter((rank) => availableRanks.has(rank));
+
+  if (!availableRanks.has(state.focusSourceRank)) {
+    state.focusSourceRank = state.currentBook?.rank || state.selectedSourceRanks[0] || visibleRanks[0] || state.books[0]?.rank || null;
+  }
+
+  if (visibleRanks.length > 0 && !visibleRanks.includes(state.focusSourceRank)) {
+    state.focusSourceRank = visibleRanks.includes(state.currentBook?.rank) ? state.currentBook.rank : visibleRanks[0];
+  }
+
+  const visibleSelected = state.selectedSourceRanks.filter((rank) => visibleRanks.includes(rank));
+  if (visibleRanks.length > 0) {
+    state.selectedSourceRanks = visibleSelected.length > 0 ? visibleSelected : state.focusSourceRank !== null ? [state.focusSourceRank] : [];
+  } else if (state.selectedSourceRanks.length === 0 && state.focusSourceRank !== null) {
+    state.selectedSourceRanks = [state.focusSourceRank];
+  }
+
+  if (state.focusSourceRank !== null && !state.selectedSourceRanks.includes(state.focusSourceRank)) {
+    state.selectedSourceRanks.push(state.focusSourceRank);
+  }
+
+  state.parallelSourceRanks = Array.from(new Set(state.parallelSourceRanks))
+    .map((rank) => Number(rank))
+    .filter((rank) => rank !== state.focusSourceRank && state.selectedSourceRanks.includes(rank));
+
+  syncLegacyBookSelect();
+}
+
+function getFocusedBook() {
+  return state.books.find((book) => book.rank === state.focusSourceRank) || state.currentBook || null;
+}
+
+function getSelectedBooks() {
+  const selected = new Set(state.selectedSourceRanks);
+  return state.books.filter((book) => selected.has(book.rank));
+}
+
+function getExpandedSourceRanks() {
+  const expanded = new Set(state.parallelSourceRanks);
+  if (state.focusSourceRank !== null) expanded.add(state.focusSourceRank);
+  return expanded;
+}
+
+function getSourceVersionInfo(book) {
+  const familyBooks = state.books
+    .filter((candidate) => sourceFamilyKey(candidate) === sourceFamilyKey(book))
+    .sort((a, b) => activityTimestamp(a) - activityTimestamp(b) || a.rank - b.rank);
+  const index = familyBooks.findIndex((candidate) => candidate.rank === book.rank);
+  return {
+    total: familyBooks.length,
+    index: index >= 0 ? index + 1 : 1,
+  };
 }
 
 function loadAnnotations() {
@@ -306,6 +412,7 @@ function loadPanelPresetState() {
 function savePanelPresetState() {
   localStorage.setItem(PANEL_PRESET_KEY, state.panelPreset || "auto");
 }
+
 
 function showUndoAction(label, undoFn) {
   state.undoAction.open = true;
@@ -377,38 +484,53 @@ function hideRepair() {
 
 function renderContextHeader() {
   const brandEl = $("ctx-brand");
+  const selectedEl = $("ctx-selected");
+  const focusEl = $("ctx-focus");
+  const parallelEl = $("ctx-parallel");
+  const versionEl = $("ctx-version");
   const sourceEl = $("ctx-source");
-  const fileEl = $("ctx-file");
   const loadEl = $("ctx-load");
-  if (!brandEl || !sourceEl || !fileEl || !loadEl) return;
+  const summaryEl = $("ctx-summary");
+  if (!brandEl || !selectedEl || !focusEl || !parallelEl || !versionEl || !sourceEl || !loadEl || !summaryEl) return;
 
-  brandEl.textContent = "NarrativeOS Studio";
-
-  const selectedRank = Number($("book-select")?.value);
-  const selectedBook = state.books.find((x) => x.rank === selectedRank) || null;
-  const contextBook = state.currentBook || selectedBook;
+  const selectedBooks = getSelectedBooks();
+  const contextBook = state.currentBook || getFocusedBook();
+  const selectedCount = selectedBooks.length;
+  const expandedCount = getExpandedSourceRanks().size;
 
   if (!contextBook) {
+    brandEl.textContent = state.books.length > 0 ? "待建立选择集" : "尚未成组";
+    selectedEl.textContent = `${selectedCount} 个源`;
+    focusEl.textContent = "未设置";
+    parallelEl.textContent = "0 路展开";
+    versionEl.textContent = "单版本";
     sourceEl.textContent = "未绑定";
-    fileEl.textContent = "未选择文档";
     loadEl.textContent = state.books.length > 0 ? "imported" : "idle";
+    summaryEl.textContent = state.books.length > 0 ? "已导入源，等待设置焦点源。" : "当前尚未选择源。";
     return;
   }
 
-  if (contextBook.source_type === "prepared") {
+  const versionInfo = getSourceVersionInfo(contextBook);
+  const isMixedSource = new Set(selectedBooks.map((book) => (book.source_type === "prepared" ? "prepared" : "uploaded"))).size > 1;
+
+  brandEl.textContent = selectedBooks.length > 1 ? "多源并列工作集" : versionInfo.total > 1 ? "单源版本轨迹" : "单源工作集";
+  selectedEl.textContent = `${selectedCount} 个源`;
+  focusEl.textContent = `${contextBook.rank}. ${contextBook.title}`;
+  parallelEl.textContent = `${expandedCount} 路展开`;
+  versionEl.textContent = versionInfo.total > 1 ? `v${versionInfo.index} / ${versionInfo.total}` : "单版本";
+
+  if (selectedBooks.length > 1) {
+    sourceEl.textContent = isMixedSource ? "混合来源" : "多源集合";
+  } else if (contextBook.source_type === "prepared") {
     sourceEl.textContent = "novel100 dataset";
   } else {
     sourceEl.textContent = contextBook.kepub_book_url || "本地导入";
   }
 
-  if (state.currentBook) {
-    fileEl.textContent = `${contextBook.rank}. ${contextBook.title}`;
-  } else {
-    fileEl.textContent = `已选 ${contextBook.rank}. ${contextBook.title}`;
-  }
-
   if (state.currentBook && state.readerLines.length > 0) {
     loadEl.textContent = `loaded · open ${contextBook.open_count || 1}x`;
+  } else if (selectedBooks.length > 1) {
+    loadEl.textContent = `selected · ${selectedBooks.length}`;
   } else if (state.currentBook && state.workflow.fast === WORKFLOW.RUNNING) {
     loadEl.textContent = "loading";
   } else if (state.workflow.degraded) {
@@ -417,6 +539,14 @@ function renderContextHeader() {
     loadEl.textContent = "ready-to-reload";
   } else {
     loadEl.textContent = "imported";
+  }
+
+  if (selectedBooks.length > 1) {
+    summaryEl.textContent = `已选 ${selectedBooks.length} 个源，默认焦点为 ${contextBook.title}，当前并列展开 ${expandedCount} 路 Cite 视图。`;
+  } else if (versionInfo.total > 1) {
+    summaryEl.textContent = `${contextBook.title} 处于版本轨迹 ${versionInfo.index}/${versionInfo.total}，可继续扩展到时序对比。`;
+  } else {
+    summaryEl.textContent = `${contextBook.title} 已进入当前工作区，来源范围为 ${sourceEl.textContent}。`;
   }
 }
 
@@ -844,7 +974,7 @@ function renderInsightWorkbench() {
     setInsightRows(conclusionEl, [{ label: "结论", value: "请先打开文档" }]);
     setInsightRows(chainEl, [{ label: "证据", value: "暂无原文样本" }]);
     setInsightRows(actionsEl, [{ label: "建议", value: "暂无可执行建议" }]);
-    sourceEl.innerHTML = '<div class="insight-source-line">请先在 Text Lab 打开正文，再进入 Insight 分析。</div>';
+    sourceEl.innerHTML = '<div class="insight-source-line">请先在 Text Lab 加载内容，再进入 Insight 分析。</div>';
     return;
   }
 
@@ -946,8 +1076,8 @@ function updateInteractionGuards() {
   const importing = state.workflow.import === WORKFLOW.RUNNING;
   const hasPackages = state.books.length > 0;
   const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
-  const selectedRank = Number($("book-select")?.value);
-  const selectedBook = state.books.find((x) => x.rank === selectedRank) || null;
+  const selectedBooks = getSelectedBooks();
+  const selectedBook = getFocusedBook();
   const hasSelectableBook = Boolean(selectedBook);
 
   const setDisabled = (id, disabled) => {
@@ -961,20 +1091,25 @@ function updateInteractionGuards() {
   setDisabled("btn-import-file-package", importing);
   setDisabled("btn-import-folder-package", importing);
   setDisabled("btn-open-book", importing || !hasSelectableBook);
-  setDisabled("btn-open-book-quick", importing || !hasSelectableBook);
   setDisabled("btn-rename-book", importing || !hasSelectableBook);
-  setDisabled("btn-delete-book", importing || !hasSelectableBook);
+  setDisabled("btn-delete-book", importing || selectedBooks.length === 0);
   setDisabled("import-recent-only", importing || !hasPackages);
+  setDisabled("btn-select-visible-sources", importing || !hasPackages);
+  setDisabled("btn-clear-source-selection", importing || selectedBooks.length === 0);
 
-  const openLabel = !hasSelectableBook ? "打开正文" : selectedBook?.last_opened_at ? "重新加载正文" : "打开正文";
-  ["btn-open-book", "btn-open-book-quick"].forEach((id) => {
+  const openLabel = !hasSelectableBook ? "加载" : selectedBook?.last_opened_at ? "重新加载" : "加载";
+  ["btn-open-book"].forEach((id) => {
     const btn = $(id);
     if (btn) btn.textContent = openLabel;
   });
 
-  setDisabled("reader-search", !hasOpenDoc);
-  setDisabled("btn-search-prev", !hasOpenDoc);
-  setDisabled("btn-search-next", !hasOpenDoc);
+  const deleteBtn = $("btn-delete-book");
+  if (deleteBtn) deleteBtn.textContent = selectedBooks.length > 1 ? `删除所选源（${selectedBooks.length}）` : "删除焦点源";
+
+  setDisabled("ops-search", !hasOpenDoc);
+  setDisabled("ops-search-prev", !hasOpenDoc);
+  setDisabled("ops-search-next", !hasOpenDoc);
+  setDisabled("ops-focus-search", !hasOpenDoc);
 
   setDisabled("tag-select", !hasOpenDoc);
   setDisabled("priority-select", !hasOpenDoc);
@@ -984,6 +1119,7 @@ function updateInteractionGuards() {
   renderSearchStatus();
   renderImportPanelState();
   renderContextHeader();
+  renderCitespaceMeta();
   renderDomainOperations();
 }
 
@@ -993,7 +1129,7 @@ function renderSearchStatus() {
 
   const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
   if (!hasOpenDoc) {
-    el.textContent = "请先打开文档后再搜索。";
+    el.textContent = "请先加载后再搜索。";
     return;
   }
 
@@ -1012,9 +1148,7 @@ function renderSearchStatus() {
 
 function syncSearchInputs(query) {
   const value = String(query || "").trim();
-  const readerSearch = $("reader-search");
   const opsSearch = $("ops-search");
-  if (readerSearch && readerSearch.value !== value) readerSearch.value = value;
   if (opsSearch && opsSearch.value !== value) opsSearch.value = value;
 }
 
@@ -1041,10 +1175,10 @@ function renderDomainOperations() {
   const byDomain = {
     textlab: {
       title: "Text Lab 操作",
-      desc: "打开正文、聚焦搜索、记录标注。",
+      desc: "加载内容、聚焦搜索、记录标注。",
       actions: [
-        { label: "打开正文", onClick: () => $("btn-open-book-quick")?.click(), disabled: $("btn-open-book-quick")?.disabled },
-        { label: "聚焦搜索", onClick: () => $("reader-search")?.focus(), disabled: $("reader-search")?.disabled },
+        { label: "加载", onClick: () => $("btn-open-book")?.click(), disabled: $("btn-open-book")?.disabled },
+        { label: "聚焦搜索", onClick: () => $("ops-search")?.focus(), disabled: $("ops-search")?.disabled },
         { label: "保存标注", onClick: () => $("btn-add-annotation")?.click(), disabled: $("btn-add-annotation")?.disabled },
       ],
     },
@@ -1084,7 +1218,7 @@ function renderDomainOperations() {
       actions: [
         { label: "Show Evidence", onClick: () => $("btn-focus-show-evidence")?.click() },
         { label: "Emotion Mode", onClick: () => setMode("emotion") },
-        { label: "聚焦搜索", onClick: () => $("reader-search")?.focus(), disabled: $("reader-search")?.disabled },
+        { label: "聚焦搜索", onClick: () => $("ops-search")?.focus(), disabled: $("ops-search")?.disabled },
       ],
     },
     library: {
@@ -1201,21 +1335,21 @@ function applyDomainLayout() {
   if (libraryWorkbench) libraryWorkbench.classList.toggle("hidden", state.activeDomain !== "library");
   if (readerStage) readerStage.classList.toggle("hidden", !domainMeta.showReader);
 
-  const leftPanelIds = ["panel-context", "panel-import", "panel-search", "panel-citespace", "panel-annotation"];
+  const leftPanelIds = ["panel-context", "panel-import", "panel-citespace"];
   const rightPanelIds = [
     "panel-insight",
     "panel-workflow",
+    "panel-annotation",
     "panel-xray",
     "panel-ledger",
     "degrade-panel",
     "repair-panel",
   ];
 
-  // Source foundation is cross-domain: keep left pane stable during domain switches.
   leftPanelIds.forEach((id) => {
     const panel = $(id);
     if (!panel) return;
-    panel.classList.remove("hidden");
+    panel.classList.toggle("hidden", !domainMeta.visibleLeft.includes(id));
   });
 
   rightPanelIds.forEach((id) => {
@@ -1512,56 +1646,70 @@ function renderImportPanelState() {
   const loadedBooks = state.books.filter((b) => Boolean(b.last_opened_at));
   const recent24hBooks = loadedBooks.filter((b) => isWithinRecentWindow(b.last_opened_at));
   const loadedCount = loadedBooks.length;
-  const selectedRank = Number($("book-select")?.value);
-  const selectedBook = state.books.find((b) => b.rank === selectedRank) || null;
+  const selectedBooks = getSelectedBooks();
+  const selectedBook = getFocusedBook();
 
   panel.classList.toggle("has-imports", importedCount > 0);
   panel.classList.toggle("has-loaded", loadedCount > 0);
 
   if (importedCount === 0) {
-    statusEl.textContent = "状态：尚未导入文档。";
+    statusEl.textContent = "状态：尚未导入源，可从抽屉中新建资源包。";
+    renderImportPanelLayout();
+    return;
+  }
+
+  if (selectedBooks.length > 1 && selectedBook) {
+    statusEl.textContent = `状态：已选 ${selectedBooks.length} 个源，焦点 ${selectedBook.title}，可并列展开 Cite 详情。`;
+    renderImportPanelLayout();
     return;
   }
 
   if (selectedBook?.last_opened_at) {
-    statusEl.textContent = `状态：已加载，可重新加载。最近加载 ${projectTimeLabel(selectedBook.last_opened_at)}。`;
-    renderImportPanelLayout(loadedCount);
+    statusEl.textContent = `状态：焦点源已加载，最近加载 ${projectTimeLabel(selectedBook.last_opened_at)}。`;
+    renderImportPanelLayout();
     return;
   }
 
   if (state.importRecentOnly) {
-    statusEl.textContent = `状态：近期项目筛选中（24h），命中 ${recent24hBooks.length} 本。`;
-    renderImportPanelLayout(loadedCount);
+    statusEl.textContent = `状态：抽屉当前仅显示 24h 内近期项目，共 ${recent24hBooks.length} 本。`;
+    renderImportPanelLayout();
     return;
   }
 
   if (loadedCount > 0) {
     statusEl.textContent = `状态：已导入 ${importedCount} 本，近期项目 ${loadedCount} 本。`;
-    renderImportPanelLayout(loadedCount);
+    renderImportPanelLayout();
     return;
   }
 
   statusEl.textContent = `状态：已导入 ${importedCount} 本，待首次加载。`;
-  renderImportPanelLayout(loadedCount);
+  renderImportPanelLayout();
 }
 
-function renderImportPanelLayout(loadedCount) {
+function renderImportPanelLayout() {
   const panel = $("panel-import");
   const toggle = $("btn-toggle-import-controls");
+  const drawerShell = $("import-drawer-shell");
   const drawer = $("import-drawer");
-  if (!panel || !toggle || !drawer) return;
+  const leftPane = document.querySelector(".pane-left");
+  if (!panel || !toggle || !drawerShell) return;
 
-  if (loadedCount <= 0) {
-    panel.classList.remove("compact");
-    drawer.classList.remove("hidden");
-    toggle.classList.add("hidden");
-    state.importControlsExpanded = true;
-    return;
+  if (leftPane && drawerShell.parentElement !== leftPane) {
+    leftPane.appendChild(drawerShell);
   }
 
-  toggle.classList.remove("hidden");
-  panel.classList.toggle("compact", !state.importControlsExpanded);
-  toggle.textContent = state.importControlsExpanded ? "收起导入抽屉" : "展开导入抽屉";
+  if (!state.importControlsExpanded && drawer?.contains(document.activeElement)) {
+    toggle.focus();
+  }
+
+  panel.classList.toggle("drawer-open", state.importControlsExpanded);
+  drawerShell.classList.toggle("hidden", !state.importControlsExpanded);
+  toggle.textContent = state.importControlsExpanded ? "关闭源抽屉" : "打开源抽屉";
+  toggle.setAttribute("aria-expanded", state.importControlsExpanded ? "true" : "false");
+  if (drawer) {
+    drawer.setAttribute("aria-hidden", state.importControlsExpanded ? "false" : "true");
+    drawer.inert = !state.importControlsExpanded;
+  }
 }
 
 function normalizeIdentityText(text) {
@@ -1665,12 +1813,17 @@ function exportImportAudit() {
   setImportHint(`已导出导入审计（${filter}）：${rows.length} 条`);
 }
 
-function openDeletePanel(rank, title, annCount) {
+function openDeletePanel(ranks, title, annCount) {
   const panel = $("delete-panel");
   const msg = $("delete-message");
+  const normalizedRanks = Array.isArray(ranks) ? ranks.map((rank) => Number(rank)).filter(Number.isFinite) : [Number(ranks)].filter(Number.isFinite);
   state.deleteChoice.open = true;
-  state.deleteChoice.rank = rank;
-  msg.textContent = `确认删除文献“${title}”？将删除 ${annCount} 条关联标注。`;
+  state.deleteChoice.ranks = normalizedRanks;
+  if (normalizedRanks.length > 1) {
+    msg.textContent = `确认删除所选 ${normalizedRanks.length} 个源？将删除 ${annCount} 条关联标注。`;
+  } else {
+    msg.textContent = `确认删除源“${title}”？将删除 ${annCount} 条关联标注。`;
+  }
   panel.classList.remove("hidden");
 }
 
@@ -1678,7 +1831,7 @@ function closeDeletePanel() {
   const panel = $("delete-panel");
   panel.classList.add("hidden");
   state.deleteChoice.open = false;
-  state.deleteChoice.rank = null;
+  state.deleteChoice.ranks = [];
 }
 
 function nextCopyTitle(baseTitle) {
@@ -1741,8 +1894,9 @@ async function importBookPackage(book) {
 
   state.books.sort((a, b) => a.rank - b.rank);
   state.summary = state.books.map((b) => ({ rank: b.rank, local_fulltext: b.summary?.local_fulltext || null }));
+  state.focusSourceRank = imported.rank;
+  state.selectedSourceRanks = [imported.rank];
   renderBookSelect();
-  $("book-select").value = String(imported.rank);
   setWorkflow("import", WORKFLOW.COMPLETED);
 
   state.currentBook = null;
@@ -1752,7 +1906,7 @@ async function importBookPackage(book) {
   state.searchQuery = "";
   state.searchHits = [];
   state.searchHitIndex = 0;
-  $("reader-search").value = "";
+  syncSearchInputs("");
   updateMetrics();
   return true;
 }
@@ -1809,20 +1963,56 @@ function renderCitespaceMeta() {
   const jsonRoot = $("citespace-json");
   if (!root || !jsonRoot) return;
 
-  const meta = resolveCitespaceMeta(state.currentBook);
-  if (!meta) {
-    root.innerHTML = `<p class="muted">当前未打开文档，暂无引用元数据。</p>`;
-    jsonRoot.textContent = "请先加载并打开文档。";
+  const selectedBooks = getSelectedBooks();
+  const focusedBook = state.currentBook || getFocusedBook();
+  const activeBooks = selectedBooks.length > 0 ? selectedBooks : focusedBook ? [focusedBook] : [];
+
+  if (activeBooks.length === 0) {
+    root.innerHTML = `<p class="muted">当前未选择源，暂无引用元数据。</p>`;
+    jsonRoot.textContent = "请先选择或打开源。";
     return;
   }
 
+  if (activeBooks.length === 1) {
+    const meta = resolveCitespaceMeta(activeBooks[0]);
+    const items = [
+      ["Record ID", meta.record_id],
+      ["Source", meta.source_dataset],
+      ["Times Cited", meta.times_cited],
+      ["Centrality", meta.betweenness_centrality],
+      ["Burst", meta.burst_strength],
+      ["Cluster", meta.cluster_label],
+    ];
+
+    root.innerHTML = "";
+    items.forEach(([k, v]) => {
+      const node = document.createElement("article");
+      node.className = "citespace-meta-item";
+      node.innerHTML = `<span>${escapeHtml(String(k))}</span><strong>${escapeHtml(String(v ?? "-"))}</strong>`;
+      root.appendChild(node);
+    });
+
+    jsonRoot.textContent = JSON.stringify(meta, null, 2);
+    return;
+  }
+
+  const metas = activeBooks.map((book) => ({
+    rank: book.rank,
+    title: book.title,
+    ...resolveCitespaceMeta(book),
+  }));
+  const totalTimesCited = metas.reduce((sum, meta) => sum + Number(meta.times_cited || 0), 0);
+  const avgCentrality = metas.reduce((sum, meta) => sum + Number(meta.betweenness_centrality || 0), 0) / metas.length;
+  const maxBurst = metas.reduce((max, meta) => Math.max(max, Number(meta.burst_strength || 0)), 0);
+  const clusterCount = new Set(metas.map((meta) => meta.cluster_label)).size;
+
   const items = [
-    ["Record ID", meta.record_id],
-    ["Source", meta.source_dataset],
-    ["Times Cited", meta.times_cited],
-    ["Centrality", meta.betweenness_centrality],
-    ["Burst", meta.burst_strength],
-    ["Cluster", meta.cluster_label],
+    ["Selected Sources", activeBooks.length],
+    ["Focus Rank", focusedBook?.rank || activeBooks[0].rank],
+    ["Times Cited Σ", totalTimesCited],
+    ["Centrality Avg", avgCentrality.toFixed(2)],
+    ["Burst Max", maxBurst.toFixed(2)],
+    ["Clusters", clusterCount],
   ];
 
   root.innerHTML = "";
@@ -1833,15 +2023,241 @@ function renderCitespaceMeta() {
     root.appendChild(node);
   });
 
-  jsonRoot.textContent = JSON.stringify(meta, null, 2);
+  jsonRoot.textContent = JSON.stringify(
+    {
+      mode: "multi-source",
+      focus_rank: focusedBook?.rank || null,
+      selected_ranks: activeBooks.map((book) => book.rank),
+      items: metas,
+    },
+    null,
+    2
+  );
+}
+
+function renderSourceDrawerList(visibleBooks = getVisibleSourceBooks()) {
+  const root = $("source-drawer-list");
+  if (!root) return;
+
+  const selectedRanks = new Set(state.selectedSourceRanks);
+  const focusedRank = state.focusSourceRank;
+
+  if (state.books.length === 0) {
+    root.innerHTML = '<div class="source-empty">请先上传文件或文件夹资源包。</div>';
+    return;
+  }
+
+  if (visibleBooks.length === 0) {
+    root.innerHTML = '<div class="source-empty">24h 内暂无近期项目，可关闭筛选查看全部源。</div>';
+    return;
+  }
+
+  const recentLoaded = visibleBooks.filter((book) => Boolean(book.last_opened_at));
+  const importedOnly = visibleBooks.filter((book) => !book.last_opened_at);
+  const groups = [
+    { title: `近期项目（${recentLoaded.length}）`, books: recentLoaded },
+    { title: `已导入待加载（${importedOnly.length}）`, books: importedOnly },
+  ].filter((group) => group.books.length > 0);
+
+  root.innerHTML = "";
+  groups.forEach((group) => {
+    const section = document.createElement("section");
+    section.className = "source-group";
+
+    const heading = document.createElement("h3");
+    heading.className = "source-group-title";
+    heading.textContent = group.title;
+    section.appendChild(heading);
+
+    group.books.forEach((book) => {
+      const item = document.createElement("article");
+      item.className = `source-drawer-item${selectedRanks.has(book.rank) ? " active" : ""}`;
+      item.innerHTML = `
+        <label class="source-drawer-check">
+          <input type="checkbox" ${selectedRanks.has(book.rank) ? "checked" : ""} aria-label="选择源 ${escapeHtml(book.title)}" />
+          <span></span>
+        </label>
+        <div class="source-drawer-main">
+          <div class="source-item-head">
+            <button type="button" class="source-focus-btn">${escapeHtml(book.title)}</button>
+            <span class="source-rank">#${book.rank}</span>
+          </div>
+          <div class="source-meta-line">${escapeHtml(String(book.author || "未知作者"))} · ${escapeHtml(
+            book.last_opened_at ? `${projectTimeLabel(book.last_opened_at)} / ${relativeTimeLabel(book.last_opened_at)}` : `导入于 ${projectTimeLabel(book.imported_at)}`
+          )}</div>
+          <div class="source-badges"></div>
+        </div>
+      `;
+
+      item.querySelector('input[type="checkbox"]')?.addEventListener("change", (event) => {
+        if (event.target?.checked) {
+          if (!state.selectedSourceRanks.includes(book.rank)) state.selectedSourceRanks.push(book.rank);
+        } else {
+          state.selectedSourceRanks = state.selectedSourceRanks.filter((rank) => rank !== book.rank);
+          state.parallelSourceRanks = state.parallelSourceRanks.filter((rank) => rank !== book.rank);
+          if (state.focusSourceRank === book.rank) {
+            state.focusSourceRank = state.selectedSourceRanks[0] || getVisibleSourceBooks()[0]?.rank || null;
+          }
+        }
+        renderBookSelect();
+      });
+
+      item.querySelector(".source-focus-btn")?.addEventListener("click", () => {
+        state.focusSourceRank = book.rank;
+        if (!state.selectedSourceRanks.includes(book.rank)) state.selectedSourceRanks.push(book.rank);
+        state.parallelSourceRanks = state.parallelSourceRanks.filter((rank) => rank !== book.rank);
+        renderBookSelect();
+      });
+
+      const versionInfo = getSourceVersionInfo(book);
+      const badges = item.querySelector(".source-badges");
+      const badgeList = [];
+      if (book.rank === focusedRank) badgeList.push({ text: "焦点源", className: "active" });
+      if (book.last_opened_at) badgeList.push({ text: "已加载", className: "loaded" });
+      if (isWithinRecentWindow(book.last_opened_at || book.imported_at)) badgeList.push({ text: "NEW 24h", className: "" });
+      if (versionInfo.total > 1) badgeList.push({ text: `版本 ${versionInfo.index}/${versionInfo.total}`, className: "version" });
+      badgeList.forEach((badge) => {
+        const node = document.createElement("span");
+        node.className = `source-badge${badge.className ? ` ${badge.className}` : ""}`;
+        node.textContent = badge.text;
+        badges?.appendChild(node);
+      });
+
+      section.appendChild(item);
+    });
+
+    root.appendChild(section);
+  });
+}
+
+function renderSourceList(visibleBooks = getVisibleSourceBooks()) {
+  const root = $("source-list");
+  const summaryEl = $("source-selection-summary");
+  if (!root || !summaryEl) return;
+
+  ensureSourceSelection(visibleBooks);
+  renderSourceDrawerList(visibleBooks);
+
+  if (state.books.length === 0) {
+    summaryEl.textContent = "尚未选择源。";
+    root.innerHTML = '<div class="source-empty">请先打开源抽屉并导入资源包。</div>';
+    return;
+  }
+
+  const focusedBook = getFocusedBook();
+  const selectedBooks = getSelectedBooks();
+  const expandedRanks = getExpandedSourceRanks();
+
+  if (selectedBooks.length === 0) {
+    summaryEl.textContent = "当前没有已选源。";
+    root.innerHTML = '<div class="source-empty">请从源抽屉中勾选至少一个源。</div>';
+    return;
+  }
+
+  summaryEl.textContent = `已选 ${selectedBooks.length} 个源 · 焦点 ${focusedBook?.rank || "-"}. ${focusedBook?.title || "未设置"} · 并列展开 ${expandedRanks.size} 路`;
+  root.innerHTML = "";
+
+  selectedBooks
+    .sort((a, b) => (a.rank === state.focusSourceRank ? -1 : b.rank === state.focusSourceRank ? 1 : activityTimestamp(b) - activityTimestamp(a)))
+    .forEach((book) => {
+      const versionInfo = getSourceVersionInfo(book);
+      const expanded = expandedRanks.has(book.rank);
+      const meta = resolveCitespaceMeta(book);
+      const item = document.createElement("article");
+      item.className = `source-item source-detail-card${book.rank === state.focusSourceRank ? " active" : ""}${expanded ? " expanded" : ""}`;
+
+      const main = document.createElement("div");
+      main.className = "source-item-main";
+      main.innerHTML = `
+        <div class="source-item-head">
+          <button type="button" class="source-focus-btn">${escapeHtml(book.title)}</button>
+          <span class="source-rank">#${book.rank}</span>
+        </div>
+        <div class="source-meta-line">${escapeHtml(String(book.author || "未知作者"))} · ${escapeHtml(
+          book.last_opened_at ? `${projectTimeLabel(book.last_opened_at)} / ${relativeTimeLabel(book.last_opened_at)}` : `导入于 ${projectTimeLabel(book.imported_at)}`
+        )}</div>
+        <div class="source-badges"></div>
+        <div class="source-detail-actions"></div>
+        <div class="source-cite-shell${expanded ? "" : " collapsed"}">
+          <div class="source-cite-summary">
+            <span>Cite 元数据</span>
+            <strong>${escapeHtml(String(meta.cluster_label || "-"))} · ${escapeHtml(String(meta.times_cited || 0))} cited</strong>
+          </div>
+          <div class="source-cite-grid">
+            <article class="citespace-meta-item"><span>Record ID</span><strong>${escapeHtml(String(meta.record_id || "-"))}</strong></article>
+            <article class="citespace-meta-item"><span>Source</span><strong>${escapeHtml(String(meta.source_dataset || "-"))}</strong></article>
+            <article class="citespace-meta-item"><span>Times Cited</span><strong>${escapeHtml(String(meta.times_cited || 0))}</strong></article>
+            <article class="citespace-meta-item"><span>Centrality</span><strong>${escapeHtml(String(meta.betweenness_centrality || 0))}</strong></article>
+            <article class="citespace-meta-item"><span>Burst</span><strong>${escapeHtml(String(meta.burst_strength || 0))}</strong></article>
+            <article class="citespace-meta-item"><span>Cluster</span><strong>${escapeHtml(String(meta.cluster_label || "-"))}</strong></article>
+          </div>
+        </div>
+      `;
+
+      main.querySelector(".source-focus-btn")?.addEventListener("click", () => {
+        state.focusSourceRank = book.rank;
+        if (!state.selectedSourceRanks.includes(book.rank)) state.selectedSourceRanks.push(book.rank);
+        state.parallelSourceRanks = state.parallelSourceRanks.filter((rank) => rank !== book.rank);
+        renderBookSelect();
+      });
+
+      const badges = main.querySelector(".source-badges");
+      const badgeList = [];
+      if (book.rank === state.focusSourceRank) badgeList.push({ text: "默认激活", className: "active" });
+      if (book.last_opened_at) badgeList.push({ text: "已加载", className: "loaded" });
+      if (isWithinRecentWindow(book.last_opened_at || book.imported_at)) badgeList.push({ text: "NEW 24h", className: "" });
+      if (versionInfo.total > 1) badgeList.push({ text: `版本 ${versionInfo.index}/${versionInfo.total}`, className: "version" });
+      badgeList.forEach((badge) => {
+        const node = document.createElement("span");
+        node.className = `source-badge${badge.className ? ` ${badge.className}` : ""}`;
+        node.textContent = badge.text;
+        badges?.appendChild(node);
+      });
+
+      const actions = main.querySelector(".source-detail-actions");
+      if (book.rank === state.focusSourceRank) {
+        const focusState = document.createElement("span");
+        focusState.className = "source-activate-state";
+        focusState.textContent = "焦点源默认展开";
+        actions?.appendChild(focusState);
+      } else {
+        const toggle = document.createElement("label");
+        toggle.className = "source-activate-toggle";
+        toggle.innerHTML = `<input type="checkbox" ${state.parallelSourceRanks.includes(book.rank) ? "checked" : ""} /><span>并列激活</span>`;
+        toggle.querySelector("input")?.addEventListener("change", (event) => {
+          if (event.target?.checked) {
+            if (!state.parallelSourceRanks.includes(book.rank)) state.parallelSourceRanks.push(book.rank);
+          } else {
+            state.parallelSourceRanks = state.parallelSourceRanks.filter((rank) => rank !== book.rank);
+          }
+          renderBookSelect();
+        });
+        actions?.appendChild(toggle);
+      }
+
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "small-btn ghost source-remove-btn";
+      removeBtn.textContent = "移出当前选择";
+      removeBtn.addEventListener("click", () => {
+        state.selectedSourceRanks = state.selectedSourceRanks.filter((rank) => rank !== book.rank);
+        state.parallelSourceRanks = state.parallelSourceRanks.filter((rank) => rank !== book.rank);
+        if (state.focusSourceRank === book.rank) {
+          state.focusSourceRank = state.selectedSourceRanks[0] || getVisibleSourceBooks()[0]?.rank || null;
+        }
+        renderBookSelect();
+      });
+      actions?.appendChild(removeBtn);
+
+      item.appendChild(main);
+      root.appendChild(item);
+    });
 }
 
 function renderBookSelect() {
   const select = $("book-select");
   const recentOnlySwitch = $("import-recent-only");
-  if (recentOnlySwitch) {
-    recentOnlySwitch.checked = Boolean(state.importRecentOnly);
-  }
+  if (recentOnlySwitch) recentOnlySwitch.checked = Boolean(state.importRecentOnly);
   const prevValue = select.value;
   select.innerHTML = "";
 
@@ -1851,6 +2267,10 @@ function renderBookSelect() {
     op.textContent = "请先上传资源包";
     select.appendChild(op);
     select.disabled = true;
+    state.selectedSourceRanks = [];
+    state.focusSourceRank = null;
+    state.parallelSourceRanks = [];
+    renderSourceList([]);
     updateInteractionGuards();
     return;
   }
@@ -1860,6 +2280,7 @@ function renderBookSelect() {
   const recentLoadedAll = ordered.filter((book) => Boolean(book.last_opened_at));
   const recentLoaded = recentLoadedAll.filter((book) => !state.importRecentOnly || isWithinRecentWindow(book.last_opened_at));
   const importedOnly = state.importRecentOnly ? [] : ordered.filter((book) => !book.last_opened_at);
+  const visibleBooks = [...recentLoaded, ...importedOnly];
 
   if (recentLoaded.length > 0) {
     const groupRecent = document.createElement("optgroup");
@@ -1899,6 +2320,8 @@ function renderBookSelect() {
   if (hasPrev) select.value = prevValue;
   else if (select.options.length > 0) select.value = select.options[0].value;
 
+  ensureSourceSelection(visibleBooks);
+  renderSourceList(visibleBooks);
   updateInteractionGuards();
 }
 
@@ -1908,17 +2331,18 @@ function wireImportFlow() {
     $("rename-book-input").value = "";
   };
 
-  const deleteBookByRank = (rank) => {
-    const book = state.books.find((x) => x.rank === rank);
-    if (!book) return;
+  const deleteBooksByRanks = (ranks) => {
+    const rankSet = new Set((Array.isArray(ranks) ? ranks : [ranks]).map((rank) => Number(rank)).filter(Number.isFinite));
+    const removedBooks = state.books.filter((book) => rankSet.has(book.rank));
+    if (removedBooks.length === 0) return;
 
-    state.books = state.books.filter((x) => x.rank !== rank);
-    state.summary = state.summary.filter((x) => x.rank !== rank);
+    state.books = state.books.filter((x) => !rankSet.has(x.rank));
+    state.summary = state.summary.filter((x) => !rankSet.has(x.rank));
     const before = state.annotations.length;
-    state.annotations = state.annotations.filter((ann) => ann.rank !== rank);
-    state.openedRanks.delete(rank);
+    state.annotations = state.annotations.filter((ann) => !rankSet.has(ann.rank));
+    rankSet.forEach((rank) => state.openedRanks.delete(rank));
 
-    if (state.currentBook?.rank === rank) {
+    if (state.currentBook?.rank && rankSet.has(state.currentBook.rank)) {
       state.currentBook = null;
       state.currentText = "";
       state.readerLines = [];
@@ -1926,11 +2350,16 @@ function wireImportFlow() {
       state.searchQuery = "";
       state.searchHits = [];
       state.searchHitIndex = 0;
-      $("reader-search").value = "";
+      syncSearchInputs("");
       $("reader-title").textContent = "正文预览";
       $("reader-meta").textContent = "请先导入并打开文档";
       $("reader-content").textContent = "请先在左侧完成数据导入。";
       renderCitespaceMeta();
+    }
+
+    state.selectedSourceRanks = state.selectedSourceRanks.filter((rank) => !rankSet.has(rank));
+    if (rankSet.has(state.focusSourceRank)) {
+      state.focusSourceRank = state.selectedSourceRanks[0] || state.books[0]?.rank || null;
     }
 
     saveAnnotations();
@@ -1940,11 +2369,21 @@ function wireImportFlow() {
     renderXrayWorkbench();
     updateMetrics();
     renderHeat();
-    setImportHint(`已删除文献：${book.title}（移除 ${before - state.annotations.length} 条标注）`);
-    recordImportAudit("delete", {
-      rank,
-      title: book.title,
+    if (removedBooks.length === 1) {
+      setImportHint(`已删除源：${removedBooks[0].title}（移除 ${before - state.annotations.length} 条标注）`);
+      recordImportAudit("delete", {
+        rank: removedBooks[0].rank,
+        title: removedBooks[0].title,
+        removed_annotations: before - state.annotations.length,
+      });
+      return;
+    }
+
+    setImportHint(`已删除 ${removedBooks.length} 个源（移除 ${before - state.annotations.length} 条标注）`);
+    recordImportAudit("delete_batch", {
+      count: removedBooks.length,
       removed_annotations: before - state.annotations.length,
+      titles: removedBooks.map((book) => book.title).join(" | "),
     });
   };
 
@@ -1968,8 +2407,8 @@ function wireImportFlow() {
         input.value = "";
         return;
       }
-      $("reader-content").textContent = "资源包已导入，请点击“打开正文”。";
-      $("reader-meta").textContent = "等待打开文档";
+      $("reader-content").textContent = "资源包已导入，请点击“加载”。";
+      $("reader-meta").textContent = "等待加载";
       renderCitespaceMeta();
       input.value = "";
     } catch (e) {
@@ -1999,8 +2438,8 @@ function wireImportFlow() {
         input.value = "";
         return;
       }
-      $("reader-content").textContent = "资源包已导入，请点击“打开正文”。";
-      $("reader-meta").textContent = "等待打开文档";
+      $("reader-content").textContent = "资源包已导入，请点击“加载”。";
+      $("reader-meta").textContent = "等待加载";
       renderCitespaceMeta();
       input.value = "";
     } catch (e) {
@@ -2030,18 +2469,18 @@ function wireImportFlow() {
   });
 
   $("btn-open-book").addEventListener("click", async () => {
-    if (state.books.length === 0) return;
-    const rank = Number($("book-select").value);
-    await loadBook(rank);
-  });
-
-  $("btn-open-book-quick")?.addEventListener("click", async () => {
-    if (state.books.length === 0) return;
-    const rank = Number($("book-select").value);
-    await loadBook(rank);
+    const book = getFocusedBook();
+    if (!book) return;
+    await loadBook(book.rank);
   });
 
   $("book-select").addEventListener("change", () => {
+    const rank = Number($("book-select").value);
+    state.focusSourceRank = Number.isFinite(rank) ? rank : null;
+    if (state.focusSourceRank !== null && !state.selectedSourceRanks.includes(state.focusSourceRank)) {
+      state.selectedSourceRanks.push(state.focusSourceRank);
+    }
+    renderSourceList();
     updateInteractionGuards();
   });
 
@@ -2050,15 +2489,43 @@ function wireImportFlow() {
     updateInteractionGuards();
   });
 
+  $("btn-close-import-drawer")?.addEventListener("click", () => {
+    state.importControlsExpanded = false;
+    updateInteractionGuards();
+  });
+
+  $("import-drawer-shell")?.querySelector(".import-drawer-backdrop")?.addEventListener("click", () => {
+    state.importControlsExpanded = false;
+    updateInteractionGuards();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && state.importControlsExpanded) {
+      state.importControlsExpanded = false;
+      updateInteractionGuards();
+    }
+  });
+
   $("import-recent-only")?.addEventListener("change", (event) => {
     state.importRecentOnly = Boolean(event.target?.checked);
     renderBookSelect();
   });
 
+  $("btn-select-visible-sources")?.addEventListener("click", () => {
+    state.selectedSourceRanks = getVisibleSourceBooks().map((book) => book.rank);
+    if (state.selectedSourceRanks.length > 0 && !state.selectedSourceRanks.includes(state.focusSourceRank)) {
+      state.focusSourceRank = state.selectedSourceRanks[0];
+    }
+    renderBookSelect();
+  });
+
+  $("btn-clear-source-selection")?.addEventListener("click", () => {
+    state.selectedSourceRanks = state.focusSourceRank !== null ? [state.focusSourceRank] : [];
+    renderBookSelect();
+  });
+
   $("btn-rename-book").addEventListener("click", () => {
-    if (state.books.length === 0) return;
-    const rank = Number($("book-select").value);
-    const book = state.books.find((x) => x.rank === rank);
+    const book = getFocusedBook();
     if (!book) return;
 
     $("rename-panel").classList.remove("hidden");
@@ -2068,9 +2535,7 @@ function wireImportFlow() {
   });
 
   const applyRename = () => {
-    if (state.books.length === 0) return;
-    const rank = Number($("book-select").value);
-    const book = state.books.find((x) => x.rank === rank);
+    const book = getFocusedBook();
     if (!book) return;
 
     const trimmed = $("rename-book-input").value.trim();
@@ -2091,7 +2556,6 @@ function wireImportFlow() {
     });
     saveAnnotations();
     renderBookSelect();
-    $("book-select").value = String(book.rank);
     renderLedger();
     renderXrayWorkbench();
     setImportHint(`已重命名：${prev} -> ${trimmed}`);
@@ -2113,19 +2577,19 @@ function wireImportFlow() {
   });
 
   $("btn-delete-book").addEventListener("click", () => {
-    if (state.books.length === 0) return;
-    const rank = Number($("book-select").value);
-    const book = state.books.find((x) => x.rank === rank);
-    if (!book) return;
-    const annCount = state.annotations.filter((ann) => ann.rank === rank).length;
-    openDeletePanel(rank, book.title, annCount);
+    const selectedBooks = getSelectedBooks();
+    if (selectedBooks.length === 0) return;
+    const focusedBook = getFocusedBook() || selectedBooks[0];
+    const ranks = selectedBooks.map((book) => book.rank);
+    const annCount = state.annotations.filter((ann) => ranks.includes(ann.rank)).length;
+    openDeletePanel(ranks, focusedBook?.title || "当前源", annCount);
   });
 
   $("btn-delete-confirm").addEventListener("click", () => {
-    if (!state.deleteChoice.open || typeof state.deleteChoice.rank !== "number") return;
-    const rank = state.deleteChoice.rank;
+    if (!state.deleteChoice.open || !Array.isArray(state.deleteChoice.ranks) || state.deleteChoice.ranks.length === 0) return;
+    const ranks = [...state.deleteChoice.ranks];
     closeDeletePanel();
-    deleteBookByRank(rank);
+    deleteBooksByRanks(ranks);
   });
 
   $("btn-delete-cancel").addEventListener("click", () => {
@@ -2444,6 +2908,8 @@ async function loadBook(rank) {
   const book = state.books.find((x) => x.rank === rank);
   if (!book) return;
   state.currentBook = book;
+  state.focusSourceRank = book.rank;
+  if (!state.selectedSourceRanks.includes(book.rank)) state.selectedSourceRanks.push(book.rank);
   renderContextHeader();
   renderCitespaceMeta();
 
@@ -2489,11 +2955,10 @@ async function loadBook(rank) {
     state.searchQuery = "";
     state.searchHits = [];
     state.searchHitIndex = 0;
-    $("reader-search").value = "";
+    syncSearchInputs("");
 
     renderReaderLines();
     renderBookSelect();
-    $("book-select").value = String(book.rank);
     renderAtlas();
     renderTimeline();
     renderHeat();
@@ -3228,24 +3693,7 @@ function jumpToSearchHit(delta) {
   renderSearchStatus();
 }
 
-function wireReaderSearch() {
-  $("reader-search").addEventListener("input", (e) => {
-    applySearchQuery(e.target.value, true);
-  });
-
-  $("reader-search").addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    e.preventDefault();
-    if (state.searchHits.length === 0) {
-      applySearchHighlight();
-      return;
-    }
-    jumpToSearchHit(e.shiftKey ? -1 : 1);
-  });
-
-  $("btn-search-prev").addEventListener("click", () => jumpToSearchHit(-1));
-  $("btn-search-next").addEventListener("click", () => jumpToSearchHit(1));
-}
+function wireReaderSearch() {}
 
 function wireOperationsRail() {
   const opsSearch = $("ops-search");
@@ -3266,13 +3714,13 @@ function wireOperationsRail() {
 
   const prev = $("ops-search-prev");
   const next = $("ops-search-next");
-  const focusLeft = $("ops-focus-left");
+  const focusSearch = $("ops-focus-search");
   if (prev) prev.addEventListener("click", () => jumpToSearchHit(-1));
   if (next) next.addEventListener("click", () => jumpToSearchHit(1));
-  if (focusLeft) {
-    focusLeft.addEventListener("click", () => {
-      const left = $("reader-search");
-      if (left) left.focus();
+  if (focusSearch) {
+    focusSearch.addEventListener("click", () => {
+      const search = $("ops-search");
+      if (search) search.focus();
     });
   }
 }
@@ -3650,8 +4098,7 @@ function initAutoFocusControl() {
 function applyShortcutHints() {
   const hintMap = {
     "btn-open-book": "Alt+O",
-    "btn-open-book-quick": "Alt+O",
-    "reader-search": "Alt+F",
+    "ops-search": "Alt+F",
     "btn-toggle-import-controls": "Alt+I",
     "btn-command": "Cmd/Ctrl+K",
   };
@@ -3775,7 +4222,7 @@ function wireStudioShortcuts() {
     }
     if (key === "f") {
       e.preventDefault();
-      if (!$("reader-search")?.disabled) $("reader-search").focus();
+      if (!$("ops-search")?.disabled) $("ops-search").focus();
       return;
     }
     if (key === "i") {

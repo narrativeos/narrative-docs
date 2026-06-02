@@ -54,6 +54,7 @@ Workspace
   │   ├─ Rhythm Timeline
   │   └─ Heat Layer
   ├─ 洞察面板 Insight Panel
+  ├─ 标注操作 Annotation Actions
   │   ├─ Conclusion Cards
   │   ├─ Evidence Links
   │   └─ Retry/Repair Actions
@@ -71,7 +72,7 @@ Workspace
 主要元素：
 
 - 资源包上传入口（导入文件包 / 导入文件夹包）
-- 文献选择器与“打开正文”入口
+- 多源列表（支持多选）与“打开焦点源”入口
 - Import/Fast/Deep 状态条（importing/running/completed/degraded）
 
 绑定数据：DS-V1-AUTHOR-SHORT-001、DS-V1-AUTHOR-LONG-001
@@ -82,35 +83,38 @@ Workspace
 
 布局：
 
-- 左栏 Source Foundation（Brand/Source/File/Load State）+ Import + 文本定位 + 标注 + CiteSpace 元数据
+- 左栏 Source Foundation（Brand/Source/File/Load State）+ Import + CiteSpace 元数据
 - 中栏 Main Stage（Domain Navigation + 域主舞台；Atlas/Text Lab 含正文预览，Corpus/Genome/Insight/Library 使用独立工作台）
-- 右栏 洞察面板 Insight Panel
+- 右栏 洞察面板 Insight Panel + 标注操作 Annotation Actions + 证据相关面板
 
 关键交互：
 
-- 左栏先上传并导入资源包，再打开正文；导入状态与正文打开状态分离。
+- 左栏先上传并导入资源包，再通过多源列表选择一个或多个源；导入状态与正文打开状态分离，正文始终由“焦点源”驱动打开。
 - 导航层级遵循“域导航（与主舞台同栏）-> 上下文导航（Layer/Mode，仅 Atlas）-> 工具控件（钻取/缩放）-> 当前位置面包屑”的秩序，避免同层竞争。
 - 域导航 Domain Navigation 固定为（Text Lab/Atlas/Corpus/Genome/Insight/Library），不随当前文件切换而改变入口集合。
-- 左栏顶部 Source Foundation 承载 Brand / Source / File / Load State 等对象上下文，且需随当前选中文献与加载状态实时联动。
+- 左栏顶部 Source Foundation 承载 Brand / Selected / Focus / Version Track / Source Scope / Load State 等对象上下文，且需随当前焦点源、已选源集合与加载状态实时联动。
+- Source Foundation 为纯前提摘要卡，不再承载“打开正文”等直接操作按钮；动作入口由源工作台与右栏操作区承担。
 - 左栏 Source Foundation 与相关输入面板服务于所有域：域切换时左栏结构与可见性保持稳定。
+- 文本定位不再占用左栏；右栏 Operations Rail 承载常驻搜索、上一处/下一处跳转与搜索状态反馈。
+- 标注输入不再占用左栏；右栏需承载 Annotation Actions，并与 Evidence Ledger 相邻组织，形成“标注 -> 证据沉淀 -> 导出”连续操作链。
 - 一级导航需与主舞台保持强联动：Text Lab/Atlas/Corpus/Genome/Insight/Library 每个入口都必须驱动到对应域的默认任务与主舞台，且点击后状态与面包屑立即同步。
 - Insight 域主舞台需包含 Conclusion Card / Evidence Chain / Actionable Suggestions / Source Preview 四块，并提供 Show Evidence 证据跳转。
 - Library 域主舞台需包含 Structured Entries / Entity Relations / Concept & Topic Index / Evidence Provenance 四块，用于承载知识沉淀视图。
 - 层级约束：Domain 是页面骨架切换层；Layer/Mode/Drill 仅作为 Atlas 域内上下文导航，不应泄漏到非 Atlas 域。
 - 一级导航映射允许通过页面内 JSON 配置覆盖默认规则（`#top-nav-rules`），用于快速调整 IA 语义而不改联动逻辑代码。
 - 中栏主舞台顶部的域导航区增加微标注（Global Navigation），明确其为一级入口而非页面内参数切换。
-- 导航术语统一为中英对照并保持固定映射：全局导航 Global Navigation、层 Layer、模式 Mode、粒度 Drill、洞察面板 Insight Panel、工作流状态 Workflow State、证据账本 Evidence Ledger、X-Ray 工作台 X-Ray Workbench、降级恢复 Degrade Recovery、证据修复 Evidence Repair；面包屑需沿用同一术语。
+- 导航术语统一为中英对照并保持固定映射：全局导航 Global Navigation、层 Layer、模式 Mode、粒度 Drill、洞察面板 Insight Panel、标注操作 Annotation Actions、工作流状态 Workflow State、证据账本 Evidence Ledger、X-Ray 工作台 X-Ray Workbench、降级恢复 Degrade Recovery、证据修复 Evidence Repair；面包屑需沿用同一术语。
 - 标题命名规范：页面左上主标题使用 Studio，导航项首项使用 Text Lab；浏览器页签标题采用 NarrativeOS Studio Workspace Prototype v1（保留历史命名以兼容已有外部链接）。
 - 选择文件或文件夹后自动触发导入，导入按钮保留为手动重试入口。
 - 导入重复资源包时通过左栏内联决策面板提供“替换现有文献 / 保留副本 / 取消导入”分支，避免误覆盖。
-- 导入后的文献列表支持轻量管理动作：重命名文献、删除文献（并级联删除其标注）；删除动作通过左栏内联确认面板完成。
-- 导入后的文献列表采用“双时态模型”：已导入待加载（imported）与近期项目（loaded），并按最近活动时间排序。
-- 导入后的文献列表提供“仅看近期项目（24h）”筛选开关；筛选开启时仅保留 24 小时内已加载文献，空结果显示明确占位提示。
-- 近期项目条目追加“NEW 24h”标识与相对时间（如“刚刚 / 5 分钟前”），提升时态可读性。
-- 左栏“打开正文”按钮需根据当前选中文献状态切换文案：首次加载显示“打开正文”，已加载文献显示“重新加载正文”。
+- 导入后的源列表支持轻量管理动作：焦点源重命名、焦点源打开、所选源删除（并级联删除其标注）；删除动作通过左栏内联确认面板完成。
+- 导入后的源列表采用“双时态模型”：已导入待加载（imported）与近期项目（loaded），并按最近活动时间排序。
+- 导入后的源列表提供“仅看近期项目（24h）”筛选开关；筛选开启时仅保留 24 小时内已加载源，空结果显示明确占位提示。
+- 近期项目条目追加“NEW 24h”标识与相对时间（如“刚刚 / 5 分钟前”），提升时态可读性；若同标题/作者形成版本链，列表中需展示版本序号提示。
+- 左栏“打开焦点源”按钮需根据当前焦点源状态切换文案：首次加载显示“打开正文”，已加载源显示“重新加载正文”。
 - 左栏导入区块需具备状态联动反馈：空状态、已导入状态、已加载状态；状态文本与视觉样式同步更新。
 - 任一文献首次加载后，导入区默认进入精简态（自动收起导入抽屉，仅保留文献选择、状态与核心操作）；用户可通过“展开导入抽屉 / 收起导入抽屉”手动切换。
-- 右栏采用“决策优先”信息层级：洞察面板（结论）> 工作流状态（进度）> X-Ray 工作台（修复决策）> 证据账本（追溯）；通过卡片权重、对比度与排版节奏区分主次。
+- 右栏采用“决策优先”信息层级：洞察面板（结论）> 标注操作（输入）> 工作流状态（进度）> X-Ray 工作台（修复决策）> 证据账本（追溯）；通过卡片权重、对比度与排版节奏区分主次。
 - 中栏 Atlas 上下文导航升级为“控制面驾驶舱”：在 Layer/Mode/Drill 之上增加控制面元信息（Control Surface），并通过胶囊状态、边框层级与按钮反馈强化“当前模式 -> 当前层 -> 当前粒度”的快速判读。
 - 右栏信息面板支持“按块折叠/展开”并持久化用户偏好（刷新后保留），用于高密度场景下的注意力管理。
 - 右栏支持“自动焦点面板”模式（默认开启）：随当前 Mode 自动展开最相关卡片并收起次级卡片；支持 Alt+A 快速切换自动/手动密度管理。
@@ -129,7 +133,8 @@ Workspace
 
 新增组件（CiteSpace Bridge Metadata）：
 
-- 当前文献引用元数据卡：record_id/source_dataset/times_cited/centrality/burst/cluster
+- 当前焦点源引用元数据卡：record_id/source_dataset/times_cited/centrality/burst/cluster
+- 多选状态下需提供聚合 CiteSpace 元数据视图：selected_sources/focus_rank/times_cited 汇总/centrality 均值/burst 峰值/cluster 数量
 - 对接 JSON 预览：用于与 CiteSpace 或外部引文网络工具对接
 - 元数据来源：优先读取数据集中的 citespace 字段；缺失时由系统按当前文献生成 fallback 元数据
 

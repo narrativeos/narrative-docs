@@ -24,67 +24,94 @@
     <main class="studio-shell">
       <aside class="pane pane-left">
         <section class="panel-block context-header" id="panel-context">
-          <h2>源前提 Source Foundation</h2>
-          <p class="muted">先确认品牌与数据来源，再进入域内分析任务。</p>
+          <p class="panel-kicker">Workspace Premise</p>
+          <h2>已选源汇总 Source Summary</h2>
+          <p class="muted">这里专门汇总当前已选择源的状态，先看集合关系，再进入多源阅读与对比。</p>
           <div class="context-grid">
-            <div class="context-item"><span>Brand</span><strong id="ctx-brand">NarrativeOS Studio</strong></div>
-            <div class="context-item"><span>Source</span><strong id="ctx-source">未绑定</strong></div>
-            <div class="context-item"><span>File</span><strong id="ctx-file">未选择文档</strong></div>
+            <div class="context-item"><span>Selection Set</span><strong id="ctx-brand">尚未成组</strong></div>
+            <div class="context-item"><span>Selected</span><strong id="ctx-selected">0 个源</strong></div>
+            <div class="context-item"><span>Focus</span><strong id="ctx-focus">未设置</strong></div>
+            <div class="context-item"><span>Parallel Active</span><strong id="ctx-parallel">1 路展开</strong></div>
+            <div class="context-item"><span>Version Track</span><strong id="ctx-version">单版本</strong></div>
+            <div class="context-item"><span>Source Scope</span><strong id="ctx-source">未绑定</strong></div>
             <div class="context-item"><span>Load State</span><strong id="ctx-load">idle</strong></div>
           </div>
-          <div class="context-actions">
-            <button id="btn-open-book-quick" class="small-btn">打开正文</button>
-          </div>
+          <p id="ctx-summary" class="context-summary muted">当前尚未选择源。</p>
         </section>
 
         <section class="panel-block panel-import" id="panel-import">
-          <h2>数据导入</h2>
-          <button id="btn-toggle-import-controls" class="small-btn ghost import-toggle hidden">收起导入抽屉</button>
-          <div id="import-drawer" class="import-drawer">
-            <p class="muted import-intro">上传文件或文件夹，每次上传都视为一个文献资源包。上传后可直接在下方文档列表中打开。</p>
-            <div class="upload-block">
-              <label class="field-label" for="package-file">上传单文件资源包</label>
-              <input id="package-file" type="file" accept="application/json,.json,text/plain,.txt,.md" />
-              <button id="btn-import-file-package" class="small-btn">导入文件包</button>
+          <p class="panel-kicker">Source Workbench</p>
+          <h2>已选源详情 Source Desk</h2>
+          <div class="source-workspace-head">
+            <div>
+              <p class="field-label">当前已选源</p>
+              <p id="source-selection-summary" class="muted source-selection-summary">尚未选择源。</p>
             </div>
-            <div class="upload-block">
-              <label class="field-label" for="package-folder">上传文件夹资源包</label>
-              <input id="package-folder" type="file" webkitdirectory directory multiple />
-              <button id="btn-import-folder-package" class="small-btn">导入文件夹包</button>
-              <p class="muted">建议包含 manifest.json（可选）和正文文件（txt/md/json）。</p>
-            </div>
-            <p id="import-hint" class="muted">尚未上传资源包。</p>
-            <div id="duplicate-panel" class="duplicate-panel hidden" role="status" aria-live="polite">
-              <p id="duplicate-message" class="duplicate-message">检测到重复资源包，请选择处理方式。</p>
-              <div class="duplicate-actions">
-                <button id="btn-dup-replace" class="small-btn">替换现有文献</button>
-                <button id="btn-dup-copy" class="small-btn">保留为副本</button>
-                <button id="btn-dup-cancel" class="small-btn ghost">取消本次导入</button>
-              </div>
+            <div class="source-workspace-actions">
+              <button id="btn-toggle-import-controls" class="small-btn ghost import-toggle">打开源抽屉</button>
             </div>
           </div>
-          <label class="field-label" for="book-select">导入后的文档</label>
-          <select id="book-select"></select>
-          <label class="recent-filter-row" for="import-recent-only">
-            <input id="import-recent-only" type="checkbox" />
-            <span>仅看近期项目（24h）</span>
-          </label>
+          <div id="import-drawer-shell" class="import-drawer-shell hidden" aria-live="polite">
+            <div class="import-drawer-backdrop"></div>
+            <div id="import-drawer" class="import-drawer" role="dialog" aria-label="源管理抽屉">
+              <div class="import-drawer-head">
+                <div>
+                  <p class="field-label">源管理抽屉</p>
+                  <p class="muted import-intro">导入新源、调整当前已选源，并指定一个焦点源作为默认展开项。</p>
+                </div>
+                <button id="btn-close-import-drawer" class="small-btn ghost">关闭</button>
+              </div>
+              <div class="upload-block">
+                <label class="field-label" for="package-file">上传单文件资源包</label>
+                <input id="package-file" type="file" accept="application/json,.json,text/plain,.txt,.md" />
+                <button id="btn-import-file-package" class="small-btn">导入文件包</button>
+              </div>
+              <div class="upload-block">
+                <label class="field-label" for="package-folder">上传文件夹资源包</label>
+                <input id="package-folder" type="file" webkitdirectory directory multiple />
+                <button id="btn-import-folder-package" class="small-btn">导入文件夹包</button>
+                <p class="muted">建议包含 manifest.json（可选）和正文文件（txt/md/json）。</p>
+              </div>
+              <p id="import-hint" class="muted">尚未上传资源包。</p>
+              <div id="duplicate-panel" class="duplicate-panel hidden" role="status" aria-live="polite">
+                <p id="duplicate-message" class="duplicate-message">检测到重复资源包，请选择处理方式。</p>
+                <div class="duplicate-actions">
+                  <button id="btn-dup-replace" class="small-btn">替换现有文献</button>
+                  <button id="btn-dup-copy" class="small-btn">保留为副本</button>
+                  <button id="btn-dup-cancel" class="small-btn ghost">取消本次导入</button>
+                </div>
+              </div>
+              <div class="source-drawer-toolbar">
+                <label class="recent-filter-row" for="import-recent-only">
+                  <input id="import-recent-only" type="checkbox" />
+                  <span>仅看近期项目（24h）</span>
+                </label>
+                <div class="source-workspace-actions">
+                  <button id="btn-select-visible-sources" class="small-btn ghost">选择全部可见</button>
+                  <button id="btn-clear-source-selection" class="small-btn ghost">只保留焦点</button>
+                </div>
+              </div>
+              <div id="source-drawer-list" class="source-drawer-list"></div>
+            </div>
+          </div>
+          <select id="book-select" class="source-legacy-select" aria-hidden="true" tabindex="-1"></select>
+          <div id="source-list" class="source-list source-detail-list"></div>
           <p id="import-block-state" class="import-block-state muted">状态：尚未导入文档。</p>
           <div class="import-actions">
-            <button id="btn-open-book" class="small-btn">打开正文</button>
-            <button id="btn-rename-book" class="small-btn">重命名文献</button>
-            <button id="btn-delete-book" class="small-btn danger">删除文献</button>
+            <button id="btn-open-book" class="small-btn">打开焦点源</button>
+            <button id="btn-rename-book" class="small-btn">重命名焦点源</button>
+            <button id="btn-delete-book" class="small-btn danger">删除焦点源</button>
           </div>
           <div id="rename-panel" class="rename-panel hidden">
             <label class="field-label" for="rename-book-input">新标题</label>
-            <input id="rename-book-input" type="text" placeholder="输入新的文献标题" />
+            <input id="rename-book-input" type="text" placeholder="输入新的源标题" />
             <div class="rename-actions">
               <button id="btn-rename-apply" class="small-btn">保存标题</button>
               <button id="btn-rename-cancel" class="small-btn ghost">取消</button>
             </div>
           </div>
           <div id="delete-panel" class="delete-panel hidden" role="status" aria-live="polite">
-            <p id="delete-message" class="delete-message">确认删除当前文献？</p>
+            <p id="delete-message" class="delete-message">确认删除当前源？</p>
             <div class="delete-actions">
               <button id="btn-delete-confirm" class="small-btn danger">确认删除</button>
               <button id="btn-delete-cancel" class="small-btn ghost">取消</button>
@@ -96,18 +123,8 @@
           </div>
         </section>
 
-        <section id="panel-search" class="panel-block">
-          <h2>文本定位</h2>
-          <p class="muted">通过关键词快速定位到正文中的目标句段，再进行标注。</p>
-          <div class="search-row">
-            <input id="reader-search" type="text" placeholder="输入关键词，例如：铁屋、希望" />
-            <button id="btn-search-prev" class="small-btn">上一处</button>
-            <button id="btn-search-next" class="small-btn">下一处</button>
-          </div>
-          <p id="reader-search-status" class="muted">请先打开文档后再搜索。</p>
-        </section>
-
         <section id="panel-citespace" class="panel-block citespace-block">
+          <p class="panel-kicker">Bridge Metadata</p>
           <h2>CiteSpace 引用元数据</h2>
           <p class="muted">面向 CiteSpace 的对接数据，同时显示当前已打开文献的引用网络元数据。</p>
           <div id="citespace-meta" class="citespace-meta-grid"></div>
@@ -117,27 +134,6 @@
           </details>
         </section>
 
-        <section id="panel-annotation" class="panel-block">
-          <h2>标注与证据</h2>
-          <p class="muted">先在正文窗口选中一句话，再填写标签与说明，最后点击保存。</p>
-          <div class="inline-toolbar">
-            <label for="tag-select">标签</label>
-            <select id="tag-select">
-              <option value="人物">人物</option>
-              <option value="事件">事件</option>
-              <option value="主题">主题</option>
-              <option value="问题信号">问题信号</option>
-            </select>
-            <label for="priority-select">优先级</label>
-            <select id="priority-select">
-              <option value="P1">P1</option>
-              <option value="P2" selected>P2</option>
-              <option value="P3">P3</option>
-            </select>
-            <input id="note-input" type="text" placeholder="输入你对该句的判断，例如：存在重复叙述" />
-            <button id="btn-add-annotation" class="primary">保存当前选中句段</button>
-          </div>
-        </section>
       </aside>
 
       <section class="pane pane-center">
@@ -367,9 +363,10 @@
             <button id="ops-search-next" class="small-btn" type="button">下一处</button>
           </div>
           <div class="ops-search-actions">
-            <button id="ops-focus-left" class="ghost small-btn" type="button">聚焦左侧搜索</button>
+            <button id="ops-focus-search" class="ghost small-btn" type="button">聚焦搜索框</button>
             <button id="btn-focus-show-evidence" class="small-btn" type="button">Show Evidence</button>
           </div>
+          <p id="reader-search-status" class="muted">请先加载后再搜索。</p>
           <div class="insight-metrics">
             <div><span>结构完整度</span><strong id="metric-structure">74</strong></div>
             <div><span>节奏指数</span><strong id="metric-rhythm">68</strong></div>
@@ -431,6 +428,28 @@
             <button id="btn-retry-deep" class="ghost">Retry Deep</button>
             <button id="btn-continue-fast" class="ghost">Continue Fast</button>
             <button id="btn-export-partial" class="ghost">Export Partial</button>
+          </div>
+        </section>
+
+        <section id="panel-annotation" class="panel-block panel-annotation">
+          <h2>标注操作 Annotation Actions</h2>
+          <p class="muted">在正文中选中一句话后，于右栏完成标签、优先级与说明输入，再保存为证据条目。</p>
+          <div class="inline-toolbar annotation-toolbar">
+            <label for="tag-select">标签</label>
+            <select id="tag-select">
+              <option value="人物">人物</option>
+              <option value="事件">事件</option>
+              <option value="主题">主题</option>
+              <option value="问题信号">问题信号</option>
+            </select>
+            <label for="priority-select">优先级</label>
+            <select id="priority-select">
+              <option value="P1">P1</option>
+              <option value="P2" selected>P2</option>
+              <option value="P3">P3</option>
+            </select>
+            <input id="note-input" type="text" placeholder="输入你对该句的判断，例如：存在重复叙述" />
+            <button id="btn-add-annotation" class="primary">保存当前选中句段</button>
           </div>
         </section>
 
