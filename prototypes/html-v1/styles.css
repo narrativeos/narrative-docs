@@ -1449,6 +1449,37 @@ button.danger {
 
 .corpus-row strong {
   color: #1b3b57;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.axis-badge {
+  border: 1px solid #b9cfe4;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f4f9ff 0%, #e9f3ff 100%);
+  color: #235176;
+  font-size: 10px;
+  line-height: 1;
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+
+.corpus-evidence-btn,
+.library-evidence-btn {
+  border: 1px solid #b7cfe4;
+  border-radius: 999px;
+  background: #eef5fc;
+  color: #1f4f79;
+  font-size: 11px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.corpus-evidence-btn:hover,
+.library-evidence-btn:hover {
+  background: #e1eefb;
 }
 
 .genome-workbench {
@@ -1662,6 +1693,10 @@ button.danger {
 
 .library-row strong {
   color: #1b3b57;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .reader-stage {
@@ -2969,6 +3004,313 @@ button.danger {
   box-shadow: 0 8px 14px rgba(36, 88, 136, 0.2);
 }
 
+.narrative-axis-panel {
+  margin-top: 11px;
+  border: 1px solid #c3d6e8;
+  border-radius: 12px;
+  padding: 10px;
+  background:
+    linear-gradient(180deg, #fbfdff 0%, #eff5fc 100%),
+    radial-gradient(140% 120% at 100% 0%, rgba(16, 103, 182, 0.1) 0%, rgba(16, 103, 182, 0) 62%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.narrative-axis-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.narrative-axis-head h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #123f65;
+}
+
+.narrative-axis-head .panel-kicker {
+  margin-bottom: 4px;
+}
+
+.narrative-axis-summary {
+  margin: 6px 0 0;
+}
+
+.narrative-axis-caption {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: #3f607c;
+  letter-spacing: 0.02em;
+}
+
+.narrative-axis-filters {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.axis-filter-btn {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 6px;
+  border: 1px solid #bfd2e5;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #f2f7fd 100%);
+  color: #355772;
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.axis-filter-btn[data-marker-type]::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #3e719f;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.axis-filter-btn[data-marker-type="evidence"]::before {
+  background: #b14d3b;
+}
+
+.axis-filter-btn[data-marker-type="conclusion"]::before {
+  background: #7f57a5;
+}
+
+.axis-filter-btn[data-marker-type="knowledge"]::before {
+  background: #20816f;
+}
+
+.axis-filter-btn.active {
+  border-color: #82aad2;
+  color: #1f4669;
+  background: linear-gradient(180deg, #edf5ff 0%, #dcecff 100%);
+  box-shadow: 0 6px 12px rgba(36, 88, 136, 0.18);
+}
+
+.axis-filter-reset {
+  margin-left: auto;
+  border-style: dashed;
+  color: #355772;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+}
+
+.axis-filter-reset:hover {
+  border-color: #82aad2;
+  background: linear-gradient(180deg, #edf5ff 0%, #e4f0ff 100%);
+}
+
+.narrative-axis-plane {
+  margin-top: 10px;
+  position: relative;
+  --axis-pad: 10px;
+  height: 180px;
+  border: 1px solid #c2d7ea;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #f6faff 0%, #eef5fd 100%);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+
+.narrative-axis-plane:focus-visible {
+  box-shadow: 0 0 0 2px rgba(15, 108, 189, 0.28);
+}
+
+.narrative-axis-grid {
+  position: absolute;
+  inset: var(--axis-pad);
+  border: 1px solid #c8dbed;
+  background:
+    repeating-linear-gradient(0deg, rgba(38, 92, 139, 0.08), rgba(38, 92, 139, 0.08) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(38, 92, 139, 0.08), rgba(38, 92, 139, 0.08) 1px, transparent 1px, transparent 24px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 245, 255, 0.75) 100%);
+}
+
+.narrative-axis-markers {
+  position: absolute;
+  inset: var(--axis-pad);
+}
+
+.narrative-marker {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  background: #3e719f;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.narrative-marker.marker-evidence {
+  background: #b14d3b;
+}
+
+.narrative-marker.marker-conclusion {
+  background: #7f57a5;
+}
+
+.narrative-marker.marker-knowledge {
+  background: #20816f;
+}
+
+.narrative-marker:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.narrative-marker.is-muted {
+  opacity: 0.26;
+  filter: saturate(0.55);
+  transform: translate(-50%, -50%) scale(0.86);
+}
+
+.narrative-marker.is-muted:hover {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.narrative-marker.is-spotlight {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 0 0 5px rgba(15, 108, 189, 0.24);
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.narrative-axis-cursor {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #0f6cbd 0%, #0a5a9d 100%);
+  box-shadow: 0 8px 12px rgba(16, 93, 157, 0.28);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.narrative-axis-x-line,
+.narrative-axis-y-line {
+  position: absolute;
+  pointer-events: none;
+}
+
+.narrative-axis-x-line {
+  top: var(--axis-pad);
+  bottom: var(--axis-pad);
+  width: 1px;
+  background: rgba(15, 108, 189, 0.42);
+}
+
+.narrative-axis-y-line {
+  left: var(--axis-pad);
+  right: var(--axis-pad);
+  height: 1px;
+  background: rgba(15, 108, 189, 0.42);
+}
+
+.narrative-axis-label {
+  position: absolute;
+  font-size: 11px;
+  color: #3f607c;
+  pointer-events: none;
+}
+
+.narrative-axis-label-x {
+  right: 10px;
+  bottom: 8px;
+}
+
+.narrative-axis-label-y {
+  left: 6px;
+  top: 10px;
+  transform-origin: left top;
+  transform: rotate(-90deg) translate(-100%, 0);
+}
+
+.narrative-axis-legend {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #3f607c;
+}
+
+.narrative-axis-legend-main {
+  line-height: 1.45;
+}
+
+.narrative-axis-anchor-chips {
+  margin-top: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.axis-anchor-chip {
+  width: auto;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #bfd2e5;
+  border-radius: 999px;
+  background: #f6fbff;
+  color: #2e5473;
+  font-size: 11px;
+  line-height: 1;
+  padding: 5px 10px;
+}
+
+.axis-anchor-chip[data-spotlight-type="chapter"]::before,
+.axis-anchor-chip[data-spotlight-type="evidence"]::before,
+.axis-anchor-chip[data-spotlight-type="conclusion"]::before,
+.axis-anchor-chip[data-spotlight-type="knowledge"]::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #3e719f;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.axis-anchor-chip[data-spotlight-type="evidence"]::before {
+  background: #b14d3b;
+}
+
+.axis-anchor-chip[data-spotlight-type="conclusion"]::before {
+  background: #7f57a5;
+}
+
+.axis-anchor-chip[data-spotlight-type="knowledge"]::before {
+  background: #20816f;
+}
+
+.axis-anchor-chip:hover {
+  border-color: #88aed4;
+  background: #edf5ff;
+}
+
+.axis-anchor-chip.active {
+  border-color: #0f6cbd;
+  background: linear-gradient(180deg, #edf5ff 0%, #dcecff 100%);
+  color: #154568;
+  box-shadow: 0 6px 12px rgba(36, 88, 136, 0.16);
+}
+
+.axis-anchor-chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f3f6f9;
+}
+
+.axis-anchor-chip-clear {
+  border-style: dashed;
+  margin-left: auto;
+}
+
 .stage-content {
   margin-top: 12px;
 }
@@ -2990,5 +3332,38 @@ button.danger {
   .stage-path {
     display: block;
     width: fit-content;
+  }
+
+  .narrative-axis-head {
+    flex-direction: column;
+  }
+
+  .narrative-axis-filters {
+    gap: 8px;
+  }
+
+  .axis-filter-btn {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+
+  .axis-filter-reset {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+
+  .axis-anchor-chip-clear {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .narrative-axis-panel {
+    padding: 9px;
+  }
+
+  .narrative-axis-plane {
+    --axis-pad: 8px;
+    height: 156px;
   }
 }

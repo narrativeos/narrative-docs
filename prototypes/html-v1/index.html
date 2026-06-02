@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NarrativeOS Studio Workspace Prototype v1</title>
-    <link rel="stylesheet" href="./styles.css?v=20260602" />
+    <link rel="stylesheet" href="./styles.css?v=20260603" />
   </head>
   <body>
     <div class="ambient ambient-a"></div>
@@ -203,6 +203,34 @@
             <button class="drill-btn drill-chip" data-drill="paragraph">段落</button>
             <button class="drill-btn drill-chip" data-drill="sentence">句子</button>
           </div>
+        </section>
+
+        <section id="narrative-axis-panel" class="narrative-axis-panel" aria-label="文序双轴">
+          <div class="narrative-axis-head">
+            <div>
+              <p class="panel-kicker">Narrative Navigation</p>
+              <h3>文序双轴 Narrative Axis</h3>
+              <p id="narrative-axis-summary" class="muted">请先加载正文后再使用文序双轴。</p>
+            </div>
+            <p class="narrative-axis-caption">X 轴: 叙述序 · Y 轴: 时间序</p>
+          </div>
+          <div id="narrative-axis-filters" class="narrative-axis-filters" role="group" aria-label="文序结果类型过滤">
+            <button type="button" class="axis-filter-btn active" data-marker-type="chapter">章节</button>
+            <button type="button" class="axis-filter-btn active" data-marker-type="evidence">证据</button>
+            <button type="button" class="axis-filter-btn active" data-marker-type="conclusion">结论</button>
+            <button type="button" class="axis-filter-btn active" data-marker-type="knowledge">知识</button>
+            <button type="button" id="btn-axis-filter-reset" class="axis-filter-btn axis-filter-reset">重置当前域</button>
+          </div>
+          <div id="narrative-axis-plane" class="narrative-axis-plane" tabindex="0" role="application" aria-label="文序二维坐标平面">
+            <div class="narrative-axis-grid" aria-hidden="true"></div>
+            <div id="narrative-axis-x-line" class="narrative-axis-x-line" aria-hidden="true"></div>
+            <div id="narrative-axis-y-line" class="narrative-axis-y-line" aria-hidden="true"></div>
+            <div id="narrative-axis-markers" class="narrative-axis-markers"></div>
+            <div id="narrative-axis-cursor" class="narrative-axis-cursor" aria-hidden="true"></div>
+            <div class="narrative-axis-label narrative-axis-label-x">叙述序 →</div>
+            <div class="narrative-axis-label narrative-axis-label-y">时间序 ↑</div>
+          </div>
+          <div id="narrative-axis-legend" class="narrative-axis-legend" aria-live="polite"></div>
         </section>
 
         <section class="stage-content">
@@ -551,6 +579,6 @@
       }
     </script>
 
-    <script src="./app.js?v=20260602" type="module"></script>
+    <script src="./app.js?v=20260603" type="module"></script>
   </body>
 </html>

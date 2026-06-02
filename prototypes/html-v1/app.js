@@ -7,6 +7,7 @@ const IMPORT_AUDIT_KEY = "narrativeos.prototype.importAudit.v1";
 const PANEL_COLLAPSE_KEY = "narrativeos.prototype.panelCollapse.v1";
 const AUTO_FOCUS_PANELS_KEY = "narrativeos.prototype.autoFocusPanels.v1";
 const PANEL_PRESET_KEY = "narrativeos.prototype.panelPreset.v1";
+const NARRATIVE_MARKER_FILTERS_KEY = "narrativeos.prototype.narrativeMarkerFilters.v1";
 const RECENT_PROJECT_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 const WORKFLOW = {
@@ -244,7 +245,92 @@ const state = {
   },
   paletteCommands: [],
   paletteIndex: 0,
+  narrative: {
+    axisMode: "narrative",
+    anchorLine: 0,
+    anchorEvent: 0,
+    isGlobalSync: true,
+    markers: [],
+    markerFilters: {
+      chapter: true,
+      evidence: true,
+      conclusion: true,
+      knowledge: true,
+    },
+    domainMarkerFilters: {},
+    eventMaps: {
+      lineToEvent: [],
+      eventToLine: [],
+    },
+    eventMapDomain: "",
+    domainAnchors: {},
+    spotlightType: null,
+  },
 };
+
+const DEFAULT_MARKER_FILTERS = Object.freeze({
+  chapter: true,
+  evidence: true,
+  conclusion: true,
+  knowledge: true,
+});
+
+function cloneDefaultMarkerFilters() {
+  return {
+    chapter: DEFAULT_MARKER_FILTERS.chapter,
+    evidence: DEFAULT_MARKER_FILTERS.evidence,
+    conclusion: DEFAULT_MARKER_FILTERS.conclusion,
+    knowledge: DEFAULT_MARKER_FILTERS.knowledge,
+  };
+}
+
+function normalizeMarkerFilters(raw) {
+  if (!raw || typeof raw !== "object") return cloneDefaultMarkerFilters();
+  return {
+    chapter: raw.chapter !== false,
+    evidence: raw.evidence !== false,
+    conclusion: raw.conclusion !== false,
+    knowledge: raw.knowledge !== false,
+  };
+}
+
+function loadNarrativeMarkerFiltersState() {
+  try {
+    const raw = localStorage.getItem(NARRATIVE_MARKER_FILTERS_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return {};
+    const normalized = {};
+    Object.entries(parsed).forEach(([domain, filters]) => {
+      normalized[domain] = normalizeMarkerFilters(filters);
+    });
+    return normalized;
+  } catch {
+    return {};
+  }
+}
+
+function saveNarrativeMarkerFiltersState() {
+  try {
+    localStorage.setItem(NARRATIVE_MARKER_FILTERS_KEY, JSON.stringify(state.narrative.domainMarkerFilters || {}));
+  } catch {
+    // Ignore persistence failures for private mode or quota limits.
+  }
+}
+
+function applyDomainMarkerFilters(domainKey = state.activeDomain) {
+  const domainFilters = state.narrative.domainMarkerFilters[domainKey];
+  if (!domainFilters) {
+    state.narrative.markerFilters = cloneDefaultMarkerFilters();
+    return;
+  }
+  state.narrative.markerFilters = normalizeMarkerFilters(domainFilters);
+}
+
+function persistDomainMarkerFilters(domainKey = state.activeDomain) {
+  state.narrative.domainMarkerFilters[domainKey] = normalizeMarkerFilters(state.narrative.markerFilters);
+  saveNarrativeMarkerFiltersState();
+}
 
 function $(id) {
   return document.getElementById(id);
@@ -682,8 +768,54 @@ function setCorpusRows(el, rows) {
     return;
   }
   el.innerHTML = rows
-    .map((row) => `<div class="corpus-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}</strong></div>`)
+    .map((row) => {
+      const evidenceLine = Number.isInteger(row.evidenceLine) ? row.evidenceLine : null;
+      const axisMeta = evidenceLine === null ? "" : axisBadgeHtmlByLine(evidenceLine);
+      const evidenceBtn =
+        evidenceLine === null
+          ? ""
+          : `<button type="button" class="corpus-evidence-btn" data-evidence-line="${evidenceLine}">定位</button>`;
+      return `<div class="corpus-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${axisMeta}${evidenceBtn}</strong></div>`;
+    })
     .join("");
+}
+
+function axisMetaByLine(lineIndex) {
+  if (!Number.isInteger(lineIndex) || state.readerLines.length === 0) return null;
+  const max = Math.max(0, state.readerLines.length - 1);
+  const line = clampIndex(lineIndex, max);
+  const event = clampIndex(state.narrative.eventMaps.lineToEvent[line] ?? line, max);
+  return {
+    line,
+    event,
+    label: `X:L${line + 1} · Y:E${event + 1}`,
+  };
+}
+
+function axisBadgeHtmlByLine(lineIndex) {
+  const axis = axisMetaByLine(lineIndex);
+  if (!axis) return "";
+  return `<span class="axis-badge">${escapeHtml(axis.label)}</span>`;
+}
+
+function jumpToWorkbenchEvidence(lineIndex, focusId) {
+  if (!Number.isInteger(lineIndex) || state.readerLines.length === 0) return;
+  const bounded = Math.max(0, Math.min(state.readerLines.length - 1, lineIndex));
+  setActiveLine(bounded);
+  const focusEl = $(focusId) || $("reader-stage");
+  if (focusEl) {
+    focusEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function bindCorpusEvidenceButtons(container) {
+  if (!container) return;
+  container.querySelectorAll(".corpus-evidence-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const line = Number(e.currentTarget.dataset.evidenceLine);
+      if (Number.isInteger(line)) jumpToWorkbenchEvidence(line, "corpus-workbench");
+    });
+  });
 }
 
 function renderCorpusWorkbench() {
@@ -697,17 +829,25 @@ function renderCorpusWorkbench() {
   const openedBooks = state.books.filter((b) => Boolean(b.last_opened_at)).length;
   const uniqueAuthors = new Set(state.books.map((b) => String(b.author || "未知作者"))).size;
   const imported24h = state.books.filter((b) => isWithinRecentWindow(b.imported_at)).length;
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  const maxLine = Math.max(0, state.readerLines.length - 1);
+  const activeLine = clampIndex(state.activeLine ?? 0, maxLine);
+  const trendLine = clampIndex(activeLine + 8, maxLine);
+  const compareLine = clampIndex(activeLine + 14, maxLine);
+  const clusterAnchorLines = [];
+  const compareAnchorLines = [];
 
   setCorpusRows(explorerEl, [
     { label: "语料总量", value: `${totalBooks} 本` },
     { label: "作者覆盖", value: `${uniqueAuthors} 位` },
     { label: "24h 新增", value: `${imported24h} 本` },
+    { label: "当前叙事锚点", value: hasOpenDoc ? `L${activeLine + 1}` : "未加载", evidenceLine: hasOpenDoc ? activeLine : null },
   ]);
 
   const trendRows = [
-    { label: "已加载样本", value: `${openedBooks} 本` },
-    { label: "标注总量", value: `${state.annotations.length} 条` },
-    { label: "活跃度（24h）", value: `${state.books.filter((b) => isWithinRecentWindow(b.last_opened_at)).length} 本` },
+    { label: "已加载样本", value: `${openedBooks} 本`, evidenceLine: hasOpenDoc ? activeLine : null },
+    { label: "标注总量", value: `${state.annotations.length} 条`, evidenceLine: hasOpenDoc ? trendLine : null },
+    { label: "活跃度（24h）", value: `${state.books.filter((b) => isWithinRecentWindow(b.last_opened_at)).length} 本`, evidenceLine: hasOpenDoc ? compareLine : null },
   ];
   setCorpusRows(trendEl, trendRows);
 
@@ -719,7 +859,11 @@ function renderCorpusWorkbench() {
   const topAuthors = Array.from(authorCounts.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
-    .map(([author, count]) => ({ label: `作者群：${author}`, value: `${count} 本` }));
+    .map(([author, count], idx) => {
+      const evidenceLine = hasOpenDoc ? clampIndex(activeLine + idx * 6, maxLine) : null;
+      if (Number.isInteger(evidenceLine)) clusterAnchorLines.push(evidenceLine);
+      return { label: `作者群：${author}`, value: `${count} 本`, evidenceLine };
+    });
   setCorpusRows(clusterEl, topAuthors);
 
   const ranked = [...state.books].sort((a, b) => Number(b.open_count || 0) - Number(a.open_count || 0));
@@ -732,10 +876,29 @@ function renderCorpusWorkbench() {
     const bAnn = state.annotations.filter((ann) => ann.rank === b.rank).length;
     setCorpusRows(compareEl, [
       { label: `${a.title} vs ${b.title}`, value: `open ${a.open_count || 0}/${b.open_count || 0}` },
-      { label: "标注差异", value: `${aAnn - bAnn >= 0 ? "+" : ""}${aAnn - bAnn}` },
-      { label: "建议", value: "进入 Compare 深度分析" },
+      { label: "标注差异", value: `${aAnn - bAnn >= 0 ? "+" : ""}${aAnn - bAnn}`, evidenceLine: hasOpenDoc ? compareLine : null },
+      { label: "建议", value: "进入 Compare 深度分析", evidenceLine: hasOpenDoc ? clampIndex(compareLine + 8, maxLine) : null },
     ]);
+    if (hasOpenDoc) {
+      compareAnchorLines.push(compareLine, clampIndex(compareLine + 8, maxLine));
+    }
   }
+
+  if (!hasOpenDoc) {
+    setNarrativeDomainAnchors("corpus", {});
+  } else {
+    setNarrativeDomainAnchors("corpus", {
+      chapter: [activeLine, trendLine, compareLine],
+      evidence: [activeLine, trendLine, compareLine, ...clusterAnchorLines, ...compareAnchorLines],
+      conclusion: [...compareAnchorLines],
+      knowledge: [...clusterAnchorLines],
+    });
+  }
+
+  bindCorpusEvidenceButtons(explorerEl);
+  bindCorpusEvidenceButtons(trendEl);
+  bindCorpusEvidenceButtons(clusterEl);
+  bindCorpusEvidenceButtons(compareEl);
 }
 
 function setGenomeRows(el, rows) {
@@ -751,19 +914,14 @@ function setGenomeRows(el, rows) {
         evidenceLine === null
           ? ""
           : `<button type="button" class="genome-evidence-btn" data-evidence-line="${evidenceLine}">证据</button>`;
-      return `<div class="genome-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${evidenceBtn}</strong></div>`;
+      const axisMeta = evidenceLine === null ? "" : axisBadgeHtmlByLine(evidenceLine);
+      return `<div class="genome-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${axisMeta}${evidenceBtn}</strong></div>`;
     })
     .join("");
 }
 
 function jumpToGenomeEvidence(lineIndex) {
-  if (!Number.isInteger(lineIndex) || state.readerLines.length === 0) return;
-  const bounded = Math.max(0, Math.min(state.readerLines.length - 1, lineIndex));
-  setActiveLine(bounded);
-  const focusEl = $("panel-insight") || $("reader-stage");
-  if (focusEl) {
-    focusEl.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  jumpToWorkbenchEvidence(lineIndex, "genome-workbench");
 }
 
 function bindGenomeEvidenceButtons(...containers) {
@@ -784,15 +942,20 @@ function renderGenomeWorkbench() {
   const diffEl = $("genome-diff-summary");
   const evolutionEl = $("genome-evolution-summary");
   if (!cardEl || !radarEl || !diffEl || !evolutionEl) return;
+  const genomeCardAnchors = [];
+  const genomeDiffAnchors = [];
+  const genomeEvolutionAnchors = [];
 
   // Language Genome Card - 基于当前打开文档的风格维度画像
   const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
   if (!hasOpenDoc) {
     setGenomeRows(cardEl, [{ label: "状态", value: "请先打开文档" }]);
+    setNarrativeDomainAnchors("genome", {});
   } else {
     const evidenceLines = [0, 4, 8, 12, 16].map((line) =>
       Math.max(0, Math.min(state.readerLines.length - 1, line))
     );
+    genomeCardAnchors.push(...evidenceLines);
     // 模拟风格维度分值（V1 mock）
     const dimensions = [
       { label: "空间感", value: "72", evidenceLine: evidenceLines[0] },
@@ -827,6 +990,7 @@ function renderGenomeWorkbench() {
       { label: "感官率差异", value: "+5", evidenceLine: lineA },
       { label: "建议", value: "进入 Diff 深度分析" },
     ]);
+    genomeDiffAnchors.push(lineA, lineB);
   }
 
   // Evolution Timeline - 演化时间线
@@ -842,6 +1006,21 @@ function renderGenomeWorkbench() {
       { label: "新增倾向", value: "感官率上升趋势", evidenceLine: lineNew },
       { label: "建议", value: "进入 Evolution 深度分析" },
     ]);
+    genomeEvolutionAnchors.push(lineStable, lineNew);
+  }
+
+  if (hasOpenDoc) {
+    const chapterAnchors = [
+      genomeCardAnchors[0],
+      genomeCardAnchors[2],
+      genomeCardAnchors[4],
+    ].filter((line) => Number.isInteger(line));
+    setNarrativeDomainAnchors("genome", {
+      chapter: chapterAnchors,
+      evidence: [...genomeCardAnchors, ...genomeDiffAnchors],
+      conclusion: [...genomeDiffAnchors],
+      knowledge: [...genomeEvolutionAnchors],
+    });
   }
 
   bindGenomeEvidenceButtons(cardEl, diffEl, evolutionEl);
@@ -934,20 +1113,16 @@ function setInsightRows(el, rows) {
         evidenceLine === null
           ? ""
           : `<button type="button" class="insight-evidence-btn" data-evidence-line="${evidenceLine}">Show Evidence</button>`;
-      return `<div class="insight-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${evidenceBtn}</strong></div>`;
+      const axisMeta = evidenceLine === null ? "" : axisBadgeHtmlByLine(evidenceLine);
+      return `<div class="insight-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${axisMeta}${evidenceBtn}</strong></div>`;
     })
     .join("");
 }
 
 function jumpToInsightEvidence(lineIndex) {
   if (!Number.isInteger(lineIndex) || state.readerLines.length === 0) return;
-  const bounded = Math.max(0, Math.min(state.readerLines.length - 1, lineIndex));
-  setActiveLine(bounded);
+  jumpToWorkbenchEvidence(lineIndex, "insight-workbench");
   renderInsightWorkbench();
-  const focusEl = $("panel-insight") || $("insight-workbench");
-  if (focusEl) {
-    focusEl.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 }
 
 function bindInsightEvidenceButtons(...containers) {
@@ -960,6 +1135,58 @@ function bindInsightEvidenceButtons(...containers) {
       });
     });
   });
+}
+
+function topLineIndicesByScore(scoredItems, limit = 3) {
+  if (!Array.isArray(scoredItems) || scoredItems.length === 0) return [];
+  return scoredItems
+    .sort((a, b) => b.score - a.score || a.line - b.line)
+    .slice(0, Math.max(1, limit))
+    .map((item) => item.line);
+}
+
+function buildInsightStructuredEvidenceLines(bounded) {
+  const maxLine = Math.max(0, state.readerLines.length - 1);
+  const lines = state.readerLines || [];
+  const transitionRe = /(但是|然而|不过|却|于是|因此|随后|最终|忽然|突然)/;
+  const moodRe = /[!?！？…]/;
+
+  const scoredLength = [];
+  const scoredTransition = [];
+  const scoredMood = [];
+
+  lines.forEach((text, idx) => {
+    const line = String(text || "");
+    const length = line.length;
+    scoredLength.push({ line: idx, score: length });
+
+    const transitionHits = (line.match(transitionRe) || []).length;
+    if (transitionHits > 0) {
+      scoredTransition.push({ line: idx, score: transitionHits * 5 + Math.min(8, length / 10) });
+    }
+
+    const moodHits = (line.match(moodRe) || []).length;
+    const commaHits = (line.match(/[，、；]/g) || []).length;
+    if (moodHits > 0 || commaHits >= 3) {
+      scoredMood.push({ line: idx, score: moodHits * 6 + commaHits * 1.4 + Math.min(6, length / 12) });
+    }
+  });
+
+  const longLines = topLineIndicesByScore(scoredLength, 3);
+  const transitionLines = topLineIndicesByScore(scoredTransition, 3);
+  const moodLines = topLineIndicesByScore(scoredMood, 3);
+
+  const fallback = [
+    clampIndex(bounded - 2, maxLine),
+    clampIndex(bounded + 2, maxLine),
+    clampIndex(Math.floor(maxLine * 0.66), maxLine),
+  ];
+
+  return {
+    longLines: longLines.length > 0 ? longLines : [fallback[0]],
+    transitionLines: transitionLines.length > 0 ? transitionLines : [fallback[1]],
+    moodLines: moodLines.length > 0 ? moodLines : [fallback[2]],
+  };
 }
 
 function renderInsightWorkbench() {
@@ -975,6 +1202,7 @@ function renderInsightWorkbench() {
     setInsightRows(chainEl, [{ label: "证据", value: "暂无原文样本" }]);
     setInsightRows(actionsEl, [{ label: "建议", value: "暂无可执行建议" }]);
     sourceEl.innerHTML = '<div class="insight-source-line">请先在 Text Lab 加载内容，再进入 Insight 分析。</div>';
+    setNarrativeDomainAnchors("insight", {});
     return;
   }
 
@@ -985,23 +1213,40 @@ function renderInsightWorkbench() {
   const nearby = [bounded - 1, bounded, bounded + 1].filter((idx) => idx >= 0 && idx < state.readerLines.length);
   const confidence = Math.max(62, Math.min(94, 70 + Math.floor(lineLen / 18)));
   const fatigueRisk = lineLen > 42 ? "中高" : lineLen > 26 ? "中" : "低";
+  const annByRank = state.annotations
+    .filter((ann) => ann.rank === state.currentBook?.rank && typeof ann.line === "number")
+    .sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime());
+  const firstSeenLine = annByRank.length > 0 ? annByRank[0].line : bounded;
+  const latestLine = annByRank.length > 0 ? annByRank[annByRank.length - 1].line : bounded;
+  const strongestLine = annByRank.length > 0 ? annByRank.reduce((best, cur) => {
+    const scoreBest = riskScore(best);
+    const scoreCur = riskScore(cur);
+    return scoreCur > scoreBest ? cur : best;
+  }).line : bounded;
+  const structuredLines = buildInsightStructuredEvidenceLines(bounded);
+  const longLine = structuredLines.longLines[0] ?? bounded;
+  const transitionLine = structuredLines.transitionLines[0] ?? bounded;
+  const moodLine = structuredLines.moodLines[0] ?? bounded;
 
   setInsightRows(conclusionEl, [
-    { label: "结论", value: `存在${fatigueRisk}阅读疲劳风险` },
-    { label: "置信度", value: `${confidence}%` },
-    { label: "当前焦点", value: `L${bounded + 1}` },
+    { label: "结论", value: `存在${fatigueRisk}阅读疲劳风险`, evidenceLine: strongestLine },
+    { label: "置信度", value: `${confidence}%`, evidenceLine: strongestLine },
+    { label: "当前焦点", value: `L${bounded + 1}`, evidenceLine: bounded },
   ]);
 
   setInsightRows(chainEl, [
     { label: "证据 A：句长偏高", value: `${lineLen} 字`, evidenceLine: bounded },
     { label: "证据 B：近邻节奏波动", value: `${nearby.length} 段`, evidenceLine: nearby[0] ?? bounded },
-    { label: "证据 C：已有关联标注", value: `${state.annotations.filter((x) => x.line === bounded).length} 条`, evidenceLine: bounded },
+    { label: "证据 C：转折信号", value: `L${transitionLine + 1}`, evidenceLine: transitionLine },
+    { label: "证据 D：高波动语气", value: `L${moodLine + 1}`, evidenceLine: moodLine },
+    { label: "证据 E：已有关联标注", value: `${state.annotations.filter((x) => x.line === bounded).length} 条`, evidenceLine: bounded },
   ]);
 
   setInsightRows(actionsEl, [
-    { label: "建议 1", value: "长句断开为 2-3 句" },
-    { label: "建议 2", value: "抽象词替换为具象表达" },
-    { label: "建议 3", value: "加入节奏变化与情绪拐点" },
+    { label: "首次出现", value: `L${firstSeenLine + 1}`, evidenceLine: firstSeenLine },
+    { label: "最强证据", value: `L${strongestLine + 1}`, evidenceLine: strongestLine },
+    { label: "最新修订", value: `L${latestLine + 1}`, evidenceLine: latestLine },
+    { label: "结构长句", value: `L${longLine + 1}`, evidenceLine: longLine },
   ]);
 
   sourceEl.innerHTML = nearby
@@ -1011,6 +1256,25 @@ function renderInsightWorkbench() {
       return `<div class="insight-source-line${activeClass}"><strong>L${idx + 1}</strong> ${line}</div>`;
     })
     .join("");
+
+  setNarrativeDomainAnchors("insight", {
+    chapter: [
+      clampIndex(bounded - 2, state.readerLines.length - 1),
+      bounded,
+      clampIndex(bounded + 2, state.readerLines.length - 1),
+      transitionLine,
+    ],
+    evidence: [
+      bounded,
+      nearby[0] ?? bounded,
+      nearby[nearby.length - 1] ?? bounded,
+      ...structuredLines.transitionLines,
+      ...structuredLines.moodLines,
+      longLine,
+    ],
+    conclusion: [firstSeenLine, strongestLine, latestLine, transitionLine],
+    knowledge: [firstSeenLine, latestLine, ...structuredLines.longLines],
+  });
 
   bindInsightEvidenceButtons(chainEl);
 }
@@ -1022,8 +1286,63 @@ function setLibraryRows(el, rows) {
     return;
   }
   el.innerHTML = rows
-    .map((row) => `<div class="library-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}</strong></div>`)
+    .map((row) => {
+      const evidenceLine = Number.isInteger(row.evidenceLine) ? row.evidenceLine : null;
+      const axisMeta = evidenceLine === null ? "" : axisBadgeHtmlByLine(evidenceLine);
+      const evidenceBtn =
+        evidenceLine === null
+          ? ""
+          : `<button type="button" class="library-evidence-btn" data-evidence-line="${evidenceLine}">定位</button>`;
+      return `<div class="library-row"><span>${escapeHtml(String(row.label))}</span><strong>${escapeHtml(String(row.value))}${axisMeta}${evidenceBtn}</strong></div>`;
+    })
     .join("");
+}
+
+function bindLibraryEvidenceButtons(container) {
+  if (!container) return;
+  container.querySelectorAll(".library-evidence-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const line = Number(e.currentTarget.dataset.evidenceLine);
+      if (Number.isInteger(line)) jumpToWorkbenchEvidence(line, "library-workbench");
+    });
+  });
+}
+
+function buildLibraryStructuredIndexRows(maxLine, firstLine, latestLine) {
+  const semanticBuckets = [
+    { label: "人物关系", re: /(他|她|他们|她们|父亲|母亲|朋友|老师|同学|医生|警察)/ },
+    { label: "时空定位", re: /(今天|昨天|明天|夜里|清晨|黄昏|城市|街道|房间|车站|学校)/ },
+    { label: "因果转折", re: /(因为|所以|因此|于是|但是|然而|不过|却)/ },
+  ];
+
+  const matches = semanticBuckets
+    .map((bucket) => {
+      let count = 0;
+      let firstHit = null;
+      state.readerLines.forEach((line, idx) => {
+        if (!bucket.re.test(String(line || ""))) return;
+        count += 1;
+        if (firstHit === null) firstHit = idx;
+      });
+      return {
+        label: `索引：${bucket.label}`,
+        value: `${count} 段`,
+        evidenceLine: firstHit,
+        count,
+      };
+    })
+    .filter((row) => row.count > 0 && Number.isInteger(row.evidenceLine))
+    .slice(0, 3);
+
+  if (matches.length > 0) {
+    return matches;
+  }
+
+  return [
+    { label: "索引：起始段", value: "结构锚点", evidenceLine: firstLine },
+    { label: "索引：中继段", value: "结构锚点", evidenceLine: clampIndex(Math.floor((firstLine + latestLine) / 2), maxLine) },
+    { label: "索引：收束段", value: "结构锚点", evidenceLine: latestLine },
+  ];
 }
 
 function renderLibraryWorkbench() {
@@ -1037,18 +1356,33 @@ function renderLibraryWorkbench() {
   const totalAuthors = new Set(state.books.map((b) => String(b.author || "未知作者"))).size;
   const totalAnnotations = state.annotations.length;
   const recentImported = state.books.filter((b) => isWithinRecentWindow(b.imported_at)).length;
+  const hasOpenDoc = Boolean(state.currentBook) && state.readerLines.length > 0;
+  const maxLine = Math.max(0, state.readerLines.length - 1);
+  const firstAnn = state.annotations.find((ann) => ann.rank === state.currentBook?.rank && typeof ann.line === "number");
+  const firstLine = hasOpenDoc ? clampIndex(firstAnn?.line ?? 0, maxLine) : null;
+  const latestLine = hasOpenDoc
+    ? clampIndex(
+        state.annotations
+          .filter((ann) => ann.rank === state.currentBook?.rank && typeof ann.line === "number")
+          .sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime())[0]?.line ?? 0,
+        maxLine
+      )
+    : null;
+  const safeFirstLine = hasOpenDoc ? clampIndex(firstLine ?? 0, maxLine) : null;
+  const safeLatestLine = hasOpenDoc ? clampIndex(latestLine ?? safeFirstLine ?? 0, maxLine) : null;
+  const middleLine = hasOpenDoc ? clampIndex(Math.floor(((safeFirstLine ?? 0) + (safeLatestLine ?? 0)) / 2), maxLine) : null;
 
   setLibraryRows(entriesEl, [
-    { label: "作品条目", value: `${totalWorks} 条` },
-    { label: "作者条目", value: `${totalAuthors} 条` },
-    { label: "24h 增量", value: `${recentImported} 条` },
+    { label: "作品条目", value: `${totalWorks} 条`, evidenceLine: safeFirstLine },
+    { label: "作者条目", value: `${totalAuthors} 条`, evidenceLine: safeLatestLine },
+    { label: "24h 增量", value: `${recentImported} 条`, evidenceLine: middleLine },
   ]);
 
   const relationEstimate = totalWorks * 2 + totalAnnotations;
   setLibraryRows(relationsEl, [
-    { label: "作品-作者", value: `${totalWorks} 组` },
-    { label: "条目-证据", value: `${totalAnnotations} 条` },
-    { label: "关系总量（估算）", value: `${relationEstimate}` },
+    { label: "作品-作者", value: `${totalWorks} 组`, evidenceLine: safeFirstLine },
+    { label: "条目-证据", value: `${totalAnnotations} 条`, evidenceLine: safeLatestLine },
+    { label: "关系总量（估算）", value: `${relationEstimate}`, evidenceLine: middleLine },
   ]);
 
   const topTags = new Map();
@@ -1056,20 +1390,50 @@ function renderLibraryWorkbench() {
     const tag = String(ann.tag || "untagged");
     topTags.set(tag, (topTags.get(tag) || 0) + 1);
   });
-  const indexRows = Array.from(topTags.entries())
+  const indexRowsFromTags = Array.from(topTags.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
-    .map(([tag, count]) => ({ label: `索引：${tag}`, value: `${count} 条` }));
+    .map(([tag, count], idx) => ({
+      label: `索引：${tag}`,
+      value: `${count} 条`,
+      evidenceLine: hasOpenDoc ? clampIndex((safeFirstLine ?? 0) + idx * 5, maxLine) : null,
+    }));
+  const indexRows =
+    indexRowsFromTags.length > 0
+      ? indexRowsFromTags
+      : hasOpenDoc
+      ? buildLibraryStructuredIndexRows(maxLine, safeFirstLine ?? 0, safeLatestLine ?? 0)
+      : [];
   setLibraryRows(indexEl, indexRows);
 
   const anchored = state.annotations.filter((ann) => (ann.anchor_state || "anchored") === "anchored").length;
   const recovered = state.annotations.filter((ann) => (ann.anchor_state || "anchored") !== "anchored").length;
   const withRef = state.annotations.filter((ann) => Boolean(ann.sentence_ref)).length;
   setLibraryRows(provenanceEl, [
-    { label: "已锚定证据", value: `${anchored} 条` },
-    { label: "恢复证据", value: `${recovered} 条` },
-    { label: "来源完整率", value: totalAnnotations ? `${Math.round((withRef / totalAnnotations) * 100)}%` : "0%" },
+    { label: "已锚定证据", value: `${anchored} 条`, evidenceLine: safeFirstLine },
+    { label: "恢复证据", value: `${recovered} 条`, evidenceLine: safeLatestLine },
+    { label: "来源完整率", value: totalAnnotations ? `${Math.round((withRef / totalAnnotations) * 100)}%` : "0%", evidenceLine: middleLine },
   ]);
+
+  if (!hasOpenDoc) {
+    setNarrativeDomainAnchors("library", {});
+  } else {
+    const libraryEvidence = [safeFirstLine, safeLatestLine, middleLine];
+    indexRows.forEach((row) => {
+      if (Number.isInteger(row.evidenceLine)) libraryEvidence.push(row.evidenceLine);
+    });
+    setNarrativeDomainAnchors("library", {
+      chapter: [safeFirstLine, clampIndex((safeFirstLine ?? 0) + 8, maxLine), middleLine, safeLatestLine],
+      evidence: libraryEvidence,
+      conclusion: [safeLatestLine, middleLine],
+      knowledge: indexRows.map((row) => row.evidenceLine),
+    });
+  }
+
+  bindLibraryEvidenceButtons(entriesEl);
+  bindLibraryEvidenceButtons(relationsEl);
+  bindLibraryEvidenceButtons(indexEl);
+  bindLibraryEvidenceButtons(provenanceEl);
 }
 
 function updateInteractionGuards() {
@@ -1301,6 +1665,7 @@ function renderStagePath() {
 
 function applyDomainLayout() {
   const domainMeta = DOMAIN_META[state.activeDomain] || DOMAIN_META.textlab;
+  applyDomainMarkerFilters(state.activeDomain);
   const persistentLeftPanelIds = new Set(["panel-import"]);
   const stageTitle = $("stage-title");
   const stageDesc = $("stage-desc");
@@ -1370,6 +1735,7 @@ function applyDomainLayout() {
   renderDomainOperations();
   renderOpsKpiCards();
   renderStagePath();
+  renderNarrativeAxis();
 }
 
 function renderLayers() {
@@ -2617,12 +2983,613 @@ function splitTextLines(text) {
     .slice(0, 220);
 }
 
+function clampIndex(value, max) {
+  if (!Number.isFinite(max) || max < 0) return 0;
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(max, Math.round(value)));
+}
+
+function inferEventBias(text) {
+  const line = String(text || "");
+  let bias = 0;
+  if (/(回忆|曾经|从前|此前|那年|昔日)/.test(line)) bias -= 6;
+  if (/(后来|随后|次日|第二天|最终|终于)/.test(line)) bias += 4;
+  if (/(突然|忽然)/.test(line)) bias += 2;
+  return bias;
+}
+
+function sampleRatioLines(total, ratios = []) {
+  if (total <= 0) return [];
+  const max = Math.max(0, total - 1);
+  const picked = [];
+  ratios.forEach((ratio) => {
+    if (!Number.isFinite(ratio)) return;
+    picked.push(clampIndex(max * ratio, max));
+  });
+  return Array.from(new Set(picked));
+}
+
+function sampledLinesFromAnnotations(annList, limit = 6) {
+  if (!Array.isArray(annList) || annList.length === 0) return [];
+  const sampled = [];
+  annList.forEach((ann) => {
+    if (!Number.isInteger(ann.line)) return;
+    if (!sampled.includes(ann.line)) sampled.push(ann.line);
+  });
+  return sampled.slice(0, Math.max(1, limit));
+}
+
+function linesByTopRisk(annList, limit = 3) {
+  if (!Array.isArray(annList) || annList.length === 0) return [];
+  const sorted = [...annList].sort((a, b) => riskScore(b) - riskScore(a));
+  return sampledLinesFromAnnotations(sorted, limit);
+}
+
+function linesByTagFirstSeen(annList, limit = 3) {
+  const firstSeenByTag = new Map();
+  (annList || []).forEach((ann) => {
+    if (!Number.isInteger(ann.line)) return;
+    const tag = String(ann.tag || "untagged");
+    if (!firstSeenByTag.has(tag)) firstSeenByTag.set(tag, ann.line);
+    else firstSeenByTag.set(tag, Math.min(firstSeenByTag.get(tag), ann.line));
+  });
+  return Array.from(firstSeenByTag.values())
+    .sort((a, b) => a - b)
+    .slice(0, Math.max(1, limit));
+}
+
+function chapterLinesByDensity(total, buckets = 6) {
+  if (total <= 0) return [];
+  const max = Math.max(0, total - 1);
+  const step = Math.max(1, Math.floor(total / Math.max(1, buckets)));
+  const lines = [];
+  for (let i = 0; i < total; i += step) {
+    lines.push(clampIndex(i, max));
+  }
+  return Array.from(new Set(lines));
+}
+
+function getCurrentRankAnnotationLines() {
+  const currentRank = state.currentBook?.rank;
+  const max = Math.max(0, state.readerLines.length - 1);
+  return state.annotations
+    .filter((ann) => ann.rank === currentRank && Number.isInteger(ann.line))
+    .map((ann) => ({ ...ann, line: clampIndex(ann.line, max) }));
+}
+
+function uniqueBoundedLines(lines, total = state.readerLines.length) {
+  if (!Array.isArray(lines) || total <= 0) return [];
+  const max = Math.max(0, total - 1);
+  const normalized = lines
+    .filter((line) => Number.isInteger(line))
+    .map((line) => clampIndex(line, max));
+  return Array.from(new Set(normalized));
+}
+
+function setNarrativeDomainAnchors(domainKey, payload = {}) {
+  const safePayload = {
+    chapter: uniqueBoundedLines(payload.chapter || []),
+    evidence: uniqueBoundedLines(payload.evidence || []),
+    conclusion: uniqueBoundedLines(payload.conclusion || []),
+    knowledge: uniqueBoundedLines(payload.knowledge || []),
+  };
+  state.narrative.domainAnchors[domainKey] = safePayload;
+}
+
+function filterAnnotationsForDomain(annotations, domainKey = state.activeDomain) {
+  if (!Array.isArray(annotations) || annotations.length === 0) return [];
+  if (domainKey === "textlab" || domainKey === "atlas") return annotations;
+
+  const stageRule = TOP_NAV_RULES_DEFAULT[domainKey] || null;
+  if (!stageRule) return annotations;
+
+  const filtered = annotations.filter((ann) => {
+    const layerMatch = ann.evidence_type && ann.evidence_type === stageRule.layer;
+    const modeMatch = ann.atlas_mode && ann.atlas_mode === stageRule.mode;
+    return layerMatch || modeMatch;
+  });
+
+  return filtered.length > 0 ? filtered : annotations;
+}
+
+function buildDomainMarkerLines(domainKey, total, allAnnLines, domainAnnLines, activeLine, maps, domainAnchors = null) {
+  const max = Math.max(0, total - 1);
+  const boundedActive = clampIndex(activeLine ?? 0, max);
+  const allAnnSample = sampledLinesFromAnnotations(allAnnLines, 10);
+  const domainAnnSample = sampledLinesFromAnnotations(domainAnnLines, 10);
+  const topRiskAll = linesByTopRisk(allAnnLines, 4);
+  const topRiskDomain = linesByTopRisk(domainAnnLines, 4);
+  const tagDomain = linesByTagFirstSeen(domainAnnLines, 5);
+  const anchorChapter = uniqueBoundedLines(domainAnchors?.chapter || [], total);
+  const anchorEvidence = uniqueBoundedLines(domainAnchors?.evidence || [], total);
+  const anchorConclusion = uniqueBoundedLines(domainAnchors?.conclusion || [], total);
+  const anchorKnowledge = uniqueBoundedLines(domainAnchors?.knowledge || [], total);
+  const hasAnyAnchor =
+    anchorChapter.length > 0 ||
+    anchorEvidence.length > 0 ||
+    anchorConclusion.length > 0 ||
+    anchorKnowledge.length > 0;
+
+  const anchorBackfill =
+    anchorEvidence.length > 0
+      ? anchorEvidence
+      : anchorChapter.length > 0
+      ? anchorChapter
+      : [boundedActive];
+
+  if (domainKey === "corpus") {
+    if (hasAnyAnchor) {
+      return {
+        chapter: anchorChapter.length > 0 ? anchorChapter : anchorBackfill,
+        evidence: anchorEvidence.length > 0 ? anchorEvidence : anchorBackfill,
+        conclusion: anchorConclusion.length > 0 ? anchorConclusion : anchorBackfill,
+        knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : anchorBackfill,
+      };
+    }
+    return {
+      chapter: anchorChapter.length > 0 ? anchorChapter : [boundedActive, clampIndex(boundedActive + 8, max), clampIndex(boundedActive + 14, max)],
+      evidence: anchorEvidence.length > 0 ? anchorEvidence : domainAnnSample.length > 0 ? domainAnnSample : allAnnSample,
+      conclusion: anchorConclusion.length > 0 ? anchorConclusion : [...topRiskDomain, clampIndex(boundedActive + 22, max)],
+      knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : [boundedActive, clampIndex(boundedActive + 6, max), clampIndex(boundedActive + 12, max)],
+    };
+  }
+
+  if (domainKey === "genome") {
+    if (hasAnyAnchor) {
+      return {
+        chapter: anchorChapter.length > 0 ? anchorChapter : anchorBackfill,
+        evidence: anchorEvidence.length > 0 ? anchorEvidence : anchorBackfill,
+        conclusion: anchorConclusion.length > 0 ? anchorConclusion : anchorBackfill,
+        knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : anchorBackfill,
+      };
+    }
+    return {
+      chapter: anchorChapter.length > 0 ? anchorChapter : sampleRatioLines(total, [0, 0.2, 0.4, 0.6, 0.8]),
+      evidence: anchorEvidence.length > 0 ? anchorEvidence : sampleRatioLines(total, [0.12, 0.32, 0.58, 0.82]),
+      conclusion: anchorConclusion.length > 0 ? anchorConclusion : topRiskDomain.length > 0 ? topRiskDomain : topRiskAll,
+      knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : tagDomain.length > 0 ? tagDomain : sampleRatioLines(total, [0.1, 0.5, 0.9]),
+    };
+  }
+
+  if (domainKey === "insight") {
+    if (hasAnyAnchor) {
+      return {
+        chapter: anchorChapter.length > 0 ? anchorChapter : anchorBackfill,
+        evidence: anchorEvidence.length > 0 ? anchorEvidence : anchorBackfill,
+        conclusion: anchorConclusion.length > 0 ? anchorConclusion : anchorBackfill,
+        knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : anchorBackfill,
+      };
+    }
+    const latestByTime = [...domainAnnLines].sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime());
+    const earliestByTime = [...domainAnnLines].sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime());
+    const strongest = topRiskDomain[0] ?? topRiskAll[0] ?? boundedActive;
+    const firstSeen = earliestByTime[0]?.line ?? boundedActive;
+    const latestSeen = latestByTime[0]?.line ?? boundedActive;
+    return {
+      chapter: anchorChapter.length > 0 ? anchorChapter : [clampIndex(boundedActive - 4, max), boundedActive, clampIndex(boundedActive + 4, max)],
+      evidence: anchorEvidence.length > 0 ? anchorEvidence : [clampIndex(boundedActive - 1, max), boundedActive, clampIndex(boundedActive + 1, max), strongest],
+      conclusion: anchorConclusion.length > 0 ? anchorConclusion : [firstSeen, strongest, latestSeen],
+      knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : tagDomain.length > 0 ? tagDomain : [firstSeen, latestSeen],
+    };
+  }
+
+  if (domainKey === "library") {
+    if (hasAnyAnchor) {
+      return {
+        chapter: anchorChapter.length > 0 ? anchorChapter : anchorBackfill,
+        evidence: anchorEvidence.length > 0 ? anchorEvidence : anchorBackfill,
+        conclusion: anchorConclusion.length > 0 ? anchorConclusion : anchorBackfill,
+        knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : anchorBackfill,
+      };
+    }
+    const latestByTime = [...allAnnLines].sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime());
+    const earliestByTime = [...allAnnLines].sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime());
+    const firstSeen = earliestByTime[0]?.line ?? 0;
+    const latestSeen = latestByTime[0]?.line ?? max;
+    return {
+      chapter: anchorChapter.length > 0 ? anchorChapter : chapterLinesByDensity(total, 4),
+      evidence: anchorEvidence.length > 0 ? anchorEvidence : [firstSeen, latestSeen],
+      conclusion: anchorConclusion.length > 0 ? anchorConclusion : topRiskAll.length > 0 ? topRiskAll : [boundedActive],
+      knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : tagDomain.length > 0 ? tagDomain : sampleRatioLines(total, [0.2, 0.5, 0.8]),
+    };
+  }
+
+  if (domainKey === "atlas") {
+    const divergence = [];
+    for (let i = 0; i < total; i += 1) {
+      const eventIdx = maps.lineToEvent[i] ?? i;
+      divergence.push({ line: i, score: Math.abs(eventIdx - i) });
+    }
+    const topDivergence = divergence
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 4)
+      .map((item) => item.line);
+
+    const byBias = state.readerLines
+      .map((line, idx) => ({ idx, score: Math.abs(inferEventBias(line)) }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6)
+      .map((item) => item.idx);
+
+    return {
+      chapter: anchorChapter.length > 0 ? anchorChapter : chapterLinesByDensity(total, 8),
+      evidence: anchorEvidence.length > 0 ? anchorEvidence : byBias,
+      conclusion: anchorConclusion.length > 0 ? anchorConclusion : topDivergence,
+      knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : tagDomain.length > 0 ? tagDomain : sampleRatioLines(total, [0.25, 0.5, 0.75]),
+    };
+  }
+
+  return {
+    chapter: anchorChapter.length > 0 ? anchorChapter : chapterLinesByDensity(total, 6),
+    evidence: anchorEvidence.length > 0 ? anchorEvidence : domainAnnSample.length > 0 ? domainAnnSample : allAnnSample,
+    conclusion: anchorConclusion.length > 0 ? anchorConclusion : topRiskAll.length > 0 ? topRiskAll : [boundedActive],
+    knowledge: anchorKnowledge.length > 0 ? anchorKnowledge : tagDomain.length > 0 ? tagDomain : sampleRatioLines(total, [0.25, 0.5, 0.75]),
+  };
+}
+
+function inferDomainEventBias(text, idx, domainKey, context = {}) {
+  const line = String(text || "");
+  const base = inferEventBias(line);
+
+  if (domainKey === "atlas") {
+    const transitionBoost = /(然而|但是|却|转而|与此同时)/.test(line) ? 3 : 0;
+    const punctuationBoost = /[：；—]/.test(line) ? 1 : 0;
+    return base + transitionBoost + punctuationBoost;
+  }
+
+  if (domainKey === "corpus") {
+    const commaCount = (line.match(/[，、]/g) || []).length;
+    const rhythmBias = commaCount >= 3 ? 2 : commaCount === 0 ? -1 : 0;
+    return base + rhythmBias + ((idx % 9) - 4) * 0.12;
+  }
+
+  if (domainKey === "genome") {
+    const lexicalBias = /[形容|色|光|影|声|味|触]/.test(line) ? 2 : 0;
+    const abstractBias = /(概念|意义|逻辑|结构|抽象)/.test(line) ? 2 : 0;
+    return base + lexicalBias + abstractBias;
+  }
+
+  if (domainKey === "insight") {
+    const strongest = context.strongLines || new Set();
+    if (strongest.has(idx)) return base + 6;
+    if (strongest.has(idx - 1) || strongest.has(idx + 1)) return base + 2;
+    return base;
+  }
+
+  if (domainKey === "library") {
+    const tagged = context.taggedLines || new Set();
+    if (tagged.has(idx)) return base + 4;
+    if (tagged.has(idx - 1) || tagged.has(idx + 1)) return base + 1;
+    return base;
+  }
+
+  return base;
+}
+
+function buildEventOrderMaps(lines, domainKey = state.activeDomain) {
+  const count = lines.length;
+  const lineToEvent = new Array(count).fill(0);
+  const eventToLine = new Array(count).fill(0);
+  if (count === 0) return { lineToEvent, eventToLine };
+
+  const allAnnLines = getCurrentRankAnnotationLines();
+  const domainAnnLines = filterAnnotationsForDomain(allAnnLines, domainKey);
+  const domainContext = {
+    strongLines: new Set(linesByTopRisk(domainAnnLines, 6)),
+    taggedLines: new Set(linesByTagFirstSeen(domainAnnLines, 8)),
+  };
+
+  const weighted = lines.map((line, idx) => ({
+    idx,
+    score: idx + inferDomainEventBias(line, idx, domainKey, domainContext) + idx * 0.001,
+  }));
+
+  weighted.sort((a, b) => {
+    if (a.score !== b.score) return a.score - b.score;
+    return a.idx - b.idx;
+  });
+
+  weighted.forEach((item, rank) => {
+    lineToEvent[item.idx] = rank;
+    eventToLine[rank] = item.idx;
+  });
+
+  return { lineToEvent, eventToLine };
+}
+
+function ensureNarrativeEventMapsForDomain(domainKey = state.activeDomain) {
+  const maps = state.narrative.eventMaps;
+  const invalidLength = maps.lineToEvent.length !== state.readerLines.length;
+  const invalidDomain = state.narrative.eventMapDomain !== domainKey;
+  const missingMap = maps.lineToEvent.length === 0;
+  if (missingMap || invalidLength || invalidDomain) {
+    state.narrative.eventMaps = buildEventOrderMaps(state.readerLines, domainKey);
+    state.narrative.eventMapDomain = domainKey;
+  }
+}
+
+function syncNarrativeAnchorFromLine(lineIdx) {
+  if (state.readerLines.length === 0 || !Number.isFinite(lineIdx)) {
+    state.narrative.anchorLine = 0;
+    state.narrative.anchorEvent = 0;
+    return;
+  }
+
+  const safeLine = clampIndex(lineIdx, state.readerLines.length - 1);
+  ensureNarrativeEventMapsForDomain(state.activeDomain);
+
+  state.narrative.anchorLine = safeLine;
+  state.narrative.anchorEvent = state.narrative.eventMaps.lineToEvent[safeLine] ?? safeLine;
+}
+
+function collectNarrativeMarkers() {
+  const total = state.readerLines.length;
+  if (total === 0) return [];
+
+  ensureNarrativeEventMapsForDomain(state.activeDomain);
+
+  const domainLabel = (DOMAIN_META[state.activeDomain] || DOMAIN_META.textlab).label;
+  const allAnnLines = getCurrentRankAnnotationLines();
+  const domainAnnLines = filterAnnotationsForDomain(allAnnLines, state.activeDomain);
+  const domainAnchors = state.narrative.domainAnchors[state.activeDomain] || null;
+  const markerLines = buildDomainMarkerLines(
+    state.activeDomain,
+    total,
+    allAnnLines,
+    domainAnnLines,
+    state.activeLine,
+    state.narrative.eventMaps,
+    domainAnchors
+  );
+
+  const markers = [];
+  const pushMarker = (type, line, idx) => {
+    if (!Number.isInteger(line)) return;
+    const bounded = clampIndex(line, total - 1);
+    if (markers.some((item) => item.type === type && item.line === bounded)) return;
+    const typeLabel = type === "chapter" ? "章节" : type === "evidence" ? "证据" : type === "conclusion" ? "结论" : "知识";
+    markers.push({
+      line: bounded,
+      type,
+      label: `${typeLabel} ${idx + 1}`,
+      source: domainLabel,
+    });
+  };
+
+  ["chapter", "evidence", "conclusion", "knowledge"].forEach((type) => {
+    const lines = Array.isArray(markerLines[type]) ? markerLines[type] : [];
+    lines.forEach((line, idx) => pushMarker(type, line, idx));
+  });
+
+  state.narrative.markers = markers;
+  return markers;
+}
+
+function narrativeAnchorCountByType(domainKey = state.activeDomain) {
+  const anchors = state.narrative.domainAnchors[domainKey] || {};
+  const chapter = uniqueBoundedLines(anchors.chapter || []).length;
+  const evidence = uniqueBoundedLines(anchors.evidence || []).length;
+  const conclusion = uniqueBoundedLines(anchors.conclusion || []).length;
+  const knowledge = uniqueBoundedLines(anchors.knowledge || []).length;
+  const total = chapter + evidence + conclusion + knowledge;
+  return { chapter, evidence, conclusion, knowledge, total };
+}
+
+function markerTypeLabel(type) {
+  if (type === "chapter") return "章节";
+  if (type === "evidence") return "证据";
+  if (type === "conclusion") return "结论";
+  if (type === "knowledge") return "知识";
+  return type;
+}
+
+function setNarrativeSpotlightType(type = null, options = {}) {
+  const { jump = true } = options;
+  const validTypes = ["chapter", "evidence", "conclusion", "knowledge"];
+  if (type && !validTypes.includes(type)) return;
+
+  const nextType = state.narrative.spotlightType === type ? null : type;
+  state.narrative.spotlightType = nextType;
+
+  if (!nextType) {
+    renderNarrativeAxis();
+    return;
+  }
+
+  const candidates = collectNarrativeMarkers().filter((marker) => marker.type === nextType);
+  if (jump && candidates.length > 0) {
+    jumpToLine(candidates[0].line, null);
+    return;
+  }
+
+  renderNarrativeAxis();
+}
+
+function toggleNarrativeMarkerFilter(type) {
+  if (!Object.prototype.hasOwnProperty.call(state.narrative.markerFilters, type)) return;
+  state.narrative.markerFilters[type] = !state.narrative.markerFilters[type];
+  const enabledCount = Object.values(state.narrative.markerFilters).filter(Boolean).length;
+  if (enabledCount === 0) {
+    state.narrative.markerFilters[type] = true;
+  }
+  persistDomainMarkerFilters();
+  renderNarrativeAxis();
+}
+
+function resetCurrentDomainMarkerFilters() {
+  state.narrative.markerFilters = cloneDefaultMarkerFilters();
+  persistDomainMarkerFilters(state.activeDomain);
+  renderNarrativeAxis();
+}
+
+function findNearestLineByAxes(narrativeIndex, eventIndex) {
+  const maps = state.narrative.eventMaps;
+  if (!maps.lineToEvent.length || state.readerLines.length === 0) return 0;
+
+  let bestLine = 0;
+  let bestScore = Number.POSITIVE_INFINITY;
+  for (let i = 0; i < maps.lineToEvent.length; i += 1) {
+    const narrativeDelta = Math.abs(i - narrativeIndex);
+    const eventDelta = Math.abs((maps.lineToEvent[i] ?? i) - eventIndex);
+    const score = narrativeDelta + eventDelta * 1.25;
+    if (score < bestScore) {
+      bestScore = score;
+      bestLine = i;
+    }
+  }
+
+  return bestLine;
+}
+
+function handleNarrativePlaneJump(rawXRatio, rawYRatio) {
+  if (state.readerLines.length === 0) return;
+  const xRatio = Math.max(0, Math.min(1, rawXRatio));
+  const yRatio = Math.max(0, Math.min(1, rawYRatio));
+  const maxIdx = Math.max(0, state.readerLines.length - 1);
+
+  const narrativeIndex = clampIndex(xRatio * maxIdx, maxIdx);
+  const eventIndex = clampIndex((1 - yRatio) * maxIdx, maxIdx);
+  const lineIndex = findNearestLineByAxes(narrativeIndex, eventIndex);
+  jumpToLine(lineIndex, null);
+}
+
+function renderNarrativeAxis() {
+  const summaryEl = $("narrative-axis-summary");
+  const legendEl = $("narrative-axis-legend");
+  const markersEl = $("narrative-axis-markers");
+  const filtersEl = $("narrative-axis-filters");
+  const cursorEl = $("narrative-axis-cursor");
+  const planeEl = $("narrative-axis-plane");
+  const xLineEl = $("narrative-axis-x-line");
+  const yLineEl = $("narrative-axis-y-line");
+  if (!summaryEl || !legendEl || !markersEl || !cursorEl || !planeEl || !xLineEl || !yLineEl || !filtersEl) return;
+
+  const planeRect = planeEl.getBoundingClientRect();
+  const planeStyle = window.getComputedStyle(planeEl);
+  const axisPad = Number.parseFloat(planeStyle.getPropertyValue("--axis-pad")) || 10;
+  const innerWidth = Math.max(0, planeRect.width - axisPad * 2);
+  const innerHeight = Math.max(0, planeRect.height - axisPad * 2);
+
+  if (state.readerLines.length === 0) {
+    summaryEl.textContent = "请先加载正文后再使用文序双轴。";
+    legendEl.textContent = "暂无文序数据";
+    markersEl.innerHTML = "";
+    cursorEl.style.left = `${axisPad}px`;
+    cursorEl.style.top = `${Math.max(axisPad, planeRect.height - axisPad)}px`;
+    xLineEl.style.left = `${axisPad}px`;
+    yLineEl.style.top = `${Math.max(axisPad, planeRect.height - axisPad)}px`;
+    planeEl.setAttribute("aria-description", "暂无文序数据");
+    return;
+  }
+
+  ensureNarrativeEventMapsForDomain(state.activeDomain);
+
+  syncNarrativeAnchorFromLine(state.activeLine ?? 0);
+  const total = state.readerLines.length;
+  const markerList = collectNarrativeMarkers();
+  const filteredMarkers = markerList.filter((marker) => state.narrative.markerFilters[marker.type] !== false);
+  const spotlightType = state.narrative.spotlightType;
+  const spotlightMarkers = spotlightType
+    ? filteredMarkers.filter((marker) => marker.type === spotlightType)
+    : filteredMarkers;
+  const activeNarrative = state.narrative.anchorLine + 1;
+  const activeEvent = state.narrative.anchorEvent + 1;
+  const methodByDomain = {
+    textlab: "Text Lab: 段落切片 + 变化点检测",
+    atlas: "Atlas: 动态关系图 + 中心性序列",
+    corpus: "Corpus: 频率曲线 + 突增检测",
+    genome: "Genome: 序列标注 + 阶段转移",
+    insight: "Insight: 主张演化图 + 证据时序",
+    library: "Library: 知识生命周期 + 首锚排序",
+  };
+
+  summaryEl.textContent = `当前定位：X=叙述序 L${activeNarrative}/${total} · Y=时间序 E${activeEvent}/${total} · 显示 ${filteredMarkers.length}/${markerList.length} 个点${
+    spotlightType ? `（聚焦：${markerTypeLabel(spotlightType)}）` : ""
+  }`;
+  const enabledFilters = Object.entries(state.narrative.markerFilters)
+    .filter(([, enabled]) => enabled)
+    .map(([name]) => name)
+    .join(" / ");
+  const anchorCounts = narrativeAnchorCountByType(state.activeDomain);
+  const anchorSummary =
+    anchorCounts.total > 0
+      ? `锚点来源：chapter ${anchorCounts.chapter} / evidence ${anchorCounts.evidence} / conclusion ${anchorCounts.conclusion} / knowledge ${anchorCounts.knowledge}`
+      : "锚点来源：无（使用域策略回退）";
+  legendEl.innerHTML = `
+    <div class="narrative-axis-legend-main">${escapeHtml(
+      `${state.activeDomain.toUpperCase()} 域已与文序轨道联动。${methodByDomain[state.activeDomain] || "点击轨道或标记可直接跳转。"} 当前过滤：${enabledFilters}（按域记忆） · 点位策略：按域生成 · ${anchorSummary}`
+    )}</div>
+    <div class="narrative-axis-anchor-chips" role="group" aria-label="锚点来源聚焦">
+      <button type="button" class="axis-anchor-chip${spotlightType === "chapter" ? " active" : ""}" data-spotlight-type="chapter" ${
+        anchorCounts.chapter === 0 ? "disabled" : ""
+      }>章节 ${anchorCounts.chapter}</button>
+      <button type="button" class="axis-anchor-chip${spotlightType === "evidence" ? " active" : ""}" data-spotlight-type="evidence" ${
+        anchorCounts.evidence === 0 ? "disabled" : ""
+      }>证据 ${anchorCounts.evidence}</button>
+      <button type="button" class="axis-anchor-chip${spotlightType === "conclusion" ? " active" : ""}" data-spotlight-type="conclusion" ${
+        anchorCounts.conclusion === 0 ? "disabled" : ""
+      }>结论 ${anchorCounts.conclusion}</button>
+      <button type="button" class="axis-anchor-chip${spotlightType === "knowledge" ? " active" : ""}" data-spotlight-type="knowledge" ${
+        anchorCounts.knowledge === 0 ? "disabled" : ""
+      }>知识 ${anchorCounts.knowledge}</button>
+      <button type="button" class="axis-anchor-chip axis-anchor-chip-clear${spotlightType ? " active" : ""}" data-spotlight-type="clear">清除聚焦</button>
+    </div>
+  `;
+
+  filtersEl.querySelectorAll(".axis-filter-btn").forEach((btn) => {
+    const type = btn.dataset.markerType;
+    const enabled = state.narrative.markerFilters[type] !== false;
+    btn.classList.toggle("active", enabled);
+    btn.setAttribute("aria-pressed", enabled ? "true" : "false");
+  });
+
+  markersEl.innerHTML = "";
+  filteredMarkers.forEach((marker) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `narrative-marker marker-${marker.type}`;
+    if (spotlightType && marker.type !== spotlightType) {
+      btn.classList.add("is-muted");
+    }
+    if (spotlightType && marker.type === spotlightType) {
+      btn.classList.add("is-spotlight");
+    }
+    const xRatio = total > 1 ? marker.line / (total - 1) : 0;
+    const markerEvent = state.narrative.eventMaps.lineToEvent[marker.line] ?? marker.line;
+    const yRatio = total > 1 ? markerEvent / (total - 1) : 0;
+    btn.style.left = `${xRatio * 100}%`;
+    btn.style.top = `${(1 - yRatio) * 100}%`;
+    btn.title = `${marker.label} | L${marker.line + 1} / E${markerEvent + 1} | ${marker.source}`;
+    btn.setAttribute("aria-label", btn.title);
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      jumpToLine(marker.line, null);
+    });
+    markersEl.appendChild(btn);
+  });
+
+  const xRatio = total > 1 ? state.narrative.anchorLine / (total - 1) : 0;
+  const yRatio = total > 1 ? state.narrative.anchorEvent / (total - 1) : 0;
+  const xPos = `${axisPad + innerWidth * xRatio}px`;
+  const yPos = `${axisPad + innerHeight * (1 - yRatio)}px`;
+  cursorEl.style.left = xPos;
+  cursorEl.style.top = yPos;
+  xLineEl.style.left = xPos;
+  yLineEl.style.top = yPos;
+
+  planeEl.setAttribute(
+    "aria-description",
+    `当前坐标：叙述序 ${activeNarrative}/${total}，时间序 ${activeEvent}/${total}`
+  );
+}
+
 function renderReaderLines() {
   const root = $("reader-content");
   root.innerHTML = "";
 
   if (state.readerLines.length === 0) {
     root.textContent = "暂无可展示正文";
+    renderNarrativeAxis();
     return;
   }
 
@@ -2639,17 +3606,21 @@ function renderReaderLines() {
   });
 
   applySearchHighlight();
+  renderNarrativeAxis();
 }
 
 function setActiveLine(idx) {
-  state.activeLine = idx;
+  if (!Number.isFinite(idx)) return;
+  state.activeLine = clampIndex(idx, Math.max(0, state.readerLines.length - 1));
+  syncNarrativeAnchorFromLine(state.activeLine);
   document.querySelectorAll(".reader-line").forEach((lineEl) => {
-    lineEl.classList.toggle("active", Number(lineEl.dataset.line) === idx);
+    lineEl.classList.toggle("active", Number(lineEl.dataset.line) === state.activeLine);
   });
   renderAtlas();
   renderTimeline();
   renderHeat();
-  updateInsightForLine(idx);
+  renderNarrativeAxis();
+  updateInsightForLine(state.activeLine);
 }
 
 function updateInsightForLine(idx) {
@@ -2951,7 +3922,9 @@ async function loadBook(rank) {
 
     state.currentText = text;
     state.readerLines = splitTextLines(text);
+    state.narrative.eventMaps = buildEventOrderMaps(state.readerLines);
     state.activeLine = state.readerLines.length > 0 ? 0 : null;
+    syncNarrativeAnchorFromLine(state.activeLine ?? 0);
     book.last_opened_at = new Date().toISOString();
     book.load_state = "loaded";
     book.open_count = Number(book.open_count || 0) + 1;
@@ -2970,6 +3943,7 @@ async function loadBook(rank) {
     renderAtlas();
     renderTimeline();
     renderHeat();
+    renderNarrativeAxis();
     if (state.activeLine !== null) {
       updateInsightForLine(state.activeLine);
     }
@@ -2979,12 +3953,16 @@ async function loadBook(rank) {
     completeDeepPipeline();
   } catch (e) {
     state.currentText = "";
+    state.readerLines = [];
+    state.activeLine = null;
+    state.narrative.eventMaps = { lineToEvent: [], eventToLine: [] };
     $("reader-content").textContent = `无法加载全文: ${e.message}`;
     setWorkflow("deep", WORKFLOW.DEGRADED);
     state.workflow.degraded = true;
     state.workflow.degradeReason = "Degraded due to source loading failure";
     renderWorkflow();
     updateMetrics();
+    renderNarrativeAxis();
   }
 }
 
@@ -3109,6 +4087,7 @@ function renderLedger() {
     empty.className = "muted";
     empty.textContent = "尚无证据。请先在主舞台的正文预览区选中文本并创建标注。";
     root.appendChild(empty);
+    renderNarrativeAxis();
     return;
   }
 
@@ -3162,8 +4141,11 @@ function renderLedger() {
       updateMetrics();
       renderHeat();
       renderXrayWorkbench();
+      renderNarrativeAxis();
     });
   });
+
+  renderNarrativeAxis();
 }
 
 function escapeHtml(str) {
@@ -3733,6 +4715,88 @@ function wireOperationsRail() {
   }
 }
 
+function wireNarrativeAxis() {
+  const filters = $("narrative-axis-filters");
+  const resetBtn = $("btn-axis-filter-reset");
+  const legend = $("narrative-axis-legend");
+  const plane = $("narrative-axis-plane");
+  if (!plane) return;
+
+  if (filters) {
+    filters.querySelectorAll(".axis-filter-btn").forEach((btn) => {
+      if (btn.id === "btn-axis-filter-reset") return;
+      btn.addEventListener("click", () => {
+        const type = btn.dataset.markerType;
+        toggleNarrativeMarkerFilter(type);
+      });
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      resetCurrentDomainMarkerFilters();
+    });
+  }
+
+  if (legend) {
+    legend.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const chip = target.closest(".axis-anchor-chip");
+      if (!(chip instanceof HTMLButtonElement) || chip.disabled) return;
+      const type = chip.dataset.spotlightType;
+      if (type === "clear") {
+        setNarrativeSpotlightType(null, { jump: false });
+        return;
+      }
+      setNarrativeSpotlightType(type, { jump: true });
+    });
+  }
+
+  plane.addEventListener("click", (event) => {
+    const rect = plane.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const planeStyle = window.getComputedStyle(plane);
+    const axisPad = Number.parseFloat(planeStyle.getPropertyValue("--axis-pad")) || 10;
+    const innerWidth = Math.max(1, rect.width - axisPad * 2);
+    const innerHeight = Math.max(1, rect.height - axisPad * 2);
+    const innerX = Math.max(0, Math.min(innerWidth, event.clientX - rect.left - axisPad));
+    const innerY = Math.max(0, Math.min(innerHeight, event.clientY - rect.top - axisPad));
+    const xRatio = innerX / innerWidth;
+    const yRatio = innerY / innerHeight;
+    handleNarrativePlaneJump(xRatio, yRatio);
+  });
+
+  plane.addEventListener("keydown", (event) => {
+    if (state.readerLines.length === 0) return;
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const max = Math.max(0, state.readerLines.length - 1);
+    const currentLine = clampIndex(state.activeLine ?? 0, max);
+    const currentEvent = clampIndex(state.narrative.eventMaps.lineToEvent[currentLine] ?? currentLine, max);
+    let narrativeIndex = currentLine;
+    let eventIndex = currentEvent;
+
+    if (event.key === "ArrowLeft") narrativeIndex -= 1;
+    if (event.key === "ArrowRight") narrativeIndex += 1;
+    if (event.key === "ArrowUp") eventIndex += 1;
+    if (event.key === "ArrowDown") eventIndex -= 1;
+    if (event.key === "Home") {
+      narrativeIndex = 0;
+      eventIndex = 0;
+    }
+    if (event.key === "End") {
+      narrativeIndex = max;
+      eventIndex = max;
+    }
+
+    narrativeIndex = clampIndex(narrativeIndex, max);
+    eventIndex = clampIndex(eventIndex, max);
+    const targetLine = findNearestLineByAxes(narrativeIndex, eventIndex);
+    jumpToLine(targetLine, null);
+  });
+}
+
 function wireRecoveryActions() {
   const retryDeep = async () => {
     clearDegradedAndResume();
@@ -4189,6 +5253,7 @@ function initTopNavigation() {
 
     const navKey = navKeyFromButton(targetBtn);
     state.activeDomain = navKey;
+    state.narrative.spotlightType = null;
     const rule = navRules[navKey] || navRules.textlab;
     applyStageSelection(rule);
     applyDomainLayout();
@@ -4321,6 +5386,7 @@ async function init() {
   wireImportFlow();
   wireReaderSearch();
   wireOperationsRail();
+  wireNarrativeAxis();
   wireXrayWorkbench();
   wireInsightPanelActions();
   wireExport();
@@ -4341,6 +5407,9 @@ async function init() {
   renderModes();
   renderModeBrief();
   renderDrill();
+  state.narrative.domainMarkerFilters = loadNarrativeMarkerFiltersState();
+  applyDomainMarkerFilters(state.activeDomain);
+  persistDomainMarkerFilters(state.activeDomain);
   applyAtlasCamera();
 
   try {
@@ -4352,6 +5421,7 @@ async function init() {
   renderWorkflow();
   renderBookSelect();
   renderContextHeader();
+  renderNarrativeAxis();
   renderCitespaceMeta();
   renderImportAudit();
   if (state.books.length > 0) {
