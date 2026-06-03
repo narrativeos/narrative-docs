@@ -19,10 +19,13 @@ require_file() {
   pass "file exists: $f"
 }
 
-# Portable search: prefer rg (ripgrep), fall back to grep -E
+# Portable search: prefer rg (ripgrep), fall back to grep
+# When -F is passed rg uses fixed-string; we mirror that with grep -F (no -E)
 _search() {
   if command -v rg >/dev/null 2>&1; then
     rg -n "$@"
+  elif [[ "$*" == *"-F"* ]]; then
+    grep -Fn "$@"
   else
     grep -En "$@"
   fi
