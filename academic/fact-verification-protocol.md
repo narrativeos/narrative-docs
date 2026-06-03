@@ -174,4 +174,4 @@ knowledge_density_kd: <float>
 - [Golden Set Field Dictionary](golden-set-field-dictionary.md)
 - [Golden Set Threshold Policy](golden-set-threshold-policy.md)
 - [Golden Set Action Playbook](golden-set-action-playbook.md)
-- [Product Platform Domains](../../developer/coding/platform-domains.md)
+- [Product Platform Domains](../developer/coding/platform-domains.md)
