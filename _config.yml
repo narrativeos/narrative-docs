@@ -92,11 +92,6 @@ defaults:
       parent: Governance 治理与标准
       nav_order: 1
   - scope:
-      path: changelog.md
-    values:
-      parent: Governance 治理与标准
-      nav_order: 2
-  - scope:
       path: code-of-conduct.md
     values:
       parent: Governance 治理与标准
@@ -126,11 +121,6 @@ defaults:
     values:
       parent: Governance 治理与标准
       nav_order: 8
-  - scope:
-      path: whats-new.md
-    values:
-      parent: Governance 治理与标准
-      nav_order: 9
   - scope:
       path: assets/glossary.zh-en.md
     values:
@@ -219,8 +209,6 @@ defaults:
     values:
       title: NarrativeStudio 专家工作台
       nav_order: 3
-
-  # Product-side pages moved to Developer — non-user-facing
   - scope:
       path: product/products/narrative-os-core.md
     values:
@@ -235,20 +223,6 @@ defaults:
       parent: Product Design 产品设计
       grand_parent: Developer 开发者
       nav_order: 41
-  - scope:
-      path: product/roadmap/README.md
-    values:
-      title: Roadmap 路线图
-      parent: Product Design 产品设计
-      grand_parent: Developer 开发者
-      nav_order: 42
-  - scope:
-      path: product/workflows/README.md
-    values:
-      title: Workflows 工作流
-      parent: Product Design 产品设计
-      grand_parent: Developer 开发者
-      nav_order: 43
   - scope:
       path: product/modules/README.md
     values:
@@ -291,6 +265,20 @@ defaults:
       parent: Product Design 产品设计
       grand_parent: Developer 开发者
       nav_order: 49
+  - scope:
+      path: product/roadmap/README.md
+    values:
+      title: Roadmap 路线图
+      parent: Product Design 产品设计
+      grand_parent: Developer 开发者
+      nav_order: 42
+  - scope:
+      path: product/workflows/README.md
+    values:
+      title: Workflows 工作流
+      parent: Product Design 产品设计
+      grand_parent: Developer 开发者
+      nav_order: 43
   - scope:
       path: product/workflows/proofreading-competitive-benchmark-runbook.md
     values:
@@ -757,47 +745,6 @@ defaults:
     values:
       title: Temporal Knowledge Studio Task Pack 时序知识加工 Studio 任务单
       nav_exclude: true
-
-  - scope:
-      path: api-compatibility-and-versioning.md
-    values:
-      title: API Compatibility & Versioning API兼容与版本
-  - scope:
-      path: changelog.md
-    values:
-      title: Changelog 更新日志
-  - scope:
-      path: code-of-conduct.md
-    values:
-      title: Code of Conduct 行为准则
-  - scope:
-      path: contributing.md
-    values:
-      title: Contributing 贡献指南
-  - scope:
-      path: data-classification-and-retention.md
-    values:
-      title: Data Classification & Retention 数据分类与留存
-  - scope:
-      path: governance.md
-    values:
-      title: Governance 开源治理
-  - scope:
-      path: security.md
-    values:
-      title: Security 安全策略
-  - scope:
-      path: troubleshooting.md
-    values:
-      title: Troubleshooting 故障排查
-  - scope:
-      path: whats-new.md
-    values:
-      title: What's New 最新变更
-  - scope:
-      path: assets/glossary.zh-en.md
-    values:
-      title: Glossary 术语表
 
   # Legacy root-level overview landing pages — content superseded by section READMEs
   - scope:
