@@ -19,17 +19,26 @@ require_file() {
   pass "file exists: $f"
 }
 
+# Portable search: prefer rg (ripgrep), fall back to grep -E
+_search() {
+  if command -v rg >/dev/null 2>&1; then
+    rg -n "$@"
+  else
+    grep -En "$@"
+  fi
+}
+
 require_contains() {
   local f="$1"
   local pattern="$2"
-  rg -n "$pattern" "$f" >/dev/null || fail "pattern not found in $f: $pattern"
+  _search "$pattern" "$f" >/dev/null || fail "pattern not found in $f: $pattern"
   pass "pattern found in $f: $pattern"
 }
 
 require_not_contains() {
   local f="$1"
   local pattern="$2"
-  if rg -n "$pattern" "$f" >/dev/null; then
+  if _search "$pattern" "$f" >/dev/null; then
     fail "unexpected pattern in $f: $pattern"
   fi
   pass "pattern absent in $f: $pattern"
@@ -40,7 +49,7 @@ require_count_ge() {
   local pattern="$2"
   local min_count="$3"
   local count
-  count=$(rg -n "$pattern" "$f" | wc -l | tr -d ' ')
+  count=$(_search "$pattern" "$f" | wc -l | tr -d ' ')
   if [[ "$count" -lt "$min_count" ]]; then
     fail "pattern count in $f below threshold ($count < $min_count): $pattern"
   fi
@@ -74,10 +83,10 @@ require_doc_index_coverage() {
   for d in "$@"; do
     while IFS= read -r md; do
       [[ -z "$md" ]] && continue
-      if ! rg -n -F "$md" "$index_file" >/dev/null; then
+      if ! _search -F "$md" "$index_file" >/dev/null; then
         missing+=("$md")
       fi
-    done < <(rg --files "$d" | rg '\.md$' | sort)
+    done < <(find "$d" -type f -name '*.md' | sort)
   done
 
   if [[ ${#missing[@]} -gt 0 ]]; then
