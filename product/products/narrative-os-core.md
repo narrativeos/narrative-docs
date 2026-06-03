@@ -1,7 +1,7 @@
 ---
 layout: default
 title: NarrativeOS 底层大脑
-parent: Product 产品
+parent: Developer 开发者
 nav_order: 22
 ---
 
