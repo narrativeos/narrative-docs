@@ -32,11 +32,26 @@ source_of_truth: narrative-docs
 
 模块目标：提供标准化文本接入与单文本诊断入口。
 
-模块输出：
+> **详细规格已独立为专用文档**：[text-lab.md](text-lab.md)
+> **多维叙事轴技术规格**：[text-lab-narrative-axis.md](text-lab-narrative-axis.md)
+
+模块输出（摘要）：
 
 - 输入标准化结果
 - 单文分析任务
 - 首轮诊断摘要
+- 多维叙事轴标记集
+- 标注证据账本
+
+功能层概览：
+
+| 功能层 | 核心能力 | 状态 |
+|---|---|---|
+| 输入标准化 | 多格式解析/段落切分/字符集提取/源去重/版本管理 | ✅ 已实现 |
+| 单文诊断 | typo/punctuation/grammar/consistency/句长ECG | 🟡 原型级 |
+| 叙事导航 | 叙述序×语义密度序/情感/视角/复杂度四维 | ✅ 已实现(密度序) |
+| 标注证据 | 标注系统/证据账本/锚点追踪/导出回放 | ✅ 已实现 |
+| X-Ray修复 | 优先级分流/批次预览/范围控制/修复导出 | ✅ 已实现 |
 
 ### 2. Narrative Atlas
 
@@ -200,3 +215,5 @@ Text Lab -> Narrative Atlas -> Corpus Observatory -> Style Genome -> Insight Eng
 - 系统架构： [../../architecture/system/README.md](../../architecture/system/README.md)
 - 分析引擎模块： [analysis-engine.md](analysis-engine.md)
 - Visual OS 模块： [visual-os.md](visual-os.md)
+- Text Lab 模块规格： [text-lab.md](text-lab.md)
+- 多维叙事轴技术规格： [text-lab-narrative-axis.md](text-lab-narrative-axis.md)
