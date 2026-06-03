@@ -41,8 +41,8 @@ sections:
       - adr/ADR-003-execution-oriented-storage.md
       - adr/ADR-004-multimodal-evidence-model.md
   - id: product
-    title_zh: 产品知识
-    title_en: Product Knowledge
+    title_zh: 产品矩阵
+    title_en: Products Matrix
     audience:
       - product
       - developer
@@ -50,6 +50,9 @@ sections:
       - ai-agent
     entry: product/README.md
     children:
+      - product/products/editor-plugin.md
+      - product/products/narrative-studio.md
+      - product/products/narrative-os-core.md
       - product/vision/README.md
       - product/roadmap/README.md
       - product/roadmap/product-director-30-60-90-battlecard.md
@@ -58,17 +61,9 @@ sections:
       - product/modules/README.md
       - product/modules/analysis-engine.md
       - product/modules/corpus-observatory.md
-      - product/modules/insight-engine.md
       - product/modules/library.md
       - product/modules/style-genome.md
-      - product/modules/visual-os.md
-      - product/modules/proofreading-capability-gap-closure-plan.md
       - product/modules/proofreading-competitive-benchmark.md
-      - product/modules/text-lab.md
-      - product/modules/text-lab-narrative-axis.md
-      - product/modules/editor-plugin.md
-      - product/modules/narrative-studio.md
-      - product/modules/narrative-os-core.md
       - product/workflows/proofreading-competitive-benchmark-runbook.md
       - product/workflows/proofreading-competitive-benchmark-checklist.md
       - product/workflows/proofreading-competitive-benchmark-run-record-template.md
@@ -127,6 +122,11 @@ sections:
       - developer/coding/v1-frontend-issue-breakdown.md
       - developer/coding/v1-frontend-issue-paste-pack.md
       - developer/coding/v1-frontend-swimlane-allocation.md
+      - developer/coding/insight-engine.md
+      - developer/coding/visual-os.md
+      - developer/coding/proofreading-capability-gap-closure-plan.md
+      - developer/coding/text-lab.md
+      - developer/coding/text-lab-narrative-axis.md
       - developer/plugins/README.md
       - developer/sdk/README.md
       - developer/operations/academic-adoption-weekly-execution-checklist.md
