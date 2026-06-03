@@ -771,3 +771,37 @@ defaults:
       path: assets/glossary.zh-en.md
     values:
       title: Glossary 术语表
+
+  # Legacy root-level overview landing pages — content superseded by section READMEs
+  - scope:
+      path: product-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: academic-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: adr-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: ai-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: architecture-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: developer-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: governance-overview.md
+    values:
+      nav_exclude: true
+  - scope:
+      path: user-overview.md
+    values:
+      nav_exclude: true
