@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Governance 治理
-parent: Developer 开发者
-nav_order: 1
+nav_exclude: true
 ---
 
 # Governance
