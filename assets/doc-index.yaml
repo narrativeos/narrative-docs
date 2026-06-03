@@ -74,6 +74,9 @@ sections:
       - product/modules/proofreading-competitive-benchmark.md
       - product/modules/text-lab.md
       - product/modules/text-lab-narrative-axis.md
+      - product/modules/editor-plugin.md
+      - product/modules/narrative-studio.md
+      - product/modules/narrative-os-core.md
       - product/workflows/proofreading-competitive-benchmark-runbook.md
       - product/workflows/proofreading-competitive-benchmark-checklist.md
       - product/workflows/proofreading-competitive-benchmark-run-record-template.md
