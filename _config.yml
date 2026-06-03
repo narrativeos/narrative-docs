@@ -40,24 +40,28 @@ defaults:
       type: pages
     values:
       parent: Products 产品矩阵
+      nav_order: 10
 
   - scope:
       path: developer
       type: pages
     values:
       parent: Developer 开发者
+      nav_order: 30
 
   - scope:
       path: user
       type: pages
     values:
       parent: User 用户
+      nav_order: 20
 
   - scope:
       path: academic
       type: pages
     values:
       parent: Academic 学术研究
+      grand_parent: User 用户
 
   - scope:
       path: ai
@@ -472,6 +476,7 @@ defaults:
       path: academic/README.md
     values:
       title: Academic Research 学术研究
+      nav_order: 1
   - scope:
       path: academic/why-narrativeos-for-research.md
     values:
