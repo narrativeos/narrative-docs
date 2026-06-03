@@ -1,72 +1,153 @@
-# Style Genome Module
+---
+layout: default
+title: 风格基因组 Style Genome
+parent: NarrativeStudio 专家工作台
+grand_parent: Product 产品
+nav_order: 212
+---
 
-## 摘要（中文）
+# 风格基因组 Style Genome
 
-本节为英文摘要导读，便于国际协作与检索。
+> 本文档为 NarrativeStudio 的子能力。
 
-## Executive Summary (EN)
+## 摘要
 
-This document defines the product module design for Style Genome.
+风格基因档案、基因组卡片与风格演变时间线。
 
-## Machine-readable Metadata | 机读元数据
+## 能力说明
 
-```yaml
-doc_id: product-modules-style-genome
-path: product/modules/style-genome.md
-lang_primary: zh-CN
-lang_secondary: en
-audience: [product, architect, developer, ai-agent]
-agent_ready: true
-source_of_truth: narrative-docs
-```
+- **风格档案**：文本风格的基因级拆解与建模
+- **基因组卡片**：可读的风格特征卡片
+- **演变追踪**：风格随时间的变化趋势
 
-## 模块目标 | Module Goals
+## 与产品矩阵的关系
 
-Style Genome 模块的目标是将文本风格转化为可比较、可追踪、可解释的基因画像资产。
+风格基因组是 NarrativeStudio 的风格分析模块，帮助专家理解知识文本的风格特征。
+</content>
+<write_to_file>
+<path>narrative-docs/product/modules/visual-os.md</path>
+<content>---
+layout: default
+title: 可视化中心 Visual OS
+parent: NarrativeStudio 专家工作台
+grand_parent: Product 产品
+nav_order: 213
+---
 
-## 核心交付物
+# 可视化中心 Visual OS
 
-- Language Genome Card（语言基因卡）
-- 风格雷达图
-- 差异对比报告
-- 演化时间线报告
+> 本文档为 NarrativeStudio 的子能力。
 
-## 基因卡维度（示例）
+## 摘要
 
-- 空间感
-- 抽象度
-- 感官率
-- 节奏波动
-- 解释倾向
+可视化指挥中心：仪表盘、知识地图、时间线。
 
-## 核心能力 | Core Capabilities
+## 能力说明
 
-- 作者风格画像生成
-- 跨作者风格比较
-- 跨时间自我比较
-- 风格维度变化检测
-- 证据定位与回溯
+- **仪表盘**：知识资产的宏观概览
+- **知识地图**：实体与关系的可视化图谱
+- **时间线**：知识变更与标准演变的时序展示
 
-## 典型场景 | Typical Scenarios
+## 与产品矩阵的关系
 
-- 作者对比：A 作者 vs B 作者
-- 自我演化：2023 我 vs 2026 我
-- 版本演化：同一文本多版本风格迁移
+可视化中心是 NarrativeStudio 的前端展示层，为专家提供直观的知识洞察界面。
+</content>
+<write_to_file>
+<path>narrative-docs/product/modules/text-lab.md</path>
+<content>---
+layout: default
+title: 文本实验室 Text Lab
+parent: NarrativeStudio 专家工作台
+grand_parent: Product 产品
+nav_order: 214
+---
 
-## 交互与证据要求
+# 文本实验室 Text Lab
 
-- 所有分值均需支持证据跳转
-- 对比结论需提供维度级差异明细
-- 演化结论需附时间轴与样本说明
+> 本文档为 NarrativeStudio 的子能力。
 
-## 模块价值
+## 摘要
 
-- 提升用户长期使用粘性
-- 提供风格成长反馈闭环
-- 为研究与编辑提供结构化风格依据
+文本深度处理与分析实验室。
 
-## 关联文档 | Related Docs
+## 能力说明
 
-- 架构定义： [../../architecture/style-genome/README.md](../../architecture/style-genome/README.md)
-- 平台域设计（当前基线六域）： [platform-domains.md](platform-domains.md)
-- 语料观测模块： [corpus-observatory.md](corpus-observatory.md)
+- **文本解析**：深度文本结构分析
+- **特征提取**：自动化文本特征识别
+- **质量评估**：文本质量的量化评估
+
+## 与产品矩阵的关系
+
+文本实验室是 NarrativeStudio 的文本处理模块，为新标准入库提供解析能力。
+</content>
+<write_to_file>
+<path>narrative-docs/product/modules/text-lab-narrative-axis.md</path>
+<content>---
+layout: default
+title: 文本实验室·叙事轴 Text Lab Narrative Axis
+parent: NarrativeStudio 专家工作台
+grand_parent: Product 产品
+nav_order: 215
+---
+
+# 文本实验室·叙事轴 Text Lab Narrative Axis
+
+> 本文档为 NarrativeStudio 的子能力。
+
+## 摘要
+
+叙事轴：文本叙事结构的时序分析。
+
+## 能力说明
+
+- **叙事结构分析**：文本叙事脉络的时序拆解
+- **事件线追踪**：关键事件的时间线构建
+- **因果链分析**：事件间的因果关系推断
+
+## 与产品矩阵的关系
+
+叙事轴是文本实验室的时序分析扩展，帮助专家理解知识的叙事结构。
+</content>
+<write_to_file>
+<path>narrative-docs/product/modules/proofreading-capability-gap-closure-plan.md</path>
+<content>---
+layout: default
+title: 校对能力差距闭环计划
+parent: LibreOffice/Word 插件端
+grand_parent: Product 产品
+nav_order: 201
+---
+
+# 校对能力差距闭环计划
+
+> 本文档为插件端的校对能力规划。
+
+## 摘要
+
+分阶段提升插件端校对能力的实施计划。
+
+## 与产品矩阵的关系
+
+本文档描述插件端校对能力的演进路线，确保参数建议与合规检查能力持续增强。
+</content>
+<write_to_file>
+<path>narrative-docs/product/modules/proofreading-competitive-benchmark.md</path>
+<content>---
+layout: default
+title: 校对能力对标基准
+parent: LibreOffice/Word 插件端
+grand_parent: Product 产品
+nav_order: 202
+---
+
+# 校对能力对标基准
+
+> 本文档为插件端的校对能力对标。
+
+## 摘要
+
+插件端校对能力与行业基准的对比分析。
+
+## 与产品矩阵的关系
+
+本文档用于评估插件端校对能力在市场中的竞争力，指导产品迭代方向。

@@ -56,20 +56,12 @@ sections:
       - product/roadmap/technical-director-30-60-90-battlecard.md
       - product/workflows/README.md
       - product/modules/README.md
-      - product/scenarios/v1-mock-simulation-dataset.md
-      - product/prototype/v1-prototype-spec.md
-      - product/prototype/v1-frontend-issue-breakdown.md
-      - product/prototype/v1-frontend-issue-paste-pack.md
-      - product/prototype/v1-frontend-swimlane-allocation.md
       - product/modules/analysis-engine.md
       - product/modules/corpus-observatory.md
       - product/modules/insight-engine.md
       - product/modules/library.md
-      - product/modules/platform-domains.md
       - product/modules/style-genome.md
       - product/modules/visual-os.md
-      - product/modules/temporal-knowledge-processing.md
-      - product/modules/temporal-knowledge-processing-repo-design.md
       - product/modules/proofreading-capability-gap-closure-plan.md
       - product/modules/proofreading-competitive-benchmark.md
       - product/modules/text-lab.md
@@ -108,6 +100,7 @@ sections:
       - developer/operations/prototype-page-level-task-breakdown.md
       - developer/operations/prototype-page-level-work-items.md
       - developer/operations/risk-register-template.md
+      - developer/operations/v1-mock-simulation-dataset.md
       - developer/workspace/ai-native-bootstrap-checklist.md
       - developer/coding/README.md
       - developer/coding/docs-governance-standard.md
@@ -125,10 +118,17 @@ sections:
       - developer/coding/temporal-knowledge-core-task-pack.md
       - developer/coding/temporal-knowledge-api-task-pack.md
       - developer/coding/temporal-knowledge-studio-task-pack.md
+      - developer/coding/platform-domains.md
+      - developer/coding/temporal-knowledge-processing.md
+      - developer/coding/temporal-knowledge-processing-repo-design.md
+      - developer/coding/v1-design-baseline.md
+      - developer/coding/v1-two-week-sprint-plan.md
+      - developer/coding/v1-prototype-spec.md
+      - developer/coding/v1-frontend-issue-breakdown.md
+      - developer/coding/v1-frontend-issue-paste-pack.md
+      - developer/coding/v1-frontend-swimlane-allocation.md
       - developer/plugins/README.md
       - developer/sdk/README.md
-      - product/v1-design-baseline.md
-      - product/v1-two-week-sprint-plan.md
       - developer/operations/academic-adoption-weekly-execution-checklist.md
       - developer/operations/academic-adoption-weekly-status-report-template.md
       - developer/operations/academic-adoption-role-assignment-raci.md

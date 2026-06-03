@@ -127,8 +127,8 @@ require_file "academic/templates-golden-set-fact-check-ledger.md"
 require_file "academic/examples-golden-set-fact-check-ledger-minimal.md"
 require_file "academic/examples-golden-set-research-minimal.md"
 require_file "academic/examples-golden-set-detective-minimal.md"
-require_file "product/scenarios/v1-mock-simulation-dataset.md"
-require_file "product/prototype/v1-prototype-spec.md"
+require_file "developer/operations/v1-mock-simulation-dataset.md"
+require_file "developer/coding/v1-prototype-spec.md"
 require_file "product/modules/proofreading-competitive-benchmark.md"
 require_file "product/workflows/proofreading-competitive-benchmark-runbook.md"
 require_file "product/workflows/proofreading-competitive-benchmark-checklist.md"
@@ -193,27 +193,27 @@ require_contains "academic/examples-golden-set-research-minimal.md" "gate_decisi
 require_contains "academic/examples-golden-set-detective-minimal.md" "Fail 分支演示（示例）"
 require_contains "academic/examples-golden-set-detective-minimal.md" "gate_decision: fail"
 
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P0-001"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P1-001"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P2-001"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_extension:"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "coverage_assertion:"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_recall"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_false_positive_ratio"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "term_consistency_alignment_rate"
-require_contains "product/scenarios/v1-mock-simulation-dataset.md" "registry_new_term_precision"
-require_count_ge "product/scenarios/v1-mock-simulation-dataset.md" "proofreading_contract_valid: true" 3
-require_anchor_followed_by "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P0-001" "threshold_tier: standard" 35
-require_anchor_followed_by "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P1-001" "threshold_tier: standard" 35
-require_anchor_followed_by "product/scenarios/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P2-001" "threshold_tier: strict" 35
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P0-001"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P1-001"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P2-001"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "proofreading_extension:"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "coverage_assertion:"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "proofreading_recall"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "proofreading_false_positive_ratio"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "term_consistency_alignment_rate"
+require_contains "developer/operations/v1-mock-simulation-dataset.md" "registry_new_term_precision"
+require_count_ge "developer/operations/v1-mock-simulation-dataset.md" "proofreading_contract_valid: true" 3
+require_anchor_followed_by "developer/operations/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P0-001" "threshold_tier: standard" 35
+require_anchor_followed_by "developer/operations/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P1-001" "threshold_tier: standard" 35
+require_anchor_followed_by "developer/operations/v1-mock-simulation-dataset.md" "dataset_id: DS-V1-PRF-P2-001" "threshold_tier: strict" 35
 
-require_contains "product/prototype/v1-prototype-spec.md" "Gate-05"
-require_contains "product/prototype/v1-prototype-spec.md" "Gate-06"
-require_contains "product/prototype/v1-prototype-spec.md" "DS-V1-PRF-P0-001"
-require_contains "product/prototype/v1-prototype-spec.md" "DS-V1-PRF-P1-001"
-require_contains "product/prototype/v1-prototype-spec.md" "DS-V1-PRF-P2-001"
+require_contains "developer/coding/v1-prototype-spec.md" "Gate-05"
+require_contains "developer/coding/v1-prototype-spec.md" "Gate-06"
+require_contains "developer/coding/v1-prototype-spec.md" "DS-V1-PRF-P0-001"
+require_contains "developer/coding/v1-prototype-spec.md" "DS-V1-PRF-P1-001"
+require_contains "developer/coding/v1-prototype-spec.md" "DS-V1-PRF-P2-001"
 
-require_contains "product/modules/proofreading-competitive-benchmark.md" "Proofreading Competitive Benchmark"
+require_contains "product/modules/proofreading-competitive-benchmark.md" "校对能力对标 Benchmark"
 require_contains "product/modules/proofreading-competitive-benchmark.md" "DS-V1-PRF-P0-001"
 require_contains "product/modules/proofreading-competitive-benchmark.md" "DS-V1-PRF-P1-001"
 require_contains "product/modules/proofreading-competitive-benchmark.md" "DS-V1-PRF-P2-001"
