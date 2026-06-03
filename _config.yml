@@ -33,6 +33,14 @@ defaults:
       type: pages
     values:
       parent: Architecture 架构
+      grand_parent: Developer 开发者
+
+  - scope:
+      path: architecture-overview.md
+    values:
+      parent: Architecture 架构
+      grand_parent: Developer 开发者
+      title: Architecture Overview 架构概览
 
   - scope:
       path: product
