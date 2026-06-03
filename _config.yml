@@ -39,6 +39,7 @@ defaults:
       path: product
       type: pages
     values:
+      parent: Products Overview 产品概览
       nav_order: 10
 
   - scope:
