@@ -113,4 +113,4 @@ source_of_truth: narrative-docs
 - [User Documentation](../README.md)
 - [Atlas Guide](../atlas/README.md)
 - [Spatial Architecture](../../architecture/spatial/README.md)
-- [Platform Domains Module](../../product/modules/platform-domains.md)
+- [Platform Domains Module](../../developer/coding/platform-domains.md)

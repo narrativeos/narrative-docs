@@ -185,8 +185,8 @@ Analysis Engine 与 Temporal Knowledge Processing 基于派生表示生成：
 ## 关联文档 | Related Docs
 
 - [../product/modules/analysis-engine.md](../product/modules/analysis-engine.md)
-- [../product/modules/visual-os.md](../product/modules/visual-os.md)
-- [../product/modules/temporal-knowledge-processing.md](../product/modules/temporal-knowledge-processing.md)
+- [../developer/coding/visual-os.md](../developer/coding/visual-os.md)
+- [../developer/coding/temporal-knowledge-processing.md](../developer/coding/temporal-knowledge-processing.md)
 - [../developer/coding/local-cloud-function-alignment-sprint-pack.md](../developer/coding/local-cloud-function-alignment-sprint-pack.md)
 - [../developer/api/terminology-hierarchy-api-storage-contract-v1.md](../developer/api/terminology-hierarchy-api-storage-contract-v1.md)
 

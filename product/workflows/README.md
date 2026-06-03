@@ -34,9 +34,9 @@ source_of_truth: narrative-docs
 
 NarrativeOS 的日常使用路径采用多角色工作流设计，不使用“单界面服务全部用户”的产品策略。
 
-V1 执行约束：作者/编辑路径必须满足 [../v1-design-baseline.md](../v1-design-baseline.md) 定义的 In/Out Scope 与双门槛验收规则。
+V1 执行约束：作者/编辑路径必须满足 [../v1-design-baseline.md](../coding/v1-design-baseline.md) 定义的 In/Out Scope 与双门槛验收规则。
 
-V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](../scenarios/v1-mock-simulation-dataset.md) 的场景数据编制，再进入 [../prototype/v1-prototype-spec.md](../prototype/v1-prototype-spec.md) 原型设计与评审。
+V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](../../developer/operations/v1-mock-simulation-dataset.md) 的场景数据编制，再进入 [../prototype/v1-prototype-spec.md](../../developer/coding/v1-prototype-spec.md) 原型设计与评审。
 
 ## V1 校对补齐工作流闭环
 
@@ -67,7 +67,7 @@ V1 设计顺序约束：先完成 [../scenarios/v1-mock-simulation-dataset.md](.
 
 - 执行规范： [terminology-hierarchy-discovery-minimal-spec.md](terminology-hierarchy-discovery-minimal-spec.md)
 - 架构承接： [../../architecture/system/README.md](../../architecture/system/README.md), [../../architecture/storage/README.md](../../architecture/storage/README.md)
-- 产品承接： [../modules/platform-domains.md](../modules/platform-domains.md), [../modules/library.md](../modules/library.md)
+- 产品承接： [../modules/platform-domains.md](../coding/platform-domains.md), [../modules/library.md](../modules/library.md)
 - 证据口径： [../../academic/fact-verification-protocol.md](../../academic/fact-verification-protocol.md)
 
 最小执行目标：

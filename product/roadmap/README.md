@@ -153,9 +153,9 @@ P2 指标（月/季度）：
 
 ## V1-V3 蓝图节奏
 
-执行基线：V1 阶段默认采用 [../v1-design-baseline.md](../v1-design-baseline.md) 的范围边界、双门槛验收（Product KPI + Engineering SLO）与 No-go 规则。
+执行基线：V1 阶段默认采用 [../v1-design-baseline.md](../coding/v1-design-baseline.md) 的范围边界、双门槛验收（Product KPI + Engineering SLO）与 No-go 规则。
 
-执行排期：两周任务拆解与 owner 分配见 [../v1-two-week-sprint-plan.md](../v1-two-week-sprint-plan.md)。
+执行排期：两周任务拆解与 owner 分配见 [../v1-two-week-sprint-plan.md](../coding/v1-two-week-sprint-plan.md)。
 
 ### 校对补齐路线挂钩（跨阶段）
 
@@ -173,7 +173,7 @@ P2 指标（月/季度）：
 判定与执行入口：
 
 - 判定口径： [../modules/proofreading-competitive-benchmark.md](../modules/proofreading-competitive-benchmark.md)
-- 角色与边界： [../modules/proofreading-capability-gap-closure-plan.md](../modules/proofreading-capability-gap-closure-plan.md)
+- 角色与边界： [../modules/proofreading-capability-gap-closure-plan.md](../../developer/coding/proofreading-capability-gap-closure-plan.md)
 - 执行作业单： [../workflows/proofreading-competitive-benchmark-runbook.md](../workflows/proofreading-competitive-benchmark-runbook.md)
 
 ### V1：作者/编辑工作流闭环

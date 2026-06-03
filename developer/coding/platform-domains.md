@@ -213,7 +213,7 @@ Text Lab -> Narrative Atlas -> Corpus Observatory -> Style Genome -> Insight Eng
 
 - 平台架构： [../../architecture/platform/README.md](../../architecture/platform/README.md)
 - 系统架构： [../../architecture/system/README.md](../../architecture/system/README.md)
-- 分析引擎模块： [analysis-engine.md](analysis-engine.md)
+- 分析引擎模块： [../../product/modules/analysis-engine.md](../../product/modules/analysis-engine.md)
 - Visual OS 模块： [visual-os.md](visual-os.md)
 - Text Lab 模块规格： [text-lab.md](text-lab.md)
 - 多维叙事轴技术规格： [text-lab-narrative-axis.md](text-lab-narrative-axis.md)

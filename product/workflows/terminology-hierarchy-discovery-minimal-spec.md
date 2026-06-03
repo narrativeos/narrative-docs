@@ -99,7 +99,7 @@ term_edge:
 
 - 图谱关系承接： [../../architecture/system/README.md](../../architecture/system/README.md)
 - 存储 edge_type 约束： [../../architecture/storage/README.md](../../architecture/storage/README.md)
-- 产品域承接（Knowledge Graph/Library）： [../modules/platform-domains.md](../modules/platform-domains.md), [../modules/library.md](../modules/library.md)
+- 产品域承接（Knowledge Graph/Library）： [../modules/platform-domains.md](../../developer/coding/platform-domains.md), [../modules/library.md](../modules/library.md)
 - 协议证据回链： [../../academic/fact-verification-protocol.md](../../academic/fact-verification-protocol.md)
 
 ## 最小落地清单 | Implementation Checklist

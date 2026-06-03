@@ -179,5 +179,5 @@ status: draft
 - [../../developer/coding/temporal-knowledge-studio-task-pack.md](../../developer/coding/temporal-knowledge-studio-task-pack.md)
 - [README.md](README.md)
 - [platform-domains.md](platform-domains.md)
-- [analysis-engine.md](analysis-engine.md)
-- [../roadmap/README.md](../roadmap/README.md)
+- [analysis-engine.md](../../product/modules/analysis-engine.md)
+- [../roadmap/README.md](../README.md)

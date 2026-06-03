@@ -43,8 +43,8 @@ source_of_truth: narrative-docs
 
 ## 前置条件 | Preconditions
 
-- 已完成 [../scenarios/v1-mock-simulation-dataset.md](../scenarios/v1-mock-simulation-dataset.md) 数据加载。
-- 已完成 [../prototype/v1-prototype-spec.md](../prototype/v1-prototype-spec.md) 原型门槛核对。
+- 已完成 [../scenarios/v1-mock-simulation-dataset.md](../../developer/operations/v1-mock-simulation-dataset.md) 数据加载。
+- 已完成 [../prototype/v1-prototype-spec.md](../../developer/coding/v1-prototype-spec.md) 原型门槛核对。
 - 评测策略遵循 [../modules/proofreading-competitive-benchmark.md](../modules/proofreading-competitive-benchmark.md)。
 
 ## 输入约束 | Input Constraints

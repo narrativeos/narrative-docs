@@ -359,20 +359,4 @@ FAST_COMPLETED → DEEP_SCAN → DEEP_COMPLETED
 
 ---
 
-## 9. 关联文档 | Related Docs
-
-| 文档 | 路径 | 说明 |
-|---|---|---|
-| 平台域总览 | [platform-domains.md](platform-domains.md) | 六域架构总览（当前基线） |
-| 多维叙事轴规格 | [text-lab-narrative-axis.md](text-lab-narrative-axis.md) | 叙事轴技术规格 |
-| 分析引擎模块 | [analysis-engine.md](analysis-engine.md) | 分析能力定义 |
-| 视觉 OS 模块 | [visual-os.md](visual-os.md) | 可视化层定义 |
-| 原型实现 | `../../prototypes/html-v1/` | 前端原型代码 |
-
----
-
-## 10. 版本历史 | Change Log
-
-| 版本 | 日期 | 变更 |
-|---|---|---|
-| 1.0.0 | 2026-06-02 | 初始模块规格，从 platform-domains 独立出来 |
+##

@@ -531,7 +531,7 @@ interface NarrativeAxisState {
 |---|---|---|
 | Text Lab 模块规格 | [text-lab.md](text-lab.md) | 父文档 |
 | 平台域总览 | [platform-domains.md](platform-domains.md) | 六域架构（当前基线） |
-| 分析引擎模块 | [analysis-engine.md](analysis-engine.md) | 分析能力 |
+| 分析引擎模块 | [analysis-engine.md](../../product/modules/analysis-engine.md) | 分析能力 |
 | 原型实现 | `../../prototypes/html-v1/app.js` | 前端代码 |
 
 ---

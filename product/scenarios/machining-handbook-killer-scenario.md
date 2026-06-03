@@ -239,9 +239,9 @@ products_involved:
 
 | 文档 | 路径 | 说明 |
 |---|---|---|
-| 插件端功能说明 | [products/editor-plugin.md](products/editor-plugin.md) | 插件产品详情 |
-| Studio 工作台说明 | [products/narrative-studio.md](products/narrative-studio.md) | 知识采集产品详情 |
-| OS 治理引擎说明 | [products/narrative-os-core.md](products/narrative-os-core.md) | 知识治理产品详情 |
+| 插件端功能说明 | [products/editor-plugin.md](../products/editor-plugin.md) | 插件产品详情 |
+| Studio 工作台说明 | [products/narrative-studio.md](../products/narrative-studio.md) | 知识采集产品详情 |
+| OS 治理引擎说明 | [products/narrative-os-core.md](../products/narrative-os-core.md) | 知识治理产品详情 |
 | 产品矩阵概览 | [../README.md](../README.md) | 三产品关系总览 |
 
 ---

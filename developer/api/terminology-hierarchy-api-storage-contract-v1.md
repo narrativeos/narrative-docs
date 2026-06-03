@@ -440,5 +440,5 @@ create unique index uq_term_edge_unique_relation
 - [../../product/workflows/terminology-hierarchy-discovery-minimal-spec.md](../../product/workflows/terminology-hierarchy-discovery-minimal-spec.md)
 - [../../architecture/system/README.md](../../architecture/system/README.md)
 - [../../architecture/storage/README.md](../../architecture/storage/README.md)
-- [../../product/modules/platform-domains.md](../../product/modules/platform-domains.md)
+- [../../developer/coding/platform-domains.md](../../developer/coding/platform-domains.md)
 - [../../product/modules/library.md](../../product/modules/library.md)

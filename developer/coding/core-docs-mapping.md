@@ -25,7 +25,7 @@
 | 06 路线图与里程碑 | [product/roadmap/README.md](../../product/roadmap/README.md) | 完成 | linked | vNext | 已有 V1-V3 结构 |
 | 07 开源治理与协作模型 | [governance.md](../../governance.md), [developer/README.md](../README.md), [ai/repo-rules/README.md](../../ai/repo-rules/README.md), [code-of-conduct.md](../../code-of-conduct.md), [developer/coding/docs-governance-standard.md](docs-governance-standard.md), [developer/coding/docs-governance-backlog.md](docs-governance-backlog.md) | 完成 | linked | vNext | 治理标准、待治理清单与流程门禁已建立 |
 | 08 安全、隐私与合规 | [security.md](../../security.md), [architecture/system/README.md](../../architecture/system/README.md), [user/cloud/README.md](../../user/cloud/README.md), [data-classification-and-retention.md](../../data-classification-and-retention.md) | 完成 | linked | vNext | 漏洞披露、数据保留与云模式边界已形成联动 |
-| 09 生态、扩展与接口 | [api-compatibility-and-versioning.md](../../api-compatibility-and-versioning.md), [developer/plugins/README.md](../plugins/README.md), [developer/sdk/README.md](../sdk/README.md), [product/modules/platform-domains.md](../../product/modules/platform-domains.md) | 完成 | linked | vNext | 已补齐 API 兼容性与版本治理策略 |
+| 09 生态、扩展与接口 | [api-compatibility-and-versioning.md](../../api-compatibility-and-versioning.md), [developer/plugins/README.md](../plugins/README.md), [developer/sdk/README.md](../sdk/README.md), [platform-domains.md](./platform-domains.md) | 完成 | linked | vNext | 已补齐 API 兼容性与版本治理策略 |
 | 10 风险、限制与后续计划 | [product/roadmap/README.md](../../product/roadmap/README.md), [adr/README.md](../../adr/README.md) | 部分完成 | missing | vNext | 建议补“已知限制”专章 |
 
 ## 状态判定规则（证据驱动）

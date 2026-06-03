@@ -32,21 +32,26 @@ source_of_truth: narrative-docs
 
 ## 关键能力模块（产品定义）
 
-- [platform-domains.md](platform-domains.md): 平台域模块设计（当前基线六域）与协同主链路
 - [corpus-observatory.md](corpus-observatory.md): 语料观测与语言向量资产模块
 - [library.md](library.md): 语言百科型知识库模块
 - [style-genome.md](style-genome.md): 风格基因卡与文风演化模块
 - [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（当前基线六引擎）与产品交付物
-- [insight-engine.md](insight-engine.md): 证据链驱动的 AI 洞察模块
-- [visual-os.md](visual-os.md): 语言驾驶舱模块与核心可视化交互能力
-- [temporal-knowledge-processing.md](temporal-knowledge-processing.md): 时序知识加工模块（本地提取、加工与当前对象分析）
-- [temporal-knowledge-processing-repo-design.md](temporal-knowledge-processing-repo-design.md): 仓库级模块设计（core/api/studio/cloud 边界）
-- [proofreading-capability-gap-closure-plan.md](proofreading-capability-gap-closure-plan.md): 校对补齐能力在产品中的角色、边界与演进路径
 - [proofreading-competitive-benchmark.md](proofreading-competitive-benchmark.md): 校对补齐竞争力是否成立的产品判断模块
+
+### 设计规格文档（位于 developer/coding/）
+
+以下模块的产品设计规格文档位于 `developer/coding/` 目录，本目录提供快捷链接：
+
+- [platform-domains.md](../../developer/coding/platform-domains.md): 平台域模块设计（当前基线六域）与协同主链路
+- [insight-engine.md](../../developer/coding/insight-engine.md): 证据链驱动的 AI 洞察模块
+- [visual-os.md](../../developer/coding/visual-os.md): 语言驾驶舱模块与核心可视化交互能力
+- [temporal-knowledge-processing.md](../../developer/coding/temporal-knowledge-processing.md): 时序知识加工模块（本地提取、加工与当前对象分析）
+- [temporal-knowledge-processing-repo-design.md](../../developer/coding/temporal-knowledge-processing-repo-design.md): 仓库级模块设计（core/api/studio/cloud 边界）
+- [proofreading-capability-gap-closure-plan.md](../../developer/coding/proofreading-capability-gap-closure-plan.md): 校对补齐能力在产品中的角色、边界与演进路径
 
 ## 校对能力在模块体系中的位置
 
-校对相关条目用于说明“平台当前基线六域如何协同承接校对能力”。
+校对相关条目用于说明"平台当前基线六域如何协同承接校对能力"。
 
 - 定位页：`proofreading-capability-gap-closure-plan.md` 负责定义角色与边界。
 - 判定页：`proofreading-competitive-benchmark.md` 负责定义 go/no-go 判断口径。

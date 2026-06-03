@@ -53,4 +53,4 @@ source_of_truth: narrative-docs
 ## 相关文档
 
 - Visual OS 架构： [../../architecture/visual-os/README.md](../../architecture/visual-os/README.md)
-- Visual OS 模块： [../../product/modules/visual-os.md](../../product/modules/visual-os.md)
+- Visual OS 模块： [../../product/modules/visual-os.md](../../developer/coding/visual-os.md)
