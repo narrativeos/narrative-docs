@@ -71,6 +71,7 @@ sections:
       - product/workflows/fact-conflict-detection-minimal-runbook.md
       - product/workflows/fact-conflict-detection-sample-2026-05.md
       - product/workflows/terminology-hierarchy-discovery-minimal-spec.md
+      - product/scenarios/machining-handbook-killer-scenario.md
   - id: developer
     title_zh: 开发者指南
     title_en: Developer Guide
