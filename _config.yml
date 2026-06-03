@@ -778,36 +778,6 @@ defaults:
       grand_parent: Developer 开发者
       nav_order: 70
 
-  # Legacy root-level overview landing pages — content superseded by section READMEs
-  - scope:
-      path: product-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: academic-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: adr-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: ai-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: architecture-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: developer-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: governance-overview.md
-    values:
-      nav_exclude: true
-  - scope:
-      path: user-overview.md
-    values:
-      nav_exclude: true
+  # Overview landing pages serve as nav parents for their children
+  # Do NOT set nav_exclude here — just-the-docs excludes children automatically
+  # when the parent is excluded from navigation, breaking the entire hierarchy
