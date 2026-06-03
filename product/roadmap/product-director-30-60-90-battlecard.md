@@ -151,7 +151,7 @@ decision:
 ## 关联文档
 
 - [README.md](README.md)
-- [../v1-design-baseline.md](../coding/v1-design-baseline.md)
+- [../v1-design-baseline.md](../../developer/coding/v1-design-baseline.md)
 - [../workflows/README.md](../workflows/README.md)
 - [../workflows/proofreading-competitive-benchmark-runbook.md](../workflows/proofreading-competitive-benchmark-runbook.md)
 - [../../whitepaper/algorithm-selection-freeze-v1.md](../../whitepaper/algorithm-selection-freeze-v1.md)
