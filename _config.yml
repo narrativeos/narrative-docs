@@ -721,6 +721,62 @@ defaults:
     values:
       title: Temporal Knowledge Studio Task Pack 时序知识加工 Studio 任务单
       nav_exclude: true
+  - scope:
+      path: developer/coding/insight-engine.md
+    values:
+      title: Insight Engine 洞察引擎
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/platform-domains.md
+    values:
+      title: Platform Domains 平台域模型
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/visual-os.md
+    values:
+      title: Visual OS 可视操作系统
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/temporal-knowledge-processing.md
+    values:
+      title: Temporal Knowledge Processing 时序知识加工
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/temporal-knowledge-processing-repo-design.md
+    values:
+      title: Temporal Knowledge Repo Design 时序知识仓库设计
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+      nav_exclude: true
+  - scope:
+      path: developer/coding/proofreading-capability-gap-closure-plan.md
+    values:
+      title: Proofreading Gap Closure Plan 校对能力补齐计划
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/text-lab.md
+    values:
+      title: Text Lab 文本实验室
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/text-lab-narrative-axis.md
+    values:
+      title: Text Lab Narrative Axis 文本实验室叙事轴
+      parent: Coding Rules 编码规范
+      grand_parent: Developer 开发者
+  - scope:
+      path: developer/coding/v1-prototype-spec.md
+    values:
+      title: V1 Prototype Spec V1原型规范
+      parent: Development Planning 开发计划
+      grand_parent: Developer 开发者
+      nav_order: 70
 
   # Legacy root-level overview landing pages — content superseded by section READMEs
   - scope:
