@@ -23,7 +23,7 @@ tmp_index="$(mktemp)"
 tmp_baseline="$(mktemp)"
 trap 'rm -f "$tmp_index" "$tmp_baseline"' EXIT
 
-rg -o '([A-Za-z0-9._-]+/)+[A-Za-z0-9._-]+\.(md|ya?ml)' "$INDEX_FILE" | sort -u > "$tmp_index"
+grep -o -E '([A-Za-z0-9._-]+/)+[A-Za-z0-9._-]+\.(md|ya?ml)' "$INDEX_FILE" | sort -u > "$tmp_index"
 sort -u "$BASELINE_FILE" > "$tmp_baseline"
 
 if ! diff -u "$tmp_baseline" "$tmp_index" >/dev/null; then

@@ -16,7 +16,7 @@ fail() {
 echo "[INFO] Checking fixed-count terminology guardrails"
 
 # Guardrail: occurrences of 六引擎/六域 should be expressed as baseline wording.
-violations="$(rg -n "六引擎|六域" --glob '**/*.md' | rg -v "当前基线|基线|默认基线|基线配置" || true)"
+violations="$(grep -r -n -E "六引擎|六域" --include='*.md' | grep -v -E "当前基线|基线|默认基线|基线配置" || true)"
 
 if [[ -n "$violations" ]]; then
   echo "$violations"

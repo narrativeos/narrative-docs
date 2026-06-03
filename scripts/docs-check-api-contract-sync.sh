@@ -30,8 +30,8 @@ range_changed="$(git diff --name-only "$base_ref"...HEAD || true)"
 work_changed="$( (git diff --name-only; git diff --name-only --cached) | sort -u || true )"
 changed="$(printf '%s\n%s\n' "$range_changed" "$work_changed" | sed '/^$/d' | sort -u)"
 
-openapi_changed="$(printf '%s\n' "$changed" | rg '^developer/api/openapi/.*\.ya?ml$' || true)"
-compat_changed="$(printf '%s\n' "$changed" | rg '^api-compatibility-and-versioning\.md$' || true)"
+openapi_changed="$(printf '%s\n' "$changed" | grep -r '^developer/api/openapi/.*\.ya?ml$' || true)"
+compat_changed="$(printf '%s\n' "$changed" | grep -r '^api-compatibility-and-versioning\.md$' || true)"
 
 if [[ -n "$openapi_changed" && -z "$compat_changed" ]]; then
   echo "[INFO] OpenAPI files changed:"

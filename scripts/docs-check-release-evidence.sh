@@ -16,7 +16,7 @@ fail() {
 require_contains() {
   local file="$1"
   local pattern="$2"
-  rg -n "$pattern" "$file" >/dev/null || fail "pattern not found in $file: $pattern"
+  grep -r -n "$pattern" "$file" >/dev/null || fail "pattern not found in $file: $pattern"
   pass "pattern found in $file: $pattern"
 }
 

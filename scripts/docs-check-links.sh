@@ -39,7 +39,7 @@ while IFS= read -r file; do
     grep -oE '\[[^][]+\]\([^)]+\)' "$file" 2>/dev/null |
       sed -E 's/^\[[^][]+\]\(([^)]+)\)$/\1/'
   )
-done < <(rg --files -g '**/*.md')
+done < <(grep -rl "" --include '**/*.md')
 
 if [[ "$broken" -ne 0 ]]; then
   fail "broken relative links found"

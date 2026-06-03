@@ -6,7 +6,7 @@ cd "$ROOT_DIR"
 
 APP_JS="prototypes/html-v1/app.js"
 INDEX_HTML="prototypes/html-v1/index.html"
-SPEC_MD="product/prototype/v1-prototype-spec.md"
+SPEC_MD="developer/coding/v1-prototype-spec.md"
 
 FAILED=0
 

@@ -14,11 +14,11 @@ fail() {
 }
 
 echo "[INFO] Checking placeholder residue"
-! rg -n "This document describes ---|TODO|FIXME" --glob '**/*.md' || fail "placeholder residue found"
+! grep -r -n "This document describes ---|TODO|FIXME" --include='*.md' || fail "placeholder residue found"
 pass "no placeholder residue"
 
 echo "[INFO] Checking templated EN summary residue"
-! rg -n "^This document describes" --glob '**/*.md' || fail "templated EN summary residue found"
+! grep -r -n "^This document describes" --include='*.md' || fail "templated EN summary residue found"
 pass "no templated EN summary residue"
 
 ./scripts/docs-check-terminology.sh
