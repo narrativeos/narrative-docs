@@ -1,7 +1,9 @@
 ---
 layout: default
 title: Academic 学术研究
-nav_order: 45
+parent: User 用户
+nav_order: 1
+has_children: true
 ---
 
 # Academic 学术研究
