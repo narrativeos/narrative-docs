@@ -2,7 +2,7 @@
 layout: default
 title: Architecture 架构
 parent: Developer 开发者
-nav_order: 10
+nav_order: 15
 has_children: true
 ---
 

@@ -35,7 +35,4 @@ has_children: true
 - [Governance 治理与标准](governance-overview.md)
 - [Operations 运行手册](developer/operations/README.md)
 - [Troubleshooting Hub 故障排查](troubleshooting.md)
-- [Operations](developer/operations/README.md)
-- [AI 协作与智能体](ai/README.md)
-- [ADR 架构决策](adr/README.md)
 - [Governance 治理与标准](governance-overview.md)

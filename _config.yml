@@ -459,7 +459,7 @@ defaults:
     values:
       title: API Specifications API规范
       has_children: true
-      nav_order: 30
+      nav_order: 42
   - scope:
       path: developer/api/v1-contract-freeze-checklist.md
     values:

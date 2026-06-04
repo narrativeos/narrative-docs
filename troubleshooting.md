@@ -2,7 +2,7 @@
 layout: default
 title: Troubleshooting Hub 故障排查
 parent: Developer 开发者
-nav_order: 2
+nav_order: 95
 ---
 
 # Troubleshooting Hub
