@@ -290,3 +290,37 @@ narrative-studio
 - [System 系统架构](../system/README.md): 全局系统边界
 - [Runtime 运行时](../runtime/README.md): 运行时分工与隔离
 - [Platform 平台架构](../platform/README.md): 平台域模型与能力进化
+
+---
+
+## 实现状态 | Implementation Status
+
+> 最后更新: 2026-06-04 | 仓库: [narrative-operator-nlp](https://github.com/narrativeos/narrative-operator-nlp)
+
+### 架构对齐度
+
+| 设计要求 | 实现状态 |
+|---------|---------|
+| ① MCP 标准接口层 | ✅ `adapters/mcp_server.py` — JSON-RPC over stdio |
+| ② gRPC 内部总线 | ✅ `adapters/grpc_server.py` + `grpc_client.py` — UDS |
+| ③ FastAPI 开发调试层 | ✅ `adapters/fastapi_app.py` — 7 端点 + `/demo` 页面 |
+| `core/` 层零协议依赖 | ✅ 无 mcp/grpc/fastapi 导入 |
+| 协议适配器模式 | ✅ 每种协议一个独立文件 |
+| NSP Schema Mapper | ✅ `HanlpSchemaMapper` — HanLP MTL 真实输出适配 |
+| GitHub 基线门禁 (9 项) | ✅ 9/9 全部到位 |
+
+### 超出设计的实现
+
+| 能力 | 说明 |
+|------|------|
+| **两阶段混合分析** | 自动检测现代/古汉语 → 分别路由 MTL/LZH 模型 → 质量评估回退 |
+| **SVG 依存树** | 自研内联 SVG 渲染，彩色节点 + 曲线箭头 + 关系标注 |
+| **交互式 Demo** | `GET /demo` 四个 Tab：NSP 结构化 / HanLP 原生 / SVG 树 / JSON |
+| **Docker 部署** | `docker compose up -d` 自动检查下载模型 |
+| **模型管理** | `scripts/setup_models.py` 统一管理 6 个预训练模型 |
+
+### 详细文档
+
+- [实现总结](https://github.com/narrativeos/narrative-operator-nlp/blob/doc-zh/docs/IMPLEMENTATION.md)
+- [API 调用指南](https://github.com/narrativeos/narrative-operator-nlp/blob/doc-zh/docs/API-USAGE.md)
+- [HanLP Demo 差异报告](https://github.com/narrativeos/narrative-operator-nlp/blob/doc-zh/docs/GAP-ANALYSIS.md)

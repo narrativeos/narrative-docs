@@ -246,3 +246,73 @@ NLP Operator (sidecar 进程)
 - [NLP Operator README](README.md): 协议优先架构总览
 - [Runtime 运行时](../../architecture/runtime/README.md): 运行时分工与隔离
 - [Platform 平台架构](../../architecture/platform/README.md): 平台域模型与能力进化
+
+---
+
+## 实际适配：HanLP MTL 输出 → NSP
+
+> 基于 narrative-operator-nlp 实际实现，2026-06-04 验证通过。
+
+### Token 映射
+
+```python
+# HanLP MTL 真实输出
+raw["tok/fine"] = ["碳","钢","是","钢","的","一","种"]
+raw["pos/ctb"]  = ["NN","NN","VC","NN","DEG","CD","M"]
+
+# → NSP Token
+Token(id=0, text="碳", pos="NN", span=(0, 1))
+```
+
+### Entity 映射（NER 标注集统一）
+
+```python
+# HanLP 三套 NER 输出均为 (text, label, tok_start, tok_end) tuple
+raw["ner/msra"]   = [("北京","LOCATION",8,10), ("立方庭","LOCATION",10,13)]
+raw["ner/pku"]    = [("北京","ns",8,10)]
+raw["ner/ontonotes"] = [("北京立方庭","FAC",8,13)]
+
+# → EntityMappingRules 合并去重
+# PKU: ns→LOCATION, MSRA: LOCATION→LOCATION, OntoNotes: FAC→FACILITY
+# "北京" 去重 (pku+msra 重叠), "北京立方庭" 保留 (文本不同)
+Entity(id="ent_001", text="北京",     category="LOCATION", span=(18,20))
+Entity(id="ent_002", text="立方庭",    category="LOCATION", span=(20,23))
+Entity(id="ent_003", text="北京立方庭", category="FACILITY", span=(18,23))
+```
+
+### Relation 映射（依存句法 → 关系三元组）
+
+```python
+# HanLP dep: list[(head_1based, deprel)]
+raw["dep"] = [(2,"nn"), (3,"top"), (2,"attr"), (7,"assmod"), ...]
+
+# → RelationExtractionRules 模式匹配
+# "nn" → PART_OF, "top" → IS_A, "attr" → IS_A, "assmod" → PART_OF
+Relation(subject="钢", predicate="PART_OF",    object="碳", source="dep/nn")
+Relation(subject="是", predicate="IS_A",       object="钢", source="dep/top")
+Relation(subject="是", predicate="IS_A",       object="种", source="dep/attr")
+```
+
+### 两阶段混合分析
+
+```
+输入: "孔子曰：学而时习之。小明在北大读书。"
+  │
+  ├─ language_detector.classify()
+  │   ├─ "孔子曰：学而时习之。" → classical (confidence: 0.55)
+  │   └─ "小明在北大读书。"     → modern    (confidence: 0.00)
+  │
+  ├─ classical → KYOTO_EVAHAN LZH → lzh_* keys → _normalize_lzh_keys()
+  └─ modern    → ELECTRA_SMALL MTL
+  │
+  └─ 合并 → offset 重映射 → meta.source = "hanlp_v2+hanlp_lzh"
+```
+
+### Token 来源标记
+
+```python
+Token(id=4, text="学", pos="VERB", span=(4,5), source="hanlp_lzh")
+Token(id=10, text="小", pos="NN", span=(11,12), source="hanlp_v2")
+```
+
+古汉语 token 通过 `source` 字段标记，支持下游按来源筛选。
