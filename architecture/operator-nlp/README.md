@@ -103,6 +103,122 @@ This document defines the Protocol-First architecture standard for `narrative-op
 
 ---
 
+## 代码架构：协议适配器模式
+
+核心 NLP 能力只编写一次，通过不同的"协议适配器"（Adapter）暴露为不同协议。
+
+### 项目结构标准
+
+```
+narrative-operator-nlp/
+├── core/                  # 逻辑核心 — 纯 Python，零协议依赖
+│   ├── __init__.py
+│   ├── analyzer.py        # 主分析函数：text → NarrativeSchema
+│   └── schema.py          # NSP Python 数据类定义
+├── adapters/              # 协议适配层 — 每种协议一个文件
+│   ├── mcp_server.py      # MCP Tool 封装
+│   ├── grpc_server.py     # gRPC Protobuf 服务
+│   ├── grpc_client.py     # gRPC 客户端（供 Worker Runtime 调用）
+│   └── fastapi_app.py     # FastAPI HTTP Endpoint
+├── schemas/               # 核心契约定义
+│   ├── narrative.proto    # Protobuf 定义
+│   └── narrative.schema.json  # JSON Schema
+├── examples/              # 使用示例
+│   ├── call_via_mcp.py    # 通过 MCP 调用算子
+│   └── call_via_http.py   # 通过 FastAPI 调用算子
+├── docs/
+│   └── PROTOCOL.md        # NSP 数据结构标准
+├── tests/
+└── README.md
+```
+
+### 核心层 (core/)
+
+`core/analyzer.py` 是唯一包含 NLP 引擎（HanLP）调用的地方，返回统一的 Python 对象：
+
+```python
+# core/analyzer.py — 逻辑核心
+from .schema import NarrativeDocument
+
+def analyze(text: str) -> NarrativeDocument:
+    """唯一的核心分析函数。接收文本，返回 NSP 标准化结果。"""
+    raw = hanlp.load(...)(text)
+    mapper = HanlpSchemaMapper()
+    return mapper.map(raw)
+```
+
+### 适配器层 (adapters/)
+
+每个适配器文件将 `core.analyze()` 封装为对应协议的入口：
+
+```python
+# adapters/mcp_server.py — MCP 适配器
+from mcp.server import Server
+from core.analyzer import analyze
+
+server = Server("narrative-operator-nlp")
+
+@server.tool()
+async def analyze_text(text: str) -> dict:
+    """分析文本，返回叙事原子"""
+    result = analyze(text)
+    return result.model_dump()
+```
+
+```python
+# adapters/fastapi_app.py — FastAPI 适配器
+from fastapi import FastAPI
+from core.analyzer import analyze
+
+app = FastAPI()
+
+@app.post("/analyze")
+async def analyze_endpoint(text: str):
+    result = analyze(text)
+    return result.model_dump()
+```
+
+```python
+# adapters/grpc_server.py — gRPC 适配器
+import grpc
+from core.analyzer import analyze
+from schemas import narrative_pb2, narrative_pb2_grpc
+
+class NarrativeService(narrative_pb2_grpc.NarrativeServiceServicer):
+    def Analyze(self, request, context):
+        result = analyze(request.text)
+        return narrative_pb2.AnalyzeResponse(...)
+```
+
+### 核心优势
+
+| 原则 | 说明 |
+|------|------|
+| **写一次，多协议暴露** | 核心 NLP 逻辑只维护一份 |
+| **适配器可独立测试** | MCP/gRPC/HTTP 各有独立测试，不污染核心逻辑 |
+| **协议切换零成本** | 新增协议只需写一个新适配器文件 |
+| **核心逻辑零协议依赖** | `core/` 不 import 任何 `mcp`/`grpc`/`fastapi` 包 |
+
+---
+
+## GitHub 仓库标准清单
+
+`narrative-operator-nlp` 仓库必须包含以下文件，作为项目成熟度的基线门禁：
+
+| 文件 | 用途 | 必填 |
+|------|------|------|
+| `docs/PROTOCOL.md` | NSP 数据结构标准定义 | ✅ |
+| `schemas/narrative.proto` | Protobuf 契约定义 | ✅ |
+| `schemas/narrative.schema.json` | JSON Schema 定义 | ✅ |
+| `examples/call_via_mcp.py` | MCP 调用示例 | ✅ |
+| `examples/call_via_http.py` | FastAPI 调用示例 | ✅ |
+| `core/analyzer.py` | 核心分析函数 | ✅ |
+| `adapters/mcp_server.py` | MCP 适配器 | ✅ |
+| `adapters/grpc_server.py` | gRPC 适配器 | ✅ |
+| `adapters/fastapi_app.py` | FastAPI 适配器 | ✅ |
+
+---
+
 ## 与现有架构的关系
 
 ```
