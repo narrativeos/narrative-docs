@@ -25,7 +25,7 @@ has_children: true
 - [Setup 环境准备](developer/setup/README.md)
 - [Workspace 工作区](developer/workspace/README.md)
 - [Architecture 架构](architecture-overview.md)
-- [NarrativeOS 底层大脑](product/products/narrative-os-core.md)
+- [NarrativeOS 底层大脑](developer/narrative-os-core.md)
 - [Coding Rules 编码规范](developer/coding/README.md)
 - [API Specifications API规范](developer/api/README.md)
 - [SDK 集成](developer/sdk/README.md)

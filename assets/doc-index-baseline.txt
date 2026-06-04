@@ -114,7 +114,7 @@ product/modules/proofreading-competitive-benchmark.md
 product/modules/README.md
 product/modules/style-genome.md
 product/products/editor-plugin.md
-product/products/narrative-os-core.md
+developer/narrative-os-core.md
 product/products/narrative-studio.md
 product/README.md
 product/roadmap/product-director-30-60-90-battlecard.md

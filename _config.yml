@@ -200,7 +200,7 @@ defaults:
       title: NarrativeStudio 专家工作台
       nav_order: 3
   - scope:
-      path: product/products/narrative-os-core.md
+      path: developer/narrative-os-core.md
     values:
       title: NarrativeOS Core 底层大脑
       nav_order: 40

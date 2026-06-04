@@ -52,7 +52,6 @@ sections:
     children:
       - product/products/editor-plugin.md
       - product/products/narrative-studio.md
-      - product/products/narrative-os-core.md
       - product/vision/README.md
       - product/roadmap/README.md
       - product/roadmap/product-director-30-60-90-battlecard.md
@@ -83,6 +82,7 @@ sections:
     children:
       - developer/setup/README.md
       - developer/workspace/README.md
+      - developer/narrative-os-core.md
       - developer/api/README.md
       - developer/api/openapi/narrative-api-v1.yaml
       - developer/api/terminology-hierarchy-api-storage-contract-v1.md
