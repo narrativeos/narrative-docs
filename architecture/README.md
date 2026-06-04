@@ -49,7 +49,7 @@ source_of_truth: narrative-docs
 - [style-genome](style-genome/README.md): 风格基因架构与语言基因卡设计
 - [analysis-engine](analysis-engine/README.md): 引擎集合架构（当前基线六引擎）与 CT 扫描式诊断流程（含单文 Full MRI Walkthrough）
 - [insight-engine](insight-engine/README.md): 洞察引擎架构与可解释输出生成
-- [operator-nlp](operator-nlp/README.md): NLP Operator 协议优先架构（MCP / gRPC / FastAPI 三层协议标准）
+- [operator-nlp](operator-nlp/README.md): NLP Operator 协议优先架构 + NSP 叙事协议标准
 - [insight-engine](insight-engine/README.md): 证据驱动 AI 分析师架构
 - [atlas](atlas/README.md): Atlas 相关能力与边界
 - [visual-os](visual-os/README.md): 语言驾驶舱与可视化操作系统架构

@@ -170,6 +170,7 @@ narrative-studio
 
 ## 文档索引
 
+- [Narrative Schema 叙事协议标准](narrative-schema.md): NSP 实体/关系标准化规范
 - [System 系统架构](../system/README.md): 全局系统边界
 - [Runtime 运行时](../runtime/README.md): 运行时分工与隔离
 - [Platform 平台架构](../platform/README.md): 平台域模型与能力进化
