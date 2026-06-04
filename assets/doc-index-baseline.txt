@@ -44,6 +44,8 @@ architecture/atlas/README.md
 architecture/corpus-learning/README.md
 architecture/insight-engine/README.md
 architecture/library/README.md
+architecture/operator-nlp/narrative-schema.md
+architecture/operator-nlp/README.md
 architecture/platform/README.md
 architecture/README.md
 architecture/runtime/README.md
@@ -88,6 +90,7 @@ developer/coding/v1-frontend-swimlane-allocation.md
 developer/coding/v1-prototype-spec.md
 developer/coding/v1-two-week-sprint-plan.md
 developer/coding/visual-os.md
+developer/narrative-os-core.md
 developer/operations/academic-adoption-role-assignment-raci.md
 developer/operations/academic-adoption-weekly-execution-checklist.md
 developer/operations/academic-adoption-weekly-status-report-template.md
@@ -114,7 +117,6 @@ product/modules/proofreading-competitive-benchmark.md
 product/modules/README.md
 product/modules/style-genome.md
 product/products/editor-plugin.md
-developer/narrative-os-core.md
 product/products/narrative-studio.md
 product/README.md
 product/roadmap/product-director-30-60-90-battlecard.md

@@ -27,6 +27,8 @@ sections:
       - architecture/style-genome/README.md
       - architecture/insight-engine/README.md
       - architecture/visual-os/README.md
+      - architecture/operator-nlp/README.md
+      - architecture/operator-nlp/narrative-schema.md
   - id: adr
     title_zh: 架构决策记录
     title_en: Architecture Decision Records
