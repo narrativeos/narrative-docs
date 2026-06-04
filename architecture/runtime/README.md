@@ -25,6 +25,27 @@ source_of_truth: narrative-docs
 - Host Runtime: Rust/Tauri，负责生命周期、进程与边界控制
 - UI Runtime: TypeScript/React，负责可视化与交互
 - Worker Runtime: Python，负责任务计算与数据处理
+- Operator Runtime: Python（独立进程），负责 NLP 等算子任务，以 sidecar 模式运行
+
+## Operator Runtime（算子运行时）
+
+`narrative-operator-nlp` 等算子以 **sidecar 进程** 形式独立部署，不内嵌在 Worker Runtime 中。
+
+**通信方式：**
+```
+Worker Runtime ◄──gRPC + Unix Domain Socket──► Operator Runtime (sidecar)
+```
+
+**设计理由：**
+- 算子有独立的依赖树和生命周期，与 core Worker 解耦
+- gRPC over UDS 提供近零开销的本地 IPC
+- 算子可作为独立进程同容器部署（local-first），也可拆分部署（cloud）
+- 各算子可独立扩缩容、独立发布
+
+**协议优先级（见 [NLP Operator 架构](../operator-nlp/README.md)）：**
+1. MCP — 标准接口层（对外）
+2. gRPC + Protobuf — 内部总线（算子 ↔ Worker）
+3. FastAPI + JSON — 开发调试
 
 ## 运行时规则
 

@@ -120,6 +120,54 @@ narrative-studio
 
 ---
 
+## 部署策略
+
+### 当前推荐：Sidecar 同容器部署（local-first）
+
+```
+┌──────────────────────────────────────┐
+│           同一部署单元                  │
+│  Docker container / systemd unit      │
+│                                       │
+│  ┌──────────┐   gRPC + UDS   ┌──────┐ │
+│  │  Worker   │◄──────────────►│ NLP  │ │
+│  │  Runtime  │               │ Op   │ │
+│  └──────────┘               └──────┘ │
+│                                       │
+│  进程 A (core)          进程 B (nlp)   │
+└──────────────────────────────────────┘
+```
+
+- Worker Runtime 和 NLP Operator 作为两个独立进程运行
+- 通过 gRPC over Unix Domain Socket 通信（零网络开销）
+- 同容器部署，无额外网络依赖，符合 local-first 原则
+- 适合开发环境、单机部署、Docker Compose
+
+### 未来演进：独立容器部署（cloud-ready）
+
+```
+┌──────────┐    gRPC/TCP    ┌──────────┐
+│  Worker   │──────────────►│ NLP Op   │
+│  Runtime  │               │ (replica)│
+└──────────┘               └──────────┘
+       │                        │
+       └── k8s Service Mesh ────┘
+```
+
+- 算子独立扩缩容，按 NLP 负载调整副本数
+- 通信从 UDS 切换为 gRPC over TCP，对应用层透明
+- 适用于 Kubernetes / 云原生部署
+
+### 禁止的做法
+
+| ❌ 做法 | 理由 |
+|---------|------|
+| 将 operator-nlp 代码直接导入 Worker Runtime | 依赖耦合、版本锁死、GIL 竞争 |
+| 通过共享文件系统传递任务数据 | 无契约约束，易产生隐式耦合 |
+| 绕过协议层直接调用内部函数 | 破坏协议优先原则，无法独立部署 |
+
+---
+
 ## 文档索引
 
 - [System 系统架构](../system/README.md): 全局系统边界
