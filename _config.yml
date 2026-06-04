@@ -27,7 +27,7 @@ defaults:
       type: pages
     values:
       parent: Architecture 架构
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
 
   - scope:
       path: product
@@ -40,7 +40,7 @@ defaults:
       path: developer
       type: pages
     values:
-      parent: Developer 开发者
+      parent: Integrate 集成指南
       nav_order: 30
 
   - scope:
@@ -62,7 +62,7 @@ defaults:
       type: pages
     values:
       parent: AI 协作与智能体
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 80
 
   - scope:
@@ -70,7 +70,7 @@ defaults:
       type: pages
     values:
       parent: ADR 架构决策
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 81
 
   - scope:
@@ -84,37 +84,37 @@ defaults:
       path: api-compatibility-and-versioning.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 1
   - scope:
       path: code-of-conduct.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 3
   - scope:
       path: contributing.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 4
   - scope:
       path: data-classification-and-retention.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 5
   - scope:
       path: security.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 7
   - scope:
       path: assets/glossary.zh-en.md
     values:
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 10
 
   # Bilingual nav titles for second-level menu items
@@ -203,7 +203,8 @@ defaults:
       path: developer/narrative-os-core.md
     values:
       title: NarrativeOS Core 底层大脑
-      nav_order: 40
+      parent: Internal Docs 内核文档
+      nav_order: 45
   - scope:
       path: product/vision/README.md
     values:
@@ -297,6 +298,7 @@ defaults:
       path: developer/coding/README.md
     values:
       title: Coding Rules 编码规范
+      parent: Internal Docs 内核文档
       has_children: true
       nav_order: 40
   - scope:
@@ -304,7 +306,7 @@ defaults:
     values:
       title: Core Docs Mapping 核心文档映射
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/developer-docs-execution-sprint-plan.md
     values:
@@ -315,58 +317,59 @@ defaults:
     values:
       title: Docs Release Readiness Checklist
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/readiness-checklist.md
     values:
       title: Readiness Checklist 就绪检查清单
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/storage-optimization-rollout-checklist.md
     values:
       title: 执行导向存取优化落地清单
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/docs-governance-standard.md
     values:
       title: Docs Governance Standard 文档治理标准
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 11
   - scope:
       path: developer/coding/docs-governance-backlog.md
     values:
       title: Docs Governance Backlog 文档治理清单
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 12
   - scope:
       path: developer/coding/docs-governance-monthly-check-template.md
     values:
       title: Governance Monthly Check 月度治理检查
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 13
   - scope:
       path: developer/coding/docs-governance-release-report-2026-05.md
     values:
       title: Governance Release Report 治理发布报告
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 14
   - scope:
       path: developer/coding/docs-terminology-note-template.md
     values:
       title: Terminology Note Template 术语说明模板
       parent: Governance 治理与标准
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 15
   - scope:
       path: developer/operations/README.md
     values:
       title: Operations 运行手册
+      parent: Internal Docs 内核文档
       has_children: true
       nav_order: 90
   - scope:
@@ -374,49 +377,49 @@ defaults:
     values:
       title: Academic Adoption Weekly Checklist 学术采用周执行清单
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/academic-adoption-weekly-status-report-template.md
     values:
       title: Academic Weekly Report Template 学术周报模板
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/academic-adoption-role-assignment-raci.md
     values:
       title: Academic Adoption RACI 学术采用分工矩阵
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/cross-repo-ci-status-matrix-template.md
     values:
       title: Cross-Repo CI Status Matrix Template
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/cross-repo-release-checklist.md
     values:
       title: Cross-Repo Release Checklist
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/go-no-go-meeting-template.md
     values:
       title: Go/No-Go Meeting Template
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/milestone-planning-template.md
     values:
       title: Milestone Planning Template
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/novel100-kepub-dataset.md
     values:
       title: 20世纪中文小说100强 x kepub 数据集
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/prototype-page-level-task-breakdown.md
     values:
@@ -432,13 +435,13 @@ defaults:
     values:
       title: Risk Register Template
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/operations/v1-mock-simulation-dataset.md
     values:
       title: Product V1 Mock Simulation Dataset
       parent: Operations 运行手册
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/plugins/README.md
     values:
@@ -465,7 +468,7 @@ defaults:
     values:
       title: V1 API Contract Freeze Checklist
       parent: API Specifications API规范
-      grand_parent: Developer 开发者
+      grand_parent: Integrate 集成指南
   - scope:
       path: developer/workspace/README.md
     values:
@@ -477,53 +480,53 @@ defaults:
     values:
       title: AI-Native Bootstrap Checklist AI原生启动清单
       parent: Workspace 工作区
-      grand_parent: Developer 开发者
+      grand_parent: Integrate 集成指南
   - scope:
       path: changelog.md
     values:
       parent: Version Management 版本管理
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 81
   - scope:
       path: whats-new.md
     values:
       parent: Version Management 版本管理
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 82
   - scope:
       path: developer/coding/v1-design-baseline.md
     values:
       title: V1 Design Baseline V1设计基线
       parent: Development Planning 开发计划
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 71
   - scope:
       path: developer/coding/v1-two-week-sprint-plan.md
     values:
       title: V1 Two-week Sprint Plan V1两周迭代计划
       parent: Development Planning 开发计划
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 72
   - scope:
       path: developer/coding/v1-frontend-issue-breakdown.md
     values:
       title: V1 Frontend Issue Breakdown V1前端任务拆分
       parent: Development Planning 开发计划
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 73
   - scope:
       path: developer/coding/v1-frontend-issue-paste-pack.md
     values:
       title: V1 Frontend Issue Paste Pack V1前端工单粘贴包
       parent: Development Planning 开发计划
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 74
   - scope:
       path: developer/coding/v1-frontend-swimlane-allocation.md
     values:
       title: V1 Frontend Swimlane Allocation V1前端分泳道计划
       parent: Development Planning 开发计划
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 75
 
   - scope:
@@ -819,56 +822,56 @@ defaults:
     values:
       title: Insight Engine 洞察引擎
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/platform-domains.md
     values:
       title: Platform Domains 平台域模型
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/visual-os.md
     values:
       title: Visual OS 可视操作系统
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/temporal-knowledge-processing.md
     values:
       title: Temporal Knowledge Processing 时序知识加工
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/temporal-knowledge-processing-repo-design.md
     values:
       title: Temporal Knowledge Repo Design 时序知识仓库设计
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_exclude: true
   - scope:
       path: developer/coding/proofreading-capability-gap-closure-plan.md
     values:
       title: Proofreading Gap Closure Plan 校对能力补齐计划
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/text-lab.md
     values:
       title: Text Lab 文本实验室
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/text-lab-narrative-axis.md
     values:
       title: Text Lab Narrative Axis 文本实验室叙事轴
       parent: Coding Rules 编码规范
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
   - scope:
       path: developer/coding/v1-prototype-spec.md
     values:
       title: V1 Prototype Spec V1原型规范
       parent: Development Planning 开发计划
-      grand_parent: Developer 开发者
+      grand_parent: Internal Docs 内核文档
       nav_order: 70
 
   # Overview landing pages serve as nav parents for their children
