@@ -34,7 +34,7 @@ NarrativeStructure 不是文档编辑器，而是文档的重构工厂。你将�
 ### 场景一：超大型文档导入
 
 > 用户将 200 万字的 PDF 文档拖入工作台，系统自动完成：
-> 1. PDF 解析 → 离散化为 SemanticBlock
+> 1. PDF 解析后的产物 → 离散化为 SemanticBlock
 > 2. 层级识别：标题、段落、表格、图片自动分类
 > 3. 逻辑树构建：基于语义关系重建文档结构
 > 4. 存入 SQLite：每个 Block 获得唯一 UUID，支持稳定定位
@@ -74,8 +74,8 @@ NarrativeStructure 不是文档编辑器，而是文档的重构工厂。你将�
 ```
 my-project/
 ├── narrative.db      # SQLite 数据库（SemanticBlock + 处理状态）
-├── assets/           # 原始 PDF、切片图片及媒体资源
-├── exports/          # 最终导出产物（Markdown, PDF）
+├── assets/           # 原始 PDF、切片图片及媒体资源、分层pdf、markdown识别版、json等
+├── exports/          # 最终导出产物（精修Markdown和图片等）
 ├── nodes/            # 处理脚本（.py）
 └── prompts/          # LLM 指令模板（.yaml）
 ```
