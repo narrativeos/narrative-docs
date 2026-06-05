@@ -2,9 +2,9 @@
 
 ## 摘要
 
-NarrativeOS 产品体系面向三类用户角色，提供从日常办公到知识治理的完整能力链。
+NarrativeOS 产品体系面向四类用户角色，提供从日常办公到文档重构、知识治理的完整能力链。
 
-本文档以**用户视角**介绍三个主要产品方向，回答"你是谁、你能做什么、你为何需要它"。
+本文档以**用户视角**介绍四个主要产品方向，回答"你是谁、你能做什么、你为何需要它"。
 
 ## Machine-readable Metadata | 机读元数据
 
@@ -20,7 +20,7 @@ source_of_truth: narrative-docs
 
 ---
 
-## 三大产品方向
+## 四大产品方向
 
 NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同角色在不同层级获得不同价值。
 
@@ -70,7 +70,31 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 
 ---
 
-### 3. NarrativeOS 底层大脑 — 知识时序治理引擎
+### 3. NarrativeStructure — 文档智能化重构工作台
+
+**目标用户：** 知识架构师、技术文档工程师、大型文档项目管理者
+
+**核心价值：** 将超大型文档（如 200 万字）离散化为语义块，结合 AI 流水线实现高精度还原与实时协作。
+
+#### 典型场景
+
+> 用户将 200 万字的 PDF 文档拖入工作台，系统自动解析为 SemanticBlock、构建逻辑树，通过 LangGraph 流水线进行全自动质量优化，最终导出结构化 Markdown/PDF。
+
+#### 能力边界
+
+- 语义块引擎：段落/标题/表格/图片作为最小操作单元，UUID 稳定定位
+- 虚拟滚动编辑器：Monaco Editor + 虚拟列表，200 万字秒级加载
+- 双向联动目录：逻辑树实时渲染，拖拽重组直接驱动数据库
+- LangGraph 流水线：可视化处理节点，全自动 + 单步调试 + 闭环纠错
+- 项目包隔离：每个项目独立文件夹，SQLite + assets/ + exports/ 自包含
+
+#### 入口
+
+- [NarrativeStructure 工作台说明](products/narrative-structure.md)
+
+---
+
+### 4. NarrativeOS 底层大脑 — 知识时序治理引擎
 
 **目标用户：** 系统管理员、知识治理负责人、平台运营者
 
@@ -106,10 +130,10 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 └──────────────────────┼──────────────────────────────┘
                        ▼
 ┌─────────────────────────────────────────────────────┐
-│  NarrativeStudio 专家工作台                           │
-│  (OCR · 实体提取 · 知识图谱 · 人工审核)              │
+│  NarrativeStructure 文档重构工作台                     │
+│  (语义块引擎 · LangGraph 流水线 · 虚拟滚动编辑)        │
 │                      │                              │
-│                      │ 知识入库                       │
+│                      │ 结构化文档输出                  │
 └──────────────────────┼──────────────────────────────┘
                        ▼
 ┌─────────────────────────────────────────────────────┐
@@ -120,9 +144,10 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 
 - **插件端**是用户日常接触的前端触点
 - **Studio**是专家构建与维护知识的中台工作台
+- **Structure**是超大型文档的重构工厂
 - **OS 大脑**是保障知识质量与时效的底层引擎
 
-三者协同，形成"采集 → 治理 → 消费"的完整知识闭环。
+四者协同，形成"消费 → 采集 → 重构 → 治理"的完整知识闭环。
 
 ---
 
@@ -132,6 +157,7 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 |---------|---------|
 | 日常用户（工程师/技术员） | [插件端功能说明](products/editor-plugin.md) |
 | 领域专家（知识工程师） | [Studio 工作台说明](products/narrative-studio.md) |
+| 知识架构师/文档工程师 | [NarrativeStructure 工作台说明](products/narrative-structure.md) |
 | 平台运营/治理负责人 | [OS 治理引擎说明](../developer/narrative-os-core.md) |
 | 产品经理 | [产品愿景](vision/README.md) → [路线图](roadmap/README.md) |
 | 投资人/决策者 | [机械加工手册杀手级场景](scenarios/machining-handbook-killer-scenario.md) |
@@ -145,6 +171,7 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 
 - [products/editor-plugin.md](products/editor-plugin.md): LibreOffice/Word 插件端 — 日常办公中的智能助手
 - [products/narrative-studio.md](products/narrative-studio.md): NarrativeStudio 专家工作台 — 知识图谱构建与归档
+- [products/narrative-structure.md](products/narrative-structure.md): NarrativeStructure 文档重构工作台 — 语义块引擎与智能流水线
 - [../developer/narrative-os-core.md](../developer/narrative-os-core.md): NarrativeOS Core 底层大脑 — 知识时序治理引擎
 
 ### 应用场景
