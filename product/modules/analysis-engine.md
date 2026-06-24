@@ -1,3 +1,11 @@
+<!--
+ * @Author: Future Meng futuremeng@gmail.com
+ * @Date: 2026-05-30 11:53:45
+ * @LastEditors: Future Meng futuremeng@gmail.com
+ * @LastEditTime: 2026-06-24 13:40:39
+ * @FilePath: /narrative-docs/product/modules/analysis-engine.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 ---
 layout: default
 title: 分析引擎 Analysis Engine
@@ -20,6 +28,7 @@ nav_order: 221
 - **语法诊断**：句法结构分析、语法错误检测
 - **语义诊断**：语义一致性、逻辑冲突检测
 - **叙事流分析**：篇章连贯性、叙事节奏评估
+- **写作分析**：详见 [写作分析特性](./writing-analysis-features.md)
 
 ## 与产品矩阵的关系
 

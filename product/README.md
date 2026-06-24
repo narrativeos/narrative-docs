@@ -47,7 +47,7 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 
 ---
 
-### 2. NarrativeStudio — 专家级知识工作台
+### 2. NarrativeStudio (Kognisynth) — 专家级知识工作台
 
 **目标用户：** 领域专家、知识工程师、标准维护人员
 
@@ -66,7 +66,7 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 
 #### 入口
 
-- [Studio 工作台说明](products/narrative-studio.md)（建设中）
+- [Studio (Kognisynth) 工作台说明](products/narrative-studio.md)（建设中）
 
 ---
 
@@ -170,7 +170,7 @@ NarrativeOS 不是一个单一工具，而是一个分层产品矩阵。不同�
 ### 独立产品
 
 - [products/editor-plugin.md](products/editor-plugin.md): LibreOffice/Word 插件端 — 日常办公中的智能助手
-- [products/narrative-studio.md](products/narrative-studio.md): NarrativeStudio 专家工作台 — 知识图谱构建与归档
+- [products/narrative-studio.md](products/narrative-studio.md): NarrativeStudio (Kognisynth) 专家工作台 — 知识图谱构建与归档
 - [products/narrative-structure.md](products/narrative-structure.md): NarrativeStructure 文档重构工作台 — 语义块引擎与智能流水线
 - [../developer/narrative-os-core.md](../developer/narrative-os-core.md): NarrativeOS Core 底层大脑 — 知识时序治理引擎
 

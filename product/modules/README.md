@@ -1,3 +1,11 @@
+<!--
+ * @Author: Future Meng futuremeng@gmail.com
+ * @Date: 2026-06-03 16:03:46
+ * @LastEditors: Future Meng futuremeng@gmail.com
+ * @LastEditTime: 2026-06-24 13:40:51
+ * @FilePath: /narrative-docs/product/modules/README.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # Product Modules
 
 ## 摘要（中文）
@@ -37,6 +45,7 @@ source_of_truth: narrative-docs
 - [style-genome.md](style-genome.md): 风格基因卡与文风演化模块
 - [analysis-engine.md](analysis-engine.md): 核心分析引擎模块（当前基线六引擎）与产品交付物
 - [proofreading-competitive-benchmark.md](proofreading-competitive-benchmark.md): 校对补齐竞争力是否成立的产品判断模块
+- [writing-analysis-features.md](writing-analysis-features.md): 写作分析特性 — 文本诊断、统计分析、叙事分析、评估建议（通过插件端与 NarrativeStudio 交付）
 
 ### 设计规格文档（位于 developer/coding/）
 

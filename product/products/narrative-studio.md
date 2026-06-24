@@ -1,11 +1,11 @@
 ---
 layout: default
-title: NarrativeStudio 专家工作台
+title: NarrativeStudio (Kognisynth) — 专家级知识工作台
 parent: Product 产品
 nav_order: 21
 ---
 
-# NarrativeStudio — 专家级知识工作台
+# NarrativeStudio (Kognisynth) — 专家级知识工作台
 
 ## 摘要
 
